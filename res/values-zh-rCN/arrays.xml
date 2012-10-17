@@ -47,6 +47,25 @@
     <item msgid="5721688686241190620">"10 分钟"</item>
     <item msgid="7156442995039264948">"30 分钟"</item>
   </string-array>
+  <string-array name="hdmi_resolution_entries">
+    <item>1920x1080p_50Hz</item>
+    <item>1920x1080p_60Hz</item>
+    <item>1280x720p_50Hz</item>
+    <item>1280x720p_60Hz</item>
+    <item>720x576p_50Hz_4x3</item>
+    <item>720x576p_50Hz_16x9</item>
+    <item>720x480p_60Hz_4x3</item>
+    <item>720x480p_60Hz_16x9</item>
+  </string-array>
+  <string-array name="hdmi_mode_entries">
+    <item>LCD显示</item>
+    <item>HDMI显示</item>
+    <item>双屏显示</item>
+  </string-array>
+  <string-array name="hdmi_mode2_entries">
+    <item>LCD显示</item>
+    <item>HDMI显示</item>
+  </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"很慢"</item>
     <item msgid="2361722960903353554">"慢"</item>

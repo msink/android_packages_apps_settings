@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/hdmi_settings">
+
+    <CheckBoxPreference
+        android:key="hdmi"
+        android:title="@string/hdmi_title" />
+
+    <ListPreference
+        android:key="hdmi_mode"
+        android:dependency="hdmi"
+        android:title="@string/hdmi_mode_title"
+        android:entries="@array/hdmi_mode_entries"
+        android:entryValues="@array/hdmi_mode_values"
+        android:persistent="false" />
+
+    <ListPreference
+        android:key="hdmi_resolution"
+        android:dependency="hdmi"
+        android:title="@string/hdmi_resolution_title"
+        android:entries="@array/hdmi_resolution_entries"
+        android:entryValues="@array/hdmi_resolution_values"
+        android:persistent="false" />
+
+    <CheckBoxPreference
+        android:key="HDCP_Setting"
+        android:dependency="hdmi"
+        android:title="@string/HDCP_Setting_title"
+        android:visibility="gone" />
+
+    <com.android.settings.HdmiScreenZoomPreference
+        android:key="hdmi_screen_zoom"
+        android:dependency="hdmi"
+        android:title="@string/hdmi_screen_zoom"
+        android:dialogTitle="@string/hdmi_screen_zoom" />
+
+</PreferenceScreen>

@@ -410,6 +410,11 @@
     <string name="wifi_tether_configure_ap_text" msgid="3474995108398156258">"配置 Wi-Fi 热点"</string>
     <string name="wifi_tether_configure_subtext" msgid="1927454307836232128">"<xliff:g id="NETWORK_SSID">%1$s</xliff:g> <xliff:g id="NETWORK_SECURITY">%2$s</xliff:g> 便携式 Wi-Fi 热点"</string>
     <string name="wifi_tether_configure_ssid_default" msgid="8467525402622138547">"Android 热点"</string>
+    <string name="hdmi_settings_title">HDMI配置</string>
+    <string name="hdmi_settings">HDMI配置</string>
+    <string name="hdmi_screen_zoom">屏幕缩放</string>
+    <string name="hdmi_notice">请您连接HDMI线</string>
+    <string name="display_notice">请确保已关闭HDMI</string>
     <string name="sound_settings_title" msgid="8735891486683305886">"声音"</string>
     <string name="display_settings_title" msgid="1708697328627382561">"显示"</string>
     <string name="sound_settings" msgid="5007659014828162881">"声音设置"</string>
@@ -471,9 +476,13 @@
     <string name="animations_title" msgid="1062189037402346023">"动画"</string>
     <string name="animations_summary_on" msgid="8843613112130484436">"打开和关闭窗口时显示动画"</string>
     <string name="animations_summary_off" msgid="2777026828025551983">"打开和关闭窗口时显示动画"</string>
+    <string name="hdmi_resolution_title">分辨率设置</string>
+    <string name="hdmi_mode_title">工作模式</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"自动旋转屏幕"</string>
     <string name="accelerometer_summary_on" msgid="1133737282813048021">"旋转手机时自动改变显示方向"</string>
     <string name="accelerometer_summary_off" msgid="5485489363715740761">"旋转手机时自动改变显示方向"</string>
+    <string name="hdmi_title">打开HDMI</string>
+    <string name="HDCP_Setting_title">HDCP设置</string>
     <string name="brightness" msgid="2354961343555249270">"亮度"</string>
     <string name="brightness_summary" msgid="838917350127550703">"调整屏幕亮度"</string>
     <string name="screen_timeout" msgid="4882669461447531301">"屏幕超时"</string>

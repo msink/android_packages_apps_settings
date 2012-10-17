@@ -1023,6 +1023,12 @@
          Label on Wifi Configuration screen-->
     <string name="config_list_label" translatable="false">Configured Networks</string>
 
+    <string name="hdmi_settings_title">HDMI Setting</string>
+    <string name="hdmi_settings">HDMI Settings</string>
+    <string name="hdmi_screen_zoom">Screen Zoom</string>
+    <string name="hdmi_notice">Please connect the HDMI cable</string>
+    <string name="display_notice">Please make sure the HDMI is closed</string>
+
     <!-- Sound and alerts settings -->
     <!-- Main Settings screen setting option name to go into the sound settings screen -->
     <string name="sound_settings_title">Sound</string>
@@ -1152,16 +1158,26 @@
     <string name="animations_summary_on">Show animation when opening &amp; closing windows</string>
     <!-- Sound & display settings screen, animations option summary text when check box is clear -->
     <string name="animations_summary_off">Show animation when opening &amp; closing windows</string>
+    <string name="start_progress_title">start progress</string>
+    <string name="hdmi_resolution_title">HDMI Resolution</string>
+    <string name="hdmi_resolution_summary_on">select different resolution for hdmi</string>
+    <string name="hdmi_resolution_off">select different resolution for hdmi</string>
+    <string name="hdmi_mode_title">HDMI Mode</string>
+    <string name="hdmi_mode_summary_on">select different working mode for hdmi</string>
+    <string name="hdmi_mode_off">select different working mode for hdmi</string>
     <!-- Sound & display settings screen, accelerometer-based rotation check box label -->
     <string name="accelerometer_title">Auto-rotate screen</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is selected -->
     <string name="accelerometer_summary_on">Switch orientation automatically when rotating phone</string>
     <!-- Sound & display settings screen, accelerometer-based rotation summary text when check box is clear -->
     <string name="accelerometer_summary_off">Switch orientation automatically when rotating phone</string>
+    <string name="hdmi_title">Turn on HDMI</string>
+    <string name="HDCP_Setting_title">HDCP Setting</string>
     <!-- Sound & display settings screen, setting option name to change brightness -->
     <string name="brightness">Brightness</string>
     <!-- Sound & display settings screen, setting option summary to change brightness -->
     <string name="brightness_summary">Adjust the brightness of the screen</string>
+    <string name="HDMI_TV_Display">Adjust the display resolution of the screen</string>
     <!-- Sound & display settings screen, setting option name to change screen timeout -->
     <string name="screen_timeout">Screen timeout</string>
     <!-- Sound & display settings screen, setting option summary to change screen timeout -->
