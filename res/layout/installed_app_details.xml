@@ -176,6 +176,29 @@
 
         </LinearLayout>
 
+        <TextView style="?android:attr/listSeparatorTextViewStyle"
+            android:text="@string/rockchip_compatibility_mode" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <TextView android:id="@+id/compatibility_mode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:paddingLeft="6dip"
+                android:paddingTop="6dip"
+                android:paddingRight="6dip" />
+            <Button android:id="@+id/compatibility_mode_button"
+                android:layout_width="250dip"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/compatibility_mode"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="true" />
+        </RelativeLayout>
+
         <!-- Clear cache section -->
         <RelativeLayout
             android:id="@+id/cache_panel"

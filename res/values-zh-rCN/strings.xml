@@ -1186,4 +1186,9 @@
     <string name="media_format_final_desc_nand">确定是否格式化内部大容量存储设备, 擦除该设备上的所有数据? 该操作无法回滚!</string>
     <string name="ethernet_settings">以太网设置</string>
     <string name="ethernet_settings_summary">设置和管理有线以太网连接</string>
+    <string name="rockchip_compatibility_mode">兼容性模式</string>
+    <string name="enter_compatibility_mode">兼容性模式</string>
+    <string name="exit_compatibility_mode">正常模式</string>
+    <string name="rockchip_compatibility_info">该应用程序正运行在兼容性模式.</string>
+    <string name="rockchip_normal_info">该应用程序正运行在正常模式.</string>
 </resources>

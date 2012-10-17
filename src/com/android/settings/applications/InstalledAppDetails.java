@@ -96,6 +96,8 @@ public class InstalledAppDetails extends Activity
     private Button mClearDataButton;
     private Button mMoveAppButton;
     private int mMoveErrorCode;
+    private TextView mCompatibilityMode;
+    private Button mCompatibilityModeButton;
     
     private PackageMoveObserver mPackageMoveObserver;
     
@@ -317,6 +319,10 @@ public class InstalledAppDetails extends Activity
         View data_buttons_panel = findViewById(R.id.data_buttons_panel);
         mClearDataButton = (Button) data_buttons_panel.findViewById(R.id.left_button);
         mMoveAppButton = (Button) data_buttons_panel.findViewById(R.id.right_button);
+
+        mCompatibilityMode = (TextView)findViewById(R.id.compatibility_mode);
+        mCompatibilityModeButton = (Button)findViewById(R.id.compatibility_mode_button);
+        mCompatibilityModeButton.setOnClickListener(this);
         
         // Cache section
         mCacheSize = (TextView) findViewById(R.id.cache_size_text);
@@ -750,6 +756,7 @@ public class InstalledAppDetails extends Activity
             } else {
                 showDialogInner(DLG_CLEAR_DATA);
             }
+        } else if (v == mCompatibilityModeButton) {
         } else if (v == mClearCacheButton) {
             // Lazy initialization of observer
             if (mClearCacheObserver == null) {

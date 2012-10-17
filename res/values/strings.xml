@@ -2685,4 +2685,9 @@ found in the list of installed applications.</string>
     <string name="wifi_wps_pbc_summary">Configure WPA connection via WPS PBC</string>
     <string name="ethernet_settings">Ethernet settings</string>
     <string name="ethernet_settings_summary">Set up &amp; manage wired Ethernet connection</string>
+    <string name="rockchip_compatibility_mode">Compatibility mode</string>
+    <string name="enter_compatibility_mode">Run in compatibility mode</string>
+    <string name="exit_compatibility_mode">Run in normal mode</string>
+    <string name="rockchip_compatibility_info">This application is running in compatibility mode.</string>
+    <string name="rockchip_normal_info">This application is running in normal mode.</string>
 </resources>
