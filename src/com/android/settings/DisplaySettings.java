@@ -43,27 +43,13 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
-    private static final String KEY_ANIMATIONS = "animations";
-    private static final String KEY_ACCELEROMETER = "accelerometer";
-
-    private ListPreference mAnimations;
-    private CheckBoxPreference mAccelerometer;
-    private float[] mAnimationScales;
-
-    private IWindowManager mWindowManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getContentResolver();
-        mWindowManager = IWindowManager.Stub.asInterface(ServiceManager.getService("window"));
 
         addPreferencesFromResource(R.xml.display_settings);
-
-        mAnimations = (ListPreference) findPreference(KEY_ANIMATIONS);
-        mAnimations.setOnPreferenceChangeListener(this);
-        mAccelerometer = (CheckBoxPreference) findPreference(KEY_ACCELEROMETER);
-        mAccelerometer.setPersistent(false);
 
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
@@ -111,85 +97,15 @@ public class DisplaySettings extends PreferenceActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-
-        updateState(true);
-    }
-
-    private void updateState(boolean force) {
-        int animations = 0;
-        try {
-            mAnimationScales = mWindowManager.getAnimationScales();
-        } catch (RemoteException e) {
-        }
-        if (mAnimationScales != null) {
-            if (mAnimationScales.length >= 1) {
-                animations = ((int)(mAnimationScales[0]+.5f)) % 10;
-            }
-            if (mAnimationScales.length >= 2) {
-                animations += (((int)(mAnimationScales[1]+.5f)) & 0x7) * 10;
-            }
-        }
-        int idx = 0;
-        int best = 0;
-        CharSequence[] aents = mAnimations.getEntryValues();
-        for (int i=0; i<aents.length; i++) {
-            int val = Integer.parseInt(aents[i].toString());
-            if (val <= animations && val > best) {
-                best = val;
-                idx = i;
-            }
-        }
-        mAnimations.setValueIndex(idx);
-        updateAnimationsSummary(mAnimations.getValue());
-        mAccelerometer.setChecked(Settings.System.getInt(
-                getContentResolver(),
-                Settings.System.ACCELEROMETER_ROTATION, 0) != 0);
-    }
-
-    private void updateAnimationsSummary(Object value) {
-        CharSequence[] summaries = getResources().getTextArray(R.array.animations_summaries);
-        CharSequence[] values = mAnimations.getEntryValues();
-        for (int i=0; i<values.length; i++) {
-            //Log.i("foo", "Comparing entry "+ values[i] + " to current "
-            //        + mAnimations.getValue());
-            if (values[i].equals(value)) {
-                mAnimations.setSummary(summaries[i]);
-                break;
-            }
-        }
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mAccelerometer) {
-            Settings.System.putInt(getContentResolver(),
-                    Settings.System.ACCELEROMETER_ROTATION,
-                    mAccelerometer.isChecked() ? 1 : 0);
-        }
         return true;
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
-        if (KEY_ANIMATIONS.equals(key)) {
-            try {
-                int value = Integer.parseInt((String) objValue);
-                if (mAnimationScales.length >= 1) {
-                    mAnimationScales[0] = value%10;
-                }
-                if (mAnimationScales.length >= 2) {
-                    mAnimationScales[1] = (value/10)%10;
-                }
-                try {
-                    mWindowManager.setAnimationScales(mAnimationScales);
-                } catch (RemoteException e) {
-                }
-                updateAnimationsSummary(objValue);
-            } catch (NumberFormatException e) {
-                Log.e(TAG, "could not persist animation setting", e);
-            }
-
-        }
         if (KEY_SCREEN_TIMEOUT.equals(key)) {
             int value = Integer.parseInt((String) objValue);
             try {

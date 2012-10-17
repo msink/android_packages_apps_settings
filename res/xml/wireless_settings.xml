@@ -16,13 +16,6 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
-        android:key="toggle_airplane"
-        android:title="@string/airplane_mode"
-        android:summary="@string/airplane_mode_summary"
-        android:persistent="false"
-        android:disableDependentsState="true" />
-
     <!-- Programmatically will have dynamic summary, but we provide the fallback summary. -->
     <CheckBoxPreference
         android:key="toggle_wifi"
@@ -81,15 +74,5 @@
         android:title="@string/nfc_quick_toggle_title"
         android:summary="@string/nfc_quick_toggle_summary"
         android:persistent="false" />
-
-    <PreferenceScreen
-        android:title="@string/network_settings_title"
-        android:summary="@string/network_settings_summary"
-        android:dependency="toggle_airplane">
-        <intent
-            android:action="android.intent.action.MAIN"
-            android:targetPackage="com.android.phone"
-            android:targetClass="com.android.phone.Settings" />
-    </PreferenceScreen>
 
 </PreferenceScreen>

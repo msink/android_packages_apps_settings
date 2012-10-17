@@ -371,7 +371,6 @@ public class PowerUsageSummary extends PreferenceActivity implements Runnable {
     }
 
     private void processAppUsage() {
-        SensorManager sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         final int which = mStatsType;
         final int speedSteps = mPowerProfile.getNumSpeedSteps();
         final double[] powerCpuNormal = new double[speedSteps];
@@ -471,34 +470,6 @@ public class PowerUsageSummary extends PreferenceActivity implements Runnable {
             mAppWifiRunning += wifiRunningTimeMs;
             power += (wifiRunningTimeMs
                     * mPowerProfile.getAveragePower(PowerProfile.POWER_WIFI_ON)) / 1000;
-
-            // Process Sensor usage
-            Map<Integer, ? extends BatteryStats.Uid.Sensor> sensorStats = u.getSensorStats();
-            for (Map.Entry<Integer, ? extends BatteryStats.Uid.Sensor> sensorEntry
-                    : sensorStats.entrySet()) {
-                Uid.Sensor sensor = sensorEntry.getValue();
-                int sensorType = sensor.getHandle();
-                BatteryStats.Timer timer = sensor.getSensorTime();
-                long sensorTime = timer.getTotalTimeLocked(uSecTime, which) / 1000;
-                double multiplier = 0;
-                switch (sensorType) {
-                    case Uid.Sensor.GPS:
-                        multiplier = mPowerProfile.getAveragePower(PowerProfile.POWER_GPS_ON);
-                        gpsTime = sensorTime;
-                        break;
-                    default:
-                        android.hardware.Sensor sensorData =
-                                sensorManager.getDefaultSensor(sensorType);
-                        if (sensorData != null) {
-                            multiplier = sensorData.getPower();
-                            if (DEBUG) {
-                                Log.i(TAG, "Got sensor " + sensorData.getName() + " with power = "
-                                        + multiplier);
-                            }
-                        }
-                }
-                power += (multiplier * sensorTime) / 1000;
-            }
 
             if (DEBUG) Log.i(TAG, "UID " + u.getUid() + ": power=" + power);
 

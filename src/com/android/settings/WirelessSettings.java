@@ -49,8 +49,6 @@ public class WirelessSettings extends PreferenceActivity {
     public static final String EXIT_ECM_RESULT = "exit_ecm_result";
     public static final int REQUEST_CODE_EXIT_ECM = 1;
 
-    private AirplaneModeEnabler mAirplaneModeEnabler;
-    private CheckBoxPreference mAirplaneModePreference;
     private WifiEnabler mWifiEnabler;
     private NfcEnabler mNfcEnabler;
     private BluetoothEnabler mBtEnabler;
@@ -62,7 +60,7 @@ public class WirelessSettings extends PreferenceActivity {
      */
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mAirplaneModePreference && Boolean.parseBoolean(
+        if (Boolean.parseBoolean(
                 SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE))) {
             // In ECM mode launch ECM app dialog
             startActivityForResult(
@@ -90,15 +88,12 @@ public class WirelessSettings extends PreferenceActivity {
 
         addPreferencesFromResource(R.xml.wireless_settings);
 
-        CheckBoxPreference airplane = (CheckBoxPreference) findPreference(KEY_TOGGLE_AIRPLANE);
         CheckBoxPreference wifi = (CheckBoxPreference) findPreference(KEY_TOGGLE_WIFI);
         CheckBoxPreference bt = (CheckBoxPreference) findPreference(KEY_TOGGLE_BLUETOOTH);
         CheckBoxPreference nfc = (CheckBoxPreference) findPreference(KEY_TOGGLE_NFC);
         Preference vpn = findPreference(KEY_VPN_SETTINGS);
         Preference bt_settings = findPreference(KEY_BT_SETTINGS);
 
-        mAirplaneModeEnabler = new AirplaneModeEnabler(this, airplane);
-        mAirplaneModePreference = (CheckBoxPreference) findPreference(KEY_TOGGLE_AIRPLANE);
         mWifiEnabler = new WifiEnabler(this, wifi);
         mBtEnabler = new BluetoothEnabler(this, bt);
         mNfcEnabler = new NfcEnabler(this, nfc);
@@ -111,7 +106,6 @@ public class WirelessSettings extends PreferenceActivity {
             wifi.setDependency(KEY_TOGGLE_AIRPLANE);
             findPreference(KEY_WIFI_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
             vpn.setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_VPN_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
         }
 
         // Manually set dependencies for Bluetooth when not toggleable.
@@ -163,7 +157,6 @@ public class WirelessSettings extends PreferenceActivity {
     protected void onResume() {
         super.onResume();
 
-        mAirplaneModeEnabler.resume();
         mWifiEnabler.resume();
         mBtEnabler.resume();
         mNfcEnabler.resume();
@@ -173,7 +166,6 @@ public class WirelessSettings extends PreferenceActivity {
     protected void onPause() {
         super.onPause();
 
-        mAirplaneModeEnabler.pause();
         mWifiEnabler.pause();
         mBtEnabler.pause();
         mNfcEnabler.pause();
@@ -183,9 +175,6 @@ public class WirelessSettings extends PreferenceActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_EXIT_ECM) {
             Boolean isChoiceYes = data.getBooleanExtra(EXIT_ECM_RESULT, false);
-            // Set Airplane mode based on the return value and checkbox state
-            mAirplaneModeEnabler.setAirplaneModeInECM(isChoiceYes,
-                    mAirplaneModePreference.isChecked());
         }
     }
 }

@@ -33,12 +33,6 @@
             android:persistent="false"/>
 
         <PreferenceScreen
-            android:key="unlock_set_pin"
-            android:title="@string/unlock_set_unlock_pin_title"
-            android:summary="@string/unlock_set_unlock_pin_summary"
-            android:persistent="false"/>
-
-        <PreferenceScreen
             android:key="unlock_set_password"
             android:title="@string/unlock_set_unlock_password_title"
             android:summary="@string/unlock_set_unlock_password_summary"

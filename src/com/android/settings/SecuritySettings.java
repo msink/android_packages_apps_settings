@@ -88,8 +88,6 @@ public class SecuritySettings extends PreferenceActivity {
     private  CheckBoxPreference mEncryptedFSEnabled;
 
     private CheckBoxPreference mNetwork;
-    private CheckBoxPreference mGps;
-    private CheckBoxPreference mAssistedGps;
 
     DevicePolicyManager mDPM;
 
@@ -98,7 +96,6 @@ public class SecuritySettings extends PreferenceActivity {
     // if the user does not confirm enabling the provider.
     private ContentQueryMap mContentQueryMap;
     private ChooseLockSettingsHelper mChooseLockSettingsHelper;
-    private LockPatternUtils mLockPatternUtils;
     private final class SettingsObserver implements Observer {
         public void update(Observable o, Object arg) {
             updateToggles();
@@ -108,8 +105,6 @@ public class SecuritySettings extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mLockPatternUtils = new LockPatternUtils(this);
 
         mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
 
@@ -140,28 +135,8 @@ public class SecuritySettings extends PreferenceActivity {
         if (!SystemProperties.getBoolean("ro.service.location.enabled", false)) {
             root.removePreference(root.findPreference("location_category"));
         }
-        mGps = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_GPS);
-        mAssistedGps = (CheckBoxPreference) getPreferenceScreen().findPreference(ASSISTED_GPS);
 
         PreferenceManager pm = getPreferenceManager();
-
-        // Lock screen
-        if (!mLockPatternUtils.isSecure()) {
-            addPreferencesFromResource(R.xml.security_settings_chooser);
-        } else {
-            switch (mLockPatternUtils.getKeyguardStoredPasswordQuality()) {
-                case DevicePolicyManager.PASSWORD_QUALITY_SOMETHING:
-                    addPreferencesFromResource(R.xml.security_settings_pattern);
-                    break;
-                case DevicePolicyManager.PASSWORD_QUALITY_NUMERIC:
-                    addPreferencesFromResource(R.xml.security_settings_pin);
-                    break;
-                case DevicePolicyManager.PASSWORD_QUALITY_ALPHABETIC:
-                case DevicePolicyManager.PASSWORD_QUALITY_ALPHANUMERIC:
-                    addPreferencesFromResource(R.xml.security_settings_password);
-                    break;
-            }
-        }
 
         // set or change current. Should be common to all unlock preference screens
         // mSetOrChange = (PreferenceScreen) pm.findPreference(KEY_UNLOCK_SET_OR_CHANGE);
@@ -171,22 +146,6 @@ public class SecuritySettings extends PreferenceActivity {
 
         // tactile feedback. Should be common to all unlock preference screens.
         mTactileFeedback = (CheckBoxPreference) pm.findPreference(KEY_TACTILE_FEEDBACK_ENABLED);
-
-        int activePhoneType = TelephonyManager.getDefault().getPhoneType();
-
-        // do not display SIM lock for CDMA phone
-        if (TelephonyManager.PHONE_TYPE_CDMA != activePhoneType)
-        {
-            PreferenceScreen simLockPreferences = getPreferenceManager()
-                    .createPreferenceScreen(this);
-            simLockPreferences.setTitle(R.string.sim_lock_settings_category);
-            // Intent to launch SIM lock settings
-            simLockPreferences.setIntent(new Intent().setClassName(PACKAGE, ICC_LOCK_SETTINGS));
-            PreferenceCategory simLockCat = new PreferenceCategory(this);
-            simLockCat.setTitle(R.string.sim_lock_settings_title);
-            root.addPreference(simLockCat);
-            simLockCat.addPreference(simLockPreferences);
-        }
 
         // Passwords
         PreferenceCategory passwordsCat = new PreferenceCategory(this);
@@ -266,16 +225,6 @@ public class SecuritySettings extends PreferenceActivity {
         } else if (preference == mNetwork) {
             Settings.Secure.setLocationProviderEnabled(getContentResolver(),
                     LocationManager.NETWORK_PROVIDER, mNetwork.isChecked());
-        } else if (preference == mGps) {
-            boolean enabled = mGps.isChecked();
-            Settings.Secure.setLocationProviderEnabled(getContentResolver(),
-                    LocationManager.GPS_PROVIDER, enabled);
-            if (mAssistedGps != null) {
-                mAssistedGps.setEnabled(enabled);
-            }
-        } else if (preference == mAssistedGps) {
-            Settings.Secure.putInt(getContentResolver(), Settings.Secure.ASSISTED_GPS_ENABLED,
-                    mAssistedGps.isChecked() ? 1 : 0);
         }
 
         return false;
@@ -286,16 +235,8 @@ public class SecuritySettings extends PreferenceActivity {
      */
     private void updateToggles() {
         ContentResolver res = getContentResolver();
-        boolean gpsEnabled = Settings.Secure.isLocationProviderEnabled(
-                res, LocationManager.GPS_PROVIDER);
         mNetwork.setChecked(Settings.Secure.isLocationProviderEnabled(
                 res, LocationManager.NETWORK_PROVIDER));
-        mGps.setChecked(gpsEnabled);
-        if (mAssistedGps != null) {
-            mAssistedGps.setChecked(Settings.Secure.getInt(res,
-                    Settings.Secure.ASSISTED_GPS_ENABLED, 2) == 1);
-            mAssistedGps.setEnabled(gpsEnabled);
-        }
     }
 
     private boolean isToggled(Preference pref) {
