@@ -199,6 +199,14 @@ public class DateTimeSettings
             mTimePref.setEnabled(!autoEnabled);
             mDatePref.setEnabled(!autoEnabled);
             mTimeZone.setEnabled(!autoEnabled);
+            if (autoEnabled) {
+                Intent intent = new Intent(this, Sntp.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startService(intent);
+            } else {
+                Intent intent = new Intent(this, Sntp.class);
+                stopService(intent);
+            }
         }
     }
 

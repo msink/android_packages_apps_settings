@@ -48,6 +48,9 @@ class AccessPoint extends Preference {
     private WifiInfo mInfo;
     private DetailedState mState;
     private ImageView mSignal;
+    private ImageView mWPS;
+    private boolean mWPS_enabled;
+    final String bssid;
 
     static int getSecurity(WifiConfiguration config) {
         if (config.allowedKeyManagement.get(KeyMgmt.WPA_PSK)) {
@@ -79,6 +82,8 @@ class AccessPoint extends Preference {
         networkId = config.networkId;
         mConfig = config;
         mRssi = Integer.MAX_VALUE;
+        mWPS_enabled = false;
+        bssid = null;
     }
 
     AccessPoint(Context context, ScanResult result) {
@@ -88,12 +93,22 @@ class AccessPoint extends Preference {
         security = getSecurity(result);
         networkId = -1;
         mRssi = result.level;
+        if (result.capabilities.contains("WPS")) {
+            mWPS_enabled = true;
+        } else {
+            mWPS_enabled = false;
+        }
+        bssid = result.BSSID;
     }
 
     @Override
     protected void onBindView(View view) {
         setTitle(ssid);
         mSignal = (ImageView) view.findViewById(R.id.signal);
+        mWPS = (ImageView) view.findViewById(R.id.wps_enabled);
+        if (!mWPS_enabled) {
+            mWPS.setImageDrawable(null);
+        }
         if (mRssi == Integer.MAX_VALUE) {
             mSignal.setImageDrawable(null);
         } else {
@@ -138,6 +153,11 @@ class AccessPoint extends Preference {
             if (WifiManager.compareSignalLevel(result.level, mRssi) > 0) {
                 mRssi = result.level;
             }
+            if (result.capabilities.contains("WPS")) {
+                mWPS_enabled = true;
+            } else {
+                mWPS_enabled = false;
+            }
             return true;
         }
         return false;
@@ -167,6 +187,10 @@ class AccessPoint extends Preference {
             return -1;
         }
         return WifiManager.calculateSignalLevel(mRssi, 4);
+    }
+
+    boolean isWPSEnabled() {
+        return mWPS_enabled;
     }
 
     WifiConfiguration getConfig() {

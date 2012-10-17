@@ -825,6 +825,8 @@
     <string name="wifi_menu_forget">Forget network</string>
     <!-- Menu option to modify a Wi-Fi network configuration -->
     <string name="wifi_menu_modify">Modify network</string>
+    <string name="wifi_enable_wps_pbc">WPS PBC connect</string>
+    <string name="wifi_enable_wps_pbc_toggle_summary">Auto setup WiFi network</string>
 
     <!-- Dialog for Access Points --> <skip />
     <!-- Label for the SSID of the network -->
@@ -873,6 +875,7 @@
     <string name="wifi_connect">Connect</string>
     <!-- Button label to delete a Wi-Fi network -->
     <string name="wifi_forget">Forget</string>
+    <string name="wifi_wps_pin">WPS PIN</string>
     <!-- Button label to save a Wi-Fi network configuration -->
     <string name="wifi_save">Save</string>
     <!-- Button label to dismiss the dialog -->
@@ -2678,4 +2681,8 @@ found in the list of installed applications.</string>
     <string name="media_format_desc_nand">This action will erase the internal mass storage. You will lose <b>all</b> data stored there!</string>
     <string name="media_format_nand_button_text">Erase Internal Mass Storage</string>
     <string name="media_format_final_desc_nand">Erase internal mass storage, deleting all files stored there? Action cannot be reversed!</string>
+    <string name="wifi_wps_pbc">WPS PBC</string>
+    <string name="wifi_wps_pbc_summary">Configure WPA connection via WPS PBC</string>
+    <string name="ethernet_settings">Ethernet settings</string>
+    <string name="ethernet_settings_summary">Set up &amp; manage wired Ethernet connection</string>
 </resources>

@@ -785,6 +785,14 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="SntpServiceReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".Sntp" android:exported="true" android:process=":remote" />
+
         <!-- Standard picker for widgets -->
         <activity android:name="AppWidgetPickActivity"
                 android:label="@string/widget_picker_title"

@@ -137,6 +137,9 @@ public class SecuritySettings extends PreferenceActivity {
         root = this.getPreferenceScreen();
 
         mNetwork = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_NETWORK);
+        if (!SystemProperties.getBoolean("ro.service.location.enabled", false)) {
+            root.removePreference(root.findPreference("location_category"));
+        }
         mGps = (CheckBoxPreference) getPreferenceScreen().findPreference(LOCATION_GPS);
         mAssistedGps = (CheckBoxPreference) getPreferenceScreen().findPreference(ASSISTED_GPS);
 

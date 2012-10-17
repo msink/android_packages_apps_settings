@@ -219,13 +219,15 @@ class WifiDialog extends AlertDialog implements View.OnClickListener,
             } else {
                 if (state == null && level != -1) {
                     setButton(BUTTON_SUBMIT, context.getString(R.string.wifi_connect), mListener);
+                    if (mAccessPoint.isWPSEnabled() && mAccessPoint.networkId == -1) {
+                        setButton(BUTTON_FORGET, context.getString(R.string.wifi_wps_pin), mListener);
+                    }
                 }
                 if (mAccessPoint.networkId != -1) {
                     setButton(BUTTON_FORGET, context.getString(R.string.wifi_forget), mListener);
                 }
             }
         }
-
         setButton(DialogInterface.BUTTON_NEGATIVE,
                 context.getString(R.string.wifi_cancel), mListener);
 

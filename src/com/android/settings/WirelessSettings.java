@@ -94,6 +94,8 @@ public class WirelessSettings extends PreferenceActivity {
         CheckBoxPreference wifi = (CheckBoxPreference) findPreference(KEY_TOGGLE_WIFI);
         CheckBoxPreference bt = (CheckBoxPreference) findPreference(KEY_TOGGLE_BLUETOOTH);
         CheckBoxPreference nfc = (CheckBoxPreference) findPreference(KEY_TOGGLE_NFC);
+        Preference vpn = findPreference(KEY_VPN_SETTINGS);
+        Preference bt_settings = findPreference(KEY_BT_SETTINGS);
 
         mAirplaneModeEnabler = new AirplaneModeEnabler(this, airplane);
         mAirplaneModePreference = (CheckBoxPreference) findPreference(KEY_TOGGLE_AIRPLANE);
@@ -108,6 +110,7 @@ public class WirelessSettings extends PreferenceActivity {
         if (toggleable == null || !toggleable.contains(Settings.System.RADIO_WIFI)) {
             wifi.setDependency(KEY_TOGGLE_AIRPLANE);
             findPreference(KEY_WIFI_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
+            vpn.setDependency(KEY_TOGGLE_AIRPLANE);
             findPreference(KEY_VPN_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
         }
 
@@ -120,11 +123,16 @@ public class WirelessSettings extends PreferenceActivity {
         // Remove Bluetooth Settings if Bluetooth service is not available.
         if (ServiceManager.getService(BluetoothAdapter.BLUETOOTH_SERVICE) == null) {
             getPreferenceScreen().removePreference(bt);
+            getPreferenceScreen().removePreference(bt_settings);
         }
 
         // Remove NFC if its not available
         if (NfcAdapter.getDefaultAdapter() == null) {
             getPreferenceScreen().removePreference(nfc);
+        }
+
+        if (!SystemProperties.getBoolean("ro.service.vpn.enabled", false)) {
+            getPreferenceScreen().removePreference(vpn);
         }
 
         // Disable Tethering if it's not allowed

@@ -19,6 +19,7 @@ package com.android.settings.wifi;
 import com.android.settings.ProgressCategory;
 import com.android.settings.R;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,6 +52,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Toast;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +84,9 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     private AccessPoint mSelected;
     private WifiDialog mDialog;
 
+    private ProgressDialog mProgressView;
+    Runnable mTimeRunnable;
+
     public WifiSettings() {
         mFilter = new IntentFilter();
         mFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
@@ -90,6 +95,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         mFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
         mFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
         mFilter.addAction(WifiManager.RSSI_CHANGED_ACTION);
+        mFilter.addAction(WifiManager.WPS_SUCCESS_ACTION);
 
         mReceiver = new BroadcastReceiver() {
             @Override
@@ -99,6 +105,21 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         };
 
         mScanner = new Scanner();
+
+        mTimeRunnable = new Runnable() {
+            @Override
+            public void run() {
+                mProgressView.incrementProgressBy(1);
+                if (mProgressView.getProgress() < mProgressView.getMax()) {
+                    mScanner.postDelayed(this, 3000);
+                } else {
+                    mScanner.removeCallbacks(mTimeRunnable);
+                    mProgressView.setProgress(0);
+                    mProgressView.cancel();
+                }
+                return;
+            }
+        };
     }
 
     @Override
@@ -122,6 +143,24 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         mAccessPoints = (ProgressCategory) findPreference("access_points");
         mAccessPoints.setOrderingAsAdded(false);
         mAddNetwork = findPreference("add_network");
+
+        mProgressView = new ProgressDialog(this);
+        mProgressView.setIndeterminate(false);
+        mProgressView.setProgressStyle(1);
+        mProgressView.setMax(40);
+        mProgressView.setCancelable(true);
+        mProgressView.setTitle("WPS PBC");
+        mProgressView.setMessage("Press PBC button in 2 minutes.");
+        mProgressView.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressView.setButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                mScanner.removeCallbacks(mTimeRunnable);
+                mProgressView.setProgress(0);
+                mProgressView.cancel();
+                mWifiManager.stopWPS();
+            }
+        });
+        mProgressView.setIndeterminate(false);
 
         registerForContextMenu(getListView());
     }
@@ -150,6 +189,12 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         if (mDialog != null) {
             mDialog.dismiss();
             mDialog = null;
+        }
+        if (mProgressView.isShowing()) {
+            mScanner.removeCallbacks(mTimeRunnable);
+            mProgressView.setProgress(0);
+            mProgressView.cancel();
+            mWifiManager.stopWPS();
         }
         if (mResetNetworks) {
             enableNetworks();
@@ -255,7 +300,20 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
 
     public void onClick(DialogInterface dialogInterface, int button) {
         if (button == WifiDialog.BUTTON_FORGET && mSelected != null) {
-            forget(mSelected.networkId);
+            if (mSelected.networkId != -1) {
+                forget(mSelected.networkId);
+            } else if (mSelected.bssid != null) {
+                String pin_code = mWifiManager.startPIN(mSelected.bssid);
+                Log.d("WifiSettings", "bssid=" + mSelected.bssid + " pin_code=" + pin_code);
+                if (pin_code != null) {
+                    mScanner.removeCallbacks(mTimeRunnable);
+                    mProgressView.setProgress(0);
+                    mProgressView.setTitle("WPS PIN");
+                    mProgressView.setMessage("Please activate the PIN: <" + pin_code + "> in 2 minutes.");
+                    mProgressView.show();
+                    mScanner.post(mTimeRunnable);
+                }
+            }
         } else if (button == WifiDialog.BUTTON_SUBMIT && mDialog != null) {
             WifiConfiguration config = mDialog.getConfig();
 
@@ -267,6 +325,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                 if (mSelected != null) {
                     mWifiManager.updateNetwork(config);
                     saveNetworks();
+                    connect(mSelected.networkId);
                 }
             } else {
                 int networkId = mWifiManager.addNetwork(config);
@@ -419,6 +478,28 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
             }
             updateAccessPoints();
         } else if (WifiManager.SUPPLICANT_STATE_CHANGED_ACTION.equals(action)) {
+            if (intent.hasExtra(WifiManager.EXTRA_SUPPLICANT_ERROR)
+                     && intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR, 0) == 1) {
+                int found = 0;
+                AccessPoint found_ap = null;
+                Log.d("WifiSettings", ">>>>intent.getExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0)="
+                         + intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0));
+                int networkId = intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0);
+                synchronized (this) {
+                    for (int i = mAccessPoints.getPreferenceCount() - 1; i >= 0; i--) {
+                        AccessPoint ap = (AccessPoint)mAccessPoints.getPreference(i);
+                        WifiConfiguration config = ap.getConfig();
+                        if (config == null) continue;
+                        if (config.networkId != networkId) continue;
+                        found = 1;
+                        found_ap = ap;
+                        break;
+                    }
+                }
+                if (found == 1) {
+                    showDialog(found_ap, true);
+                }
+            }
             updateConnectionState(WifiInfo.getDetailedStateOf((SupplicantState)
                     intent.getParcelableExtra(WifiManager.EXTRA_NEW_STATE)));
         } else if (WifiManager.NETWORK_STATE_CHANGED_ACTION.equals(action)) {
@@ -426,6 +507,11 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                     WifiManager.EXTRA_NETWORK_INFO)).getDetailedState());
         } else if (WifiManager.RSSI_CHANGED_ACTION.equals(action)) {
             updateConnectionState(null);
+        } else if (WifiManager.WPS_SUCCESS_ACTION.equals(action)) {
+            Log.d("WifiSettings", "We received the WPS_SUCCESS action.");
+            mScanner.removeCallbacks(mTimeRunnable);
+            mProgressView.setProgress(0);
+            mProgressView.cancel();
         }
     }
 
