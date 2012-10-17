@@ -1170,4 +1170,18 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"来电"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"通知"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"反馈"</string>
+    <string name="memory_low">空间不足</string>
+    <string name="memory_low1">内部存储空间不足</string>
+    <string name="nand_memory">内部大容量存储设备</string>
+    <string name="nand_eject">卸载内部大容量存储设备</string>
+    <string name="nand_eject_summary">卸载内部大容量存储设备，以便数据安全</string>
+    <string name="nand_insert_summary">准备内部大容量存储设备</string>
+    <string name="nand_mount">挂载内部大容量存储设备</string>
+    <string name="nand_mount_summary">挂载内部大容量存储设备</string>
+    <string name="nand_format">格式化内部大容量存储设备</string>
+    <string name="nand_format_summary">擦除内部大容量存储设备所有数据，如音乐、照片等</string>
+    <string name="nand_unavailable">无法获取</string>
+    <string name="media_format_desc_nand">此项操作将格式化内部大容量存储设备，存储在该设备上的<b>所有数据</b>将丢失!</string>
+    <string name="media_format_nand_button_text">格式化内部大容量存储设备</string>
+    <string name="media_format_final_desc_nand">确定是否格式化内部大容量存储设备, 擦除该设备上的所有数据? 该操作无法回滚!</string>
 </resources>

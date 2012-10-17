@@ -19,9 +19,11 @@ package com.android.settings;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.internal.os.storage.ExternalStorageFormatter;
 
@@ -45,6 +47,8 @@ public class MediaFormat extends Activity {
     private View mFinalView;
     private Button mFinalButton;
 
+    private String mPath;
+
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
      * and invoke the Mount Service to format the SD card.
@@ -57,6 +61,7 @@ public class MediaFormat extends Activity {
                 }
                 Intent intent = new Intent(ExternalStorageFormatter.FORMAT_ONLY);
                 intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
+                intent.putExtra("path", mPath);
                 startService(intent);
                 finish();
             }
@@ -149,6 +154,8 @@ public class MediaFormat extends Activity {
         mInitialView = null;
         mFinalView = null;
         mInflater = LayoutInflater.from(this);
+        Bundle extras = getIntent().getExtras();
+        mPath = extras.getString("path");
 
         establishInitialState();
     }

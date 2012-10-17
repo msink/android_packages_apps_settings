@@ -18,7 +18,12 @@ package com.android.settings;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.hardware.Usb;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.SystemProperties;
@@ -48,6 +53,14 @@ public class DevelopmentSettings extends PreferenceActivity
 
     private Dialog mOkDialog;
 
+    private BroadcastReceiver mUsbStateReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Usb.ACTION_USB_STATE)) {
+                handleUsbStateChanged(intent);
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -62,6 +75,11 @@ public class DevelopmentSettings extends PreferenceActivity
     @Override
     protected void onResume() {
         super.onResume();
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_CLOSE_STATUSBAR_USB);
+        filter.addAction(Usb.ACTION_USB_STATE);
+        registerReceiver(mUsbStateReceiver, filter);
 
         mEnableAdb.setChecked(Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.ADB_ENABLED, 0) != 0);
@@ -130,7 +148,17 @@ public class DevelopmentSettings extends PreferenceActivity
 
     @Override
     public void onDestroy() {
+        unregisterReceiver(mUsbStateReceiver);
         dismissDialog();
         super.onDestroy();
+    }
+
+    private void handleUsbStateChanged(Intent intent) {
+        boolean connected = intent.getExtras().getBoolean(Usb.USB_CONNECTED);
+        if (connected) {
+            mEnableAdb.setEnabled(false);
+        } else {
+            mEnableAdb.setEnabled(true);
+        }
     }
 }
