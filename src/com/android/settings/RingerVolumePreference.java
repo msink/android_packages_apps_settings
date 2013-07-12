@@ -18,6 +18,7 @@ package com.android.settings;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.AudioManager;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -38,26 +39,16 @@ public class RingerVolumePreference extends VolumePreference implements
         CheckBox.OnCheckedChangeListener {
     private static final String TAG = "RingerVolumePreference";
 
-    private CheckBox mNotificationsUseRingVolumeCheckbox;
     private SeekBarVolumizer [] mSeekBarVolumizer;
     private static final int[] SEEKBAR_ID = new int[] {
-        R.id.notification_volume_seekbar,
         R.id.media_volume_seekbar,
-        R.id.alarm_volume_seekbar
     };
     private static final int[] SEEKBAR_TYPE = new int[] {
-        AudioManager.STREAM_NOTIFICATION,
         AudioManager.STREAM_MUSIC,
-        AudioManager.STREAM_ALARM
     };
-    //private SeekBarVolumizer mNotificationSeekBarVolumizer;
-    private TextView mNotificationVolumeTitle;
 
     public RingerVolumePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-
-        // The always visible seekbar is for ring volume
-        setStreamType(AudioManager.STREAM_RING);
 
         setDialogLayoutResource(R.layout.preference_dialog_ringervolume);
         setDialogIcon(R.drawable.ic_settings_sound);
@@ -74,26 +65,20 @@ public class RingerVolumePreference extends VolumePreference implements
             mSeekBarVolumizer[i] = new SeekBarVolumizer(getContext(), seekBar,
                 SEEKBAR_TYPE[i]);
         }
-
-        mNotificationVolumeTitle = (TextView) view.findViewById(R.id.notification_volume_title);
-        mNotificationsUseRingVolumeCheckbox =
-                (CheckBox) view.findViewById(R.id.same_notification_volume);
-        mNotificationsUseRingVolumeCheckbox.setOnCheckedChangeListener(this);
-        mNotificationsUseRingVolumeCheckbox.setChecked(Settings.System.getInt(
-                getContext().getContentResolver(),
-                Settings.System.NOTIFICATIONS_USE_RING_VOLUME, 1) == 1);
-        setNotificationVolumeVisibility(!mNotificationsUseRingVolumeCheckbox.isChecked());
     }
 
-    @Override
-    protected void onDialogClosed(boolean positiveResult) {
-        super.onDialogClosed(positiveResult);
-        
-        if (!positiveResult) {
+    public void onClick(DialogInterface dialog, int which) {
+        super.onClick(dialog, which);
+
+        if (which != -1) {
             for (SeekBarVolumizer vol : mSeekBarVolumizer) {
                 if (vol != null) vol.revertVolume();
             }
         }        
+    }
+
+    protected void onDialogClosed(boolean positiveResult) {
+        super.onDialogClosed(positiveResult);
         cleanup();
     }
 
@@ -104,19 +89,6 @@ public class RingerVolumePreference extends VolumePreference implements
     }
     
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        setNotificationVolumeVisibility(!isChecked);
-        
-        Settings.System.putInt(getContext().getContentResolver(),
-                Settings.System.NOTIFICATIONS_USE_RING_VOLUME, isChecked ? 1 : 0);
-        
-        if (isChecked) {
-            // The user wants the notification to be same as ring, so do a
-            // one-time sync right now
-            AudioManager audioManager = (AudioManager) getContext()
-                    .getSystemService(Context.AUDIO_SERVICE);
-            audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION,
-                    audioManager.getStreamVolume(AudioManager.STREAM_RING), 0);
-        }
     }
 
     @Override
@@ -125,14 +97,6 @@ public class RingerVolumePreference extends VolumePreference implements
         for (SeekBarVolumizer vol : mSeekBarVolumizer) {
             if (vol != null && vol != volumizer) vol.stopSample();
         }
-    }
-
-    private void setNotificationVolumeVisibility(boolean visible) {
-        if (mSeekBarVolumizer[0] != null) {
-            mSeekBarVolumizer[0].getSeekBar().setVisibility(
-                    visible ? View.VISIBLE : View.GONE);
-        }
-        mNotificationVolumeTitle.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private void cleanup() {
