@@ -33,6 +33,7 @@
         android:layout_width="150dip"
         android:layout_height="wrap_content"
         android:text="@string/media_format_final_button_text"
+        android:focusable="true"
         android:gravity="center" />
         
 </LinearLayout>

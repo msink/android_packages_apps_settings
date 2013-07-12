@@ -126,6 +126,7 @@ public class MasterClear extends Activity {
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_master_clear);
             mFinalButton.setOnClickListener(mFinalClickListener);
+            mFinalButton.requestFocus();
         }
 
         setContentView(mFinalView);
@@ -183,9 +184,5 @@ public class MasterClear extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-
-        if (!isFinishing()) {
-            establishInitialState();
-        }
     }
 }
