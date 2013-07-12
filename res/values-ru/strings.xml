@@ -1172,4 +1172,7 @@
     <string name="autoshutdown_timeout_summary">Настройки автовыключения</string>
     <string name="shutdown">Автовыключение</string>
     <string name="dialog_cancel">Отмена</string>
+    <string name="display_settings_calendar">Календарь</string>
+    <string name="updatemedialibtitle">Обновить библиотеку</string>
+    <string name="updatemedialibmsg">Подождите…</string>
 </resources>

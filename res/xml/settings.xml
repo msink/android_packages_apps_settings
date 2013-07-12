@@ -110,6 +110,11 @@
                 android:targetClass="com.android.settings.deviceinfo.Memory" />
         </com.android.settings.IconPreferenceScreen>
 
+        <com.android.settings.IconPreferenceScreen
+            android:key="updatemedialib"
+            android:title="@string/updatemedialibtitle"
+            settings:icon="@drawable/ic_settings_media_scan" />
+
         <!-- Language -->
 
         <com.android.settings.IconPreferenceScreen
