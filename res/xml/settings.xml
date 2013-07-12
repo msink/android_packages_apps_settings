@@ -21,6 +21,7 @@
     android:key="parent">
 
         <com.android.settings.IconPreferenceScreen
+            android:key="wifi_settings"
             android:title="@string/radio_controls_title"
             settings:icon="@drawable/ic_settings_wireless">
             <intent
