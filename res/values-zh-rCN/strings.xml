@@ -1191,4 +1191,6 @@
     <string name="exit_compatibility_mode">正常模式</string>
     <string name="rockchip_compatibility_info">该应用程序正运行在兼容性模式.</string>
     <string name="rockchip_normal_info">该应用程序正运行在正常模式.</string>
+    <string name="autoshutdown">自动关机</string>
+    <string name="autoshutdown_timeout_summary">自动关机设置</string>
 </resources>

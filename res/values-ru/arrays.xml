@@ -46,6 +46,14 @@
     <item msgid="7156442995039264948">"30 минут"</item>
     <item>Выкл.</item>
   </string-array>
+  <string-array name="auto_shutdown_timeout_entries">
+    <item>1 ч</item>
+    <item>2 ч</item>
+    <item>3 ч</item>
+    <item>4 ч</item>
+    <item>5 ч</item>
+    <item>Всегда вкл.</item>
+   </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Очень медленная"</item>
     <item msgid="2361722960903353554">"Медленная"</item>

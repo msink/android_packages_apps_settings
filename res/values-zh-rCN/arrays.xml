@@ -46,6 +46,14 @@
     <item>10 分钟</item>
     <item>从不超时</item>
   </string-array>
+  <string-array name="auto_shutdown_timeout_entries">
+    <item>一小时</item>
+    <item>二小时</item>
+    <item>三小时</item>
+    <item>四小时</item>
+    <item>五小时</item>
+    <item>永不</item>
+  </string-array>
   <string-array name="hdmi_resolution_entries">
     <item>1920x1080p_50Hz</item>
     <item>1920x1080p_60Hz</item>

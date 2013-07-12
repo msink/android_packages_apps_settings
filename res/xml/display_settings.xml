@@ -31,4 +31,13 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <ListPreference
+            android:key="autoshutdown_timeout"
+            android:title="@string/autoshutdown"
+            android:summary="@string/autoshutdown_timeout_summary"
+            android:persistent="false"
+            android:entries="@array/auto_shutdown_timeout_entries"
+            android:entryValues="@array/auto_shutdown_timeout_values" />
+
 </PreferenceScreen>

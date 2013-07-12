@@ -2690,4 +2690,8 @@ found in the list of installed applications.</string>
     <string name="exit_compatibility_mode">Run in normal mode</string>
     <string name="rockchip_compatibility_info">This application is running in compatibility mode.</string>
     <string name="rockchip_normal_info">This application is running in normal mode.</string>
+    <string name="autoshutdown">Auto shutdown</string>
+    <string name="autoshutdown_timeout_summary">Auto shutdown settings</string>
+    <string name="shutdown">Auto shutdown</string>
+    <string name="dialog_cancel">CANCEL</string>
 </resources>

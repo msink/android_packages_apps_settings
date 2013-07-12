@@ -93,6 +93,23 @@
         <item>-1</item>
     </string-array>
 
+    <string-array name="auto_shutdown_timeout_entries">
+        <item>1 Hour</item>
+        <item>2 Hours</item>
+        <item>3 Hours</item>
+        <item>4 Hours</item>
+        <item>5 Hours</item>
+        <item>never</item>
+    </string-array>
+    <string-array name="auto_shutdown_timeout_values">
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>10800000</item>
+        <item>14400000</item>
+        <item>18000000</item>
+        <item>-1</item>
+    </string-array>
+
     <string-array name="hdmi_resolution_entries">
         <item>1920x1080p_50Hz</item>
         <item>1920x1080p_60Hz</item>

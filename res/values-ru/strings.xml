@@ -1168,4 +1168,8 @@
     <string name="media_format_desc_nand">Это приведет к очистке внутренней памяти устройства. Вы потеряете <b>все</b> данные на внутренней памяти!</string>
     <string name="media_format_nand_button_text">Очистить память</string>
     <string name="media_format_final_desc_nand">Очистить внутреннюю память, безвозвратно удалив все файлы с неё?</string>
+    <string name="autoshutdown">Автовыключение</string>
+    <string name="autoshutdown_timeout_summary">Настройки автовыключения</string>
+    <string name="shutdown">Автовыключение</string>
+    <string name="dialog_cancel">Отмена</string>
 </resources>
