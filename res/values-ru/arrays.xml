@@ -161,4 +161,11 @@
     <item msgid="1276641209451816572">"Только в режиме без звука"</item>
     <item msgid="8418930333779132418">"Только не в режиме без звука"</item>
   </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 мин.</item>
+    <item>2 мин.</item>
+    <item>10 мин.</item>
+    <item>30 мин.</item>
+    <item>Не обновлять</item>
+  </string-array>
 </resources>

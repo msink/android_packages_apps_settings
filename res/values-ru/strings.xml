@@ -1175,4 +1175,6 @@
     <string name="display_settings_calendar">Календарь</string>
     <string name="updatemedialibtitle">Обновить библиотеку</string>
     <string name="updatemedialibmsg">Подождите…</string>
+    <string name="epd_full_timeout">Обновление экрана</string>
+    <string name="epd_full_timeout_summary">Настройка задержки обновления экрана</string>
 </resources>
