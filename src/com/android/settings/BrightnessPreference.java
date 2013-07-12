@@ -17,9 +17,12 @@
 package com.android.settings;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.database.ContentObserver;
 import android.os.RemoteException;
 import android.os.IPowerManager;
 import android.os.ServiceManager;
+import android.os.Handler;
 import android.preference.SeekBarPreference;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
@@ -48,6 +51,9 @@ public class BrightnessPreference extends SeekBarPreference implements
     private static final int MINIMUM_BACKLIGHT = android.os.Power.BRIGHTNESS_DIM + 10;
     private static final int MAXIMUM_BACKLIGHT = android.os.Power.BRIGHTNESS_ON;
 
+    private ContentObserver mContentChangeObserver;
+    private Context mContext;
+
     public BrightnessPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -56,6 +62,7 @@ public class BrightnessPreference extends SeekBarPreference implements
 
         setDialogLayoutResource(R.layout.preference_dialog_brightness);
         setDialogIcon(R.drawable.ic_settings_display);
+        mContext = context;
     }
 
     @Override
@@ -86,6 +93,10 @@ public class BrightnessPreference extends SeekBarPreference implements
             mCheckBox.setVisibility(View.GONE);
         }
         mSeekBar.setOnSeekBarChangeListener(this);
+
+        mContentChangeObserver = new ContentChangeObserver();
+        mContext.getContentResolver().registerContentObserver(
+            Settings.System.CONTENT_URI, true, mContentChangeObserver);
     }
 
     public void onProgressChanged(SeekBar seekBar, int progress,
@@ -98,7 +109,8 @@ public class BrightnessPreference extends SeekBarPreference implements
     }
 
     public void onStopTrackingTouch(SeekBar seekBar) {
-        // NA
+        Settings.System.putInt(getContext().getContentResolver(),
+            "screen_brightness", mSeekBar.getProgress() + 30);
     }
 
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -112,8 +124,12 @@ public class BrightnessPreference extends SeekBarPreference implements
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
+        mContext.getContentResolver().unregisterContentObserver(mContentChangeObserver);
+    }
         
-        if (positiveResult) {
+    public void onClick(DialogInterface dialog, int which) {
+        super.onClick(dialog, which);
+        if (which == -1) {
             Settings.System.putInt(getContext().getContentResolver(), 
                     Settings.System.SCREEN_BRIGHTNESS,
                     mSeekBar.getProgress() + MINIMUM_BACKLIGHT);
@@ -123,6 +139,8 @@ public class BrightnessPreference extends SeekBarPreference implements
             }
             if (!mAutomaticAvailable || mOldAutomatic == 0) {
                 setBrightness(mOldBrightness);
+                Settings.System.putInt(getContext().getContentResolver(),
+                    "screen_brightness", mOldBrightness);
             }
         }
     }
@@ -147,6 +165,28 @@ public class BrightnessPreference extends SeekBarPreference implements
         }
         Settings.System.putInt(getContext().getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE, mode);
+    }
+
+    private class ContentChangeObserver extends ContentObserver {
+        public ContentChangeObserver() {
+            super(new Handler());
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            updateSetting();
+        }
+    }
+
+    private void updateSetting() {
+        int mOldBrightness;
+        try {
+            mOldBrightness = Settings.System.getInt(
+                mContext.getContentResolver(), "screen_brightness");
+        } catch (Settings.SettingNotFoundException snfe) {
+            mOldBrightness = 255;
+        }
+        mSeekBar.setProgress(mOldBrightness - 30);
     }
 }
 

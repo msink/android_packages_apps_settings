@@ -26,10 +26,12 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
@@ -50,6 +52,12 @@ public class DisplaySettings extends PreferenceActivity implements
         ContentResolver resolver = getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
+
+        PreferenceGroup parent = (PreferenceGroup)findPreference("display_settings");
+        if (!SystemProperties.getBoolean("ro.caration.brightness.enabled", false)) {
+            Preference brightnessSettings = parent.findPreference("brightness");
+            parent.removePreference(brightnessSettings);
+        }
 
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
