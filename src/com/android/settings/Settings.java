@@ -25,6 +25,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
@@ -34,7 +35,9 @@ public class Settings extends PreferenceActivity {
 
     private static final String KEY_PARENT = "parent";
     private static final String KEY_SYNC_SETTINGS = "sync_settings";
+
     private Context mContext;
+    private Preference mDrmSettings;
     private Dialog mMediaScanningDialog;
     private BroadcastReceiver mReceiver;
     private Preference mUpdateMedia;
@@ -49,6 +52,28 @@ public class Settings extends PreferenceActivity {
 
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
+
+        mDrmSettings = findPreference("drm_settings");
+
+        Preference voiceSettings = parent.findPreference("voice_settings");
+        if (!SystemProperties.getBoolean("ro.service.tts.enabled", false)) {
+            parent.removePreference(voiceSettings);
+        }
+
+        if (!SystemProperties.getBoolean("ro.caration.sound.enabled", false)) {
+            Preference soundSettings = parent.findPreference("sound_settings");
+            parent.removePreference(soundSettings);
+        }
+
+        if (!SystemProperties.getBoolean("ro.caration.wifi.enabled", false)) {
+            Preference wifiSettings = parent.findPreference("wifi_settings");
+            parent.removePreference(wifiSettings);
+        }
+
+        if (!SystemProperties.getBoolean("ro.caration.drmdownload.ebabled", false)) {
+            Preference drmSettingsTemp = parent.findPreference("drm_settings");
+            parent.removePreference(drmSettingsTemp);
+        }
 
         mUpdateMedia = findPreference("updatemedialib");
         mContext = this;
@@ -73,6 +98,13 @@ public class Settings extends PreferenceActivity {
                                        android.net.Uri.parse("file://storage"));
             intent.putExtra("read-only", false);
             sendBroadcast(intent);
+        }
+        if (preference == mDrmSettings) {
+            Intent drmIntent = new Intent();
+            drmIntent.setClassName("com.caration.einkdrm",
+                                   "com.caration.einkdrm.DRMSettings");
+            drmIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(drmIntent);
         }
         return false;
     }

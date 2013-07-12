@@ -50,6 +50,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
+    private static final String PRODUCT_VERSION = SystemProperties.get("product.version", "default");
 
     long[] mHits = new long[3];
 
@@ -59,51 +60,16 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
         addPreferencesFromResource(R.xml.device_info_settings);
 
-        // If we don't have an IME tutorial, remove that option
-        String currentIme = Settings.Secure.getString(getContentResolver(),
-                Settings.Secure.DEFAULT_INPUT_METHOD);
-        ComponentName component = ComponentName.unflattenFromString(currentIme);
-        Intent imeIntent = new Intent(component.getPackageName() + ".tutorial");
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> tutorials = pm.queryIntentActivities(imeIntent, 0);
-        if(tutorials == null || tutorials.isEmpty()) {
-            getPreferenceScreen().removePreference(findPreference("system_tutorial"));
-        }
-
+        String currentIme = Settings.Secure.getString(getContentResolver(), "default_input_method");
         setStringSummary("firmware_version", Build.VERSION.RELEASE);
         findPreference("firmware_version").setEnabled(true);
-        setValueSummary("baseband_version", "gsm.version.baseband");
-        setStringSummary("device_model", Build.MODEL);
-        setStringSummary("build_number", Build.DISPLAY);
+        setStringSummary("device_model", Build.CARATIONMODEL);
+        setStringSummary("build_number", PRODUCT_VERSION + "\n" + Build.DISPLAY);
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
                 PROPERTY_URL_SAFETYLEGAL);
-
-        /*
-         * Settings is a generic app and should not contain any device-specific
-         * info.
-         */
-
-        // These are contained in the "container" preference group
-        PreferenceGroup parentPreference = (PreferenceGroup) findPreference(KEY_CONTAINER);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_TERMS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_LICENSE,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_COPYRIGHT,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_TEAM,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-
-        // These are contained by the root preference screen
-        parentPreference = getPreferenceScreen();
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
-                KEY_SYSTEM_UPDATE_SETTINGS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_CONTRIBUTORS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
     }
 
     @Override
@@ -188,6 +154,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
                 Log.e(TAG, "Regex match on /proc/version only returned " + m.groupCount()
                         + " groups");
                 return "Unavailable";
+            } else if (SystemProperties.get("ro.caration.product.model").equals("TB-166")) {
+                return (new StringBuilder(m.group(1)).append("\n").append(
+                        "support@teXet.ru").toString());
             } else {
                 return (new StringBuilder(m.group(1)).append("\n").append(
                         m.group(2)).append(" ").append(m.group(3)).append("\n")

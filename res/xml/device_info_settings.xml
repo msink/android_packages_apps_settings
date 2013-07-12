@@ -17,15 +17,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/about_settings">
 
-        <!-- System update settings - launches activity -->
-        <PreferenceScreen android:key="system_update_settings"
-                android:title="@string/system_update_settings_list_item_title" 
-                android:summary="@string/system_update_settings_list_item_summary">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="android.rockchip.update.service"
-                    android:targetClass="android.rockchip.update.service.Setting" />
-        </PreferenceScreen>
-        
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
                 android:title="@string/device_status" 
@@ -35,28 +26,6 @@
                     android:targetClass="com.android.settings.deviceinfo.Status" />
         </PreferenceScreen>
 
-        <!-- Legal Information -->
-        <PreferenceScreen
-                android:key="safetylegal"
-                android:title="@string/settings_safetylegal_title">
-            <intent android:action="android.settings.SAFETY" />
-        </PreferenceScreen>
-
-        <!-- Contributors -->
-        <!-- 
-        <PreferenceScreen
-                android:key="contributors"
-                android:title="@string/contributors_title">
-            <intent android:action="android.settings.TEAM" />
-        </PreferenceScreen>
-        -->
-        <!-- System Tutorial - launches activity -->
-        <PreferenceScreen android:key="system_tutorial"
-                android:title="@string/system_tutorial_list_item_title" 
-                android:summary="@string/system_tutorial_list_item_summary">
-            <intent android:action="android.intent.action.SYSTEM_TUTORIAL" />
-        </PreferenceScreen>
-        
         <!-- Device hardware model -->
         <Preference android:key="device_model" 
                 style="?android:preferenceInformationStyle"
