@@ -818,6 +818,7 @@ public class ManageApplications extends TabActivity implements
                 mLoadingContainer.setVisibility(View.GONE);
             }
             if (mActivityResumed) {
+                System.out.println("shy 0411 which  00-->" + mActivityResumed);
                 mApplicationsAdapter.resume(mFilterApps, mSortOrder);
             }
         } else if (which == VIEW_RUNNING) {

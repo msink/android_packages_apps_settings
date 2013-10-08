@@ -110,11 +110,13 @@ public class UserDictionarySettings extends ListActivity implements View.OnTouch
 
     class BtnMenuOnClickListener implements View.OnClickListener {
         public void onClick(View v) {
+            System.out.println("   BtnMenuOnClickListener");
             showAddOrEditDialog(null);
         }
     };
 
     public boolean onTouchEvent(MotionEvent event) {
+        System.out.println("event.gety==>" + event.getY());
         if (event.getY() > 850 && event.getY() <= 1024) {
             if (btnMenu.getVisibility() != 0) {
                 btnMenu.setVisibility(View.VISIBLE);
@@ -127,6 +129,7 @@ public class UserDictionarySettings extends ListActivity implements View.OnTouch
     }
 
     public boolean onTouch(View v, MotionEvent event) {
+        System.out.println("event.gety==>" + event.getY());
         if (event.getY() > 850 && event.getY() <= 1024) {
             if (btnMenu.getVisibility() != 0) {
                 btnMenu.setVisibility(View.VISIBLE);

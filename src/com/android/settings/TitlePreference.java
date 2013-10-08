@@ -37,5 +37,7 @@ public class TitlePreference extends Preference {
         if (relatePreference != null && mBg != null) {
             relatePreference.setBackgroundDrawable(mBg);
         }
+        System.out.println("333mWidth-->" + relatePreference.getWidth() +
+                           ";;mHeight-->" + relatePreference.getHeight());
     }
 }

@@ -190,12 +190,14 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setClass(this, com.android.settings.MediaFormat.class);
             intent.putExtra("path", Environment.getExternalStorageDirectory().getPath());
+            System.out.println(" sdcard format path-->" + Environment.getExternalStorageDirectory().getPath());
             startActivity(intent);
             return true;
         } else if (preference == mNandFormat) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setClass(this, com.android.settings.MediaFormat.class);
             intent.putExtra("path", Environment.getFlashStorageDirectory().getPath());
+            System.out.println(" mNandFormat format path-->" + Environment.getFlashStorageDirectory().getPath());
             startActivity(intent);
         } else if (preference == preferenceBackSettings) {
             finish();

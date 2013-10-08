@@ -89,6 +89,7 @@ public class ApplicationSettings extends PreferenceActivity implements
         preferenceDevelopmentSettings = (MyIconPreferenceScreen)
                 findPreference("development_setting");
         mBottomDraw = getResources().getDrawable(R.drawable.settings_bg_bottom);
+        System.out.println("no adb remove develop");
 
         if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_NOKEYS) {
             // No hard keyboard, remove the setting for quick launch

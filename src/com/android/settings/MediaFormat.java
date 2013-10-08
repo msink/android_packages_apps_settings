@@ -172,6 +172,7 @@ public class MediaFormat extends Activity {
 
         Bundle extras = getIntent().getExtras();
         mPath = extras.getString("path");
+        System.out.println(" mPath-->" + mPath);
         if (relateBackSetings != null) {
             relateBackSetings.setOnClickListener(new mRelativeBackListener());
         }

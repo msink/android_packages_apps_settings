@@ -21,6 +21,7 @@ public class MyDatePickerDialog extends DatePickerDialog {
     }
 
     public void onDateChanged(DatePicker view, int year, int month, int day) {
+        System.out.println("shy onDateChanged yeardddd ----" + year);
         if (year <= 1970) {
             Toast.makeText(mContext, "Please select 1970 or later ", 0).show();
         } else if (year >= 2038) {
@@ -31,6 +32,7 @@ public class MyDatePickerDialog extends DatePickerDialog {
     }
 
     public void updateDate(int year, int monthOfYear, int dayOfMonth) {
+        System.out.println("shy updateDate year ----" + year);
         if (year <= 1970) {
             year = 1970;
         }

@@ -67,6 +67,7 @@ public class DisplaySettings extends PreferenceActivity implements
                 findPreference("display_back");
         String screentTime = (String.valueOf(Settings.System.getInt(
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
+        System.out.println("dddddddddddd-->" + screentTime);
         screenTimeoutPreference.setValue(screentTime);
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);

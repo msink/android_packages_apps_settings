@@ -131,6 +131,7 @@ public class LanguageSettings extends PreferenceActivity {
                 MyCheckBoxPreference chkbxPref = new MyCheckBoxPreference(this);
                 chkbxPref.setKey(prefKey);
                 chkbxPref.setTitle(label);
+                System.out.println("shy chkbxPref 0000 label -->" + label);
                 keyboardSettingsCategory.addPreference(chkbxPref);
                 mCheckboxes.add(chkbxPref);
                 if (i == 0)
@@ -150,6 +151,7 @@ public class LanguageSettings extends PreferenceActivity {
                 }
                 prefScreen.setKey(settingsActivity);
                 prefScreen.setTitle(label);
+                System.out.println("shy  prefScreen  0000 label -->" + label);
                 if (N == 1) {
                     prefScreen.setSummary(getString(R.string.onscreen_keyboard_settings_summary));
                 } else {
@@ -260,6 +262,7 @@ public class LanguageSettings extends PreferenceActivity {
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         
         if (preference == preferenceBackSettings) {
+            System.out.println(" Language back settings shy 0726");
             finish();
             return false;
         }
@@ -317,14 +320,18 @@ public class LanguageSettings extends PreferenceActivity {
                 mLastTickedInputMethodId = null;
             }
         } else if (preference instanceof MyIconPreferenceScreen) {
+            System.out.println("  Language  onPreferenceTreeClick   shy 0723");
             if (preference.getIntent() == null) {
                 PreferenceScreen pref = (PreferenceScreen) preference;
                 String activityName = pref.getKey();
                 if (activityName == null) {
+                    System.out.println("   settings activityName====NULLLLL");
                     return false;
                 }
+                System.out.println("   settings activityName======" + activityName);
                 String packageName = activityName.substring(0, activityName
                         .lastIndexOf("."));
+                System.out.println("shy 0125 packageName-->" + packageName);
                 int slash = activityName.indexOf("/");
                 if (slash > 0) {
                     packageName = activityName.substring(0, slash);
@@ -334,6 +341,7 @@ public class LanguageSettings extends PreferenceActivity {
                     Intent i = new Intent(Intent.ACTION_MAIN);
                     i.setClassName(packageName, activityName);
                     startActivity(i);
+                    System.out.println("shy 0125 startActivity->" + packageName);
                 }
             }
         }
