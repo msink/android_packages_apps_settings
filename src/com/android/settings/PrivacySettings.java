@@ -62,10 +62,6 @@ public class PrivacySettings extends PreferenceActivity implements
         mBackup = (CheckBoxPreference) screen.findPreference(BACKUP_DATA);
         mAutoRestore = (CheckBoxPreference) screen.findPreference(AUTO_RESTORE);
 
-        // Vendor specific
-        if (getPackageManager().resolveContentProvider(GSETTINGS_PROVIDER, 0) == null) {
-            screen.removePreference(findPreference(BACKUP_CATEGORY));
-        }
         updateToggles();
     }
 

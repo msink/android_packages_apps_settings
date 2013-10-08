@@ -15,7 +15,8 @@
 -->
 
  
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -28,8 +29,22 @@
     <TextView android:id="@+id/empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:textSize="27sp"
         android:padding="5dip"
         android:gravity="center"
         android:visibility="gone" />
 
-</FrameLayout>    
+    <Button android:id="@+id/btnMenu"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="27sp"
+        android:textColor="#ff000000"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/user_dict_settings_add_menu_title"
+        />
+
+</RelativeLayout>

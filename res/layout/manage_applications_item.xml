@@ -44,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#000"
             android:textStyle="bold"
             android:singleLine="true"
             android:ellipsize="marquee"
@@ -68,6 +69,7 @@
                 android:layout_weight="0"
                 android:visibility="gone"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#000"
                 android:text="@string/disabled" />
         </LinearLayout>
     </LinearLayout>

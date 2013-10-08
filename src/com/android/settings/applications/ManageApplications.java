@@ -325,6 +325,12 @@ public class ManageApplications extends TabActivity implements
 
         ArrayList<ApplicationsState.AppEntry> applyPrefixFilter(CharSequence prefix,
                 ArrayList<ApplicationsState.AppEntry> origEntries) {
+            for (int i=0; i<origEntries.size(); i++) {
+                if (origEntries.get(i).label.equals("Camera") ||
+                    origEntries.get(i).label.equals("Contacts Storage")) {
+                    origEntries.remove(i);
+                }
+            }
             if (prefix == null || prefix.length() == 0) {
                 return origEntries;
             } else {
@@ -334,6 +340,10 @@ public class ManageApplications extends TabActivity implements
                         = new ArrayList<ApplicationsState.AppEntry>();
                 for (int i=0; i<origEntries.size(); i++) {
                     ApplicationsState.AppEntry entry = origEntries.get(i);
+                    if (entry.label.equals("Camera") ||
+                        entry.label.equals("Contacts Storage")) {
+                        origEntries.remove(i);
+                    }
                     String nlabel = entry.getNormalizedLabel();
                     if (nlabel.startsWith(prefixStr) || nlabel.indexOf(spacePrefixStr) != -1) {
                         newEntries.add(entry);
@@ -453,9 +463,6 @@ public class ManageApplications extends TabActivity implements
                 holder.entry = entry;
                 if (entry.label != null) {
                     holder.appName.setText(entry.label);
-                    holder.appName.setTextColor(getResources().getColorStateList(
-                            entry.info.enabled ? android.R.color.primary_text_dark
-                                    : android.R.color.secondary_text_dark));
                 }
                 mState.ensureIcon(entry);
                 if (entry.icon != null) {
@@ -473,6 +480,13 @@ public class ManageApplications extends TabActivity implements
                             & ApplicationInfo.FLAG_EXTERNAL_STORAGE) != 0);
                 } else {
                     holder.checkBox.setVisibility(View.GONE);
+                }
+                if (entry.label != null && entry.label.equals("Camera")) {
+                    holder.appName.setVisibility(View.GONE);
+                    holder.appIcon.setVisibility(View.GONE);
+                    holder.disabled.setVisibility(View.GONE);
+                    holder.checkBox.setVisibility(View.GONE);
+                    holder.appSize.setVisibility(View.GONE);
                 }
             }
             mActive.remove(convertView);
