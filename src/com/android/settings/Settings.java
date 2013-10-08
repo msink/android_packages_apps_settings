@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
@@ -34,6 +35,11 @@ public class Settings extends PreferenceActivity {
 
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
+
+        Preference voiceSettings = parent.findPreference("voice_settings");
+        if (!SystemProperties.getBoolean("ro.service.tts.enabled", false)) {
+            parent.removePreference(voiceSettings);
+        }
     }
     
     @Override

@@ -29,17 +29,6 @@
                 android:targetClass="com.android.settings.WirelessSettings" />
         </com.android.settings.IconPreferenceScreen>
 
-        <!-- Sound -->
-
-        <com.android.settings.IconPreferenceScreen
-            settings:icon="@drawable/ic_settings_sound"
-            android:title="@string/sound_settings_title">
-            <intent
-                android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.settings"
-                android:targetClass="com.android.settings.SoundSettings" />
-        </com.android.settings.IconPreferenceScreen>
-
         <!-- Display -->
 
         <com.android.settings.IconPreferenceScreen
@@ -122,6 +111,7 @@
         <!-- Voice input & output -->
 
         <com.android.settings.IconPreferenceScreen
+            android:key="voice_settings"
             settings:icon="@drawable/ic_settings_speech"
             android:title="@string/voice_input_output_settings">
             <intent
