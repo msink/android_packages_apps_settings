@@ -52,6 +52,7 @@ public class PrivacySettings extends PreferenceActivity implements
 
     private static final int DIALOG_ERASE_BACKUP = 2;
     private int     mDialogType;
+    private ChildTitlePreference preferenceBackSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,13 @@ public class PrivacySettings extends PreferenceActivity implements
         addPreferencesFromResource(R.xml.privacy_settings);
         final PreferenceScreen screen = getPreferenceScreen();
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         mBackup = (CheckBoxPreference) screen.findPreference(BACKUP_DATA);
         mAutoRestore = (CheckBoxPreference) screen.findPreference(AUTO_RESTORE);
 
+        preferenceBackSettings = (ChildTitlePreference) findPreference("privacy_back");
         updateToggles();
     }
 
@@ -96,6 +101,8 @@ public class PrivacySettings extends PreferenceActivity implements
                     mAutoRestore.setChecked(!curState);
                 }
             }
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
 
         return false;

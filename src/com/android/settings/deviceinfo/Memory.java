@@ -45,6 +45,7 @@ import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.settings.ChildTitlePreference;
 import com.android.settings.R;
 
 import java.io.File;
@@ -88,6 +89,8 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
     private StorageManager mStorageManager = null;
 
+    private ChildTitlePreference preferenceBackSettings;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -99,6 +102,10 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
         addPreferencesFromResource(R.xml.device_info_memory);
         
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+        preferenceBackSettings = (ChildTitlePreference) findPreference("memorysettings_back");
+
         mRes = getResources();
         mSdSize = findPreference(MEMORY_SD_SIZE);
         mSdAvail = findPreference(MEMORY_SD_AVAIL);
@@ -190,6 +197,8 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             intent.setClass(this, com.android.settings.MediaFormat.class);
             intent.putExtra("path", Environment.getFlashStorageDirectory().getPath());
             startActivity(intent);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         
         return false;

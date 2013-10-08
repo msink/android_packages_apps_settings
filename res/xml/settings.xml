@@ -20,6 +20,13 @@
     android:title="@string/settings_label"
     android:key="parent">
 
+        <com.android.settings.TitlePreference
+            android:title="@string/settings_label"
+            android:key="title"
+            settings:settingicon="@drawable/settings_icon" />
+        <com.android.settings.MyIconPreferenceScreen
+            android:key="space" settings:height="30px" />
+
         <com.android.settings.MyIconPreferenceScreen
             android:title="@string/radio_controls_title"
             settings:bg="@drawable/settings_bg_top"

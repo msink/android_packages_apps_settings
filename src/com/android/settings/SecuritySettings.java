@@ -95,6 +95,7 @@ public class SecuritySettings extends PreferenceActivity {
     private Drawable mSettingBg_Top;
     private Drawable mSettingBg_Mid;
     private Drawable mSettingBg_Bottom;
+    private ChildTitlePreference preferenceBackSettings;
 
     // These provide support for receiving notification when Location Manager settings change.
     // This is necessary because the Network Location Provider can change settings
@@ -122,6 +123,11 @@ public class SecuritySettings extends PreferenceActivity {
         mSettingBg_Top = getResources().getDrawable(R.drawable.settings_bg_top);
         mSettingBg_Mid = getResources().getDrawable(R.drawable.settings_bg_mid);
         mSettingBg_Bottom = getResources().getDrawable(R.drawable.settings_bg_bottom);
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("security_back");
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         // listen for Location Manager settings changes
         Cursor settingsCursor = getContentResolver().query(Settings.Secure.CONTENT_URI, null,
@@ -236,6 +242,9 @@ public class SecuritySettings extends PreferenceActivity {
         } else if (preference == mNetwork) {
             Settings.Secure.setLocationProviderEnabled(getContentResolver(),
                     LocationManager.NETWORK_PROVIDER, mNetwork.isChecked());
+        }
+        if (preference == preferenceBackSettings) {
+            finish();
         }
 
         return false;

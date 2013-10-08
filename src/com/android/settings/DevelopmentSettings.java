@@ -47,6 +47,7 @@ public class DevelopmentSettings extends PreferenceActivity
     private MyCheckBoxPreference mEnableAdb;
     private MyCheckBoxPreference mKeepScreenOn;
     private MyCheckBoxPreference mAllowMockLocation;
+    private ChildTitlePreference preferenceBackSettings;
 
     // To track whether Yes was clicked in the adb warning dialog
     private boolean mOkClicked;
@@ -66,6 +67,11 @@ public class DevelopmentSettings extends PreferenceActivity
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.development_prefs);
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("develop_settings_back");
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         mEnableAdb = (MyCheckBoxPreference) findPreference(ENABLE_ADB);
         mKeepScreenOn = (MyCheckBoxPreference) findPreference(KEEP_SCREEN_ON);
@@ -118,6 +124,8 @@ public class DevelopmentSettings extends PreferenceActivity
         } else if (preference == mAllowMockLocation) {
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION,
                     mAllowMockLocation.isChecked() ? 1 : 0);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
 
         return false;

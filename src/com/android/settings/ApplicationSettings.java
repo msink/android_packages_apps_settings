@@ -52,12 +52,17 @@ public class ApplicationSettings extends PreferenceActivity implements
     private DialogInterface mWarnInstallApps;
 
     private Drawable mBottomDraw;
+    private ChildTitlePreference preferenceBackSettings;
+    private MyIconPreferenceScreen preferenceDevelopmentSettings;
 
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.application_settings);
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         mToggleAppInstallation = (MyCheckBoxPreference) findPreference(KEY_TOGGLE_INSTALL_APPLICATIONS);
         mToggleAppInstallation.setChecked(isNonMarketAppsAllowed());
@@ -79,6 +84,10 @@ public class ApplicationSettings extends PreferenceActivity implements
             });
         }
 
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("application_back");
+        preferenceDevelopmentSettings = (MyIconPreferenceScreen)
+                findPreference("development_setting");
         mBottomDraw = getResources().getDrawable(R.drawable.settings_bg_bottom);
 
         if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_NOKEYS) {
@@ -123,6 +132,10 @@ public class ApplicationSettings extends PreferenceActivity implements
             } else {
                 setNonMarketAppsAllowed(false);
             }
+        } else if (preference == preferenceBackSettings) {
+            finish();
+        } else if (preference == preferenceDevelopmentSettings) {
+            finish();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

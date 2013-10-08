@@ -27,6 +27,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 /**
  * Confirm and execute a reset of the device to a clean "just out of the box"
@@ -50,6 +52,9 @@ public class MasterClear extends Activity {
 
     private View mFinalView;
     private Button mFinalButton;
+
+    private ImageView imageBackSettings;
+    private RelativeLayout relateBackSetings;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -177,6 +182,24 @@ public class MasterClear extends Activity {
         mLockUtils = new LockPatternUtils(this);
 
         establishInitialState();
+
+        imageBackSettings = (ImageView) findViewById(R.id.image_backsettings);
+        relateBackSetings = (RelativeLayout) findViewById(R.id.relate_backsettings);
+        if (imageBackSettings != null) {
+            imageBackSettings.setOnClickListener(new BackSettingsOnClickListener());
+        }
+        if (relateBackSetings != null) {
+            relateBackSetings.setOnClickListener(new BackSettingsOnClickListener());
+        }
+    }
+
+    private class BackSettingsOnClickListener implements View.OnClickListener {
+        public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.setClass(MasterClear.this, Settings.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /** Abandon all progress through the confirmation sequence by returning

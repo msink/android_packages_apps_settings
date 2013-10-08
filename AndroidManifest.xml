@@ -65,6 +65,7 @@
                 android:label="@string/settings_label_launcher"
                 android:taskAffinity="com.android.settings"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/sys_set_preacitivity"
                 android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,6 +86,7 @@
 
         <activity android:name="WirelessSettings"
                 android:label="@string/wireless_networks_settings_title"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -102,6 +104,7 @@
                 android:label="@string/wifi_settings"
                 android:configChanges="orientation|keyboardHidden"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -221,6 +224,7 @@
         </activity>
 
         <activity android:name="DateTimeSettings" android:label="@string/date_and_time"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -255,6 +259,7 @@
         <activity android:name="LanguageSettings"
                 android:label="@string/language_keyboard_settings_title"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -289,6 +294,7 @@
         <activity android:name="SoundSettings"
                 android:label="@string/sound_settings"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -316,6 +322,7 @@
         <activity android:name="DisplaySettings"
                 android:label="@string/display_settings"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -341,6 +348,7 @@
         </activity>
 
         <activity android:name="DeviceInfoSettings" android:label="@string/device_info_settings"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -369,6 +377,7 @@
         </activity>
 
         <activity android:name="ApplicationSettings" android:label="@string/applications_settings_header"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -468,6 +477,7 @@
                 android:label="@string/privacy_settings_title"
                 android:configChanges="orientation|keyboardHidden"
                 android:clearTaskOnLaunch="true"
+                android:theme="@style/child_set_preacitivity"
                 >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -575,6 +585,7 @@
         <activity android:name="ZoneList" android:label="@string/choose_timezone" />
 
         <activity android:name=".deviceinfo.Status" android:label="@string/device_status_activity_title"
+                android:theme="@style/child_set_preacitivity"
                 android:process="com.android.phone">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -584,6 +595,7 @@
         </activity>
 
         <activity android:name=".deviceinfo.Memory"
+                android:theme="@style/memory_set_preacitivity"
                 android:label="@string/storage_settings_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -609,13 +621,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="MasterClear" android:label="@string/master_clear_title">
+        <activity android:name="MasterClear"
+                android:theme="@*android:style/Theme.Translucent.NoTitleBar">
+                android:label="@string/master_clear_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <activity android:name="MediaFormat" android:label="@string/media_format_title">
+        <activity android:name="MediaFormat" android:label="@string/media_format_title"
+                android:theme="@*android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -639,6 +654,7 @@
         </activity>
 
         <activity android:name="DevelopmentSettings"
+                android:theme="@style/child_set_preacitivity"
                 android:label="@string/development_settings_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -32,6 +32,7 @@ import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceScreen;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
@@ -43,6 +44,7 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneStateIntentReceiver;
 import com.android.internal.telephony.TelephonyProperties;
 import com.android.settings.MyIconPreferenceScreen;
+import com.android.settings.ChildTitlePreference;
 import com.android.settings.R;
 
 import java.lang.ref.WeakReference;
@@ -72,6 +74,7 @@ public class Status extends PreferenceActivity {
 
     private MyIconPreferenceScreen mBatteryStatus;
     private MyIconPreferenceScreen mBatteryLevel;
+    private ChildTitlePreference preferenceBackSettings;
 
     private static class MyHandler extends Handler {
         private WeakReference<Status> mStatus;
@@ -140,7 +143,11 @@ public class Status extends PreferenceActivity {
         addPreferencesFromResource(R.xml.device_info_status);
         mBatteryLevel = (MyIconPreferenceScreen) findPreference("battery_level");
         mBatteryStatus = (MyIconPreferenceScreen) findPreference("battery_status");
+        preferenceBackSettings = (ChildTitlePreference) findPreference("satausettings_back");
         
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         setWifiStatus();
         setBtStatus();
     }
@@ -181,5 +188,15 @@ public class Status extends PreferenceActivity {
             btAddressPref.setSummary(!TextUtils.isEmpty(address) ? address
                     : getString(R.string.status_unavailable));
         }
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
+            Preference preference) {
+        if (preference == preferenceBackSettings) {
+            finish();
+        }
+
+        return false;
     }
 }

@@ -53,6 +53,9 @@ public class WirelessSettings extends PreferenceActivity {
     private NfcEnabler mNfcEnabler;
     private BluetoothEnabler mBtEnabler;
 
+    private MyIconPreferenceScreen mWifiSettingsPreference;
+    private ChildTitlePreference preferenceBackSettings;
+
     /**
      * Invoked on each preference click in this hierarchy, overrides
      * PreferenceActivity's implementation.  Used to make sure we track the
@@ -67,6 +70,10 @@ public class WirelessSettings extends PreferenceActivity {
                 new Intent(TelephonyIntents.ACTION_SHOW_NOTICE_ECM_BLOCK_OTHERS, null),
                 REQUEST_CODE_EXIT_ECM);
             return true;
+        } else if (preference == mWifiSettingsPreference) {
+            finish();
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         // Let the intents be launched by the Preference manager
         return false;
@@ -97,6 +104,13 @@ public class WirelessSettings extends PreferenceActivity {
         mWifiEnabler = new WifiEnabler(this, wifi);
         mBtEnabler = new BluetoothEnabler(this, bt);
         mNfcEnabler = new NfcEnabler(this, nfc);
+
+        mWifiSettingsPreference = (MyIconPreferenceScreen)
+            findPreference("wifi_settings");
+        preferenceBackSettings = (ChildTitlePreference)
+            findPreference("wireless_settings_back");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         String toggleable = Settings.System.getString(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_TOGGLEABLE_RADIOS);

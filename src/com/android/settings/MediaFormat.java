@@ -23,6 +23,8 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.internal.os.storage.ExternalStorageFormatter;
@@ -48,6 +50,8 @@ public class MediaFormat extends Activity {
     private Button mFinalButton;
 
     private String mPath;
+    private ImageView mediaFormatBackSettings;
+    private RelativeLayout relateBackSetings;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -120,6 +124,10 @@ public class MediaFormat extends Activity {
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_media_format);
             mFinalButton.setOnClickListener(mFinalClickListener);
+            mediaFormatBackSettings = (ImageView) mFinalView.findViewById(R.id.media_format_settings);
+            relateBackSetings = (RelativeLayout) mFinalView.findViewById(R.id.relate_media_format_backsettings);
+            relateBackSetings.setOnClickListener(new mRelativeBackListener());
+            mediaFormatBackSettings.setOnClickListener(new mRelativeBackListener());
         }
 
         setContentView(mFinalView);
@@ -143,6 +151,10 @@ public class MediaFormat extends Activity {
             mInitiateButton =
                     (Button) mInitialView.findViewById(R.id.initiate_media_format);
             mInitiateButton.setOnClickListener(mInitiateListener);
+            mediaFormatBackSettings = (ImageView) mInitialView.findViewById(R.id.media_format_settings);
+            relateBackSetings = (RelativeLayout) mInitialView.findViewById(R.id.relate_media_format_backsettings);
+            relateBackSetings.setOnClickListener(new mRelativeBackListener());
+            mediaFormatBackSettings.setOnClickListener(new mRelativeBackListener());
         }
 
         setContentView(mInitialView);
@@ -160,6 +172,9 @@ public class MediaFormat extends Activity {
 
         Bundle extras = getIntent().getExtras();
         mPath = extras.getString("path");
+        if (relateBackSetings != null) {
+            relateBackSetings.setOnClickListener(new mRelativeBackListener());
+        }
     }
 
     /** Abandon all progress through the confirmation sequence by returning
@@ -174,4 +189,19 @@ public class MediaFormat extends Activity {
             establishInitialState();
         }
     }
+
+    private class mRelativeBackListener implements View.OnClickListener {
+        public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.setClass(MediaFormat.this, com.android.settings.deviceinfo.Memory.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    private View.OnClickListener mBackListener = new View.OnClickListener() {
+        public void onClick(View view) {
+            finish();
+        }
+    };
 }

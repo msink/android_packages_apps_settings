@@ -62,6 +62,7 @@ public class LanguageSettings extends PreferenceActivity {
     private Drawable mTopDrawable;
     private Drawable mMidDrawable;
     private Drawable mBotDrawable;
+    private ChildTitlePreference preferenceBackSettings;
     
     static public String getInputMethodIdFromKey(String key) {
         return key;
@@ -80,9 +81,14 @@ public class LanguageSettings extends PreferenceActivity {
             mLanguagePref = findPreference(KEY_PHONE_LANGUAGE);
         }
 
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("language_back");
         mTopDrawable = getResources().getDrawable(R.drawable.settings_bg_top);
         mMidDrawable = getResources().getDrawable(R.drawable.settings_bg_mid);
         mBotDrawable = getResources().getDrawable(R.drawable.settings_bg_bottom);
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         Configuration config = getResources().getConfiguration();
         if (config.keyboard != Configuration.KEYBOARD_QWERTY) {
@@ -253,6 +259,11 @@ public class LanguageSettings extends PreferenceActivity {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         
+        if (preference == preferenceBackSettings) {
+            finish();
+            return false;
+        }
+
         // Input Method stuff
         if (Utils.isMonkeyRunning()) {
             return false;

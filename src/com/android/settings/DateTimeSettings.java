@@ -63,6 +63,7 @@ public class DateTimeSettings
     private MyIconPreferenceScreen mTimeZone;
     private MyIconPreferenceScreen mDatePref;
     private MyListPreference mDateFormat;
+    private ChildTitlePreference preferenceBackSettings;
     
     @Override
     protected void onCreate(Bundle icicle) {
@@ -70,6 +71,11 @@ public class DateTimeSettings
         
         addPreferencesFromResource(R.xml.date_time_prefs);
         
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("datetime_settings_back");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         initUI();        
     }
     
@@ -286,6 +292,8 @@ public class DateTimeSettings
             Intent intent = new Intent();
             intent.setClass(this, ZoneList.class);
             startActivityForResult(intent, 0);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         return false;
     }

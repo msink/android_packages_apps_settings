@@ -144,6 +144,9 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         mAccessPoints.setOrderingAsAdded(false);
         mAddNetwork = findPreference("add_network");
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         mProgressView = new ProgressDialog(this);
         mProgressView.setIndeterminate(false);
         mProgressView.setProgressStyle(1);

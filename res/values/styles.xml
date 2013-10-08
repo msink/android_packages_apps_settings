@@ -81,5 +81,29 @@
     <style name="TallTitleBarTheme" parent="android:Theme.NoTitleBar">
         <item name="android:windowContentOverlay">@null</item>
     </style>
+
+    <style name="sys_set_preacitivity">
+        <item name="android:windowBackground">@drawable/settings_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:focusable">false</item>
+        <item name="android:cacheColorHint">#00000000</item>
+    </style>
+
+    <style name="child_set_preacitivity">
+        <item name="android:windowBackground">@drawable/settings_child_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:focusable">false</item>
+        <item name="android:cacheColorHint">#00000000</item>
+    </style>
+
+    <style name="memory_set_preacitivity">
+        <item name="android:windowBackground">@drawable/settings_memory_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:focusable">false</item>
+        <item name="android:cacheColorHint">#00000000</item>
+    </style>
     
 </resources>

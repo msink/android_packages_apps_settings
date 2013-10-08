@@ -15,7 +15,21 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+        android:key="memory_parent">
+    <com.android.settings.TitlePreference
+            android:title="@string/settings_label"
+            android:key="title"
+            settings:settingicon="@drawable/settings_icon" />
+    <com.android.settings.ChildTitlePreference
+            android:title="@string/storage_settings"
+            android:key="memorysettings_back"
+            settings:settingicon="@drawable/settings_back">
+        <intent android:targetPackage="com.android.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.android.settings.Settings" />
+    </com.android.settings.ChildTitlePreference>
+    <com.android.settings.MyIconPreferenceScreen android:key="space" settings:height="30px" />
 
     <PreferenceCategory android:key="memory_sd"
             android:title="@string/sd_memory">

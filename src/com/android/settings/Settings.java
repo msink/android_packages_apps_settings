@@ -36,6 +36,9 @@ public class Settings extends PreferenceActivity {
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         Preference voiceSettings = parent.findPreference("voice_settings");
         if (!SystemProperties.getBoolean("ro.service.tts.enabled", false)) {
             parent.removePreference(voiceSettings);

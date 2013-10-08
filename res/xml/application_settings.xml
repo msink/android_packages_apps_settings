@@ -19,6 +19,18 @@
         android:title="@string/applications_settings_header"
         android:summary="@string/applications_settings_summary"
         android:key="applications_settings">
+    <com.android.settings.TitlePreference
+            settings:settingicon="@drawable/settings_icon"
+            android:title="@string/settings_label" />
+    <com.android.settings.ChildTitlePreference
+        android:title="@string/applications_settings_header"
+        android:key="application_back"
+        settings:settingicon="@drawable/settings_back">
+        <intent android:targetPackage="com.android.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.android.settings.Settings" />
+    </com.android.settings.ChildTitlePreference>
+    <com.android.settings.MyIconPreferenceScreen settings:height="30px" />
 
     <com.android.settings.MyCheckBoxPreference
             settings:checkbg="@drawable/settings_bg_top"

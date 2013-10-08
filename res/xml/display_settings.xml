@@ -15,8 +15,20 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/display_settings"
+        android:key="disp_parent"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    <com.android.settings.TitlePreference
+        android:title="@string/settings_label"
+        settings:settingicon="@drawable/settings_icon" />
+    <com.android.settings.ChildTitlePreference
+        android:title="@string/display_settings"
+        android:key="display_back"
+        settings:settingicon="@drawable/settings_back">
+        <intent android:targetPackage="com.android.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.android.settings.Settings" />
+    </com.android.settings.ChildTitlePreference>
+    <com.android.settings.MyIconPreferenceScreen settings:height="30px" />
 
         <com.android.settings.MyListPreference
                 settings:bg="@drawable/settings_bg_top"

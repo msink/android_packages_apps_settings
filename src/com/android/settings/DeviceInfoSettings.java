@@ -54,6 +54,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
     long[] mHits = new long[3];
 
+    private ChildTitlePreference preferenceBackSettings;
+    private MyIconPreferenceScreen preferenceStautsInfoSettings;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -71,12 +74,20 @@ public class DeviceInfoSettings extends PreferenceActivity {
             getPreferenceScreen().removePreference(findPreference("system_tutorial"));
         }
 
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("device_back");
+        preferenceStautsInfoSettings = (MyIconPreferenceScreen)
+                findPreference("status_info");
+
         String buildName = getSystemVersion();
         setStringSummary("firmware_version", Build.VERSION.RELEASE);
         findPreference("firmware_version").setEnabled(true);
         setStringSummary("device_model", Build.MODEL);
         findPreference("kernel_version").setSummary("2.6.35");
         setStringSummary("build_number", "QUMO_Libro_TouchLux_V23.01_131010");
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -90,6 +101,11 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == this.preferenceStautsInfoSettings) {
+            finish();
+        } else if (preference == this.preferenceBackSettings) {
+            finish();
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
