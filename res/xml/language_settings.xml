@@ -17,9 +17,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceCategory android:key="language_settings_category"
-            android:title="@string/language_settings_category" />
-
     <PreferenceScreen
             android:key="phone_language"
             android:title="@string/phone_language">

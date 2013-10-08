@@ -288,6 +288,9 @@ public class LanguageSettings extends PreferenceActivity {
             if (preference.getIntent() == null) {
                 PreferenceScreen pref = (PreferenceScreen) preference;
                 String activityName = pref.getKey();
+                if (activityName == null) {
+                    return false;
+                }
                 String packageName = activityName.substring(0, activityName
                         .lastIndexOf("."));
                 int slash = activityName.indexOf("/");

@@ -28,13 +28,16 @@ import android.text.InputType;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AlphabetIndexer;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SectionIndexer;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -42,7 +45,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 import java.util.Locale;
 
-public class UserDictionarySettings extends ListActivity {
+public class UserDictionarySettings extends ListActivity implements View.OnTouchListener {
 
     private static final String INSTANCE_KEY_DIALOG_EDITING_WORD = "DIALOG_EDITING_WORD";
     private static final String INSTANCE_KEY_ADDED_WORD = "DIALOG_ADDED_WORD";
@@ -74,6 +77,9 @@ public class UserDictionarySettings extends ListActivity {
     
     private boolean mAddedWordAlready;
     private boolean mAutoReturn;
+
+    private Button btnMenu;
+    private RelativeLayout main_View;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,12 +92,50 @@ public class UserDictionarySettings extends ListActivity {
         
         TextView emptyView = (TextView) findViewById(R.id.empty);
         emptyView.setText(R.string.user_dict_settings_empty_text);
+        emptyView.setVisibility(View.GONE);
+        emptyView.setOnTouchListener(this);
         
         ListView listView = getListView();
         listView.setFastScrollEnabled(true);
         listView.setEmptyView(emptyView);
+        listView.setOnTouchListener(this);
+
+        main_View = (RelativeLayout) findViewById(R.id.main);
+        main_View.setOnTouchListener(this);
+        btnMenu = (Button) findViewById(R.id.btnMenu);
+        btnMenu.setOnClickListener(new BtnMenuOnClickListener());
 
         registerForContextMenu(listView);
+    }
+
+    class BtnMenuOnClickListener implements View.OnClickListener {
+        public void onClick(View v) {
+            showAddOrEditDialog(null);
+        }
+    };
+
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getY() > 850 && event.getY() <= 1024) {
+            if (btnMenu.getVisibility() != 0) {
+                btnMenu.setVisibility(View.VISIBLE);
+            } else {
+                btnMenu.setVisibility(View.INVISIBLE);
+            }
+            return false;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getY() > 850 && event.getY() <= 1024) {
+            if (btnMenu.getVisibility() != 0) {
+                btnMenu.setVisibility(View.VISIBLE);
+            } else {
+                btnMenu.setVisibility(View.INVISIBLE);
+            }
+            return false;
+        }
+        return false;
     }
     
     @Override
@@ -190,6 +234,9 @@ public class UserDictionarySettings extends ListActivity {
     private void showAddOrEditDialog(String editingWord) {
         mDialogEditingWord = editingWord;
         showDialog(DIALOG_ADD_OR_EDIT);
+        if (btnMenu.getVisibility() == 0) {
+            btnMenu.setVisibility(View.INVISIBLE);
+        }
     }
     
     private String getWord(int position) {
