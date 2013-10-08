@@ -40,8 +40,6 @@
     <item msgid="488968798204105119">"모든 창 애니메이션이 표시됨"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15초"</item>
-    <item msgid="8881760709354815449">"30초"</item>
     <item msgid="7589406073232279088">"1분"</item>
     <item msgid="7001195990902244174">"2분"</item>
     <item msgid="5721688686241190620">"10분"</item>
