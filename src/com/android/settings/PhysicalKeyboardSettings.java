@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import android.content.ContentResolver;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -46,9 +47,17 @@ public class PhysicalKeyboardSettings extends PreferenceActivity {
             1,
     };
 
+    private Drawable mTopDrawable;
+    private Drawable mMidDrawable;
+    private Drawable mBotDrawable;
+
     @Override
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+
+        mTopDrawable = getResources().getDrawable(R.drawable.settings_bg_top);
+        mMidDrawable = getResources().getDrawable(R.drawable.settings_bg_mid);
+        mBotDrawable = getResources().getDrawable(R.drawable.settings_bg_bottom);
 
         addPreferencesFromResource(R.xml.keyboard_settings);
     }
@@ -58,9 +67,10 @@ public class PhysicalKeyboardSettings extends PreferenceActivity {
         super.onResume();
         ContentResolver resolver = getContentResolver();
         for (int i = 0; i < mSettingsUiKey.length; i++) {
-            CheckBoxPreference pref = (CheckBoxPreference) findPreference(mSettingsUiKey[i]);
+            MyCheckBoxPreference pref = (MyCheckBoxPreference) findPreference(mSettingsUiKey[i]);
             pref.setChecked(System.getInt(resolver, mSettingsSystemId[i],
                                           mSettingsDefault[i]) > 0);
+            pref.setIcon(mTopDrawable);
         }
     }
 
@@ -72,7 +82,7 @@ public class PhysicalKeyboardSettings extends PreferenceActivity {
         for (int i = 0; i < mSettingsUiKey.length; i++) {
             if (mSettingsUiKey[i].equals(preference.getKey())) {
                 System.putInt(getContentResolver(), mSettingsSystemId[i], 
-                        ((CheckBoxPreference)preference).isChecked()? 1 : 0);
+                        ((MyCheckBoxPreference)preference).isChecked()? 1 : 0);
                 return true;
             }
         }

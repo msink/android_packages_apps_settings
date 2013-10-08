@@ -30,6 +30,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemProperties;
@@ -70,10 +71,10 @@ public class SecuritySettings extends PreferenceActivity {
     private static final String PROPERTY_EFS_ENABLED = "persist.security.efs.enabled";
     private static final String PROPERTY_EFS_TRANSITION = "persist.security.efs.trans";
 
-    private CheckBoxPreference mVisiblePattern;
-    private CheckBoxPreference mTactileFeedback;
+    private MyCheckBoxPreference mVisiblePattern;
+    private MyCheckBoxPreference mTactileFeedback;
 
-    private CheckBoxPreference mShowPassword;
+    private MyCheckBoxPreference mShowPassword;
 
     // Location Settings
     private static final String LOCATION_NETWORK = "location_network";
@@ -90,6 +91,10 @@ public class SecuritySettings extends PreferenceActivity {
     private CheckBoxPreference mNetwork;
 
     DevicePolicyManager mDPM;
+
+    private Drawable mSettingBg_Top;
+    private Drawable mSettingBg_Mid;
+    private Drawable mSettingBg_Bottom;
 
     // These provide support for receiving notification when Location Manager settings change.
     // This is necessary because the Network Location Provider can change settings
@@ -113,6 +118,10 @@ public class SecuritySettings extends PreferenceActivity {
         createPreferenceHierarchy();
 
         updateToggles();
+
+        mSettingBg_Top = getResources().getDrawable(R.drawable.settings_bg_top);
+        mSettingBg_Mid = getResources().getDrawable(R.drawable.settings_bg_mid);
+        mSettingBg_Bottom = getResources().getDrawable(R.drawable.settings_bg_bottom);
 
         // listen for Location Manager settings changes
         Cursor settingsCursor = getContentResolver().query(Settings.Secure.CONTENT_URI, null,
@@ -142,21 +151,22 @@ public class SecuritySettings extends PreferenceActivity {
         // mSetOrChange = (PreferenceScreen) pm.findPreference(KEY_UNLOCK_SET_OR_CHANGE);
 
         // visible pattern
-        mVisiblePattern = (CheckBoxPreference) pm.findPreference(KEY_VISIBLE_PATTERN);
+        mVisiblePattern = (MyCheckBoxPreference) pm.findPreference(KEY_VISIBLE_PATTERN);
 
         // tactile feedback. Should be common to all unlock preference screens.
-        mTactileFeedback = (CheckBoxPreference) pm.findPreference(KEY_TACTILE_FEEDBACK_ENABLED);
+        mTactileFeedback = (MyCheckBoxPreference) pm.findPreference(KEY_TACTILE_FEEDBACK_ENABLED);
 
         // Passwords
         PreferenceCategory passwordsCat = new PreferenceCategory(this);
         passwordsCat.setTitle(R.string.security_passwords_title);
         root.addPreference(passwordsCat);
 
-        CheckBoxPreference showPassword = mShowPassword = new CheckBoxPreference(this);
+        MyCheckBoxPreference showPassword = mShowPassword = new MyCheckBoxPreference(this);
         showPassword.setKey("show_password");
         showPassword.setTitle(R.string.show_password);
         showPassword.setSummary(R.string.show_password_summary);
         showPassword.setPersistent(false);
+        showPassword.setIcon(mSettingBg_Top);
         passwordsCat.addPreference(showPassword);
 
         // Device policies
@@ -164,9 +174,10 @@ public class SecuritySettings extends PreferenceActivity {
         devicePoliciesCat.setTitle(R.string.device_admin_title);
         root.addPreference(devicePoliciesCat);
 
-        Preference deviceAdminButton = new Preference(this);
+        MyIconPreferenceScreen deviceAdminButton = new MyIconPreferenceScreen(this);
         deviceAdminButton.setTitle(R.string.manage_device_admin);
         deviceAdminButton.setSummary(R.string.manage_device_admin_summary);
+        deviceAdminButton.setmBg(mSettingBg_Mid);
         Intent deviceAdminIntent = new Intent();
         deviceAdminIntent.setClass(this, DeviceAdminSettings.class);
         deviceAdminButton.setIntent(deviceAdminIntent);

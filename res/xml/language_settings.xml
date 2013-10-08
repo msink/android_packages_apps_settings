@@ -17,32 +17,35 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
+            settings:bg="@drawable/settings_bg_top"
             android:key="phone_language"
             android:title="@string/phone_language">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.LocalePicker"/>
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
 
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
+            settings:bg="@drawable/settings_bg_mid"
             android:title="@string/user_dict_settings_title"
             android:summary="@string/user_dict_settings_summary">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.UserDictionarySettings" />
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
 
     <PreferenceCategory android:key="keyboard_settings_category"
             android:title="@string/keyboard_settings_category" />
 
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
+            settings:bg="@drawable/settings_bg_bottom"
             android:key="hardkeyboard_category"
             android:title="@string/builtin_keyboard_settings_title"
             android:summary="@string/builtin_keyboard_settings_summary">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.PhysicalKeyboardSettings"/>
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
 
 </PreferenceScreen>

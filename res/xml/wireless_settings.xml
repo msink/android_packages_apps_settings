@@ -14,16 +14,20 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <!-- Programmatically will have dynamic summary, but we provide the fallback summary. -->
-    <CheckBoxPreference
+    <com.android.settings.MyCheckBoxPreference
+        settings:checkbg="@drawable/settings_bg_top"
         android:key="toggle_wifi"
         android:title="@string/wifi_quick_toggle_title"
         android:summary="@string/wifi_quick_toggle_summary"
         android:persistent="false" />
 
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
+        settings:settingicon="@drawable/settings_arrow"
+        settings:bg="@drawable/settings_bg_bottom"
         android:key="wifi_settings"
         android:title="@string/wifi_settings"
         android:summary="@string/wifi_settings_summary" >
@@ -31,7 +35,7 @@
             android:action="android.intent.action.MAIN"
             android:targetPackage="com.android.settings"
             android:targetClass="com.android.settings.wifi.WifiSettings" />
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
 
     <CheckBoxPreference
         android:key="toggle_bluetooth"
@@ -69,7 +73,8 @@
             android:targetClass="com.android.settings.vpn.VpnSettings" />
     </PreferenceScreen>
 
-    <CheckBoxPreference
+    <com.android.settings.MyCheckBoxPreference
+        settings:checkbg="@drawable/settings_bg_bottom"
         android:key="toggle_nfc"
         android:title="@string/nfc_quick_toggle_title"
         android:summary="@string/nfc_quick_toggle_summary"

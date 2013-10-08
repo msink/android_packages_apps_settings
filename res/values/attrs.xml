@@ -21,6 +21,16 @@
     <declare-styleable name="IconPreferenceScreen">
         <attr name="icon" format="reference" />
     </declare-styleable>
+    <declare-styleable name="MyIconPreferenceScreen">
+        <attr name="settingicon" format="reference" />
+        <attr name="bg" format="reference" />
+        <attr name="width" format="dimension" />
+        <attr name="height" format="dimension" />
+    </declare-styleable>
+        <attr name="checkBoxPreferenceStyle" format="reference" />
+    <declare-styleable name="myCheckBoxPreference">
+        <attr name="checkbg" format="reference" />
+    </declare-styleable>
     
     <declare-styleable name="BatteryHistoryChart">
         <!-- Base text color, typeface, size, and style. -->

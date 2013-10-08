@@ -18,7 +18,8 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <ListPreference
+        <com.android.settings.MyListPreference
+                settings:bg="@drawable/settings_bg_top"
                 android:key="screen_timeout"
                 android:title="@string/screen_timeout"
                 android:summary="@string/screen_timeout_summary"
@@ -26,7 +27,8 @@
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
 
-        <ListPreference
+        <com.android.settings.MyListPreference
+                settings:bg="@drawable/settings_bg_bottom"
                 android:key="refresh_times"
                 android:title="@string/refresh_settings"
                 android:summary="@string/refresh_times_summary"

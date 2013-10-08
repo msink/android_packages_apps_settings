@@ -14,33 +14,31 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <PreferenceCategory android:key="backup_category"
-            android:title="@string/backup_section_title">
         <!-- Backup settings -->
-        <CheckBoxPreference
+        <com.android.settings.MyCheckBoxPreference
+                settings:checkbg="@drawable/settings_bg_top"
                 android:key="backup_data"
                 android:title="@string/backup_data_title"
                 android:summary="@string/backup_data_summary"
                 android:persistent="false" />
-        <CheckBoxPreference
+        <com.android.settings.MyCheckBoxPreference
+                settings:checkbg="@drawable/settings_bg_mid"
                 android:key="auto_restore"
                 android:title="@string/auto_restore_title"
                 android:summary="@string/auto_restore_summary"
                 android:persistent="false" />
-    </PreferenceCategory>
 
-    <PreferenceCategory
-            android:title="@string/personal_data_section_title">
         <!-- Factory reset -->
-        <PreferenceScreen
+        <com.android.settings.MyIconPreferenceScreen
+                settings:bg="@drawable/settings_bg_bottom"
                 android:title="@string/master_clear_title"
                 android:summary="@string/master_clear_summary">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.MasterClear" />
-        </PreferenceScreen>
-    </PreferenceCategory>
+        </com.android.settings.MyIconPreferenceScreen>
 
 </PreferenceScreen>

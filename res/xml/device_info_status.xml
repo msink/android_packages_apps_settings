@@ -15,24 +15,29 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/device_status_activity_title">
 
-    <Preference android:key="battery_status" 
+    <com.android.settings.MyIconPreferenceScreen android:key="battery_status"
+        settings:bg="@drawable/settings_bg_top"
         style="?android:attr/preferenceInformationStyle" 
         android:title="@string/battery_status_title"
         android:summary="@string/device_info_not_available"
         android:persistent="false" />
-    <Preference android:key="battery_level" 
+    <com.android.settings.MyIconPreferenceScreen android:key="battery_level"
+        settings:bg="@drawable/settings_bg_mid"
         style="?android:attr/preferenceInformationStyle" 
         android:title="@string/battery_level_title"
         android:summary="@string/device_info_not_available"
         android:persistent="false" />
-    <Preference android:key="wifi_mac_address"
+    <com.android.settings.MyIconPreferenceScreen android:key="wifi_mac_address"
+        settings:bg="@drawable/settings_bg_bottom"
         style="?android:attr/preferenceInformationStyle" 
         android:title="@string/status_wifi_mac_address"
         android:summary="@string/device_info_not_available"
         android:persistent="false" />
-    <Preference android:key="bt_address"
+    <com.android.settings.MyIconPreferenceScreen android:key="bt_address"
+        settings:bg="@drawable/settings_bg_bottom"
         style="?android:attr/preferenceInformationStyle" 
         android:title="@string/status_bt_address"
         android:summary="@string/device_info_not_available"

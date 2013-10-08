@@ -14,43 +14,52 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory android:key="memory_sd"
             android:title="@string/sd_memory">
-        <Preference android:key="memory_sd_size" 
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_sd_size"
+            settings:bg="@drawable/settings_bg_mid"
             style="?android:attr/preferenceInformationStyle" 
             android:title="@string/memory_size"
             android:summary="00"/>
-        <Preference android:key="memory_sd_avail" 
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_sd_avail"
+            settings:bg="@drawable/settings_bg_mid"
             style="?android:attr/preferenceInformationStyle" 
             android:title="@string/memory_available"
             android:summary="00"/>
-        <Preference android:key="memory_sd_mount_toggle"
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_sd_mount_toggle"
+            settings:bg="@drawable/settings_bg_mid"
             android:title="@string/sd_eject"
             android:summary="@string/sd_eject_summary"/>
-        <Preference android:key="memory_sd_format"
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_sd_format"
+            settings:bg="@drawable/settings_bg_mid"
             android:title="@string/sd_format"
             android:summary="@string/sd_format_summary"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:key="memory_nand"
         android:title="@string/nand_memory">
-        <Preference android:key="memory_nand_size"
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_nand_size"
+            settings:bg="@drawable/settings_bg_mid"
             style="?android:attr/preferenceInformationStyle"
             android:title="@string/memory_size"
             android:summary="00" />
-        <Preference android:key="memory_nand_avail"
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_nand_avail"
+            settings:bg="@drawable/settings_bg_mid"
             style="?android:attr/preferenceInformationStyle"
             android:title="@string/memory_available"
             android:summary="00" />
-        <Preference android:key="memory_nand_format"
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_nand_format"
+            settings:bg="@drawable/settings_bg_mid"
             android:title="@string/nand_format"
             android:summary="@string/nand_format_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/internal_memory">
-        <Preference android:key="memory_internal_avail" 
+        <com.android.settings.MyIconPreferenceScreen android:key="memory_internal_avail"
+            settings:bg="@drawable/settings_bg_bottom"
             style="?android:attr/preferenceInformationStyle" 
             android:title="@string/memory_available"
             android:summary="00"/>
