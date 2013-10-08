@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import android.app.admin.DevicePolicyManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
@@ -57,6 +59,22 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        ListPreference refreshTimesPreference = (ListPreference)
+               findPreference("refresh_times");
+        int value = 1;
+        try {
+            Context settingContext =
+                createPackageContext("com.android.settings", 2);
+            SharedPreferences settings =
+                settingContext.getSharedPreferences("SysSettingPrefsFile", 1);
+            value = settings.getInt("RefreshTime", 5);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        refreshTimesPreference.setValue(String.valueOf(value));
+        refreshTimesPreference.setOnPreferenceChangeListener(this);
+        disableUnusableTimeouts(refreshTimesPreference);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -114,8 +132,22 @@ public class DisplaySettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        } else if ("refresh_times".equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                SharedPreferences.Editor editor =
+                        getSharedPreferences("SysSettingPrefsFile", 1).edit();
+                editor.putInt("RefreshTime", value);
+                editor.commit();
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist screen timeout setting", e);
+            }
         }
 
         return true;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

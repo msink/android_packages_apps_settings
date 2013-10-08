@@ -30,4 +30,13 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <ListPreference
+                android:key="refresh_times"
+                android:title="@string/refresh_settings"
+                android:summary="@string/refresh_times_summary"
+                android:persistent="false"
+                android:entries="@array/refresh_times_entries"
+                android:entryValues="@array/refresh_times_values" />
+
 </PreferenceScreen>

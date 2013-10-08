@@ -1163,4 +1163,6 @@
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Отклик на действия"</string>
     <string name="nand_format">Очистить NAND флэш</string>
     <string name="nand_format_summary">"Удалить всю информацию из памяти, включая ваши книги? "</string>
+    <string name="refresh_settings">Режим обновления</string>
+    <string name="refresh_times_summary">Выберите интервал полного обновления</string>
 </resources>

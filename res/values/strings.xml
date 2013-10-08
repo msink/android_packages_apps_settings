@@ -2690,4 +2690,8 @@ found in the list of installed applications.</string>
     <string name="exit_compatibility_mode">Run in normal mode</string>
     <string name="rockchip_compatibility_info">This application is running in compatibility mode.</string>
     <string name="rockchip_normal_info">This application is running in normal mode.</string>
+    <string name="refresh_settings">Refresh mode</string>
+    <string name="refresh_times_summary">Select the interval of full refresh</string>
+    <string name="epd_full_timeout">Repaint Full timeout</string>
+    <string name="epd_full_timeout_summary">Adjust the delay before repaint full automatically</string>
 </resources>
