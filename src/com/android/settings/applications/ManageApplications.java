@@ -453,9 +453,7 @@ public class ManageApplications extends TabActivity implements
                 holder.entry = entry;
                 if (entry.label != null) {
                     holder.appName.setText(entry.label);
-                    holder.appName.setTextColor(getResources().getColorStateList(
-                            entry.info.enabled ? android.R.color.primary_text_dark
-                                    : android.R.color.secondary_text_dark));
+                    holder.appName.setTextColor(0xff000000);
                 }
                 mState.ensureIcon(entry);
                 if (entry.icon != null) {
