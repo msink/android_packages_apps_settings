@@ -18,21 +18,13 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <com.android.settings.BrightnessPreference
-                android:key="brightness"
-                android:title="@string/brightness"
-                android:dialogTitle="@string/brightness" />
-
-        <CheckBoxPreference
-            android:key="accelerometer"
-            android:title="@string/accelerometer_title"/>
-
         <ListPreference
-            android:key="animations"
-            android:title="@string/animations_title"
+                android:key="page_refresh_rate"
+                android:title="@string/page_refresh_rate"
+                android:summary="@string/page_refresh_rate_summary"
             android:persistent="false"
-            android:entries="@array/animations_entries"
-            android:entryValues="@array/animations_values" />
+                android:entries="@array/page_refresh_rate_entries"
+                android:entryValues="@array/page_refresh_rate_values" />
 
         <ListPreference
                 android:key="screen_timeout"
@@ -41,4 +33,13 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <ListPreference
+                android:key="auto_shutdown_timeout"
+                android:title="@string/auto_shutdown_timeout"
+                android:summary="@string/auto_shutdown_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/auto_shutdown_timeout_entries"
+                android:entryValues="@array/auto_shutdown_timeout_values" />
+
 </PreferenceScreen>
