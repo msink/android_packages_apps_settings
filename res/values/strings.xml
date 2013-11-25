@@ -2647,4 +2647,10 @@ found in the list of installed applications.</string>
     <string name="sound_category_calls_title">Incoming calls</string>
     <string name="sound_category_notification_title">Notifications</string>
     <string name="sound_category_feedback_title">Feedback</string>
+
+    <string name="page_refresh_rate">Fully Refresh timeout</string>
+    <string name="page_refresh_rate_summary">Adjust the delay before fully refresh automatically</string>
+    <string name="auto_shutdown_timeout">Power Off timeout</string>
+    <string name="auto_shutdown_timeout_summary">Adjust the delay before the power off automatically</string>
+
 </resources>
