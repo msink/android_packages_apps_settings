@@ -65,9 +65,6 @@ public class AccessibilitySettings extends PreferenceActivity {
 
     private CheckBoxPreference mToggleCheckBox;
 
-    private PreferenceCategory mPowerButtonCategory;
-    private CheckBoxPreference mPowerButtonEndsCallCheckBox;
-
     private Map<String, ServiceInfo> mAccessibilityServices =
         new LinkedHashMap<String, ServiceInfo>();
 
@@ -83,10 +80,6 @@ public class AccessibilitySettings extends PreferenceActivity {
 
         mToggleCheckBox = (CheckBoxPreference) findPreference(
             TOGGLE_ACCESSIBILITY_SERVICE_CHECKBOX);
-
-        mPowerButtonCategory = (PreferenceCategory) findPreference(POWER_BUTTON_CATEGORY);
-        mPowerButtonEndsCallCheckBox = (CheckBoxPreference) findPreference(
-            POWER_BUTTON_ENDS_CALL_CHECKBOX);
 
         addAccessibilitServicePreferences();
     }
@@ -135,22 +128,6 @@ public class AccessibilitySettings extends PreferenceActivity {
             // Notify user that they do not have any accessibility apps
             // installed and direct them to Market to get TalkBack
             displayNoAppsAlert();
-        }
-
-        if (KeyCharacterMap.deviceHasKey(KeyEvent.KEYCODE_POWER)) {
-            int incallPowerBehavior = Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.INCALL_POWER_BUTTON_BEHAVIOR,
-                    Settings.Secure.INCALL_POWER_BUTTON_BEHAVIOR_DEFAULT);
-            // The checkbox is labeled "Power button ends call"; thus the in-call
-            // Power button behavior is INCALL_POWER_BUTTON_BEHAVIOR_HANGUP if
-            // checked, and INCALL_POWER_BUTTON_BEHAVIOR_SCREEN_OFF if unchecked.
-            boolean powerButtonCheckboxEnabled =
-                    (incallPowerBehavior == Settings.Secure.INCALL_POWER_BUTTON_BEHAVIOR_HANGUP);
-            mPowerButtonEndsCallCheckBox.setChecked(powerButtonCheckboxEnabled);
-            mPowerButtonEndsCallCheckBox.setEnabled(true);
-        } else {
-            // No POWER key on the current device; this entire category is irrelevant.
-            getPreferenceScreen().removePreference(mPowerButtonCategory);
         }
     }
 

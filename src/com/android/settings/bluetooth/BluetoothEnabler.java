@@ -88,14 +88,6 @@ public class BluetoothEnabler implements Preference.OnPreferenceChangeListener {
     public boolean onPreferenceChange(Preference preference, Object value) {
         boolean enable = (Boolean) value;
 
-        // Show toast message if Bluetooth is not allowed in airplane mode
-        if (enable && !WirelessSettings
-                .isRadioAllowed(mContext, Settings.System.RADIO_BLUETOOTH)) {
-            Toast.makeText(mContext, R.string.wifi_in_airplane_mode,
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
         mLocalManager.setBluetoothEnabled(enable);
         mCheckBox.setEnabled(false);
 
