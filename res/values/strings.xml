@@ -1924,7 +1924,7 @@ found in the list of installed applications.</string>
     <string name="runningservicedetails_stop_dlg_text">Are you sure you want to stop this system service? If you do, some
         features of your phone may stop working correctly until you power it off
         and then on again.</string>
-    
+
     <!-- Language Settings --> <skip />
     <!-- Title of setting on main settings screen.  This item will take the user to the screen to tweak settings realted to locale and text -->
     <string name="language_settings">Language &amp; keyboard</string>
@@ -2070,7 +2070,7 @@ found in the list of installed applications.</string>
 
     <!-- Used to show an amount of time in the form "s seconds" in BatteryHistory -->
     <string name="battery_history_seconds"><xliff:g id="seconds">%1$d</xliff:g>s</string>
-    
+
     <!-- XXX remove? Strings used for displaying usage statistics -->
     <string name="usage_stats_label">Usage statistics</string>
 
@@ -2652,5 +2652,13 @@ found in the list of installed applications.</string>
     <string name="page_refresh_rate_summary">Adjust the delay before fully refresh automatically</string>
     <string name="auto_shutdown_timeout">Power Off timeout</string>
     <string name="auto_shutdown_timeout_summary">Adjust the delay before the power off automatically</string>
+
+    <string name="nand_memory">Internal storage</string>
+    <string name="nand_format">Erase internal storage</string>
+    <string name="nand_format_summary">"Erases all data on the device's internal storage, such as music and photos"</string>
+    <string name="nand_unavailable">Unavailable</string>
+    <string name="nand_format_desc">This action will erase the internal mass storage. You will lose <b>all</b> data stored there!</string>
+    <string name="nand_format_button_text">Erase Internal Mass Storage</string>
+    <string name="nand_format_final_desc">Erase internal mass storage, deleting all files stored there? Action cannot be reversed!</string>
 
 </resources>

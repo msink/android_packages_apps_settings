@@ -22,6 +22,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.os.Environment;
 
 import com.android.internal.os.storage.ExternalStorageFormatter;
 
@@ -40,10 +42,14 @@ public class MediaFormat extends Activity {
     private LayoutInflater mInflater;
 
     private View mInitialView;
+    private TextView mInitialText;
     private Button mInitiateButton;
 
     private View mFinalView;
+    private TextView mFinalText;
     private Button mFinalButton;
+
+    private String mPath;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -57,6 +63,7 @@ public class MediaFormat extends Activity {
                 }
                 Intent intent = new Intent(ExternalStorageFormatter.FORMAT_ONLY);
                 intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
+                intent.putExtra("path", mPath);
                 startService(intent);
                 finish();
             }
@@ -111,12 +118,18 @@ public class MediaFormat extends Activity {
     private void establishFinalConfirmationState() {
         if (mFinalView == null) {
             mFinalView = mInflater.inflate(R.layout.media_format_final, null);
+            mFinalText =
+                    (TextView) mFinalView.findViewById(R.id.media_format_final_text);
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_media_format);
+            if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
+                mFinalText.setText(R.string.nand_format_final_desc);
+            }
             mFinalButton.setOnClickListener(mFinalClickListener);
         }
 
         setContentView(mFinalView);
+        mFinalButton.requestFocus();
     }
 
     /**
@@ -134,11 +147,16 @@ public class MediaFormat extends Activity {
     private void establishInitialState() {
         if (mInitialView == null) {
             mInitialView = mInflater.inflate(R.layout.media_format_primary, null);
+            mInitialText =
+                    (TextView) mInitialView.findViewById(R.id.initiate_media_format_text);
             mInitiateButton =
                     (Button) mInitialView.findViewById(R.id.initiate_media_format);
+            if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
+                mInitialText.setText(R.string.nand_format_desc);
+                mInitiateButton.setText(R.string.nand_format_button_text);
+            }
             mInitiateButton.setOnClickListener(mInitiateListener);
         }
-
         setContentView(mInitialView);
     }
 
@@ -149,7 +167,9 @@ public class MediaFormat extends Activity {
         mInitialView = null;
         mFinalView = null;
         mInflater = LayoutInflater.from(this);
-
+        mPath = getIntent().getExtras().getString("path");
+        if (mPath.equals(Environment.getFlashStorageDirectory().getPath()))
+            setTitle(R.string.nand_format);
         establishInitialState();
     }
 
