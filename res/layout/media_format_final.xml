@@ -24,13 +24,13 @@
     <TextView android:id="@+id/media_format_final_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="23sp"
         android:text="@string/media_format_final_desc" />
 
     <Button android:id="@+id/execute_media_format"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dip"
-        android:layout_width="150dip"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/media_format_final_button_text"
         android:gravity="center" />

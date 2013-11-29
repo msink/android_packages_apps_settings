@@ -46,6 +46,7 @@
 
     <application android:label="@string/settings_label"
             android:icon="@drawable/ic_launcher_settings"
+            android:theme="@style/CustomTheme"
             android:taskAffinity="">
 
         <activity android:name="KeyMapSettings">
@@ -74,7 +75,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.settings.SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
