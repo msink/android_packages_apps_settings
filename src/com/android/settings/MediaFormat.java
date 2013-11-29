@@ -47,6 +47,8 @@ public class MediaFormat extends Activity {
     private View mFinalView;
     private Button mFinalButton;
 
+    private TextView mFinalText;
+    private TextView mInitialText;
     private String mPath;
 
     /**
@@ -115,13 +117,24 @@ public class MediaFormat extends Activity {
      */
     private void establishFinalConfirmationState() {
         if (mFinalView == null) {
+          if (mPath.equals(Environment.getSdcardStorageDirectory().getPath())) {
             mFinalView = mInflater.inflate(R.layout.media_format_final, null);
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_media_format);
             mFinalButton.setOnClickListener(mFinalClickListener);
+          } else {
+            mFinalView = mInflater.inflate(R.layout.media_format_final, null);
+            mFinalText =
+                    (TextView) mFinalView.findViewById(R.id.media_format_final_text);
+            mFinalText.setText(R.string.media_format_final_desc_nand);
+            mFinalButton =
+                    (Button) mFinalView.findViewById(R.id.execute_media_format);
+            mFinalButton.setOnClickListener(mFinalClickListener);
+          }
         }
 
         setContentView(mFinalView);
+        mFinalButton.requestFocus();
     }
 
     /**
@@ -138,10 +151,21 @@ public class MediaFormat extends Activity {
      */
     private void establishInitialState() {
         if (mInitialView == null) {
+          if (mPath.equals(Environment.getSdcardStorageDirectory().getPath())) {
             mInitialView = mInflater.inflate(R.layout.media_format_primary, null);
             mInitiateButton =
                     (Button) mInitialView.findViewById(R.id.initiate_media_format);
             mInitiateButton.setOnClickListener(mInitiateListener);
+          } else {
+            mInitialView = mInflater.inflate(R.layout.media_format_primary, null);
+            mInitialText =
+                    (TextView) mInitialView.findViewById(R.id.initiate_media_format_text);
+            mInitialText.setText(R.string.media_format_desc_nand);
+            mInitiateButton =
+                    (Button) mInitialView.findViewById(R.id.initiate_media_format);
+            mInitiateButton.setText(R.string.media_format_nand_button_text);
+            mInitiateButton.setOnClickListener(mInitiateListener);
+          }
         }
 
         setContentView(mInitialView);
@@ -156,6 +180,10 @@ public class MediaFormat extends Activity {
         mInflater = LayoutInflater.from(this);
         Bundle extras = getIntent().getExtras();
         mPath = extras.getString("path");
+
+        if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
+            setTitle(R.string.nand_format);
+        }
 
         establishInitialState();
     }

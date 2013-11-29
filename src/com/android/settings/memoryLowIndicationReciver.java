@@ -45,6 +45,8 @@ public class memoryLowIndicationReciver extends BroadcastReceiver {
 
     private boolean checkInternelMemory() {
         String path = Environment.getFlashStorageDirectory().getPath();
+      String state = Environment.getExternalStorageState();
+      if (Environment.MEDIA_MOUNTED.equals(state)) {
         StatFs stat = new android.os.StatFs(path);
         long blockSize = stat.getBlockSize();
         long availableBlocks = stat.getAvailableBlocks();
@@ -54,6 +56,7 @@ public class memoryLowIndicationReciver extends BroadcastReceiver {
         if (availableSize < 10) {
             return false;
         }
+      }
         return true;
     }
 }
