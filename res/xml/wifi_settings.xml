@@ -30,6 +30,19 @@
             android:summary="@string/wifi_notify_open_networks_summary"
             android:persistent="false" />
 
+    <Preference
+            android:key="wps_test"
+            android:dependency="enable_wifi"
+            android:title="@string/wifi_wps_pbc"
+            android:summary="@string/wifi_wps_pbc_summary"
+            android:persistent="false" />
+
+    <com.android.settings.ProgressCategory
+            android:key="access_points"
+            android:dependency="enable_wifi"
+            android:title="@string/wifi_access_points"
+            android:persistent="false" />
+
     <com.android.settings.ProgressCategory
             android:key="access_points"
             android:dependency="enable_wifi"

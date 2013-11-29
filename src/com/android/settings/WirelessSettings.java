@@ -60,14 +60,6 @@ public class WirelessSettings extends PreferenceActivity {
      */
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (Boolean.parseBoolean(
-                SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE))) {
-            // In ECM mode launch ECM app dialog
-            startActivityForResult(
-                new Intent(TelephonyIntents.ACTION_SHOW_NOTICE_ECM_BLOCK_OTHERS, null),
-                REQUEST_CODE_EXIT_ECM);
-            return true;
-        }
         // Let the intents be launched by the Preference manager
         return false;
     }

@@ -37,6 +37,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.hardware.DeviceController;
 
 import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
@@ -163,9 +164,13 @@ public class Status extends PreferenceActivity {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
         Preference wifiMacAddressPref = findPreference(KEY_WIFI_MAC_ADDRESS);
+        DeviceController mDev = new DeviceController(this);
         String macAddress = wifiInfo == null ? null : wifiInfo.getMacAddress();
         wifiMacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress 
                 : getString(R.string.status_unavailable));
+        if (!mDev.hasWifi()) {
+            getPreferenceScreen().removePreference(wifiMacAddressPref);
+        }
     }
 
     private void setBtStatus() {

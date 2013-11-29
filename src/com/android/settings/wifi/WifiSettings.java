@@ -73,6 +73,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     private CheckBoxPreference mNotifyOpenNetworks;
     private ProgressCategory mAccessPoints;
     private Preference mAddNetwork;
+    private Preference mTestWPS;
 
     private DetailedState mLastState;
     private WifiInfo mLastInfo;
@@ -143,6 +144,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         mAccessPoints = (ProgressCategory) findPreference("access_points");
         mAccessPoints.setOrderingAsAdded(false);
         mAddNetwork = findPreference("add_network");
+        mTestWPS = findPreference("wps_test");
 
         mProgressView = new ProgressDialog(this);
         mProgressView.setIndeterminate(false);
@@ -282,7 +284,15 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
-        if (preference instanceof AccessPoint) {
+        if (preference == mTestWPS) {
+            mScanner.removeCallbacks(mTimeRunnable);
+            mWifiManager.startPBC(null);
+            mProgressView.setProgress(0);
+            mProgressView.setTitle("WPS PBC");
+            mProgressView.setMessage("Press PBC button in 2 minutes.");
+            mProgressView.show();
+            mScanner.post(mTimeRunnable);
+        } else if (preference instanceof AccessPoint) {
             mSelected = (AccessPoint) preference;
             showDialog(mSelected, false);
         } else if (preference == mAddNetwork) {

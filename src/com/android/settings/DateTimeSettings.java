@@ -37,6 +37,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.hardware.DeviceController;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -79,9 +80,16 @@ public class DateTimeSettings
         mDummyDate = Calendar.getInstance();
         mDummyDate.set(mDummyDate.get(Calendar.YEAR), 11, 31, 13, 0, 0);
         
+        PreferenceScreen mPFScreen = getPreferenceScreen();
+        DeviceController mDev = new android.hardware.DeviceController(this);
         mAutoPref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME);
-        mAutoPref.setChecked(autoEnabled);
         mTimePref = findPreference("time");
+        if (!mDev.hasWifi()) {
+            mPFScreen.removePreference(mAutoPref);
+        } else {
+            mAutoPref.setChecked(autoEnabled);
+        }
+
         mTime24Pref = findPreference("24 hour");
         mTimeZone = findPreference("timezone");
         mDatePref = findPreference("date");
@@ -165,6 +173,7 @@ public class DateTimeSettings
             SystemClock.setCurrentTimeMillis(when);
         }
         updateTimeAndDateDisplay();
+        dateUpdate();
     }
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -299,6 +308,11 @@ public class DateTimeSettings
     private void timeUpdated() {
         Intent timeChanged = new Intent(Intent.ACTION_TIME_CHANGED);
         sendBroadcast(timeChanged);
+    }
+
+    private void dateUpdate() {
+        Intent dateChanged = new Intent(Intent.ACTION_DATE_CHANGED);
+        sendBroadcast(dateChanged);
     }
     
     /*  Get & Set values from the system settings  */
