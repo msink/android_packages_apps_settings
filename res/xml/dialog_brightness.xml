@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        android:textSize="30sp"
+        android:text="@string/brightness"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="@*android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ToggleButton android:id="@+id/togglebutton_light_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/togglebutton_light_background"
+            android:focusable="false"
+            android:textOn="@null"
+            android:textOff="@null"
+            />
+
+        <ImageView android:id="@+id/imageview_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:src="@drawable/light_cut_off_line"
+            android:contentDescription="@drawable/light_cut_off_line"
+            />
+
+        <ImageButton android:id="@+id/imagebutton_light_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="21dip"
+            android:src="@drawable/light_down"
+            android:contentDescription="@drawable/light_down"
+            android:background="@drawable/focus_button_background"
+            android:scaleType="fitCenter"
+            />
+
+        <RatingBar android:id="@+id/ratingbar_light_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/LightSettingsRatingBarStyle"
+            android:numStars="50"
+            android:stepSize="1.0"
+            />
+
+        <ImageButton android:id="@+id/imagebutton_light_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dip"
+            android:layout_marginRight="26dip"
+            android:src="@drawable/light_add"
+            android:contentDescription="@drawable/light_add"
+            android:background="@drawable/focus_button_background"
+            android:scaleType="fitCenter"
+            />
+
+    </LinearLayout>
+</LinearLayout>

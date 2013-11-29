@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
+import static android.provider.Settings.System.WAKE_UP_BRIGHTNESS;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
+import android.hardware.DeviceController;
 
 public class DisplaySettings extends PreferenceActivity implements
         Preference.OnPreferenceChangeListener {
@@ -43,13 +45,21 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
+    private static final String KEY_WAKE_UP_BRIGHTNESS = "wake_up_brightness";
+    private int mBrightnessValue = 0;
+    private CheckBoxPreference mWakeUpBrightness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getContentResolver();
 
-        addPreferencesFromResource(R.xml.display_settings);
+        DeviceController deviceController = new DeviceController(this);
+        if (deviceController.hasFrontLight()) {
+            addPreferencesFromResource(R.xml.display_settings);
+        } else {
+            addPreferencesFromResource(R.xml.display_settings_not_front_light);
+        }
 
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
@@ -57,6 +67,34 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        if (deviceController.hasFrontLight()) {
+            mWakeUpBrightness =
+                (CheckBoxPreference)findPreference(KEY_WAKE_UP_BRIGHTNESS);
+            if (mWakeUpBrightness != null) {
+                mWakeUpBrightness.setOnPreferenceChangeListener(this);
+            }
+            try {
+                mBrightnessValue = Settings.System.getInt(resolver, WAKE_UP_BRIGHTNESS);
+            } catch (Settings.SettingNotFoundException e) {
+            }
+            if (mBrightnessValue == 1) {
+                mWakeUpBrightness.setChecked(true);
+            } else {
+                mWakeUpBrightness.setChecked(false);
+            }
+            Preference brightness_dialog = findPreference("brightness_dialog");
+            if (brightness_dialog != null) {
+                brightness_dialog.setOnPreferenceClickListener(
+                new Preference.OnPreferenceClickListener() {
+                    public boolean onPreferenceClick(Preference preference) {
+                        BrightnessDialog dialog = new BrightnessDialog(preference.getContext());
+                        dialog.show();
+                        return true;
+                    }
+                });
+            }
+        }
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -114,8 +152,24 @@ public class DisplaySettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        } else if (KEY_WAKE_UP_BRIGHTNESS.equals(key)) {
+            try {
+                if (!mWakeUpBrightness.isChecked()) {
+                    Settings.System.putInt(getContentResolver(),
+                        WAKE_UP_BRIGHTNESS, 1);
+                } else {
+                    Settings.System.putInt(getContentResolver(),
+                        WAKE_UP_BRIGHTNESS, 0);
+                }
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist wake up brightness", e);
+            }
         }
 
         return true;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

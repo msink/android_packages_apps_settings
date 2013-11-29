@@ -18,23 +18,4 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <Preference
-                android:key="brightness_dialog"
-                android:title="@string/brightness"
-                android:dialogTitle="@string/brightness" />
-
-        <CheckBoxPreference
-                android:key="wake_up_brightness"
-                android:title="@string/wakeup_brightness"
-                android:summary="@string/wakeup_brightness_summary"
-                android:persistent="false"
-                android:defaultValue="true" />
-
-        <ListPreference
-                android:key="screen_timeout"
-                android:title="@string/screen_timeout"
-                android:summary="@string/screen_timeout_summary"
-                android:persistent="false"
-                android:entries="@array/screen_timeout_entries"
-                android:entryValues="@array/screen_timeout_values" />
 </PreferenceScreen>

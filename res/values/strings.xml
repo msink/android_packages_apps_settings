@@ -2690,4 +2690,6 @@ found in the list of installed applications.</string>
     <string name="exit_compatibility_mode">Run in normal mode</string>
     <string name="rockchip_compatibility_info">This application is running in compatibility mode.</string>
     <string name="rockchip_normal_info">This application is running in normal mode.</string>
+    <string name="wakeup_brightness">Wake up</string>
+    <string name="wakeup_brightness_summary">Open front light when wake up system</string>
 </resources>
