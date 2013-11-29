@@ -133,6 +133,7 @@ public class DevelopmentSettings extends PreferenceActivity
         if (which == DialogInterface.BUTTON_POSITIVE) {
             mOkClicked = true;
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.ADB_ENABLED, 1);
+            mEnableAdb.setChecked(true);
         } else {
             // Reset the toggle
             mEnableAdb.setChecked(false);
@@ -143,6 +144,8 @@ public class DevelopmentSettings extends PreferenceActivity
         // Assuming that onClick gets called first
         if (!mOkClicked) {
             mEnableAdb.setChecked(false);
+        } else {
+            mEnableAdb.setChecked(true);
         }
     }
 

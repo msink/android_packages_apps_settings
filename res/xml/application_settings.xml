@@ -84,5 +84,12 @@
                 android:targetClass="com.android.settings.DevelopmentSettings" />
     </PreferenceScreen>
     
+    <PreferenceScreen
+            android:title="@string/Preferred_Applications">
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.onyx.android.launcher"
+                android:targetClass="com.onyx.android.launcher.PreferredApplicationsActivity" />
+    </PreferenceScreen>
+
 </PreferenceScreen>
 

@@ -274,7 +274,7 @@
     <!-- The title of the activity to pick a time zone. -->
     <string name="choose_timezone">Select time zone</string>
     <!-- Do not translate. Used as the value for a setting. -->
-    <string name="default_date_format"><xliff:g id="default_date_format">MM.dd.yyyy</xliff:g></string>
+    <string name="default_date_format"><xliff:g id="default_date_format">MM/dd/yyyy</xliff:g></string>
 
     <!-- The option in the date-format picker for using the normal format
          called for by the user's locale. -->
@@ -1312,6 +1312,7 @@
     <string name="sd_memory" product="default">SD card</string>
     <!-- SD card & phone storage settings title. The amount of free space for some storage partition.  For example, this is listed under both the "Internal phone storage" section and the "SD card" section. -->
     <string name="memory_available">Available space</string>
+    <string name="internal_memory_available">Available memory</string>
     <!-- SD card & phone storage settings screen heading.  The total amount of storage space for some storage partition.  For example, this is listed under both the "Internal phone storage" section and the "SD card" section -->
     <string name="memory_size">Total space</string>
     <!-- SD card & phone storage settings item title that will result in the phone unmounting the SD card.  This will be done before the user phyiscally removes the SD card from the phone.  Kind of like the "Safely remove" on some operating systems.   [CHAR LIMIT=25] -->
@@ -2708,4 +2709,5 @@ found in the list of installed applications.</string>
     <string name="set_font_dialog_tile">Set Font</string>
     <string name="reboot_device">Reboot the device?</string>
     <string name="rebooting">Rebooting...</string>
+    <string name="serialnumber">Serial Number</string>
 </resources>

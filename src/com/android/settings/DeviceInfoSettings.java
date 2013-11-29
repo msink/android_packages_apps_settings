@@ -31,6 +31,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.hardware.DeviceController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -50,6 +51,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
+    private static final String PRODUCT_VERSION = SystemProperties.get("product.version", "default");
 
     long[] mHits = new long[3];
 
@@ -72,10 +74,15 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
         setStringSummary("firmware_version", Build.VERSION.RELEASE);
         findPreference("firmware_version").setEnabled(true);
-        setValueSummary("baseband_version", "gsm.version.baseband");
         setStringSummary("device_model", Build.MODEL);
+        findPreference("device_model").setEnabled(true);
         setStringSummary("build_number", Build.DISPLAY);
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
+        if (getSerialNumber() != null) {
+            findPreference("serial_number").setSummary(getSerialNumber());
+        } else {
+            getPreferenceScreen().removePreference(findPreference("serial_number"));
+        }
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -99,9 +106,14 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
+        DeviceController mDev = new DeviceController(this);
+        if (!mDev.hasWifi()) {
+            parentPreference.removePreference((PreferenceScreen)findPreference(KEY_SYSTEM_UPDATE_SETTINGS));
+        } else {
+            Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
                 KEY_SYSTEM_UPDATE_SETTINGS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
+        }
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
     }
@@ -115,6 +127,19 @@ public class DeviceInfoSettings extends PreferenceActivity {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.setClassName("android",
                         com.android.internal.app.PlatLogoActivity.class.getName());
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                }
+            }
+        }
+        if (preference.getKey().equals("device_model")) {
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+            mHits[mHits.length-1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setClassName("com.onyx.android.productiontest",
+                                    "com.onyx.android.productiontest.ProductionTest");
                 try {
                     startActivity(intent);
                 } catch (Exception e) {
@@ -202,4 +227,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
         }
     }
 
+    public static String getSerialNumber() {
+        String serial = null;
+        serial = System.getProperty("ro.onyx.serialno");
+        return serial;
+    }
 }

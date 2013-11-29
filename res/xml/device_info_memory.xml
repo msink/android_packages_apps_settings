@@ -52,7 +52,7 @@
     <PreferenceCategory android:title="@string/internal_memory">
         <Preference android:key="memory_internal_avail" 
             style="?android:attr/preferenceInformationStyle" 
-            android:title="@string/memory_available"
+            android:title="@string/internal_memory_available"
             android:summary="00"/>
     </PreferenceCategory>
 

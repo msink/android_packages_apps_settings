@@ -21,9 +21,7 @@
         <PreferenceScreen android:key="system_update_settings"
                 android:title="@string/system_update_settings_list_item_title" 
                 android:summary="@string/system_update_settings_list_item_summary">
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="android.rockchip.update.service"
-                    android:targetClass="android.rockchip.update.service.Setting" />
+            <intent android:action="android.settings.SYSTEM_UPDATE_SETTINGS" />
         </PreferenceScreen>
         
         <!-- Device status - launches activity -->
@@ -35,7 +33,48 @@
                     android:targetClass="com.android.settings.deviceinfo.Status" />
         </PreferenceScreen>
 
+        <PreferenceScreen
+                android:key="power_usage"
+                android:title="@string/power_usage_summary_title"
+                android:summary="@string/power_usage_summary">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.settings"
+                    android:targetClass="com.android.settings.fuelgauge.PowerUsageSummary" />
+        </PreferenceScreen>
+
         <!-- Legal Information -->
+        <PreferenceScreen
+                android:key="container"
+                android:title="@string/legal_information">
+
+            <!-- Note: The titles given here probably won't be used.  Instead, we programmatically
+                       fill the title with the label of the activity with the corresponding action.
+                       If there is not an activity for an action, the item will be removed from the
+                       list. -->
+
+            <!-- Copyright information -->
+            <PreferenceScreen
+                    android:key="copyright"
+                    android:title="@string/copyright_title">
+                <intent android:action="android.settings.COPYRIGHT" />
+            </PreferenceScreen>
+
+            <!-- License information -->
+            <PreferenceScreen
+                    android:key="license"
+                    android:title="@string/license_title">
+                <intent android:action="android.settings.LICENSE" />
+            </PreferenceScreen>
+
+            <!-- Terms and conditions -->
+            <PreferenceScreen
+                    android:key="terms"
+                    android:title="@string/terms_title">
+                <intent android:action="android.settings.TERMS" />
+            </PreferenceScreen>
+
+        </PreferenceScreen>
+
         <PreferenceScreen
                 android:key="safetylegal"
                 android:title="@string/settings_safetylegal_title">
@@ -63,6 +102,12 @@
                 android:title="@string/model_number"
                 android:summary="@string/device_info_default"/>
                 
+        <!-- Serial Number -->
+        <Preference android:key="serial_number"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/serialnumber"
+                android:summary="@string/device_info_default" />
+
         <!-- Device firmware version -->
         <Preference android:key="firmware_version" 
                 style="?android:preferenceInformationStyle"

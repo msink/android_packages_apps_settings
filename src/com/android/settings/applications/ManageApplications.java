@@ -54,6 +54,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -453,9 +454,7 @@ public class ManageApplications extends TabActivity implements
                 holder.entry = entry;
                 if (entry.label != null) {
                     holder.appName.setText(entry.label);
-                    holder.appName.setTextColor(getResources().getColorStateList(
-                            entry.info.enabled ? android.R.color.primary_text_dark
-                                    : android.R.color.secondary_text_dark));
+                    holder.appName.setTextColor(0xff000000);
                 }
                 mState.ensureIcon(entry);
                 if (entry.icon != null) {
@@ -581,6 +580,12 @@ public class ManageApplications extends TabActivity implements
                 .setContent(this));
         tabHost.setCurrentTabByTag(defaultTabTag);
         tabHost.setOnTabChangedListener(this);
+
+        TabWidget tabWidget = getTabWidget();
+        for (int i = 0; i < tabWidget.getChildCount(); i++) {
+            TextView tv = (TextView)tabWidget.getChildAt(i).findViewById(android.R.id.title);
+            tv.setTextSize((int)getResources().getDimension(R.dimen.manage_app_tab_host_font_size));
+        }
     }
     
     @Override
