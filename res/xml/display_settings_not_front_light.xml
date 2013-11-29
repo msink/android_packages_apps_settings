@@ -18,4 +18,12 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+        <ListPreference
+                android:key="screen_timeout"
+                android:title="@string/screen_timeout"
+                android:summary="@string/screen_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/screen_timeout_entries"
+                android:entryValues="@array/screen_timeout_values" />
+
 </PreferenceScreen>
