@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+        android:title="@string/key_keyboard">
+
+    <com.android.settings.SummaryListPreference
+        android:key="key_map_mode"
+        android:title="@string/key_map_options"
+        settings:summaryText="@array/key_map_summary"
+        android:entries="@array/key_map_mode"
+        android:entryValues="@array/key_map_mode_value" />
+
+</PreferenceScreen>

@@ -48,6 +48,13 @@
             android:icon="@drawable/ic_launcher_settings"
             android:taskAffinity="">
 
+        <activity android:name="KeyMapSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- Settings -->
 
         <activity android:name="Settings"

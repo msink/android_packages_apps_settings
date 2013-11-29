@@ -2698,4 +2698,8 @@ found in the list of installed applications.</string>
     <string name="wakeup_brightness_summary">Open front light when wake up system</string>
     <string name="epd_full_timeout">Fully Refresh timeout</string>
     <string name="epd_full_timeout_summary">Adjust the delay before fully refresh automatically</string>
+    <string name="Preferred_Applications">Preferred Applications</string>
+    <string name="key_map_options">Key Mapping Options</string>
+    <string name="key_keyboard">Keyboard</string>
+    <string name="media_format_usb_title">Erase USB storage</string>
 </resources>

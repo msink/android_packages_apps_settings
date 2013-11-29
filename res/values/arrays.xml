@@ -451,4 +451,26 @@
         <item>1800000</item>
         <item>-1</item>
     </string-array>
+
+    <string-array name="key_map_mode">
+        <item>"Option 1  "</item>
+        <item>"Option 2  "</item>
+        <item>"Option 3  "</item>
+        <item>"Option 4  "</item>
+    </string-array>
+
+    <string-array name="key_map_summary">
+        <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page up \nLower Right -> Page down"</item>
+        <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page down \nLower Right -> Page up"</item>
+        <item>"Upper Left -> Page up \nLower Left -> Page down \nUpper Right -> Menu \nLower Right -> Back"</item>
+        <item>"Upper Left -> Page down \nLower Left -> Page up \nUpper Right -> Menu \nLower Right -> Back"</item>
+    </string-array>
+
+    <string-array name="key_map_mode_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
 </resources>
