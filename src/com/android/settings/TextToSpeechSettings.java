@@ -55,7 +55,7 @@ public class TextToSpeechSettings extends PreferenceActivity implements
 
     private static final String TAG = "TextToSpeechSettings";
 
-    private static final String SYSTEM_TTS = "com.svox.pico";
+    private static final String SYSTEM_TTS = "com.onyx.android.onyxtts";
     private static final String KEY_TTS_PLAY_EXAMPLE = "tts_play_example";
     private static final String KEY_TTS_INSTALL_DATA = "tts_install_data";
     private static final String KEY_TTS_USE_DEFAULT = "toggle_use_default_tts_settings";
