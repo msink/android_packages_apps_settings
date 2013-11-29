@@ -18,6 +18,7 @@ package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 import static android.provider.Settings.System.WAKE_UP_BRIGHTNESS;
+import static android.provider.Settings.System.AUTO_POWEROFF_TIMEOUT;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public class DisplaySettings extends PreferenceActivity implements
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_WAKE_UP_BRIGHTNESS = "wake_up_brightness";
+    private static final String KEY_POWER_OFF_TIMEOUT = "power_off_timeout";
     private int mBrightnessValue = 0;
     private CheckBoxPreference mWakeUpBrightness;
 
@@ -67,6 +69,12 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        ListPreference powerOffTimeoutPreference =
+            (ListPreference) findPreference(KEY_POWER_OFF_TIMEOUT);
+        powerOffTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+                resolver, AUTO_POWEROFF_TIMEOUT, -1)));
+        powerOffTimeoutPreference.setOnPreferenceChangeListener(this);
 
         if (deviceController.hasFrontLight()) {
             mWakeUpBrightness =
@@ -163,6 +171,14 @@ public class DisplaySettings extends PreferenceActivity implements
                 }
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist wake up brightness", e);
+            }
+        } else if (KEY_POWER_OFF_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(),
+                        AUTO_POWEROFF_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist auto power off setting", e);
             }
         }
 

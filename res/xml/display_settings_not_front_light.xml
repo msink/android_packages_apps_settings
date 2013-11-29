@@ -26,4 +26,12 @@
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
 
+        <ListPreference
+                android:key="power_off_timeout"
+                android:title="@string/power_off_timeout"
+                android:summary="@string/power_off_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/power_off_timeout_entries"
+                android:entryValues="@array/power_off_timeout_values" />
+
 </PreferenceScreen>
