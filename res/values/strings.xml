@@ -2702,4 +2702,10 @@ found in the list of installed applications.</string>
     <string name="key_map_options">Key Mapping Options</string>
     <string name="key_keyboard">Keyboard</string>
     <string name="media_format_usb_title">Erase USB storage</string>
+    <string name="font">Font</string>
+    <string name="loading">loading......</string>
+    <string name="loading_error">Loading Error</string>
+    <string name="set_font_dialog_tile">Set Font</string>
+    <string name="reboot_device">Reboot the device?</string>
+    <string name="rebooting">Rebooting...</string>
 </resources>
