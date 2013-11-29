@@ -17,6 +17,7 @@
 package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
+import static android.provider.Settings.System.EPD_FULL_TIMEOUT;
 import static android.provider.Settings.System.WAKE_UP_BRIGHTNESS;
 import static android.provider.Settings.System.AUTO_POWEROFF_TIMEOUT;
 
@@ -46,8 +47,10 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
+    private static final String KEY_EPD_FULL_TIMEOUT = "epd_full_timeout";
     private static final String KEY_WAKE_UP_BRIGHTNESS = "wake_up_brightness";
     private static final String KEY_POWER_OFF_TIMEOUT = "power_off_timeout";
+
     private int mBrightnessValue = 0;
     private CheckBoxPreference mWakeUpBrightness;
 
@@ -69,6 +72,12 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        ListPreference epdFullTimeoutPreference =
+            (ListPreference) findPreference(KEY_EPD_FULL_TIMEOUT);
+        epdFullTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+                resolver, EPD_FULL_TIMEOUT, -1)));
+        epdFullTimeoutPreference.setOnPreferenceChangeListener(this);
 
         ListPreference powerOffTimeoutPreference =
             (ListPreference) findPreference(KEY_POWER_OFF_TIMEOUT);
@@ -159,6 +168,14 @@ public class DisplaySettings extends PreferenceActivity implements
                         SCREEN_OFF_TIMEOUT, value);
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
+            }
+        } else if (KEY_EPD_FULL_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(),
+                        EPD_FULL_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist epd full timeout setting", e);
             }
         } else if (KEY_WAKE_UP_BRIGHTNESS.equals(key)) {
             try {

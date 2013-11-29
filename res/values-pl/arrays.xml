@@ -164,4 +164,18 @@
     <item msgid="1276641209451816572">"W trybie cichym"</item>
     <item msgid="8418930333779132418">"Poza trybem cichym"</item>
   </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 minut</item>
+    <item>2 minut</item>
+    <item>10 minut</item>
+    <item>30 minut</item>
+    <item>nigdy</item>
+  </string-array>
+  <string-array name="epd_full_timeout_values">
+    <item>60000</item>
+    <item>120000</item>
+    <item>600000</item>
+    <item>1800000</item>
+    <item>-1</item>
+  </string-array>
 </resources>

@@ -2696,4 +2696,6 @@ found in the list of installed applications.</string>
     <string name="rockchip_normal_info">This application is running in normal mode.</string>
     <string name="wakeup_brightness">Wake up</string>
     <string name="wakeup_brightness_summary">Open front light when wake up system</string>
+    <string name="epd_full_timeout">Fully Refresh timeout</string>
+    <string name="epd_full_timeout_summary">Adjust the delay before fully refresh automatically</string>
 </resources>
