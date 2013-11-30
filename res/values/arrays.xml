@@ -92,6 +92,9 @@
 
     <string-array name="auto_shutdown_timeout_entries">
         <item>Disabled</item>
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>30 minutes</item>
         <item>1 hour</item>
         <item>2 hours</item>
         <item>3 hours</item>
@@ -99,6 +102,9 @@
     </string-array>
     <string-array name="auto_shutdown_timeout_values">
         <item>-1</item>
+        <item>600000</item>
+        <item>1200000</item>
+        <item>1800000</item>
         <item>3600000</item>
         <item>7200000</item>
         <item>10800000</item>
@@ -106,11 +112,18 @@
     </string-array>
 
     <string-array name="page_refresh_rate_entries">
-        <item>After every page</item>
+        <item>Always</item>
         <item>After 2 pages</item>
         <item>After 3 pages</item>
         <item>After 4 pages</item>
         <item>After 5 pages</item>
+        <item>After 7 pages</item>
+        <item>After 10 pages</item>
+        <item>After 15 pages</item>
+        <item>After 20 pages</item>
+        <item>After 30 pages</item>
+        <item>After 40 pages</item>
+        <item>Never</item>
     </string-array>
     <string-array name="page_refresh_rate_values">
         <item>1</item>
@@ -118,6 +131,13 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>7</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>10000</item>
     </string-array>
 
     <!-- TTS settings -->
