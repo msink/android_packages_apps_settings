@@ -124,6 +124,8 @@ public class MediaFormat extends Activity {
                     (Button) mFinalView.findViewById(R.id.execute_media_format);
             if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
                 mFinalText.setText(R.string.nand_format_final_desc);
+            } else if (mPath.equals(Environment.getHostStorageDirectory().getPath())) {
+                mFinalText.setText(R.string.host_format_final_desc);
             }
             mFinalButton.setOnClickListener(mFinalClickListener);
         }
@@ -154,6 +156,9 @@ public class MediaFormat extends Activity {
             if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
                 mInitialText.setText(R.string.nand_format_desc);
                 mInitiateButton.setText(R.string.nand_format_button_text);
+            } else if (mPath.equals(Environment.getHostStorageDirectory().getPath())) {
+                mInitialText.setText(R.string.host_format_desc);
+                mInitiateButton.setText(R.string.host_format_button_text);
             }
             mInitiateButton.setOnClickListener(mInitiateListener);
         }
@@ -168,8 +173,11 @@ public class MediaFormat extends Activity {
         mFinalView = null;
         mInflater = LayoutInflater.from(this);
         mPath = getIntent().getExtras().getString("path");
-        if (mPath.equals(Environment.getFlashStorageDirectory().getPath()))
+        if (mPath.equals(Environment.getFlashStorageDirectory().getPath())) {
             setTitle(R.string.nand_format);
+        } else if (mPath.equals(Environment.getHostStorageDirectory().getPath())) {
+            setTitle(R.string.host_format);
+        }
         establishInitialState();
     }
 

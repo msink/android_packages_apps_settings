@@ -2661,4 +2661,12 @@ found in the list of installed applications.</string>
     <string name="nand_format_button_text">Erase Internal Mass Storage</string>
     <string name="nand_format_final_desc">Erase internal mass storage, deleting all files stored there? Action cannot be reversed!</string>
 
+    <string name="host_memory">USB Disk</string>
+    <string name="host_format">Erase USB Disk</string>
+    <string name="host_format_summary">"Erases all data on the USB Disk, such as music and photos"</string>
+    <string name="host_unavailable">Unavailable</string>
+    <string name="host_format_desc">This action will erase the USB Disk. You will lose <b>all</b> data stored there!</string>
+    <string name="host_format_button_text">Erase USB Disk</string>
+    <string name="host_format_final_desc">Erase USB Disk, deleting all files stored there? Action cannot be reversed!</string>
+
 </resources>

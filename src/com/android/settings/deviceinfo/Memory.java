@@ -54,19 +54,19 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
     private static final boolean localLOGV = false;
 
     private static final String MEMORY_SD_SIZE = "memory_sd_size";
-
     private static final String MEMORY_SD_AVAIL = "memory_sd_avail";
-
     private static final String MEMORY_SD_MOUNT_TOGGLE = "memory_sd_mount_toggle";
-
     private static final String MEMORY_SD_FORMAT = "memory_sd_format";
-
     private static final String MEMORY_SD_GROUP = "memory_sd";
 
     private static final String MEMORY_NAND_SIZE = "memory_nand_size";
     private static final String MEMORY_NAND_AVAIL = "memory_nand_avail";
     private static final String MEMORY_NAND_FORMAT = "memory_nand_format";
     private static final String MEMORY_NAND_GROUP = "memory_nand";
+
+    private static final String MEMORY_HOST_SIZE = "memory_host_size";
+    private static final String MEMORY_HOST_AVAIL = "memory_host_avail";
+    private static final String MEMORY_HOST_GROUP = "memory_host";
 
     private static final int DLG_CONFIRM_UNMOUNT = 1;
     private static final int DLG_ERROR_UNMOUNT = 2;
@@ -82,6 +82,9 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
     private Preference mNandAvail;
     private Preference mNandSize;
     private Preference mNandFormat;
+
+    private Preference mHostSize;
+    private Preference mHostAvail;
 
     boolean mSdMountToggleAdded = true;
 
@@ -106,12 +109,14 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
         mSdAvail = findPreference(MEMORY_SD_AVAIL);
         mSdMountToggle = findPreference(MEMORY_SD_MOUNT_TOGGLE);
         mSdFormat = findPreference(MEMORY_SD_FORMAT);
+        mSdMountPreferenceGroup = (PreferenceGroup)findPreference(MEMORY_SD_GROUP);
 
         mNandSize = findPreference(MEMORY_NAND_SIZE);
         mNandAvail = findPreference(MEMORY_NAND_AVAIL);
         mNandFormat = findPreference(MEMORY_NAND_FORMAT);
 
-        mSdMountPreferenceGroup = (PreferenceGroup)findPreference(MEMORY_SD_GROUP);
+        mHostSize = findPreference(MEMORY_HOST_SIZE);
+        mHostAvail = findPreference(MEMORY_HOST_AVAIL);
     }
 
     @Override
@@ -369,6 +374,33 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             mNandAvail.setSummary(formatSize(availableBlocks * blockSize));
 
         } catch (IllegalArgumentException e) {
+        }
+
+        status = Environment.getHostStorageState();
+        readOnly = "";
+        if (status.equals(Environment.MEDIA_MOUNTED_READ_ONLY)) {
+            status = Environment.MEDIA_MOUNTED;
+            readOnly = mRes.getString(R.string.read_only);
+        }
+
+        if (status.equals(Environment.MEDIA_MOUNTED)) {
+            try {
+                File path = Environment.getHostStorageDirectory();
+                StatFs stat = new StatFs(path.getPath());
+                long blockSize = stat.getBlockSize();
+                long totalBlocks = stat.getBlockCount();
+                long availableBlocks = stat.getAvailableBlocks();
+
+                mHostSize.setSummary(formatSize(totalBlocks * blockSize));
+                mHostAvail.setSummary(formatSize(availableBlocks * blockSize) + readOnly);
+
+            } catch (IllegalArgumentException e) {
+                status = Environment.MEDIA_REMOVED;
+            }
+
+        } else {
+            mHostSize.setSummary(mRes.getString(R.string.host_unavailable));
+            mHostAvail.setSummary(mRes.getString(R.string.host_unavailable));
         }
 
         File path = Environment.getDataDirectory();
