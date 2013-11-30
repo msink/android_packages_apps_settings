@@ -84,7 +84,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
         findPreference("firmware_version").setEnabled(true);
         setStringSummary("device_model", Build.MODEL);
         findPreference("kernel_version").setSummary("2.6.35");
-        setStringSummary("build_number", "QUMO_Libro_TouchLux_V23.01_131010");
+        setStringSummary("build_number", "QUMO_Libro_TouchLux_V23.01_131130");
 
         getListView().setDividerHeight(-1);
         getListView().setDivider(null);
