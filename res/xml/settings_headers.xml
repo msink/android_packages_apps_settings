@@ -82,6 +82,12 @@
         android:fragment="com.android.settings.HdmiControllerActivity"
         android:title="@string/hdmi_settings" />
 
+    <header
+        android:id="@+id/screenshot_settings"
+        android:icon="@drawable/capture"
+        android:fragment="com.android.settings.ScreenshotSetting"
+        android:title="@string/screenshot_manager" />
+
     <!-- Storage -->
     <header
         android:id="@+id/storage_settings"

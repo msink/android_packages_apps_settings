@@ -4390,6 +4390,13 @@
     <string name="hdmi_screen_zoom">Screen Zoom</string>
     <string name="hdmi_lcd_timeout">Screen Timeout</string>
     <string name="hdmi_settings">Hdmi</string>
+    <string name="app_name">ScreenshotManager</string>
+    <string name="screenshot_manager">ScreenshotSetting</string>
+    <string name="screenshot_delay_title">Select delay time to capture the screen</string>
+    <string name="screenshot_show">Show the screenshot button in the statusbar</string>
+    <string name="screenshot_version">Show the version of screenshot manager.</string>
+    <string name="screenshot_storage_title">Set the location of screenshot storage</string>
+    <string name="later">s later capture</string>
     <string name="title_resolution">Display mode</string>
     <string name="summary_resolution">%1$s</string>
     <string name="dialog_title_resolution">Display mode</string>

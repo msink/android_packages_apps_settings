@@ -9,6 +9,7 @@
 -keep class com.android.settings.inputmethod.*
 -keep class com.android.settings.MasterClear
 -keep class com.android.settings.MasterClearConfirm
+-keep class com.android.settings.ScreenshotSetting
 -keep class com.android.settings.accounts.*
 -keep class com.android.settings.fuelgauge.*
 -keep class com.android.settings.users.*
