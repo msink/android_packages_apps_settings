@@ -205,7 +205,16 @@ public class DreamBackend {
         logd("launchSettings(%s)", dreamInfo);
         if (dreamInfo == null || dreamInfo.settingsComponentName == null)
             return;
-        mContext.startActivity(new Intent().setComponent(dreamInfo.settingsComponentName));
+        Intent intent = new Intent();
+        ComponentName component = dreamInfo.settingsComponentName;
+        if (component.getPackageName().equals("com.google.android.deskclock")) {
+            intent.setComponent(new ComponentName(
+                        "com.android.deskclock",
+                        "com.android.deskclock.ScreensaverSettingsActivity"));
+        } else {
+            intent.setComponent(dreamInfo.settingsComponentName);
+        }
+        mContext.startActivity(intent);
     }
 
     public void preview(DreamInfo dreamInfo) {

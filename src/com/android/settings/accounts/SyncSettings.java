@@ -156,8 +156,10 @@ public class SyncSettings extends AccountPreferenceBase
                 final Drawable icon = getDrawableForType(account.type);
                 final AccountPreference preference =
                         new AccountPreference(getActivity(), account, icon, auths, true);
-                getPreferenceScreen().addPreference(preference);
-                preference.setSummary(getLabelForType(account.type));
+                if (!account.name.equals("SIM")) {
+                    getPreferenceScreen().addPreference(preference);
+                    preference.setSummary(getLabelForType(account.type));
+                }
             }
         }
         onSyncStateUpdated();

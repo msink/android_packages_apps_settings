@@ -50,6 +50,7 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeviceAdminAdd extends Activity {
     static final String TAG = "DeviceAdminAdd";
@@ -112,6 +113,40 @@ public class DeviceAdminAdd extends Activity {
             Log.w(TAG, "Unable to retrieve device policy " + cn, e);
             finish();
             return;
+        }
+
+        // When activating, make sure the given component name is actually a valid device admin.
+        // No need to check this when deactivating, because it is safe to deactivate an active
+        // invalid device admin.
+        if (!mDPM.isAdminActive(cn)) {
+            List<ResolveInfo> avail = getPackageManager().queryBroadcastReceivers(
+                    new Intent(DeviceAdminReceiver.ACTION_DEVICE_ADMIN_ENABLED),
+                    0);
+            int count = avail == null ? 0 : avail.size();
+            boolean found = false;
+            for (int i = 0; i < count; i++) {
+                ResolveInfo ri = avail.get(i);
+                if (ai.packageName.equals(ri.activityInfo.packageName) &&
+                           ai.name.equals(ri.activityInfo.name)) {
+                    try {
+                        // We didn't retrieve the meta data for all possible matches, so
+                        // need to use the activity info of this specific one that was retrieved.
+                        ri.activityInfo = ai;
+                        DeviceAdminInfo dpi = new DeviceAdminInfo(this, ri);
+                        found = true;
+                     } catch (XmlPullParserException e) {
+                        Log.w(TAG, "Bad " + ri.activityInfo, e);
+                    } catch (IOException e) {
+                        Log.w(TAG, "Bad " + ri.activityInfo, e);
+                    }
+                    break;
+                }
+            }
+            if (!found) {
+                Log.w(TAG, "Request to add invalid device admin: " + cn);
+                finish();
+                return;
+            }
         }
         
         ResolveInfo ri = new ResolveInfo();

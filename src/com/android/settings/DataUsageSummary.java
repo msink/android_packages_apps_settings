@@ -287,6 +287,7 @@ public class DataUsageSummary extends Fragment {
         }
 
         setHasOptionsMenu(true);
+        setRetainInstance(true);
     }
 
     @Override

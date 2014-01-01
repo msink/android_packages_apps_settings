@@ -47,6 +47,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -523,6 +524,18 @@ public class WifiConfigController implements TextWatcher,
             mPasswordView = (TextView) mView.findViewById(R.id.password);
             mPasswordView.addTextChangedListener(this);
             ((CheckBox) mView.findViewById(R.id.show_password)).setOnClickListener(this);
+            ((CheckBox) mView.findViewById(R.id.show_password)).setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        int index = mPasswordView.getSelectionEnd();
+                        mPasswordView.setInputType(
+                            InputType.TYPE_CLASS_TEXT | (isChecked ?
+                            InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :
+                            InputType.TYPE_TEXT_VARIATION_PASSWORD));
+                        ((EditText)mPasswordView).setSelection(index);
+                   }
+                });
 
             if (mAccessPoint != null && mAccessPoint.networkId != INVALID_NETWORK_ID) {
                 mPasswordView.setHint(R.string.wifi_unchanged);

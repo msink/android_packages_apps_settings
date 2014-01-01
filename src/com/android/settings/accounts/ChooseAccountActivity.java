@@ -149,7 +149,9 @@ public class ChooseAccountActivity extends PreferenceActivity {
                 Drawable drawable = getDrawableForType(pref.type);
                 ProviderPreference p =
                         new ProviderPreference(this, pref.type, drawable, pref.name);
-                mAddAccountGroup.addPreference(p);
+                if (!pref.type.equals("com.android.contacts.sim")) {
+                    mAddAccountGroup.addPreference(p);
+                }
             }
         } else {
             if (Log.isLoggable(TAG, Log.VERBOSE)) {

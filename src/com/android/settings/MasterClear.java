@@ -181,6 +181,13 @@ public class MasterClear extends Fragment {
 
         AccountManager mgr = AccountManager.get(context);
         Account[] accounts = mgr.getAccounts();
+
+        if (accounts.length == 1 && accounts[0].name.equals("SIM")) {
+            accountsLabel.setVisibility(View.GONE);
+            contents.setVisibility(View.GONE);
+            return;
+        }
+
         final int N = accounts.length;
         if (N == 0) {
             accountsLabel.setVisibility(View.GONE);
@@ -196,6 +203,9 @@ public class MasterClear extends Fragment {
 
         for (int i=0; i<N; i++) {
             Account account = accounts[i];
+            if (account.name.equals("SIM")) {
+                continue;
+            }
             AuthenticatorDescription desc = null;
             for (int j=0; j<M; j++) {
                 if (account.type.equals(descs[j].type)) {

@@ -17,13 +17,25 @@
 package com.android.settings.accounts;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
+import android.view.ViewGroup;
 
 /**
  * Launcher activity for the SyncSettings fragment.
  *
  */
 public class SyncSettingsActivity extends PreferenceActivity {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ViewGroup mPrefsContainer = (ViewGroup)
+            super.findViewById(com.android.internal.R.id.prefs_frame);
+        if (mPrefsContainer == null) {
+            Log.e("cghs", "mPrefsContainer is null");
+        }
+    }
+
     @Override
     public Intent getIntent() {
         Intent modIntent = new Intent(super.getIntent());
