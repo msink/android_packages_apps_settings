@@ -160,6 +160,12 @@ public class ApnSettings extends PreferenceActivity implements
             + android.os.SystemProperties.get(TelephonyProperties.PROPERTY_ICC_OPERATOR_NUMERIC, "")
             + "\"";
 
+        String operatorDongle = android.os.SystemProperties.get("gsm.dongle.operator");
+        Log.d(TAG, "fillList:operatorDongle:" + operatorDongle);
+        if (operatorDongle != null && !operatorDongle.equals("")) {
+            where = "numeric=\"" + operatorDongle + "\"";
+        }
+
         Cursor cursor = getContentResolver().query(Telephony.Carriers.CONTENT_URI, new String[] {
                 "_id", "name", "apn", "type"}, where, null,
                 Telephony.Carriers.DEFAULT_SORT_ORDER);

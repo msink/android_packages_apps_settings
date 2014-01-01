@@ -907,6 +907,13 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".DongleInsertDialog"
+                android:theme="@*android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="Settings$AccessibilitySettingsActivity"
                 android:label="@string/accessibility_settings"
                 android:configChanges="orientation|keyboardHidden|screenSize"

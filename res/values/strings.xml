@@ -4397,6 +4397,7 @@
     <string name="screenshot_version">Show the version of screenshot manager.</string>
     <string name="screenshot_storage_title">Set the location of screenshot storage</string>
     <string name="later">s later capture</string>
+    <string name="dongle_insert">3G dongle insert!</string>
     <string name="title_resolution">Display mode</string>
     <string name="summary_resolution">%1$s</string>
     <string name="dialog_title_resolution">Display mode</string>
