@@ -411,7 +411,7 @@ public class StorageMeasurement {
 
             // Measure media types for emulated storage, or for primary physical
             // external volume
-            final boolean measureMedia = (mIsInternal && Environment.isExternalStorageEmulated())
+            final boolean measureMedia = (mIsInternal && !Environment.isExternalStorageEmulated())
                     || mIsPrimary;
             if (measureMedia) {
                 for (String type : sMeasureMediaTypes) {

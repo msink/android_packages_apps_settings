@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.hardware.usb.UsbManager;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -45,10 +46,12 @@ public class UsbSettings extends SettingsPreferenceFragment {
 
     private static final String KEY_MTP = "usb_mtp";
     private static final String KEY_PTP = "usb_ptp";
+    private static final String KEY_MASS = "usb_mass";
 
     private UsbManager mUsbManager;
     private CheckBoxPreference mMtp;
     private CheckBoxPreference mPtp;
+    private CheckBoxPreference mMass;
     private boolean mUsbAccessoryMode;
 
     private final BroadcastReceiver mStateReceiver = new BroadcastReceiver() {
@@ -72,6 +75,12 @@ public class UsbSettings extends SettingsPreferenceFragment {
 
         mMtp = (CheckBoxPreference)root.findPreference(KEY_MTP);
         mPtp = (CheckBoxPreference)root.findPreference(KEY_PTP);
+
+        mMass = (CheckBoxPreference)root.findPreference(KEY_MASS);
+        int policy = SystemProperties.getInt("ro.factory.storage_policy", 0);
+        if (policy == 1) {
+            root.removePreference(root.findPreference(KEY_MASS));
+        }
 
         return root;
     }
@@ -102,15 +111,31 @@ public class UsbSettings extends SettingsPreferenceFragment {
     }
 
     private void updateToggles(String function) {
+        int policy = SystemProperties.getInt("ro.factory.storage_policy", 0);
         if (UsbManager.USB_FUNCTION_MTP.equals(function)) {
             mMtp.setChecked(true);
             mPtp.setChecked(false);
+            if (policy == 0) {
+                mMass.setChecked(false);
+            }
         } else if (UsbManager.USB_FUNCTION_PTP.equals(function)) {
             mMtp.setChecked(false);
             mPtp.setChecked(true);
+            if (policy == 0) {
+                mMass.setChecked(false);
+            }
+        } else if (UsbManager.USB_FUNCTION_MASS_STORAGE.equals(function)) {
+            mMtp.setChecked(false);
+            mPtp.setChecked(false);
+            if (policy == 0) {
+                mMass.setChecked(true);
+            }
         } else  {
             mMtp.setChecked(false);
             mPtp.setChecked(false);
+            if (policy == 0) {
+                mMass.setChecked(true);
+            }
         }
 
         if (!mUsbAccessoryMode) {
@@ -149,6 +174,9 @@ public class UsbSettings extends SettingsPreferenceFragment {
         } else if (preference == mPtp) {
             mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_PTP, true);
             updateToggles(UsbManager.USB_FUNCTION_PTP);
+        } else if (preference == mMass) {
+            mUsbManager.setCurrentFunction(UsbManager.USB_FUNCTION_MASS_STORAGE, true);
+            updateToggles(UsbManager.USB_FUNCTION_MASS_STORAGE);
         }
         return true;
     }
