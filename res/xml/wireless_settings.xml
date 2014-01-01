@@ -34,6 +34,11 @@
         android:title="@string/tether_settings_title_all" />
 
     <PreferenceScreen
+        android:fragment="com.android.settings.ethernet.EthernetSettings"
+        android:key="ethernet_settings"
+        android:title="@string/ethernet_settings_title" />
+
+    <PreferenceScreen
         android:key="wimax_settings"
         android:title="@string/wimax_settings"
         android:summary="@string/wimax_settings_summary" >
