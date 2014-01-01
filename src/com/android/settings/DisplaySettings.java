@@ -19,11 +19,13 @@ package com.android.settings;
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import android.app.ActivityManagerNative;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -32,7 +34,9 @@ import android.hardware.display.DisplayManager;
 import android.hardware.display.WifiDisplay;
 import android.hardware.display.WifiDisplayStatus;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -42,11 +46,18 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.internal.view.RotationPolicy;
 import com.android.settings.DreamSettings;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener, OnPreferenceClickListener {
@@ -58,11 +69,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String KEY_FONT_SIZE = "font_size";
+    private static final String KEY_RESOLUTION = "resolution";
+    private static final String DUMPSYS_DATA_PATH = "/data/system/";
+    private static final String STORE_RESOLUTION_PATH = "storeresolution";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
+    private static final int DLG_CONFIRM_REBOOT = 2;
 
     private DisplayManager mDisplayManager;
 
@@ -77,6 +92,133 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private WifiDisplayStatus mWifiDisplayStatus;
     private Preference mWifiDisplayPreference;
+    private ListPreference mResolutionPreference;
+
+    private int mCurrentResolution = 1;
+    private String mRequestResolution = "";
+    private LinkedList<String> mResolutionDpis = new LinkedList();
+    private LinkedList<String> mResolutionEntries = new LinkedList();
+    private LinkedList<String> mResolutionEntryValues = new LinkedList();
+
+    private boolean applyResolution() {
+        File storeFile = null;
+        FileOutputStream outFileStream = null;
+        BufferedOutputStream buffstream = null;
+        try {
+            storeFile = new File(DUMPSYS_DATA_PATH+STORE_RESOLUTION_PATH+".bin");
+            if (!storeFile.exists()) storeFile.createNewFile();
+            outFileStream = new FileOutputStream(storeFile);
+            buffstream = new BufferedOutputStream(outFileStream);
+            buffstream.write(mRequestResolution.getBytes());
+            buffstream.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (outFileStream != null) {
+                try {
+                    outFileStream.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "failed to close dumpsys output stream");
+                }
+            }
+            if (buffstream != null) {
+                try {
+                    buffstream.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "failed to close dumpsys output stream");
+                }
+            }
+        }
+        return true;
+    }
+
+    private void updateResolution() {
+        mCurrentResolution = 0;
+        mResolutionEntryValues.clear();
+        mResolutionEntries.clear();
+        mResolutionDpis.clear();
+        mResolutionDpis.add("240");
+        mResolutionDpis.add("320");
+        mResolutionEntries.add("1600x1200");
+        mResolutionEntries.add("2048x1536");
+        mResolutionEntryValues.add("0");
+        mResolutionEntryValues.add("1");
+        Log.d(TAG, "current resolution:" + mCurrentResolution);
+        Log.d(TAG, "mRequestResolution resolution:" + mRequestResolution);
+        Log.d(TAG, "entries:" + mResolutionEntries);
+        Log.d(TAG, "values:" + mResolutionEntryValues);
+        Log.d(TAG, "dpis:" + mResolutionDpis);
+
+        FileInputStream input = null;
+        File filename = new File(DUMPSYS_DATA_PATH+STORE_RESOLUTION_PATH+".bin");
+        if (filename.exists()) {
+            try {
+                input = new FileInputStream(filename);
+                byte[] buffer = new byte[(int) filename.length()];
+                input.read(buffer);
+                mCurrentResolution = Integer.parseInt(new String(buffer));
+            } catch (IOException e) {
+                Log.w(TAG, "Can't read service dump: ", e);
+            } finally {
+                if (input != null) try { input.close(); } catch (IOException e) {}
+            }
+        } else {
+            mCurrentResolution = 1;
+        }
+
+        mResolutionPreference.setEntryValues(
+            mResolutionEntryValues.toArray(new CharSequence[mResolutionEntryValues.size()]));
+        mResolutionPreference.setValueIndex(mCurrentResolution);
+        mResolutionPreference.setSummary(String.format(
+            getResources().getString(R.string.summary_resolution),
+            mResolutionPreference.getEntry()));
+    }
+
+    private void showRebootDialog() {
+        removeDialog(DLG_CONFIRM_REBOOT);
+        showDialog(DLG_CONFIRM_REBOOT);
+    }
+
+    @Override
+    public Dialog onCreateDialog(int dialogId) {
+        switch (dialogId) {
+        case DLG_CONFIRM_REBOOT:
+            return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.dlg_confirm_reboot_title)
+                    .setPositiveButton(R.string.dlg_ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (!applyResolution()) {
+                                    Toast.makeText(getActivity(),
+                                        R.string.set_resolution_failed_message, 0)
+                                        .show();
+                                } else {
+                                    updateResolution();
+                                    SystemProperties.set("persist.sys.lcd_density",
+                                        (String)(mResolutionDpis.get(
+                                                 mResolutionEntryValues.indexOf(
+                                                 mRequestResolution))));
+                                    PowerManager pm = (PowerManager)
+                                        mResolutionPreference.getContext()
+                                        .getSystemService(Context.POWER_SERVICE);
+                                    pm.reboot(KEY_RESOLUTION);
+                                }
+                            }
+                        })
+                    .setNegativeButton(R.string.cancel, null)
+                    .setMessage(R.string.dlg_confirm_reboot_text)
+                    .create();
+        case DLG_GLOBAL_CHANGE_WARNING:
+            return Utils.buildGlobalChangeWarningDialog(getActivity(),
+                    R.string.global_font_change_title,
+                    new Runnable() {
+                        public void run() {
+                        }
+                    });
+        }
+        return super.onCreateDialog(dialogId);
+    }
 
     private final RotationPolicy.RotationPolicyListener mRotationPolicyListener =
             new RotationPolicy.RotationPolicyListener() {
@@ -142,6 +284,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                 == WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE) {
             getPreferenceScreen().removePreference(mWifiDisplayPreference);
             mWifiDisplayPreference = null;
+        }
+
+        boolean isChange = "true".equals(SystemProperties.get(
+            "sys.resolution.changed", "false"));
+        mResolutionPreference = (ListPreference) findPreference(KEY_RESOLUTION);
+        if (isChange) {
+            mResolutionPreference.setOnPreferenceChangeListener(this);
+            updateResolution();
+        } else {
+            getPreferenceScreen().removePreference(mResolutionPreference);
         }
     }
 
@@ -266,20 +418,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
-    @Override
-    public Dialog onCreateDialog(int dialogId) {
-        if (dialogId == DLG_GLOBAL_CHANGE_WARNING) {
-            return Utils.buildGlobalChangeWarningDialog(getActivity(),
-                    R.string.global_font_change_title,
-                    new Runnable() {
-                        public void run() {
-                            mFontSizePref.click();
-                        }
-                    });
-        }
-        return null;
-    }
-
     private void updateState() {
         updateAccelerometerRotationCheckbox();
         readFontSizePreference(mFontSizePref);
@@ -353,6 +491,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
+        }
+        if (KEY_RESOLUTION.equals(key)) {
+            mRequestResolution = objValue.toString();
+            if (mCurrentResolution != mResolutionEntryValues.indexOf(mRequestResolution)) {
+                showRebootDialog();
+            }
+            return false;
         }
 
         return true;

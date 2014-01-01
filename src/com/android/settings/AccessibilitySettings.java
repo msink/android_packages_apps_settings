@@ -191,6 +191,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.accessibility_settings);
         initializeAllPreferences();
+        getPreferenceScreen().removePreference(findPreference(TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE));
     }
 
     @Override

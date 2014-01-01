@@ -53,6 +53,13 @@
                 android:entryValues="@array/entryvalues_font_size"
                 android:dialogTitle="@string/dialog_title_font_size" />
 
+        <ListPreference android:key="resolution"
+                android:title="@string/title_resolution"
+                android:summary="@string/summary_resolution"
+                android:dialogTitle="@string/dialog_title_resolution"
+                android:entries="@array/entries_resolution"
+                android:entryValues="@array/entryvalues_resolution" />
+
         <CheckBoxPreference
             android:key="notification_pulse"
             android:title="@string/notification_pulse_title"

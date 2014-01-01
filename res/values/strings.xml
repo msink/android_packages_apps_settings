@@ -4384,4 +4384,16 @@
     <string name="cell_broadcast_settings">Cell broadcasts</string>
     <!-- Cell Broadcast settings description [CHAR LIMIT=100] -->
     <string name="cell_broadcast_settings_summary">Select the types of emergency alerts to display.</string>
+
+    <string name="hdmi_title">Turn on HDMI</string>
+    <string name="hdmi_resolution_title">HDMI Resolution</string>
+    <string name="hdmi_screen_zoom">Screen Zoom</string>
+    <string name="hdmi_lcd_timeout">Screen Timeout</string>
+    <string name="hdmi_settings">Hdmi</string>
+    <string name="title_resolution">Display mode</string>
+    <string name="summary_resolution">%1$s</string>
+    <string name="dialog_title_resolution">Display mode</string>
+    <string name="set_resolution_failed_message">Failed to change display mode.</string>
+    <string name="dlg_confirm_reboot_title">Reboot</string>
+    <string name="dlg_confirm_reboot_text">System will reboot to change display mode.</string>
 </resources>

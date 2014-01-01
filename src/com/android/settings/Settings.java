@@ -62,6 +62,7 @@ import android.widget.ListAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -415,6 +416,12 @@ public class Settings extends PreferenceActivity
         updateHeaderList(headers);
     }
 
+    private boolean hasHdmiFeature() {
+        File file30 = new File("/sys/class/display/HDMI/enable");
+        File file29 = new File("/sys/class/hdmi/hdmi-0/enable");
+        return file30.exists() || file29.exists();
+    }
+
     private void updateHeaderList(List<Header> target) {
         final boolean showDev = true;
         int i = 0;
@@ -459,6 +466,10 @@ public class Settings extends PreferenceActivity
             } else if (id == R.id.development_settings) {
                 if (!showDev) {
                     target.remove(i);
+                }
+            } else if (id == R.id.hdmi_settings) {
+                if (!hasHdmiFeature()) {
+                    target.remove(header);
                 }
             }
 

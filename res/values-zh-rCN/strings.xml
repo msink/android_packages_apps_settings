@@ -1832,4 +1832,10 @@
     <string name="user_picture_title" msgid="7297782792000291692">"照片 ID"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"小区广播"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"请选择要显示的紧急消息类型。"</string>
+
+    <string name="hdmi_title">打开HDMI</string>
+    <string name="hdmi_resolution_title">分辨率设置</string>
+    <string name="hdmi_screen_zoom">屏幕缩放</string>
+    <string name="hdmi_lcd_timeout">屏幕休眠</string>
+    <string name="hdmi_settings">HDMI配置</string>
 </resources>
