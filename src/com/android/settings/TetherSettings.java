@@ -103,6 +103,7 @@ public class TetherSettings extends SettingsPreferenceFragment
 
     /* One of INVALID, WIFI_TETHERING, USB_TETHERING or BLUETOOTH_TETHERING */
     private int mTetherChoice = INVALID;
+    private boolean mBluetoothSupported = true;
 
     /* Stores the package name and the class name of the provisioning app */
     private String[] mProvisionApp;
@@ -112,6 +113,10 @@ public class TetherSettings extends SettingsPreferenceFragment
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.tether_prefs);
+
+        if (SystemProperties.get("ro.rk.bt_enable", "true").equals("false")) {
+            mBluetoothSupported = false;
+        }
 
         final Activity activity = getActivity();
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
@@ -316,7 +321,9 @@ public class TetherSettings extends SettingsPreferenceFragment
     private void updateState(String[] available, String[] tethered,
             String[] errored) {
         updateUsbState(available, tethered, errored);
-        updateBluetoothState(available, tethered, errored);
+        if (mBluetoothSupported) {
+            updateBluetoothState(available, tethered, errored);
+        }
     }
 
 

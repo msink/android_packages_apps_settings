@@ -44,6 +44,7 @@ import android.os.Bundle;
 import android.os.INetworkManagementService;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.preference.Preference;
@@ -440,8 +441,8 @@ public class Settings extends PreferenceActivity
                 }
             } else if (id == R.id.bluetooth_settings) {
                 // Remove Bluetooth Settings if Bluetooth service is not available.
-                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
-                    target.remove(i);
+                if (SystemProperties.get("ro.rk.bt_enable", "true").equals("false")) {
+                    target.remove(header);
                 }
             } else if (id == R.id.data_usage_settings) {
                 // Remove data usage when kernel module not enabled
