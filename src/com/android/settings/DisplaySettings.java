@@ -37,14 +37,21 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class DisplaySettings extends PreferenceActivity implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "DisplaySettings";
 
     /** If there is no setting in the provider, use this. */
-    private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
+    private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = -1;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
+
+    private Timer mShutDownTimer = null;
+    private TimerTask mShutDownTimerTask = null;
+    private static int ShutDownValue = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +62,10 @@ public class DisplaySettings extends PreferenceActivity implements
 
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
-        screenTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+        shutdownPreferenceInit();
+        String screentTime = (String.valueOf(Settings.System.getInt(
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
+        screenTimeoutPreference.setValue(screentTime);
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
 
@@ -76,6 +85,25 @@ public class DisplaySettings extends PreferenceActivity implements
         refreshTimesPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(refreshTimesPreference);
     }
+
+    private void shutdownPreferenceInit() {
+        int value = ShutDownValue;
+        ListPreference ShutdownTimeoutPreference = (ListPreference)
+                findPreference("shutdown_timeout");
+        ShutdownTimeoutPreference.setOnPreferenceChangeListener(this);
+        try {
+            Context settingContext = createPackageContext("com.android.settings", 2);
+            SharedPreferences settings = settingContext.getSharedPreferences("SysSettingPrefsFile", 1);
+            value = settings.getInt("AutoShutdownTime", ShutDownValue);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (value > 0) {
+            ShutdownTimeoutPreference.setValue(String.valueOf(value));
+        } else {
+            ShutdownTimeoutPreference.setValue(String.valueOf(-1));
+        }
+     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
         final DevicePolicyManager dpm =
@@ -129,6 +157,16 @@ public class DisplaySettings extends PreferenceActivity implements
             try {
                 Settings.System.putInt(getContentResolver(),
                         SCREEN_OFF_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist screen timeout setting", e);
+            }
+        } else if ("shutdown_timeout".equals(key)) {
+            ShutDownValue = Integer.parseInt((String) objValue);
+            try {
+                SharedPreferences.Editor editor =
+                        getSharedPreferences("SysSettingPrefsFile", 1).edit();
+                editor.putInt("AutoShutdownTime", ShutDownValue);
+                editor.commit();
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }

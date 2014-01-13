@@ -40,11 +40,8 @@
     <item msgid="488968798204105119">"ウィンドウアニメーションをすべて表示"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15秒"</item>
-    <item msgid="8881760709354815449">"30秒"</item>
-    <item msgid="7589406073232279088">"1分"</item>
-    <item msgid="7001195990902244174">"2分"</item>
-    <item msgid="5721688686241190620">"10分"</item>
+    <item msgid="7001195990902244174">"5分"</item>
+    <item msgid="5721688686241190620">"15分"</item>
     <item msgid="7156442995039264948">"30分"</item>
   </string-array>
   <string-array name="tts_rate_entries">

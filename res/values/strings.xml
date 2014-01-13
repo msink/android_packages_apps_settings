@@ -2696,4 +2696,6 @@ found in the list of installed applications.</string>
     <string name="refresh_times_summary">Select the interval of full refresh</string>
     <string name="epd_full_timeout">Repaint Full timeout</string>
     <string name="epd_full_timeout_summary">Adjust the delay before repaint full automatically</string>
+    <string name="shutdown_timeout">Auto shutdown</string>
+    <string name="shutdown_timeout_summary">The devices will shutdown when the timeout</string>
 </resources>

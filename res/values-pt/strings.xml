@@ -1166,4 +1166,6 @@
     <string name="refresh_times_summary">Selecionar o intervalo de atualização</string>
     <string name="epd_full_timeout">Tempo de excesso para redesenhar página</string>
     <string name="epd_full_timeout_summary">Conf. atraso antes de redesenhar página automaticamente</string>
+    <string name="shutdown_timeout">Desligamento automatico</string>
+    <string name="shutdown_timeout_summary">O aparelho será desligado quando o tempo expire</string>
 </resources>

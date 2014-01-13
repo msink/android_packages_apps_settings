@@ -34,6 +34,14 @@
                 android:entries="@array/refresh_times_entries"
                 android:entryValues="@array/refresh_times_values" />
 
+        <ListPreference
+                android:key="shutdown_timeout"
+                android:title="@string/shutdown_timeout"
+                android:summary="@string/shutdown_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/shutdown_timeout_entries"
+                android:entryValues="@array/shutdown_timeout_values" />
+
         <PreferenceScreen
                 android:title="@string/brightness">
         <intent android:targetPackage="xrz.com.bl"
