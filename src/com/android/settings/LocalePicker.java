@@ -21,6 +21,7 @@ import android.app.IActivityManager;
 import android.app.ListActivity;
 import android.app.backup.BackupManager;
 import android.content.res.Configuration;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.SystemProperties;
@@ -78,6 +79,21 @@ public class LocalePicker extends ListActivity {
 
         String[] locales = getAssets().getLocales();
         Arrays.sort(locales);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String str = bundle.getString("SystemLanuage");
+            if (str != null && !str.equals("")) {
+                try {
+                    SharedPreferences settings =
+                            getSharedPreferences("SysSettingPrefsFile", 1);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString("SystemLanuage", str);
+                    editor.commit();
+                } catch (NumberFormatException e) {
+                }
+            }
+        }
 
         final int origSize = locales.length;
         Loc[] preprocess = new Loc[origSize];
@@ -179,6 +195,15 @@ public class LocalePicker extends ListActivity {
 
             // indicate this isn't some passing default - the user wants this remembered
             config.userSetLocale = true;
+
+            try {
+                SharedPreferences settings =
+                        getSharedPreferences("SysSettingPrefsFile", 1);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("SystemLanuage", config.locale.toString());
+                editor.commit();
+            } catch (NumberFormatException e) {
+            }
 
             am.updateConfiguration(config);
             // Trigger the dirty bit for the Settings Provider.

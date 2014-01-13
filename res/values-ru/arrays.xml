@@ -29,6 +29,11 @@
     <item msgid="5345178126174698955">"Тихий океан"</item>
     <item msgid="8392017019801393511">"Все"</item>
   </string-array>
+  <string-array name="date_format_entries">
+    <item>ММ.ДД.ГГГГ</item>
+    <item>ДД.ММ.ГГГГ</item>
+    <item>ГГГГ.ММ.ДД</item>
+  </string-array>
   <string-array name="animations_entries">
     <item msgid="207790005475613429">"Без анимации"</item>
     <item msgid="6291186755504776720">"Использовать анимацию иногда"</item>

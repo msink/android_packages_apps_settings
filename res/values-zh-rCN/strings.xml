@@ -520,7 +520,7 @@
     <string name="device_info_not_available" msgid="8062521887156825182">"不可用"</string>
     <string name="device_status_activity_title" msgid="1411201799384697904">"状态消息"</string>
     <string name="device_status" msgid="607405385799807324">"状态消息"</string>
-    <string name="device_status_summary" msgid="2599162787451519618">"电话号码、信号等"</string>
+    <string name="device_status_summary" msgid="2599162787451519618">"设备号码、信号等"</string>
     <string name="storage_settings" msgid="4211799979832404953">"存储"</string>
     <string name="storage_settings_title" msgid="8746016738388094064">"存储设置"</string>
     <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"卸载 USB 存储设备，查看可用存储设备"</string>

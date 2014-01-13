@@ -99,8 +99,8 @@ public class LanguageSettings extends PreferenceActivity {
         mLastInputMethodId = Settings.Secure.getString(getContentResolver(),
             Settings.Secure.DEFAULT_INPUT_METHOD);
         
-        PreferenceGroup keyboardSettingsCategory = (PreferenceGroup) findPreference(
-                KEY_KEYBOARD_SETTINGS_CATEGORY);
+        /*PreferenceGroup keyboardSettingsCategory = (PreferenceGroup) findPreference(
+                KEY_KEYBOARD_SETTINGS_CATEGORY);*/
         
         int N = (mInputMethodProperties == null ? 0 : mInputMethodProperties
                 .size());
@@ -116,7 +116,7 @@ public class LanguageSettings extends PreferenceActivity {
                 CheckBoxPreference chkbxPref = new CheckBoxPreference(this);
                 chkbxPref.setKey(prefKey);
                 chkbxPref.setTitle(label);
-                keyboardSettingsCategory.addPreference(chkbxPref);
+                /*keyboardSettingsCategory.addPreference(chkbxPref);*/
                 mCheckboxes.add(chkbxPref);
             }
 
@@ -136,7 +136,7 @@ public class LanguageSettings extends PreferenceActivity {
                             R.string.input_methods_settings_label_format, label);
                     prefScreen.setSummary(settingsLabel);
                 }
-                keyboardSettingsCategory.addPreference(prefScreen);
+                /*keyboardSettingsCategory.addPreference(prefScreen)*/;
             }
         }
     }
@@ -288,6 +288,7 @@ public class LanguageSettings extends PreferenceActivity {
             if (preference.getIntent() == null) {
                 PreferenceScreen pref = (PreferenceScreen) preference;
                 String activityName = pref.getKey();
+              if (activityName != null) {
                 String packageName = activityName.substring(0, activityName
                         .lastIndexOf("."));
                 int slash = activityName.indexOf("/");
@@ -300,6 +301,7 @@ public class LanguageSettings extends PreferenceActivity {
                     i.setClassName(packageName, activityName);
                     startActivity(i);
                 }
+              }
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

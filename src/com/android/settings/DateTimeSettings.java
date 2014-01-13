@@ -93,7 +93,7 @@ public class DateTimeSettings
         // Initialize if DATE_FORMAT is not set in the system settings
         // This can happen after a factory reset (or data wipe)
         if (currentFormat == null) {
-            currentFormat = "";
+            currentFormat = "dd-MM-yyyy";
         }
         for (int i = 0; i < formattedDates.length; i++) {
             String formatted =
@@ -108,7 +108,7 @@ public class DateTimeSettings
             }
         }
         
-        mDateFormat.setEntries(formattedDates);
+        mDateFormat.setEntries(getResources().getStringArray(R.array.date_format_entries));
         mDateFormat.setEntryValues(R.array.date_format_values);
         mDateFormat.setValue(currentFormat);
         
@@ -283,9 +283,9 @@ public class DateTimeSettings
             updateTimeAndDateDisplay();
             timeUpdated();
         } else if (preference == mTimeZone) {
-            Intent intent = new Intent();
-            intent.setClass(this, ZoneList.class);
-            startActivityForResult(intent, 0);
+            //Intent intent = new Intent();
+            //intent.setClass(this, ZoneList.class);
+            //startActivityForResult(intent, 0);
         }
         return false;
     }
@@ -341,13 +341,15 @@ public class DateTimeSettings
         TimeZone    tz = java.util.Calendar.getInstance().getTimeZone();
         boolean daylight = tz.inDaylightTime(new Date());
         StringBuilder sb = new StringBuilder();
+        String timezone = "";
 
         sb.append(formatOffset(tz.getRawOffset() +
                                (daylight ? tz.getDSTSavings() : 0))).
             append(", ").
             append(tz.getDisplayName(daylight, TimeZone.LONG));
 
-        return sb.toString();        
+        timezone = sb.toString().replace("2", "1");
+        return timezone;
     }
 
     private char[] formatOffset(int off) {

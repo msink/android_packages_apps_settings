@@ -655,7 +655,7 @@
     <string name="assisted_gps" msgid="4649317129586736885">"Utilizar GPS asistido"</string>
     <string name="assisted_gps_enabled" msgid="8751899609589792803">"Utilizar el servidor para asistir al GPS (desactivar para reducir el uso de la red)"</string>
     <string name="assisted_gps_disabled" msgid="6982698333968010748">"Utilizar el servidor para asistir al GPS (desactivar para mejorar el rendimiento del GPS)"</string>
-    <string name="about_settings" msgid="1743378368185371685">"Acerca del teléfono"</string>
+    <string name="about_settings" msgid="1743378368185371685">"Información del dispositivo"</string>
     <string name="about_settings_summary" msgid="3302263393543848667">"Ver información legal, estado del teléfono, versión del software"</string>
     <string name="legal_information" msgid="5769301644270604095">"Información legal"</string>
     <string name="contributors_title" msgid="5917703088825286504">"Contribuidores"</string>
