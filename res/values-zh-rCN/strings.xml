@@ -1179,6 +1179,7 @@
     <string name="nand_mount">挂载内部大容量存储设备</string>
     <string name="nand_mount_summary">挂载内部大容量存储设备</string>
     <string name="nand_format">格式化内部大容量存储设备</string>
+    <string name="nand_format_2">格式化内部大容量存储设备</string>
     <string name="nand_format_summary">擦除内部大容量存储设备所有数据，如音乐、照片等</string>
     <string name="nand_unavailable">无法获取</string>
     <string name="media_format_desc_nand">此项操作将格式化内部大容量存储设备，存储在该设备上的<b>所有数据</b>将丢失!</string>

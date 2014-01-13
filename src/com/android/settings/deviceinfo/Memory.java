@@ -180,14 +180,11 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             }
             return true;
         } else if (preference == mSdFormat) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setClass(this, com.android.settings.MediaFormat.class);
+            Intent intent = new Intent(this, com.android.settings.MasterDialogClear.class);
             intent.putExtra("path", Environment.getExternalStorageDirectory().getPath());
             startActivity(intent);
-            return true;
         } else if (preference == mNandFormat) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setClass(this, com.android.settings.MediaFormat.class);
+            Intent intent = new Intent(this, com.android.settings.MasterDialogClear.class);
             intent.putExtra("path", Environment.getFlashStorageDirectory().getPath());
             startActivity(intent);
         }

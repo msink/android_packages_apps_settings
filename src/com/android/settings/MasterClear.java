@@ -22,10 +22,12 @@ import com.android.internal.widget.LockPatternUtils;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 
 /**
  * Confirm and execute a reset of the device to a clean "just out of the box"
@@ -50,6 +52,8 @@ public class MasterClear extends Activity {
     private View mFinalView;
     private Button mFinalButton;
 
+    private ProgressBar mProgressBarWait;
+
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
      * and invoke the Checkin Service to reset the device to its factory-default
@@ -64,10 +68,13 @@ public class MasterClear extends Activity {
                 if (mExternalStorage.isChecked()) {
                     Intent intent = new Intent(ExternalStorageFormatter.FORMAT_AND_FACTORY_RESET);
                     intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
+                    intent.putExtra("path", Environment.getFlashStorageDirectory().getPath());
                     startService(intent);
                 } else {
                     sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
                     // Intent handling is asynchronous -- assume it will happen soon.
+                    mProgressBarWait.setVisibility(View.VISIBLE);
+                    mFinalButton.setEnabled(false);
                 }
             }
         };
@@ -96,11 +103,11 @@ public class MasterClear extends Activity {
         // If the user entered a valid keyguard trace, present the final
         // confirmation prompt; otherwise, go back to the initial state.
         if (resultCode == Activity.RESULT_OK) {
-            establishFinalConfirmationState();
+            /*establishFinalConfirmationState()*/;
         } else if (resultCode == Activity.RESULT_CANCELED) {
             finish();
         } else {
-            establishInitialState();
+            /*establishInitialState()*/;
         }
     }
 
@@ -126,9 +133,11 @@ public class MasterClear extends Activity {
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_master_clear);
             mFinalButton.setOnClickListener(mFinalClickListener);
+            mFinalButton.requestFocus();
         }
 
         setContentView(mFinalView);
+        mProgressBarWait = (ProgressBar) findViewById(R.id.progressBar_Wait);
     }
 
     /**
@@ -183,9 +192,8 @@ public class MasterClear extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-
         if (!isFinishing()) {
-            establishInitialState();
+            establishFinalConfirmationState();
         }
     }
 }

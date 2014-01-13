@@ -16,23 +16,6 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:key="backup_category"
-            android:title="@string/backup_section_title">
-        <!-- Backup settings -->
-        <CheckBoxPreference
-                android:key="backup_data"
-                android:title="@string/backup_data_title"
-                android:summary="@string/backup_data_summary"
-                android:persistent="false" />
-        <CheckBoxPreference
-                android:key="auto_restore"
-                android:title="@string/auto_restore_title"
-                android:summary="@string/auto_restore_summary"
-                android:persistent="false" />
-    </PreferenceCategory>
-
-    <PreferenceCategory
-            android:title="@string/personal_data_section_title">
         <!-- Factory reset -->
         <PreferenceScreen
                 android:title="@string/master_clear_title"
@@ -41,6 +24,5 @@
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.MasterClear" />
         </PreferenceScreen>
-    </PreferenceCategory>
 
 </PreferenceScreen>

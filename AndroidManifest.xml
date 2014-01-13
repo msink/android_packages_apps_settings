@@ -6,6 +6,8 @@
 
     <uses-permission android:name="com.google.android.gm.permission.WRITE_GMAIL" />
     <uses-permission android:name="com.google.android.gm.permission.READ_GMAIL" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DELETE_CACHE_FILES" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
     <uses-permission android:name="android.permission.DEVICE_POWER" />
@@ -596,7 +598,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="MasterClear" android:label="@string/master_clear_title">
+        <activity android:name=".MasterDialog"
+                  android:theme="@*android:style/Theme.Dialog" />
+
+        <activity android:name=".MasterDialogClear"
+                  android:theme="@*android:style/Theme.Dialog" />
+
+        <activity android:name="MasterClear"
+                android:theme="@*android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

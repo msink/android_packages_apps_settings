@@ -46,8 +46,6 @@ public class PrivacySettings extends PreferenceActivity implements
     private static final String BACKUP_CATEGORY = "backup_category";
     private static final String BACKUP_DATA = "backup_data";
     private static final String AUTO_RESTORE = "auto_restore";
-    private CheckBoxPreference mBackup;
-    private CheckBoxPreference mAutoRestore;
     private Dialog mConfirmDialog;
 
     private static final int DIALOG_ERASE_BACKUP = 2;
@@ -59,13 +57,7 @@ public class PrivacySettings extends PreferenceActivity implements
         addPreferencesFromResource(R.xml.privacy_settings);
         final PreferenceScreen screen = getPreferenceScreen();
 
-        mBackup = (CheckBoxPreference) screen.findPreference(BACKUP_DATA);
-        mAutoRestore = (CheckBoxPreference) screen.findPreference(AUTO_RESTORE);
 
-        // Vendor specific
-        if (getPackageManager().resolveContentProvider(GSETTINGS_PROVIDER, 0) == null) {
-            screen.removePreference(findPreference(BACKUP_CATEGORY));
-        }
         updateToggles();
     }
 
@@ -82,32 +74,10 @@ public class PrivacySettings extends PreferenceActivity implements
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mBackup) {
-            if (!mBackup.isChecked()) {
-                showEraseBackupDialog();
-            } else {
-                setBackupEnabled(true);
-            }
-        } else if (preference == mAutoRestore) {
-            IBackupManager bm = IBackupManager.Stub.asInterface(
-                    ServiceManager.getService(Context.BACKUP_SERVICE));
-            if (bm != null) {
-                // TODO: disable via the backup manager interface
-                boolean curState = mAutoRestore.isChecked();
-                try {
-                    bm.setAutoRestore(curState);
-                } catch (RemoteException e) {
-                    mAutoRestore.setChecked(!curState);
-                }
-            }
-        }
-
         return false;
     }
 
     private void showEraseBackupDialog() {
-        mBackup.setChecked(true);
-
         mDialogType = DIALOG_ERASE_BACKUP;
         CharSequence msg = getResources().getText(R.string.backup_erase_dialog_message);
         mConfirmDialog = new AlertDialog.Builder(this).setMessage(msg)
@@ -126,11 +96,6 @@ public class PrivacySettings extends PreferenceActivity implements
 
         final boolean backupEnabled = Settings.Secure.getInt(res,
                 Settings.Secure.BACKUP_ENABLED, 0) == 1;
-        mBackup.setChecked(backupEnabled);
-
-        mAutoRestore.setChecked(Settings.Secure.getInt(res,
-                Settings.Secure.BACKUP_AUTO_RESTORE, 1) == 1);
-        mAutoRestore.setEnabled(backupEnabled);
     }
 
     public void onClick(DialogInterface dialog, int which) {
@@ -141,8 +106,6 @@ public class PrivacySettings extends PreferenceActivity implements
             }
         } else {
             if (mDialogType == DIALOG_ERASE_BACKUP) {
-                mBackup.setChecked(true);
-                mAutoRestore.setEnabled(true);
             }
         }
         mDialogType = 0;
@@ -160,12 +123,8 @@ public class PrivacySettings extends PreferenceActivity implements
             try {
                 bm.setBackupEnabled(enable);
             } catch (RemoteException e) {
-                mBackup.setChecked(!enable);
-                mAutoRestore.setEnabled(!enable);
                 return;
             }
         }
-        mBackup.setChecked(enable);
-        mAutoRestore.setEnabled(enable);
     }
 }

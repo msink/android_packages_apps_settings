@@ -60,6 +60,7 @@ public class MediaFormat extends Activity {
                     return;
                 }
                 Intent intent = new Intent(ExternalStorageFormatter.FORMAT_ONLY);
+                intent.setData(getIntent().getData());
                 intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
                 intent.putExtra("path", mPath);
                 startService(intent);
@@ -154,10 +155,11 @@ public class MediaFormat extends Activity {
         mInitialView = null;
         mFinalView = null;
         mInflater = LayoutInflater.from(this);
-        Bundle extras = getIntent().getExtras();
-        mPath = extras.getString("path");
 
         establishInitialState();
+
+        Bundle extras = getIntent().getExtras();
+        mPath = extras.getString("path");
     }
 
     /** Abandon all progress through the confirmation sequence by returning

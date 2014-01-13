@@ -16,6 +16,7 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="master_clear_all_date">Все данные будут удалены!</string>
     <string name="yes" msgid="4676390750360727396">"Да"</string>
     <string name="no" msgid="6731231425810196216">"Нет"</string>
     <string name="device_info_default" msgid="7847265875578739287">"Неизвестно"</string>
@@ -1161,4 +1162,9 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Входящие вызовы"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Оповещения"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Отклик на действия"</string>
+    <string name="nand_memory">Память</string>
+    <string name="nand_format">Очистить карту</string>
+    <string name="nand_format_2">Очистить память</string>
+    <string name="nand_format_summary">Удалить всю информацию из памяти, включая книги?</string>
+    <string name="nand_unavailable">Недоступно</string>
 </resources>

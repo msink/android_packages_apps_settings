@@ -45,7 +45,7 @@
             android:title="@string/memory_available"
             android:summary="00" />
         <Preference android:key="memory_nand_format"
-            android:title="@string/nand_format"
+            android:title="@string/nand_format_2"
             android:summary="@string/nand_format_summary" />
     </PreferenceCategory>
 

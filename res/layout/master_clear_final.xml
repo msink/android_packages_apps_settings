@@ -19,11 +19,13 @@
 
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#fff"
         style="@style/info_layout">        
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
         android:textSize="20sp"
         android:text="@string/master_clear_final_desc" />
 
@@ -35,4 +37,11 @@
         android:text="@string/master_clear_final_button_text"
         android:gravity="center" />
         
+    <ProgressBar android:id="@+id/progressBar_Wait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dip"
+        android:layout_marginTop="50dip"
+        android:visibility="gone" />
+
 </LinearLayout>

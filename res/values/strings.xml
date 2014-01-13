@@ -15,6 +15,7 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="master_clear_all_date">All Date Will Be Delete !</string>
     <!-- Strings for Dialog yes button -->
     <string name="yes">"Yes"</string>
 
@@ -2676,6 +2677,7 @@ found in the list of installed applications.</string>
     <string name="nand_mount">Mount NAND flash</string>
     <string name="nand_mount_summary">Mount the NAND flash</string>
     <string name="nand_format">Erase NAND flash</string>
+    <string name="nand_format_2">Erase NAND flash</string>
     <string name="nand_format_summary">"Erases all data on the device's NAND flash, such as music and photos"</string>
     <string name="nand_unavailable">Unavailable</string>
     <string name="media_format_desc_nand">This action will erase the internal mass storage. You will lose <b>all</b> data stored there!</string>
