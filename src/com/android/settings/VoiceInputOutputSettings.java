@@ -225,4 +225,9 @@ public class VoiceInputOutputSettings extends PreferenceActivity
         }
         return true;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }

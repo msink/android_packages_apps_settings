@@ -16,10 +16,13 @@
 
 package com.android.settings;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
+import android.view.KeyEvent;
 
 public class Settings extends PreferenceActivity {
 
@@ -34,6 +37,11 @@ public class Settings extends PreferenceActivity {
 
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
+
+        Preference voiceSettings = parent.findPreference("voice_settings");
+        if (!SystemProperties.getBoolean("ro.service.tts.enabled", false)) {
+            parent.removePreference(voiceSettings);
+        }
     }
     
     @Override
@@ -41,4 +49,17 @@ public class Settings extends PreferenceActivity {
         super.onResume();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent msg) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent mIntent = getPackageManager()
+                             .getLaunchIntentForPackage("xrz.com.android");
+            if (mIntent != null) {
+                startActivity(mIntent);
+            }
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, msg);
+    }
 }
