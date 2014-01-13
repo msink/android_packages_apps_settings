@@ -19,6 +19,12 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/settings_label"
     android:key="parent">
+        <com.android.settings.TitlePreference
+            android:title="@string/settings_label"
+            android:key="title"
+            settings:settingicon="@drawable/settings_icon" />
+        <com.android.settings.MyIconPreferenceScreen
+            android:key="space" settings:height="20px" />
 
         <com.android.settings.MyIconPreferenceScreen
             android:title="@string/radio_controls_title">

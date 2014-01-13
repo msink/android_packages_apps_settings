@@ -16,6 +16,19 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    <com.android.settings.TitlePreference
+        android:key="wireless_settings_title"
+        android:title="@string/settings_label"
+        settings:settingicon="@drawable/settings_icon" />
+    <com.android.settings.ChildTitlePreference
+        android:key="wireless_settings_back"
+        android:title="@string/wifi_settings_category"
+        settings:settingicon="@drawable/settings_back">
+        <intent android:targetPackage="com.android.settings"
+            android:action="android.intent.action.MAIN"
+            android:targetClass="com.android.settings.Settings" />
+    </com.android.settings.ChildTitlePreference>
+    <com.android.settings.MyIconPreferenceScreen settings:height="30px" />
 
     <!-- Programmatically will have dynamic summary, but we provide the fallback summary. -->
     <com.android.settings.MyCheckBoxPreference

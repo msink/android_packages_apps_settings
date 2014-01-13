@@ -24,6 +24,8 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings.System;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class PhysicalKeyboardSettings extends PreferenceActivity {
     
@@ -53,6 +55,9 @@ public class PhysicalKeyboardSettings extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         mTopDrawable = getResources().getDrawable(R.drawable.settings_bg_top);

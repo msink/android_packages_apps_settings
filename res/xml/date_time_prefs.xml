@@ -15,8 +15,21 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    <com.android.settings.TitlePreference
+        settings:settingicon="@drawable/settings_icon"
+        android:key="datetime_settings_title"
+        android:title="@string/settings_label" />
+    <com.android.settings.ChildTitlePreference
+        settings:settingicon="@drawable/settings_back"
+        android:key="datetime_settings_back"
         android:title="@string/date_and_time">
+        <intent android:targetPackage="com.android.settings"
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.android.settings.Settings" />
+    </com.android.settings.ChildTitlePreference>
+    <com.android.settings.MyIconPreferenceScreen settings:height="30px" />
+
     <com.android.settings.MyCheckBoxPreference android:key="auto_time"
         android:title="@string/date_time_auto"
         android:summaryOn="@string/date_time_auto_summaryOn"

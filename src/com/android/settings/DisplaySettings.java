@@ -23,19 +23,24 @@ import java.util.ArrayList;
 import android.app.admin.DevicePolicyManager;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.IWindowManager;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -49,26 +54,38 @@ public class DisplaySettings extends PreferenceActivity implements
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
 
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
+
     private Timer mShutDownTimer = null;
     private TimerTask mShutDownTimerTask = null;
     private static int ShutDownValue = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getContentResolver();
 
         addPreferencesFromResource(R.xml.display_settings);
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         ListPreference screenTimeoutPreference =
             (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         shutdownPreferenceInit();
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("display_back");
         String screentTime = (String.valueOf(Settings.System.getInt(
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setValue(screentTime);
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
 
+        titlePre = (TitlePreference) findPreference("display_title");
         ListPreference refreshTimesPreference = (ListPreference)
                findPreference("refresh_times");
         int value = 1;
@@ -141,17 +158,32 @@ public class DisplaySettings extends PreferenceActivity implements
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        Help.startTimerChangeBattery(titlePre);
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        return true;
+        if (preference == preferenceBackSettings) {
+            finish();
+        }
+        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         final String key = preference.getKey();
+        if (key.equals("display_back")) {
+            Intent intent = new Intent();
+            intent.setClass(this, Settings.class);
+            startActivity(intent);
+        }
         if (KEY_SCREEN_TIMEOUT.equals(key)) {
             int value = Integer.parseInt((String) objValue);
             try {
@@ -183,5 +215,9 @@ public class DisplaySettings extends PreferenceActivity implements
         }
 
         return true;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

@@ -33,6 +33,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.method.LinkMovementMethod;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 /**
@@ -50,14 +52,23 @@ public class PrivacySettings extends PreferenceActivity implements
 
     private static final int DIALOG_ERASE_BACKUP = 2;
     private int     mDialogType;
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.privacy_settings);
         final PreferenceScreen screen = getPreferenceScreen();
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
+        preferenceBackSettings = (ChildTitlePreference) findPreference("privacy_back");
+        titlePre = (TitlePreference) findPreference("privacy_title");
         updateToggles();
     }
 
@@ -72,8 +83,24 @@ public class PrivacySettings extends PreferenceActivity implements
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Help.startTimerChangeBattery(titlePre);
+    }
+
+    @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
+        if (preference == preferenceBackSettings) {
+            finish();
+        }
+
         return false;
     }
 

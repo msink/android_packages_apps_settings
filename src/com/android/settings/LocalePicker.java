@@ -27,6 +27,7 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -72,6 +73,7 @@ public class LocalePicker extends ListActivity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(getContentView());
 
         mSpecialLocaleCodes = getResources().getStringArray(R.array.special_locale_codes);

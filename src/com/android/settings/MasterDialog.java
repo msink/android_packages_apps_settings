@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.view.Window;
 
 public class MasterDialog extends Activity {
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.master_dialog);
         Button btn_ok = (Button) findViewById(R.id.master_dialog_btn_ok);
         Button btn_cancel = (Button) findViewById(R.id.master_dialog_btn_cancel);

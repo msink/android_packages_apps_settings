@@ -23,14 +23,26 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.view.KeyEvent;
+import android.view.Window;
+import android.view.WindowManager;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Settings extends PreferenceActivity {
 
     private static final String KEY_PARENT = "parent";
     private static final String KEY_SYNC_SETTINGS = "sync_settings";
+
+    private Timer mTimer = null;
+    private TimerTask mTimerTask = null;
+    TitlePreference titlePre;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         
         addPreferencesFromResource(R.xml.settings);
@@ -38,15 +50,35 @@ public class Settings extends PreferenceActivity {
         PreferenceGroup parent = (PreferenceGroup) findPreference(KEY_PARENT);
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parent, KEY_SYNC_SETTINGS, 0);
 
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+
         Preference voiceSettings = parent.findPreference("voice_settings");
         if (!SystemProperties.getBoolean("ro.service.tts.enabled", false)) {
             parent.removePreference(voiceSettings);
         }
+
+        titlePre = (TitlePreference) parent.findPreference("title");
+        Help.startInforService(this);
     }
     
     @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
+        Help.startTimerChangeBattery(titlePre);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Help.stopInforService(this);
+        Help.stopTimer();
     }
 
     @Override

@@ -37,6 +37,8 @@ import android.text.TextUtils;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -62,6 +64,8 @@ public class LanguageSettings extends PreferenceActivity {
     private Drawable mTopDrawable;
     private Drawable mMidDrawable;
     private Drawable mBotDrawable;
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
     
     static public String getInputMethodIdFromKey(String key) {
         return key;
@@ -69,6 +73,9 @@ public class LanguageSettings extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.language_settings);
@@ -80,9 +87,15 @@ public class LanguageSettings extends PreferenceActivity {
             mLanguagePref = findPreference(KEY_PHONE_LANGUAGE);
         }
 
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("language_back");
         mTopDrawable = getResources().getDrawable(R.drawable.settings_bg_top);
         mMidDrawable = getResources().getDrawable(R.drawable.settings_bg_mid);
         mBotDrawable = getResources().getDrawable(R.drawable.settings_bg_bottom);
+
+        titlePre = (TitlePreference) findPreference("language_title");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         Configuration config = getResources().getConfiguration();
         if (config.keyboard != Configuration.KEYBOARD_QWERTY) {
@@ -165,6 +178,7 @@ public class LanguageSettings extends PreferenceActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        Help.startTimerChangeBattery(titlePre);
 
         final HashSet<String> enabled = new HashSet<String>();
         String enabledStr = Settings.Secure.getString(getContentResolver(),
@@ -202,6 +216,7 @@ public class LanguageSettings extends PreferenceActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Help.stopTimer();
 
         StringBuilder builder = new StringBuilder(256);
         StringBuilder disabledSysImes = new StringBuilder(256);
@@ -253,6 +268,11 @@ public class LanguageSettings extends PreferenceActivity {
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         
+        if (preference == preferenceBackSettings) {
+            finish();
+            return false;
+        }
+
         // Input Method stuff
         if (Utils.isMonkeyRunning()) {
             return false;

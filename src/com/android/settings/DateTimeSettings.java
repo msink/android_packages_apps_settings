@@ -35,6 +35,8 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
@@ -63,13 +65,24 @@ public class DateTimeSettings
     private MyIconPreferenceScreen mTimeZone;
     private MyIconPreferenceScreen mDatePref;
     private MyListPreference mDateFormat;
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
     
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
         
         addPreferencesFromResource(R.xml.date_time_prefs);
         
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("datetime_settings_back");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+        titlePre = (TitlePreference) findPreference("datetime_settings_title");
+
         initUI();        
     }
     
@@ -123,6 +136,7 @@ public class DateTimeSettings
         super.onResume();
         
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        Help.startTimerChangeBattery(titlePre);
 
         ((MyCheckBoxPreference)mTime24Pref).setChecked(is24Hour());
 
@@ -139,6 +153,7 @@ public class DateTimeSettings
     @Override 
     protected void onPause() {
         super.onPause();
+        Help.stopTimer();
         unregisterReceiver(mIntentReceiver);
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
     }
@@ -286,6 +301,8 @@ public class DateTimeSettings
             //Intent intent = new Intent();
             //intent.setClass(this, ZoneList.class);
             //startActivityForResult(intent, 0);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         return false;
     }

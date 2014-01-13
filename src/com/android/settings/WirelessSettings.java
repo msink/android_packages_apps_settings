@@ -34,6 +34,8 @@ import com.android.internal.telephony.TelephonyProperties;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.wifi.WifiEnabler;
 import com.android.settings.nfc.NfcEnabler;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class WirelessSettings extends PreferenceActivity {
 
@@ -53,6 +55,10 @@ public class WirelessSettings extends PreferenceActivity {
     private NfcEnabler mNfcEnabler;
     private BluetoothEnabler mBtEnabler;
 
+    private MyIconPreferenceScreen mWifiSettingsPreference;
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
+
     /**
      * Invoked on each preference click in this hierarchy, overrides
      * PreferenceActivity's implementation.  Used to make sure we track the
@@ -67,6 +73,10 @@ public class WirelessSettings extends PreferenceActivity {
                 new Intent(TelephonyIntents.ACTION_SHOW_NOTICE_ECM_BLOCK_OTHERS, null),
                 REQUEST_CODE_EXIT_ECM);
             return true;
+        } else if (preference == mWifiSettingsPreference) {
+            finish();
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         // Let the intents be launched by the Preference manager
         return false;
@@ -84,6 +94,9 @@ public class WirelessSettings extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.wireless_settings);
@@ -94,9 +107,18 @@ public class WirelessSettings extends PreferenceActivity {
         Preference vpn = findPreference(KEY_VPN_SETTINGS);
         Preference bt_settings = findPreference(KEY_BT_SETTINGS);
 
+        titlePre = (TitlePreference) findPreference("wireless_settings_title");
+
         mWifiEnabler = new WifiEnabler(this, wifi);
         mBtEnabler = new BluetoothEnabler(this, bt);
         mNfcEnabler = new NfcEnabler(this, nfc);
+
+        mWifiSettingsPreference = (MyIconPreferenceScreen)
+            findPreference("wifi_settings");
+        preferenceBackSettings = (ChildTitlePreference)
+            findPreference("wireless_settings_back");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         String toggleable = Settings.System.getString(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_TOGGLEABLE_RADIOS);
@@ -160,11 +182,13 @@ public class WirelessSettings extends PreferenceActivity {
         mWifiEnabler.resume();
         mBtEnabler.resume();
         mNfcEnabler.resume();
+        Help.startTimerChangeBattery(titlePre);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Help.stopTimer();
 
         mWifiEnabler.pause();
         mBtEnabler.pause();

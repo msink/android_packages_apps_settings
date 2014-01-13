@@ -16,6 +16,19 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+        <com.android.settings.TitlePreference
+            android:title="@string/settings_label"
+            android:key="device_title"
+            settings:settingicon="@drawable/settings_icon" />
+        <com.android.settings.ChildTitlePreference
+            settings:settingicon="@drawable/settings_back"
+            android:key="device_back"
+            android:title="@string/about_settings">
+            <intent android:targetPackage="com.android.settings"
+                    android:action="android.intent.action.MAIN"
+                    android:targetClass="com.android.settings.Settings" />
+        </com.android.settings.ChildTitlePreference>
+        <com.android.settings.MyIconPreferenceScreen settings:height="30px" />
 
         <!-- Device status - launches activity -->
         <com.android.settings.MyIconPreferenceScreen android:key="status_info"

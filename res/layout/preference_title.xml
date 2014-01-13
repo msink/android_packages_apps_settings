@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relate_preference_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="65px">
+
+    <TextView android:id="@*android:id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0px"
+        android:layout_marginTop="0px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="15px"
+        android:background="@drawable/settings_title_bg"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        />
+
+    <ImageView android:id="@id/image_battery"
+        android:layout_width="40px"
+        android:layout_height="17px"
+        android:layout_marginTop="12px"
+        android:layout_marginRight="20px"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/battery4"
+        />
+
+    <ImageView android:id="@+id/title_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15px"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone">
+
+        <TextView android:id="@*android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:background="@drawable/settings_title_bg"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="3dip"
+        android:layout_marginTop="8dip"
+        android:layout_below="@id/title_icon"
+        android:background="#000"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

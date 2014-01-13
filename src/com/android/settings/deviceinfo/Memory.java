@@ -43,8 +43,13 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.android.settings.TitlePreference;
+import com.android.settings.ChildTitlePreference;
+import com.android.settings.Help;
 import com.android.settings.R;
 
 import java.io.File;
@@ -88,8 +93,14 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
     private StorageManager mStorageManager = null;
 
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
+
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         if (mStorageManager == null) {
@@ -99,6 +110,10 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
         addPreferencesFromResource(R.xml.device_info_memory);
         
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
+        preferenceBackSettings = (ChildTitlePreference) findPreference("memorysettings_back");
+
         mRes = getResources();
         mSdSize = findPreference(MEMORY_SD_SIZE);
         mSdAvail = findPreference(MEMORY_SD_AVAIL);
@@ -110,11 +125,14 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
         mSdMountPreferenceGroup = (PreferenceGroup)findPreference(MEMORY_SD_GROUP);
         mSdMountPreferenceGroup = (PreferenceGroup)findPreference(MEMORY_NAND_GROUP);
+        titlePre = (TitlePreference) findPreference("memery_title");
     }
     
     @Override
     protected void onResume() {
         super.onResume();
+        Help.startTimerChangeBattery(titlePre);
+        Help.stopTimer();
         
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_MEDIA_SCANNER_STARTED);
         intentFilter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
@@ -187,6 +205,8 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             Intent intent = new Intent(this, com.android.settings.MasterDialogClear.class);
             intent.putExtra("path", Environment.getFlashStorageDirectory().getPath());
             startActivity(intent);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
         
         return false;

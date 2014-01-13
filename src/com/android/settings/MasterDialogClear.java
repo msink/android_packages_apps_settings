@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+import android.view.Window;
 
 public class MasterDialogClear extends Activity {
     private String mPath;
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         Bundle extras = getIntent().getExtras();
         mPath = extras.getString("path");
         setContentView(R.layout.master_dialog_clearall);

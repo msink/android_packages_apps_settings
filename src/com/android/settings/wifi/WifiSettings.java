@@ -18,6 +18,8 @@ package com.android.settings.wifi;
 
 import com.android.settings.ProgressCategory;
 import com.android.settings.R;
+import com.android.settings.TitlePreference;
+import com.android.settings.Help;
 
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -50,6 +52,8 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Toast;
 import android.util.Log;
@@ -86,6 +90,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
 
     private ProgressDialog mProgressView;
     Runnable mTimeRunnable;
+    TitlePreference titlePre;
 
     public WifiSettings() {
         mFilter = new IntentFilter();
@@ -124,6 +129,9 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
 
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -143,6 +151,10 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         mAccessPoints = (ProgressCategory) findPreference("access_points");
         mAccessPoints.setOrderingAsAdded(false);
         mAddNetwork = findPreference("add_network");
+
+        titlePre = (TitlePreference) findPreference("wifi_title");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         mProgressView = new ProgressDialog(this);
         mProgressView.setIndeterminate(false);
@@ -168,6 +180,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     @Override
     protected void onResume() {
         super.onResume();
+        Help.startTimerChangeBattery(titlePre);
         if (mWifiEnabler != null) {
             mWifiEnabler.resume();
         }
@@ -181,6 +194,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     @Override
     protected void onPause() {
         super.onPause();
+        Help.stopTimer();
         if (mWifiEnabler != null) {
             mWifiEnabler.pause();
         }

@@ -19,6 +19,7 @@ package com.android.settings;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -27,6 +28,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.provider.Settings;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class ApplicationSettings extends PreferenceActivity implements
         DialogInterface.OnClickListener {
@@ -50,11 +53,22 @@ public class ApplicationSettings extends PreferenceActivity implements
 
     private DialogInterface mWarnInstallApps;
 
+    private Drawable mBottomDraw;
+    private ChildTitlePreference preferenceBackSettings;
+    private MyIconPreferenceScreen preferenceDevelopmentSettings;
+    private TitlePreference titlePre;
+
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.application_settings);
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         mToggleAppInstallation = (MyCheckBoxPreference) findPreference(KEY_TOGGLE_INSTALL_APPLICATIONS);
         mToggleAppInstallation.setChecked(isNonMarketAppsAllowed());
@@ -75,6 +89,13 @@ public class ApplicationSettings extends PreferenceActivity implements
                 }
             });
         }
+
+        titlePre = (TitlePreference) findPreference("application_title");
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("application_back");
+        preferenceDevelopmentSettings = (MyIconPreferenceScreen)
+                findPreference("development_setting");
+        mBottomDraw = getResources().getDrawable(R.drawable.settings_bg_bottom);
 
         if (getResources().getConfiguration().keyboard == Configuration.KEYBOARD_NOKEYS) {
             // No hard keyboard, remove the setting for quick launch
@@ -102,6 +123,18 @@ public class ApplicationSettings extends PreferenceActivity implements
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Help.startTimerChangeBattery(titlePre);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (mWarnInstallApps != null) {
@@ -118,6 +151,10 @@ public class ApplicationSettings extends PreferenceActivity implements
             } else {
                 setNonMarketAppsAllowed(false);
             }
+        } else if (preference == preferenceBackSettings) {
+            finish();
+        } else if (preference == preferenceDevelopmentSettings) {
+            finish();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);

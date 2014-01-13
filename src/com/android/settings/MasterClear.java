@@ -20,14 +20,22 @@ import com.android.internal.os.storage.ExternalStorageFormatter;
 import com.android.internal.widget.LockPatternUtils;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 /**
  * Confirm and execute a reset of the device to a clean "just out of the box"
@@ -52,7 +60,11 @@ public class MasterClear extends Activity {
     private View mFinalView;
     private Button mFinalButton;
 
+    private ImageView imageBackSettings;
+    private RelativeLayout relateBackSetings;
+    private ImageView imgBatteryView;
     private ProgressBar mProgressBarWait;
+    private int batteryBgResourceID = -1;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -111,6 +123,49 @@ public class MasterClear extends Activity {
         }
     }
 
+    private BroadcastReceiver mBatteryInfoReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            int level = intent.getIntExtra("level", 0);
+            int scale = intent.getIntExtra("scale", 100);
+            int status = intent.getIntExtra("status", 0);
+            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+                switch (status) {
+                case BatteryManager.BATTERY_STATUS_UNKNOWN:
+                case BatteryManager.BATTERY_STATUS_NOT_CHARGING:
+                default:
+                    batteryBgResourceID = getChargingIcon((level * 100) / scale);
+                    break;
+                case BatteryManager.BATTERY_STATUS_CHARGING:
+                    batteryBgResourceID = R.drawable.battery7;
+                    break;
+                case BatteryManager.BATTERY_STATUS_FULL:
+                    batteryBgResourceID = R.drawable.battery1;
+                    break;
+                }
+                imgBatteryView.setBackgroundResource(batteryBgResourceID);
+            }
+        }
+    };
+
+    private int getChargingIcon(int batteryHealth) {
+        if (batteryHealth >= 0 && batteryHealth < 20)
+            return R.drawable.battery6;
+        if (batteryHealth >= 20 && batteryHealth < 40)
+            return R.drawable.battery5;
+        if (batteryHealth >= 40 && batteryHealth < 60)
+            return R.drawable.battery4;
+        if (batteryHealth >= 60 && batteryHealth < 80)
+            return R.drawable.battery3;
+        if (batteryHealth >= 80 && batteryHealth < 95)
+            return R.drawable.battery2;
+        if (batteryHealth >= 95 && batteryHealth <= 100)
+            return R.drawable.battery1;
+        else
+            return R.drawable.battery6;
+    }
+
     /**
      * If the user clicks to begin the reset sequence, we next require a
      * keyguard confirmation if the user has currently enabled one.  If there
@@ -137,8 +192,21 @@ public class MasterClear extends Activity {
         }
 
         setContentView(mFinalView);
+
+        imageBackSettings = (ImageView) findViewById(R.id.image_backsettings);
+        relateBackSetings = (RelativeLayout) findViewById(R.id.relate_backsettings);
         mProgressBarWait = (ProgressBar) findViewById(R.id.progressBar_Wait);
+        imgBatteryView = (ImageView) findViewById(R.id.image_battery);
+        imgBatteryView.setBackgroundResource(batteryBgResourceID);
+        if (imageBackSettings != null) {
+            imageBackSettings.setOnClickListener(new BackSettingsOnClickListener());
+        }
+        if (relateBackSetings != null) {
+            relateBackSetings.setOnClickListener(new BackSettingsOnClickListener());
+        }
+
     }
+
 
     /**
      * In its initial state, the activity presents a button for the user to
@@ -171,10 +239,23 @@ public class MasterClear extends Activity {
         }
 
         setContentView(mInitialView);
+
+        imageBackSettings = (ImageView) findViewById(R.id.image_backsettings);
+        relateBackSetings = (RelativeLayout) findViewById(R.id.relate_backsettings);
+        imgBatteryView = (ImageView) findViewById(R.id.image_battery);
+        if (imageBackSettings != null) {
+            imageBackSettings.setOnClickListener(new BackSettingsOnClickListener());
+        }
+        if (relateBackSetings != null) {
+            relateBackSetings.setOnClickListener(new BackSettingsOnClickListener());
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedState);
 
         mInitialView = null;
@@ -183,6 +264,29 @@ public class MasterClear extends Activity {
         mLockUtils = new LockPatternUtils(this);
 
         establishInitialState();
+
+        new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                int level = intent.getIntExtra("level", 0);
+                int scale = intent.getIntExtra("scale", 100);
+                int status = intent.getIntExtra("status", 0);
+                if (status == BatteryManager.BATTERY_STATUS_CHARGING) {
+                    batteryBgResourceID = R.drawable.battery7;
+                } else {
+                    batteryBgResourceID = getChargingIcon((level * 100) / scale);
+                }
+                imgBatteryView.setBackgroundResource(batteryBgResourceID);
+            }
+        };
+    }
+
+    private class BackSettingsOnClickListener implements View.OnClickListener {
+        public void onClick(View view) {
+            Intent intent = new Intent();
+            intent.setClass(MasterClear.this, Settings.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     /** Abandon all progress through the confirmation sequence by returning
@@ -192,8 +296,15 @@ public class MasterClear extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+        unregisterReceiver(mBatteryInfoReceiver);
         if (!isFinishing()) {
             establishFinalConfirmationState();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mBatteryInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 }

@@ -32,6 +32,8 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -55,8 +57,15 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
     long[] mHits = new long[3];
 
+    private ChildTitlePreference preferenceBackSettings;
+    private MyIconPreferenceScreen preferenceStautsInfoSettings;
+    private TitlePreference titlePre;
+
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.device_info_settings);
@@ -72,6 +81,12 @@ public class DeviceInfoSettings extends PreferenceActivity {
             getPreferenceScreen().removePreference(findPreference("system_tutorial"));
         }
 
+        titlePre = (TitlePreference) findPreference("device_title");
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("device_back");
+        preferenceStautsInfoSettings = (MyIconPreferenceScreen)
+                findPreference("status_info");
+
         String buildName = getSystemVersion();
         setStringSummary("firmware_version", Build.VERSION.RELEASE);
         findPreference("firmware_version").setEnabled(true);
@@ -81,6 +96,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
         TelephonyManager tm = (TelephonyManager)
                 getBaseContext().getSystemService("phone");
+
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -100,6 +118,11 @@ public class DeviceInfoSettings extends PreferenceActivity {
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        if (preference == this.preferenceStautsInfoSettings) {
+            finish();
+        } else if (preference == this.preferenceBackSettings) {
+            finish();
+        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -144,4 +167,15 @@ public class DeviceInfoSettings extends PreferenceActivity {
         return version;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Help.startTimerChangeBattery(titlePre);
+    }
 }

@@ -33,6 +33,8 @@ import android.preference.PreferenceScreen;
 import android.preference.CheckBoxPreference;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.view.Window;
+import android.view.WindowManager;
 
 /*
  * Displays preferences for application developers.
@@ -47,6 +49,8 @@ public class DevelopmentSettings extends PreferenceActivity
     private MyCheckBoxPreference mEnableAdb;
     private MyCheckBoxPreference mKeepScreenOn;
     private MyCheckBoxPreference mAllowMockLocation;
+    private ChildTitlePreference preferenceBackSettings;
+    private TitlePreference titlePre;
 
     // To track whether Yes was clicked in the adb warning dialog
     private boolean mOkClicked;
@@ -63,13 +67,28 @@ public class DevelopmentSettings extends PreferenceActivity
 
     @Override
     protected void onCreate(Bundle icicle) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                             WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(icicle);
 
         addPreferencesFromResource(R.xml.development_prefs);
+        preferenceBackSettings = (ChildTitlePreference)
+                findPreference("develop_settings_back");
+
+        titlePre = (TitlePreference) findPreference("develop_settings_title");
+        getListView().setDividerHeight(-1);
+        getListView().setDivider(null);
 
         mEnableAdb = (MyCheckBoxPreference) findPreference(ENABLE_ADB);
         mKeepScreenOn = (MyCheckBoxPreference) findPreference(KEEP_SCREEN_ON);
         mAllowMockLocation = (MyCheckBoxPreference) findPreference(ALLOW_MOCK_LOCATION);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Help.stopTimer();
     }
 
     @Override
@@ -80,6 +99,7 @@ public class DevelopmentSettings extends PreferenceActivity
         filter.addAction(Intent.ACTION_CLOSE_STATUSBAR_USB);
         filter.addAction(Usb.ACTION_USB_STATE);
         registerReceiver(mUsbStateReceiver, filter);
+        Help.startTimerChangeBattery(titlePre);
 
         mEnableAdb.setChecked(Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.ADB_ENABLED, 0) != 0);
@@ -118,6 +138,8 @@ public class DevelopmentSettings extends PreferenceActivity
         } else if (preference == mAllowMockLocation) {
             Settings.Secure.putInt(getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION,
                     mAllowMockLocation.isChecked() ? 1 : 0);
+        } else if (preference == preferenceBackSettings) {
+            finish();
         }
 
         return false;
