@@ -293,6 +293,8 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                     Secure.WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON,
                     mNotifyOpenNetworks.isChecked() ? 1 : 0);
         } else {
+            getListView().requestEpdMode(View.EPD_FULL);
+            getListView().invalidate();
             return super.onPreferenceTreeClick(screen, preference);
         }
         return true;

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -13,6 +14,9 @@ public class SntpServiceReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+            PowerManager pm = (PowerManager) context.getSystemService("power");
+            if (!pm.isScreenOn())
+                return;
             ConnectivityManager cm = (ConnectivityManager)context.getSystemService("connectivity");
             if (cm != null && cm.getActiveNetworkInfo() != null) {
                 NetworkInfo.State state = cm.getActiveNetworkInfo().getState();

@@ -31,17 +31,21 @@ public class Sntp extends Service {
     public void onStart(Intent intent, int startId) {
         super.onStart(intent, startId);
         Log.d(TAG, " start SNTP Service !! ");
-        this.mSntpHandler.post(this.mSntpTask);
+        mSntpHandler.removeCallbacks(mSntpTask);
+        mSntpHandler.post(mSntpTask);
     }
 
     public boolean syncSntp() {
         SntpClient client = new SntpClient();
         if (client.requestTime("ntp.sjtu.edu.cn", 30000)) {
             long now = client.getNtpTime() + SystemClock.elapsedRealtime() - client.getNtpTimeReference();
-            CharSequence ch = DateFormat.format("hh:mm:ss", now);
-            Log.d(TAG, "time=" + ch);
-            CharSequence date = DateFormat.format("yyyy MM dd", now);
-            Log.d(TAG, "date=" + date);
+            long systemTime = System.currentTimeMillis();
+            printTime(now, "now:");
+            printTime(systemTime, "systemTime:");
+            if (systemTime / 60000 == now / 60000) {
+                Log.d(TAG, "skip set time");
+                return true;
+            }
             if (SystemClock.setCurrentTimeMillis(now)) {
                 Log.d(TAG, "set CurrentTimeMillis to " + System.currentTimeMillis());
             } else {
@@ -52,5 +56,11 @@ public class Sntp extends Service {
             Log.d(TAG, "sntp request time failed");
             return false;
         }
+    }
+
+    private void printTime(long time, String prefix) {
+        CharSequence ch = DateFormat.format("hh:mm:ss", time);
+        CharSequence date = DateFormat.format("yyyy MM dd", time);
+        Log.d(TAG, prefix + "time=" + ch + ", date=" + date);
     }
 }
