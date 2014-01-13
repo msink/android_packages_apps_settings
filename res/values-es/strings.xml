@@ -1166,6 +1166,8 @@
     <string name="refresh_times_summary">Seleccionar el intérvalo de refresco</string>
     <string name="epd_full_timeout">Tiempo de exceso para redibujar página</string>
     <string name="epd_full_timeout_summary">Ajustar retraso antes de redibujar página automáticamente</string>
+    <string name="drm_settings">Adobe DRM</string>
+    <string name="adobe_drm_info_default">Contiene la tecnología BeBook® de Adobe Systems Incorporated.</string>
     <string name="shutdown_timeout">Auto apagado</string>
     <string name="shutdown_timeout_summary">El dispositivo se apagará cuando se exceda el tiempo</string>
 </resources>

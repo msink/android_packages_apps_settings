@@ -40,18 +40,6 @@
                 android:targetClass="com.android.settings.DisplaySettings" />
         </com.android.settings.IconPreferenceScreen>
 
-        <!-- Security & Location -->
-
-        <com.android.settings.IconPreferenceScreen
-            settings:icon="@drawable/ic_settings_security"
-            android:title="@string/security_settings_title"
-            android:key="security_settings">
-            <intent
-                android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.settings"
-                android:targetClass="com.android.settings.SecuritySettings" />
-        </com.android.settings.IconPreferenceScreen>
-
         <!-- Application Settings -->
 
         <com.android.settings.IconPreferenceScreen
@@ -62,17 +50,6 @@
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.ApplicationSettings" />
-        </com.android.settings.IconPreferenceScreen>
-
-        <!-- Data Sync. The settings activity will ensure this is resolved to an
-             activity on the system image, otherwise it will remove this
-             preference. -->
-
-        <com.android.settings.IconPreferenceScreen
-            settings:icon="@drawable/ic_settings_sync"
-            android:title="@string/sync_settings"
-            android:key="sync_settings">
-            <intent android:action="android.settings.SYNC_SETTINGS" />
         </com.android.settings.IconPreferenceScreen>
 
         <!-- Privacy -->
@@ -118,17 +95,6 @@
                 android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.VoiceInputOutputSettings" />
-        </com.android.settings.IconPreferenceScreen>
-
-        <!-- Accessibility feedback -->
-
-        <com.android.settings.IconPreferenceScreen
-            settings:icon="@drawable/ic_settings_accessibility"
-            android:title="@string/accessibility_settings">
-            <intent
-                android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.settings"
-                android:targetClass="com.android.settings.AccessibilitySettings" />
         </com.android.settings.IconPreferenceScreen>
 
         <!-- Date & Time -->

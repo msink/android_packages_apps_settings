@@ -657,6 +657,7 @@
     <string name="assisted_gps_disabled" msgid="6982698333968010748">"Использовать сервер для A-GPS (снимите флажок для улучшения работы GPS)"</string>
     <string name="about_settings" msgid="1743378368185371685">"О телефоне"</string>
     <string name="about_settings_summary" msgid="3302263393543848667">"Посмотреть правовую информацию, состояние телефона, версию ПО"</string>
+    <string name="reader_doctor">Читатель доктор</string>
     <string name="legal_information" msgid="5769301644270604095">"Правовая информация"</string>
     <string name="contributors_title" msgid="5917703088825286504">"Участники"</string>
     <string name="copyright_title" msgid="865906688917260647">"Авторские права"</string>
@@ -1171,6 +1172,9 @@
     <string name="refresh_times_summary">Выберите интервал обновления</string>
     <string name="epd_full_timeout">Автоматическое обновление экрана</string>
     <string name="epd_full_timeout_summary">Время автоматического обновления экрана</string>
+    <string name="drm_settings">Adobe DRM</string>
+    <string name="ota_settings">OTA обновление</string>
+    <string name="adobe_drm_info_default">Contains BeBook® Mobile Technology by Adobe Systems Incorporated</string>
     <string name="shutdown_timeout">Автовыключение</string>
     <string name="shutdown_timeout_summary">Время автоматического отключения при бездействии</string>
 </resources>

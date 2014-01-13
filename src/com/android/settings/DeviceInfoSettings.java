@@ -29,6 +29,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -50,6 +51,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
     private static final String KEY_COPYRIGHT = "copyright";
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
+    private static final String PRODUCT_VERSION = SystemProperties.get("product.version", "default");
 
     long[] mHits = new long[3];
 
@@ -70,12 +72,15 @@ public class DeviceInfoSettings extends PreferenceActivity {
             getPreferenceScreen().removePreference(findPreference("system_tutorial"));
         }
 
+        String buildName = getSystemVersion();
         setStringSummary("firmware_version", Build.VERSION.RELEASE);
         findPreference("firmware_version").setEnabled(true);
-        setValueSummary("baseband_version", "gsm.version.baseband");
-        setStringSummary("device_model", Build.MODEL);
-        setStringSummary("build_number", Build.DISPLAY);
-        findPreference("kernel_version").setSummary(getFormattedKernelVersion());
+        setStringSummary("device_model", "TB-176FL");
+        findPreference("kernel_version").setSummary("2.6.35");
+        setStringSummary("build_number", buildName);
+
+        TelephonyManager tm = (TelephonyManager)
+                getBaseContext().getSystemService("phone");
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -86,41 +91,15 @@ public class DeviceInfoSettings extends PreferenceActivity {
          * info.
          */
 
-        // These are contained in the "container" preference group
-        PreferenceGroup parentPreference = (PreferenceGroup) findPreference(KEY_CONTAINER);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_TERMS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_LICENSE,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_COPYRIGHT,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_TEAM,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-
         // These are contained by the root preference screen
-        parentPreference = getPreferenceScreen();
+        PreferenceGroup parentPreference = getPreferenceScreen();
         Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
                 KEY_SYSTEM_UPDATE_SETTINGS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
     }
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference.getKey().equals("firmware_version")) {
-            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
-            mHits[mHits.length-1] = SystemClock.uptimeMillis();
-            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.setClassName("android",
-                        com.android.internal.app.PlatLogoActivity.class.getName());
-                try {
-                    startActivity(intent);
-                } catch (Exception e) {
-                }
-            }
-        }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
@@ -157,49 +136,12 @@ public class DeviceInfoSettings extends PreferenceActivity {
         }
     }
 
-    private String getFormattedKernelVersion() {
-        String procVersionStr;
-
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("/proc/version"), 256);
-            try {
-                procVersionStr = reader.readLine();
-            } finally {
-                reader.close();
-            }
-
-            final String PROC_VERSION_REGEX =
-                "\\w+\\s+" + /* ignore: Linux */
-                "\\w+\\s+" + /* ignore: version */
-                "([^\\s]+)\\s+" + /* group 1: 2.6.22-omap1 */
-                "\\(([^\\s@]+(?:@[^\\s.]+)?)[^)]*\\)\\s+" + /* group 2: (xxxxxx@xxxxx.constant) */
-                "\\((?:[^(]*\\([^)]*\\))?[^)]*\\)\\s+" + /* ignore: (gcc ..) */
-                "([^\\s]+)\\s+" + /* group 3: #26 */
-                "(?:PREEMPT\\s+)?" + /* ignore: PREEMPT (optional) */
-                "(.+)"; /* group 4: date */
-
-            Pattern p = Pattern.compile(PROC_VERSION_REGEX);
-            Matcher m = p.matcher(procVersionStr);
-
-            if (!m.matches()) {
-                Log.e(TAG, "Regex did not match on /proc/version: " + procVersionStr);
-                return "Unavailable";
-            } else if (m.groupCount() < 4) {
-                Log.e(TAG, "Regex match on /proc/version only returned " + m.groupCount()
-                        + " groups");
-                return "Unavailable";
-            } else {
-                return (new StringBuilder(m.group(1)).append("\n").append(
-                        m.group(2)).append(" ").append(m.group(3)).append("\n")
-                        .append(m.group(4))).toString();
-            }
-        } catch (IOException e) {
-            Log.e(TAG,
-                "IO Exception when getting kernel version for Device Info screen",
-                e);
-
-            return "Unavailable";
+    public String getSystemVersion() {
+        String version = SystemProperties.get("ro.product.version");
+        if (version == null || version.length() == 0) {
+            version = "1.0.0";
         }
+        return version;
     }
 
 }
