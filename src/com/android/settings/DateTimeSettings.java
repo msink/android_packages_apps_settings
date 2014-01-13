@@ -57,12 +57,12 @@ public class DateTimeSettings
     private static final int DIALOG_DATEPICKER = 0;
     private static final int DIALOG_TIMEPICKER = 1;
     
-    private CheckBoxPreference mAutoPref;
-    private Preference mTimePref;
-    private Preference mTime24Pref;
-    private Preference mTimeZone;
-    private Preference mDatePref;
-    private ListPreference mDateFormat;
+    private MyCheckBoxPreference mAutoPref;
+    private MyIconPreferenceScreen mTimePref;
+    private MyCheckBoxPreference mTime24Pref;
+    private MyIconPreferenceScreen mTimeZone;
+    private MyIconPreferenceScreen mDatePref;
+    private MyListPreference mDateFormat;
     
     @Override
     protected void onCreate(Bundle icicle) {
@@ -79,13 +79,13 @@ public class DateTimeSettings
         mDummyDate = Calendar.getInstance();
         mDummyDate.set(mDummyDate.get(Calendar.YEAR), 11, 31, 13, 0, 0);
         
-        mAutoPref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME);
+        mAutoPref = (MyCheckBoxPreference) findPreference(KEY_AUTO_TIME);
         mAutoPref.setChecked(autoEnabled);
-        mTimePref = findPreference("time");
-        mTime24Pref = findPreference("24 hour");
-        mTimeZone = findPreference("timezone");
-        mDatePref = findPreference("date");
-        mDateFormat = (ListPreference) findPreference(KEY_DATE_FORMAT);
+        mTimePref = (MyIconPreferenceScreen) findPreference("time");
+        mTime24Pref = (MyCheckBoxPreference) findPreference("24 hour");
+        mTimeZone = (MyIconPreferenceScreen) findPreference("timezone");
+        mDatePref = (MyIconPreferenceScreen) findPreference("date");
+        mDateFormat = (MyListPreference) findPreference(KEY_DATE_FORMAT);
         
         String [] dateFormats = getResources().getStringArray(R.array.date_format_values);
         String [] formattedDates = new String[dateFormats.length];
@@ -124,7 +124,7 @@ public class DateTimeSettings
         
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
 
-        ((CheckBoxPreference)mTime24Pref).setChecked(is24Hour());
+        ((MyCheckBoxPreference)mTime24Pref).setChecked(is24Hour());
 
         // Register for time ticks and other reasons for time change
         IntentFilter filter = new IntentFilter();
@@ -217,7 +217,7 @@ public class DateTimeSettings
         switch (id) {
         case DIALOG_DATEPICKER: {
             final Calendar calendar = Calendar.getInstance();
-            d = new DatePickerDialog(
+            d = new MyDatePickerDialog(
                 this,
                 this,
                 calendar.get(Calendar.YEAR),
@@ -249,7 +249,7 @@ public class DateTimeSettings
     public void onPrepareDialog(int id, Dialog d) {
         switch (id) {
         case DIALOG_DATEPICKER: {
-            DatePickerDialog datePicker = (DatePickerDialog)d;
+            MyDatePickerDialog datePicker = (MyDatePickerDialog)d;
             final Calendar calendar = Calendar.getInstance();
             datePicker.updateDate(
                     calendar.get(Calendar.YEAR),

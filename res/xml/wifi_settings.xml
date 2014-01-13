@@ -15,19 +15,18 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/wifi_settings_category">
 
-    <CheckBoxPreference
+    <com.android.settings.MyCheckBoxPreference
             android:key="enable_wifi"
             android:title="@string/wifi_quick_toggle_title"
-            android:summary="@string/wifi_quick_toggle_summary"
             android:persistent="false" />
 
-    <CheckBoxPreference
+    <com.android.settings.MyCheckBoxPreference
             android:key="notify_open_networks"
             android:dependency="enable_wifi"
             android:title="@string/wifi_notify_open_networks"
-            android:summary="@string/wifi_notify_open_networks_summary"
             android:persistent="false" />
 
     <com.android.settings.ProgressCategory
@@ -36,7 +35,8 @@
             android:title="@string/wifi_access_points"
             android:persistent="false" />
 
-    <Preference
+    <com.android.settings.MyIconPreferenceScreen
+            settings:bg="@drawable/settings_wifi_bg"
             android:key="add_network"
             android:dependency="enable_wifi"
             android:title="@string/wifi_add_network"

@@ -126,7 +126,7 @@ public class WifiApEnabler implements Preference.OnPreferenceChangeListener {
             /* Disable here, enabled on receiving success broadcast */
             mCheckBox.setEnabled(false);
         } else {
-            mCheckBox.setSummary(R.string.wifi_error);
+            mCheckBox.setSummary(null);
         }
 
         /**
@@ -151,9 +151,7 @@ public class WifiApEnabler implements Preference.OnPreferenceChangeListener {
     void updateConfigSummary(WifiConfiguration wifiConfig) {
         String s = mContext.getString(
                 com.android.internal.R.string.wifi_tether_configure_ssid_default);
-        mCheckBox.setSummary(String.format(
-                    mContext.getString(R.string.wifi_tether_enabled_subtext),
-                    (wifiConfig == null) ? s : wifiConfig.SSID));
+        mCheckBox.setSummary(null);
     }
 
     private void updateTetherState(Object[] available, Object[] tethered, Object[] errored) {
@@ -177,14 +175,14 @@ public class WifiApEnabler implements Preference.OnPreferenceChangeListener {
             WifiConfiguration wifiConfig = mWifiManager.getWifiApConfiguration();
             updateConfigSummary(wifiConfig);
         } else if (wifiErrored) {
-            mCheckBox.setSummary(R.string.wifi_error);
+            mCheckBox.setSummary(null);
         }
     }
 
     private void handleWifiApStateChanged(int state) {
         switch (state) {
             case WifiManager.WIFI_AP_STATE_ENABLING:
-                mCheckBox.setSummary(R.string.wifi_starting);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(false);
                 break;
             case WifiManager.WIFI_AP_STATE_ENABLED:
@@ -197,17 +195,17 @@ public class WifiApEnabler implements Preference.OnPreferenceChangeListener {
                 mCheckBox.setEnabled(true);
                 break;
             case WifiManager.WIFI_AP_STATE_DISABLING:
-                mCheckBox.setSummary(R.string.wifi_stopping);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(false);
                 break;
             case WifiManager.WIFI_AP_STATE_DISABLED:
                 mCheckBox.setChecked(false);
-                mCheckBox.setSummary(mOriginalSummary);
+                mCheckBox.setSummary(null);
                 enableWifiCheckBox();
                 break;
             default:
                 mCheckBox.setChecked(false);
-                mCheckBox.setSummary(R.string.wifi_error);
+                mCheckBox.setSummary(null);
                 enableWifiCheckBox();
         }
     }

@@ -14,15 +14,16 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
         <!-- Factory reset -->
-        <PreferenceScreen
+        <com.android.settings.MyIconPreferenceScreen
                 android:title="@string/master_clear_title"
                 android:summary="@string/master_clear_summary">
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="com.android.settings"
                     android:targetClass="com.android.settings.MasterClear" />
-        </PreferenceScreen>
+        </com.android.settings.MyIconPreferenceScreen>
 
 </PreferenceScreen>

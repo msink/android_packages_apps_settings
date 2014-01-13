@@ -44,9 +44,9 @@ public class ApplicationSettings extends PreferenceActivity implements
     private static final String APP_INSTALL_SDCARD_ID = "sdcard";
     private static final String APP_INSTALL_AUTO_ID = "auto";
     
-    private CheckBoxPreference mToggleAppInstallation;
+    private MyCheckBoxPreference mToggleAppInstallation;
 
-    private ListPreference mInstallLocation;
+    private MyListPreference mInstallLocation;
 
     private DialogInterface mWarnInstallApps;
 
@@ -56,10 +56,10 @@ public class ApplicationSettings extends PreferenceActivity implements
 
         addPreferencesFromResource(R.xml.application_settings);
 
-        mToggleAppInstallation = (CheckBoxPreference) findPreference(KEY_TOGGLE_INSTALL_APPLICATIONS);
+        mToggleAppInstallation = (MyCheckBoxPreference) findPreference(KEY_TOGGLE_INSTALL_APPLICATIONS);
         mToggleAppInstallation.setChecked(isNonMarketAppsAllowed());
 
-        mInstallLocation = (ListPreference) findPreference(KEY_APP_INSTALL_LOCATION);
+        mInstallLocation = (MyListPreference) findPreference(KEY_APP_INSTALL_LOCATION);
         // Is app default install location set?
         boolean userSetInstLocation = (Settings.System.getInt(getContentResolver(),
                 Settings.Secure.SET_INSTALL_LOCATION, 0) != 0);

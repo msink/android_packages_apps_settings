@@ -23,6 +23,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemProperties;
@@ -57,6 +58,10 @@ public class LanguageSettings extends PreferenceActivity {
     
     private String mLastInputMethodId;
     private String mLastTickedInputMethodId;
+
+    private Drawable mTopDrawable;
+    private Drawable mMidDrawable;
+    private Drawable mBotDrawable;
     
     static public String getInputMethodIdFromKey(String key) {
         return key;
@@ -74,6 +79,10 @@ public class LanguageSettings extends PreferenceActivity {
         } else {
             mLanguagePref = findPreference(KEY_PHONE_LANGUAGE);
         }
+
+        mTopDrawable = getResources().getDrawable(R.drawable.settings_bg_top);
+        mMidDrawable = getResources().getDrawable(R.drawable.settings_bg_mid);
+        mBotDrawable = getResources().getDrawable(R.drawable.settings_bg_bottom);
 
         Configuration config = getResources().getConfiguration();
         if (config.keyboard != Configuration.KEYBOARD_QWERTY) {
@@ -113,16 +122,22 @@ public class LanguageSettings extends PreferenceActivity {
             // Add a check box.
             // Don't show the toggle if it's the only keyboard in the system, or it's a system IME.
             if (mHaveHardKeyboard || (N > 1 && !systemIME)) {
-                CheckBoxPreference chkbxPref = new CheckBoxPreference(this);
+                MyCheckBoxPreference chkbxPref = new MyCheckBoxPreference(this);
                 chkbxPref.setKey(prefKey);
                 chkbxPref.setTitle(label);
                 /*keyboardSettingsCategory.addPreference(chkbxPref);*/
                 mCheckboxes.add(chkbxPref);
+                if (i == 0)
+                    /*chkbxPref.setIcon(mTopDrawable)*/;
+                if (i == N - 1)
+                    /*chkbxPref.setIcon(mBotDrawable)*/;
+                if (i != 0 && i != N - 1)
+                    /*chkbxPref.setIcon(mMidDrawable)*/;
             }
 
             // If setting activity is available, add a setting screen entry.
             if (null != property.getSettingsActivity()) {
-                PreferenceScreen prefScreen = new PreferenceScreen(this, null);
+                MyIconPreferenceScreen prefScreen = new MyIconPreferenceScreen(this, null, 0);
                 String settingsActivity = property.getSettingsActivity();
                 if (settingsActivity.lastIndexOf("/") < 0) {
                     settingsActivity = property.getPackageName() + "/" + settingsActivity;
@@ -136,6 +151,12 @@ public class LanguageSettings extends PreferenceActivity {
                             R.string.input_methods_settings_label_format, label);
                     prefScreen.setSummary(settingsLabel);
                 }
+                if (i == 0)
+                    /*prefScreen.setmBg(mTopDrawable)*/;
+                if (i == N - 1)
+                    /*prefScreen.setmBg(mBotDrawable)*/;
+                if (i != 0 && i != N - 1)
+                    /*prefScreen.setmBg(mMidDrawable)*/;
                 /*keyboardSettingsCategory.addPreference(prefScreen)*/;
             }
         }
@@ -237,8 +258,8 @@ public class LanguageSettings extends PreferenceActivity {
             return false;
         }
 
-        if (preference instanceof CheckBoxPreference) {
-            final CheckBoxPreference chkPref = (CheckBoxPreference) preference;
+        if (preference instanceof MyCheckBoxPreference) {
+            final MyCheckBoxPreference chkPref = (MyCheckBoxPreference) preference;
             final String id = getInputMethodIdFromKey(chkPref.getKey());
             if (chkPref.isChecked()) {
                 InputMethodInfo selImi = null;
@@ -284,9 +305,9 @@ public class LanguageSettings extends PreferenceActivity {
             } else if (id.equals(mLastTickedInputMethodId)) {
                 mLastTickedInputMethodId = null;
             }
-        } else if (preference instanceof PreferenceScreen) {
+        } else if (preference instanceof MyIconPreferenceScreen) {
             if (preference.getIntent() == null) {
-                PreferenceScreen pref = (PreferenceScreen) preference;
+                MyIconPreferenceScreen pref = (MyIconPreferenceScreen) preference;
                 String activityName = pref.getKey();
               if (activityName != null) {
                 String packageName = activityName.substring(0, activityName

@@ -35,31 +35,53 @@
                 android:orientation="vertical"
                 android:visibility="gone">
 
+          <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
             <TextView
                     style="?android:attr/textAppearanceSmallInverse"
-                    android:layout_width="match_parent"
+                    android:layout_width="150px"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
                     android:layout_marginTop="8dip"
+                    android:textSize="20sp"
+                    android:singleLine="true"
                     android:text="@string/wifi_ssid" />
 
             <EditText android:id="@+id/ssid"
-                    android:layout_width="match_parent"
+                    android:layout_width="350px"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
+                    android:layout_marginTop="8dip"
                     android:inputType="textNoSuggestions" />
+
+          </LinearLayout>
+
+          <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <TextView
                     style="?android:attr/textAppearanceSmallInverse"
-                    android:layout_width="match_parent"
+                    android:layout_width="150px"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10px"
                     android:layout_marginTop="8dip"
+                    android:textSize="20sp"
+                    android:singleLine="true"
                     android:text="@string/wifi_security" />
 
             <Spinner android:id="@+id/security"
-                    android:layout_width="match_parent"
+                    android:layout_width="350px"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dip"
+                    android:singleLine="true"
                     android:prompt="@string/wifi_security"
                     android:entries="@array/wifi_security" />
+
+          </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout android:id="@+id/fields"
@@ -151,23 +173,34 @@
                         android:inputType="textNoSuggestions" />
             </LinearLayout>
 
+          <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4px">
+
             <TextView
-                    style="?android:attr/textAppearanceSmallInverse"
-                    android:layout_width="match_parent"
+                    android:layout_width="150px"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dip"
+                    android:layout_marginLeft="5px"
+                    android:layout_marginTop="8dip"
+                    android:textSize="22sp"
+                    android:textColor="#000"
                     android:text="@string/wifi_password" />
 
             <EditText android:id="@+id/password"
-                    android:layout_width="match_parent"
+                    android:layout_width="350px"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
                     android:password="true" />
+
+          </LinearLayout>
 
             <CheckBox android:id="@+id/show_password"
                     style="?android:attr/textAppearanceSmallInverse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="150px"
+                    android:layout_marginTop="10px"
                     android:text="@string/wifi_show_password" />
         </LinearLayout>
     </LinearLayout>

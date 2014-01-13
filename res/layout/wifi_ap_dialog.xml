@@ -53,11 +53,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dip"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:singleLine="true"
                     android:text="@string/wifi_security" />
 
             <Spinner android:id="@+id/security"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:prompt="@string/wifi_security"
                     android:entries="@array/wifi_ap_security" />
         </LinearLayout>
@@ -69,10 +73,12 @@
                 android:visibility="gone">
 
             <TextView
-                    style="?android:attr/textAppearanceSmallInverse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dip"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:singleLine="true"
                     android:text="@string/wifi_password" />
 
             <EditText android:id="@+id/password"
@@ -93,6 +99,7 @@
                     style="?android:attr/textAppearanceSmallInverse"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dip"
                     android:text="@string/wifi_show_password" />
         </LinearLayout>
     </LinearLayout>

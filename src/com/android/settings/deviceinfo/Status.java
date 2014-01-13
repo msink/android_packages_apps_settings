@@ -42,6 +42,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.PhoneStateIntentReceiver;
 import com.android.internal.telephony.TelephonyProperties;
+import com.android.settings.MyIconPreferenceScreen;
 import com.android.settings.R;
 
 import java.lang.ref.WeakReference;
@@ -69,8 +70,8 @@ public class Status extends PreferenceActivity {
 
     private static final int EVENT_UPDATE_STATS = 500;
 
-    private Preference mBatteryStatus;
-    private Preference mBatteryLevel;
+    private MyIconPreferenceScreen mBatteryStatus;
+    private MyIconPreferenceScreen mBatteryLevel;
 
     private static class MyHandler extends Handler {
         private WeakReference<Status> mStatus;
@@ -137,8 +138,8 @@ public class Status extends PreferenceActivity {
         Preference removablePref;
 
         addPreferencesFromResource(R.xml.device_info_status);
-        mBatteryLevel = findPreference("battery_level");
-        mBatteryStatus = findPreference("battery_status");
+        mBatteryLevel = (MyIconPreferenceScreen) findPreference("battery_level");
+        mBatteryStatus = (MyIconPreferenceScreen) findPreference("battery_status");
         
         setWifiStatus();
         setBtStatus();

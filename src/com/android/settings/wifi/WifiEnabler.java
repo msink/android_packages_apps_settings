@@ -103,7 +103,7 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
         if (mWifiManager.setWifiEnabled(enable)) {
             mCheckBox.setEnabled(false);
         } else {
-            mCheckBox.setSummary(R.string.wifi_error);
+            mCheckBox.setSummary(null);
         }
 
         // Don't update UI to opposite state until we're sure
@@ -113,7 +113,7 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
     private void handleWifiStateChanged(int state) {
         switch (state) {
             case WifiManager.WIFI_STATE_ENABLING:
-                mCheckBox.setSummary(R.string.wifi_starting);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(false);
                 break;
             case WifiManager.WIFI_STATE_ENABLED:
@@ -122,17 +122,17 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
                 mCheckBox.setEnabled(true);
                 break;
             case WifiManager.WIFI_STATE_DISABLING:
-                mCheckBox.setSummary(R.string.wifi_stopping);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(false);
                 break;
             case WifiManager.WIFI_STATE_DISABLED:
                 mCheckBox.setChecked(false);
-                mCheckBox.setSummary(mOriginalSummary);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(true);
                 break;
             default:
                 mCheckBox.setChecked(false);
-                mCheckBox.setSummary(R.string.wifi_error);
+                mCheckBox.setSummary(null);
                 mCheckBox.setEnabled(true);
         }
     }
@@ -143,7 +143,7 @@ public class WifiEnabler implements Preference.OnPreferenceChangeListener {
         if (state != null && mCheckBox.isChecked()) {
             WifiInfo info = mWifiManager.getConnectionInfo();
             if (info != null) {
-                mCheckBox.setSummary(Summary.get(mContext, info.getSSID(), state));
+                mCheckBox.setSummary(null);
             }
         }
     }

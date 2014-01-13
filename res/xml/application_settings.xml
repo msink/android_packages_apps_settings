@@ -15,18 +15,19 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
         android:title="@string/applications_settings_header"
         android:summary="@string/applications_settings_summary"
         android:key="applications_settings">
 
-    <CheckBoxPreference
+    <com.android.settings.MyCheckBoxPreference
             android:key="toggle_install_applications"
             android:title="@string/install_applications"
             android:summaryOff="@string/install_unknown_applications"
             android:summaryOn="@string/install_unknown_applications"
             android:persistent="false" />
 
-    <ListPreference
+    <com.android.settings.MyListPreference
         android:key="app_install_location"
         android:title="@string/app_install_location_title"
         android:summary="@string/app_install_location_summary"
@@ -34,31 +35,31 @@
         android:entries="@array/app_install_location_entries"
         android:entryValues="@array/app_install_location_values"/>
 
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
             android:key="quick_launch"
             android:title="@string/quick_launch_title"
             android:summary="@string/quick_launch_summary">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.quicklaunch.QuickLaunchSettings" />
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
         
-    <PreferenceScreen
+    <com.android.settings.MyIconPreferenceScreen
             android:title="@string/manageapplications_settings_title"
             android:summary="@string/manageapplications_settings_summary">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.ManageApplications" />
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
 
-    <PreferenceScreen 
+    <com.android.settings.MyIconPreferenceScreen
             android:key="development_setting"
             android:title="@string/development_settings_title" 
             android:summary="@string/development_settings_summary">
         <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.DevelopmentSettings" />
-    </PreferenceScreen>
+    </com.android.settings.MyIconPreferenceScreen>
     
 </PreferenceScreen>
 

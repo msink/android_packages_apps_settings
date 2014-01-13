@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mylinearcheck"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:paddingRight="?android:scrollbarSize"
+    android:minHeight="?android:listPreferredItemHeight">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30px"
+            android:layout_marginTop="5px"
+            android:layout_alignParentLeft="true">
+
+            <TextView android:id="@android:id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="500.0px"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:singleLine="true"
+                />
+            <TextView android:id="@android:id/summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@*android:id/title"
+                android:layout_alignLeft="@*android:id/title"
+                android:maxWidth="500px"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:maxLines="2"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+        <CheckBox android:id="@android:id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5px"
+            android:layout_marginRight="25px"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:focusable="false"
+            android:clickable="false"
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="563px"
+        android:layout_height="1px"
+        android:layout_marginTop="8px"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="5px"
+        android:paddingTop="5px"
+        android:src="#000"
+        />
+
+</LinearLayout>

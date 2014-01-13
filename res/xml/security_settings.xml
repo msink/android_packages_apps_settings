@@ -14,13 +14,15 @@
      limitations under the License.
 -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceCategory
         android:key="location_category"
         android:title="@string/location_title">
 
-        <CheckBoxPreference
+        <com.android.settings.MyCheckBoxPreference
+            settings:checkbg="@drawable/settings_bg_top"
             android:key="location_network"
             android:title="@string/location_network_based"
             android:summaryOn="@string/location_neighborhood_level"

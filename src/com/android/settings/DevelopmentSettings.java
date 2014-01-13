@@ -44,9 +44,9 @@ public class DevelopmentSettings extends PreferenceActivity
     private static final String KEEP_SCREEN_ON = "keep_screen_on";
     private static final String ALLOW_MOCK_LOCATION = "allow_mock_location";
 
-    private CheckBoxPreference mEnableAdb;
-    private CheckBoxPreference mKeepScreenOn;
-    private CheckBoxPreference mAllowMockLocation;
+    private MyCheckBoxPreference mEnableAdb;
+    private MyCheckBoxPreference mKeepScreenOn;
+    private MyCheckBoxPreference mAllowMockLocation;
 
     // To track whether Yes was clicked in the adb warning dialog
     private boolean mOkClicked;
@@ -67,9 +67,9 @@ public class DevelopmentSettings extends PreferenceActivity
 
         addPreferencesFromResource(R.xml.development_prefs);
 
-        mEnableAdb = (CheckBoxPreference) findPreference(ENABLE_ADB);
-        mKeepScreenOn = (CheckBoxPreference) findPreference(KEEP_SCREEN_ON);
-        mAllowMockLocation = (CheckBoxPreference) findPreference(ALLOW_MOCK_LOCATION);
+        mEnableAdb = (MyCheckBoxPreference) findPreference(ENABLE_ADB);
+        mKeepScreenOn = (MyCheckBoxPreference) findPreference(KEEP_SCREEN_ON);
+        mAllowMockLocation = (MyCheckBoxPreference) findPreference(ALLOW_MOCK_LOCATION);
     }
 
     @Override
