@@ -51,6 +51,7 @@ public class Help {
 
     public static void stopTimer() {
         if (mTimerTask != null) {
+            System.out.println(" stop Timer null");
             mTimerTask.cancel();
             mTimer.cancel();
             mTimerTask = null;

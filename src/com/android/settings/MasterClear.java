@@ -111,14 +111,17 @@ public class MasterClear extends Activity {
         if (requestCode != KEYGUARD_REQUEST) {
             return;
         }
+        System.out.println("-shy settings masterClear-----------resultCode--" + resultCode);
 
         // If the user entered a valid keyguard trace, present the final
         // confirmation prompt; otherwise, go back to the initial state.
         if (resultCode == Activity.RESULT_OK) {
             /*establishFinalConfirmationState()*/;
         } else if (resultCode == Activity.RESULT_CANCELED) {
+            System.out.println("-shy settings masterClear-------------------------------");
             finish();
         } else {
+            System.out.println("-shy settings onActivityResult-------------------establishInitialState------------");
             /*establishInitialState()*/;
         }
     }
@@ -191,6 +194,7 @@ public class MasterClear extends Activity {
             mFinalButton.requestFocus();
         }
 
+        System.out.println("-shy settings masterClear--------------establishFinalConfirmationState-----------------");
         setContentView(mFinalView);
 
         imageBackSettings = (ImageView) findViewById(R.id.image_backsettings);
@@ -238,6 +242,7 @@ public class MasterClear extends Activity {
             });
         }
 
+        System.out.println("-shy settings masterClear--------------establishInitialState-----------------");
         setContentView(mInitialView);
 
         imageBackSettings = (ImageView) findViewById(R.id.image_backsettings);
@@ -285,6 +290,7 @@ public class MasterClear extends Activity {
             Intent intent = new Intent();
             intent.setClass(MasterClear.this, Settings.class);
             startActivity(intent);
+            System.out.println("+shy settings masterClear-++++++++++++++++=");
             finish();
         }
     }
@@ -297,6 +303,7 @@ public class MasterClear extends Activity {
     public void onPause() {
         super.onPause();
         unregisterReceiver(mBatteryInfoReceiver);
+        System.out.println("+shy settings onPause-++++++++++isFinishing+=" + isFinishing());
         if (!isFinishing()) {
             establishFinalConfirmationState();
         }

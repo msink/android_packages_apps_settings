@@ -191,6 +191,7 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
         if (preference == mSdMountToggle) {
             String status = SystemProperties.get("EXTERNAL_STORAGE_STATE",
                                                  Environment.MEDIA_UNMOUNTED);
+            System.out.println("shy Memory onPreferenceTreeClick status ==" + status);
             if (status.equals(Environment.MEDIA_MOUNTED)) {
                 unmount();
             } else {
@@ -313,6 +314,7 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
         Log.d(TAG, "set sdcardUnavailable");
         mSdSize.setSummary(mRes.getString(R.string.sd_unavailable));
         mSdAvail.setSummary(mRes.getString(R.string.sd_unavailable));
+        System.out.println("shy Memory sdcardUnavailable status ==" + status);
         if (!Environment.isExternalStorageRemovable() &&
                 status.equals(Environment.MEDIA_UNMOUNTED) && !mSdMountToggleAdded) {
             mSdMountPreferenceGroup.addPreference(mSdMountToggle);
@@ -335,6 +337,7 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
     private void updateMemoryStatus(String path) {
         String status = SystemProperties.get("EXTERNAL_STORAGE_STATE",
                                              Environment.MEDIA_UNMOUNTED);
+        System.out.println("shy Memory updateMemoryStatus status ==" + status);
         if (path.equals(Environment.getFlashStorageDirectory().getPath())) {
             status = Environment.getFlashStorageState();
         }
@@ -345,6 +348,7 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             readOnly = mRes.getString(R.string.read_only);
         }
  
+        System.out.println("shy Memory updateMemoryStatus  22 status ==" + status);
         if (status.equals(Environment.MEDIA_MOUNTED)) {
 
             if (path.equals(android.os.Environment.getExternalStorageDirectory().getPath())) {

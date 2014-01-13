@@ -15,10 +15,12 @@ public class ShutDownActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                              WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        System.out.println("shy auto shutdown -----");
         ShutdownThread.beginShutdownSequence(getBaseContext());
     }
     Runnable UpdateThread = new Runnable() {
         public void run() {
+            System.out.println("shy auto shutdown ----++++++++++++-");
             ShutdownThread.shutdown(ShutDownActivity.this, true);
             handlerUpdate.removeCallbacks(UpdateThread);
         }

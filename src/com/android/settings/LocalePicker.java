@@ -93,6 +93,7 @@ public class LocalePicker extends ListActivity {
                     editor.putString("SystemLanuage", str);
                     editor.commit();
                 } catch (NumberFormatException e) {
+                    System.out.println("shy language error could not persist SystemLanuage setting--->" + e);
                 }
             }
         }
@@ -205,6 +206,7 @@ public class LocalePicker extends ListActivity {
                 editor.putString("SystemLanuage", config.locale.toString());
                 editor.commit();
             } catch (NumberFormatException e) {
+                System.out.println("shy language error could not persist SystemLanuage setting--->" + e);
             }
 
             am.updateConfiguration(config);
@@ -212,6 +214,7 @@ public class LocalePicker extends ListActivity {
             BackupManager.dataChanged("com.android.providers.settings");
         } catch (RemoteException e) {
             // Intentionally left blank
+            System.out.println("shy could not persist SystemLanuage setting--->" + e);
         }
         finish();
     }

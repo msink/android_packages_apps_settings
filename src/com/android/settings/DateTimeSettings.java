@@ -103,15 +103,18 @@ public class DateTimeSettings
         String [] dateFormats = getResources().getStringArray(R.array.date_format_values);
         String [] formattedDates = new String[dateFormats.length];
         String currentFormat = getDateFormat();
+        System.out.println("shy DateTimeSettings currentFormat==" + currentFormat);
         // Initialize if DATE_FORMAT is not set in the system settings
         // This can happen after a factory reset (or data wipe)
         if (currentFormat == null) {
             currentFormat = "dd-MM-yyyy";
         }
+        System.out.println("shy DateTimeSettings formattedDates.length==" + formattedDates.length);
         for (int i = 0; i < formattedDates.length; i++) {
             String formatted =
                 DateFormat.getDateFormatForSetting(this, dateFormats[i]).
                     format(mDummyDate.getTime());
+            System.out.println("shy DateTimeSettings formatted==" + formatted);
 
             if (dateFormats[i].length() == 0) {
                 formattedDates[i] = getResources().
@@ -119,6 +122,7 @@ public class DateTimeSettings
             } else {
                 formattedDates[i] = formatted;
             }
+            System.out.println("shy DateTimeSettings formatted 2==" + formatted);
         }
         
         mDateFormat.setEntries(getResources().getStringArray(R.array.date_format_entries));
@@ -365,6 +369,7 @@ public class DateTimeSettings
             append(", ").
             append(tz.getDisplayName(daylight, TimeZone.LONG));
 
+        System.out.println("shy DateTimeSettings --timezone==" + sb.toString());
         timezone = sb.toString().replace("2", "1");
         return timezone;
     }
