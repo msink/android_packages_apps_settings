@@ -1162,4 +1162,8 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Llamadas entrantes"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Notificaciones"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Respuesta del teléfono"</string>
+    <string name="refresh_settings">Modo refresco</string>
+    <string name="refresh_times_summary">Seleccionar el intérvalo de refresco</string>
+    <string name="epd_full_timeout">Tiempo de exceso para redibujar página</string>
+    <string name="epd_full_timeout_summary">Ajustar retraso antes de redibujar página automáticamente</string>
 </resources>

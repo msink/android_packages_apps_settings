@@ -47,6 +47,12 @@
     <item msgid="5721688686241190620">"10 минут"</item>
     <item msgid="7156442995039264948">"30 минут"</item>
   </string-array>
+  <string-array name="refresh_times_entries">
+    <item>Каждую страницу</item>
+    <item>Каждые 3 страницы</item>
+    <item>Каждые 5 страниц</item>
+    <item>Каждые 10 страниц</item>
+  </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Очень медленная"</item>
     <item msgid="2361722960903353554">"Медленная"</item>

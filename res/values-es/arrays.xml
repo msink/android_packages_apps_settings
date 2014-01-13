@@ -47,6 +47,12 @@
     <item msgid="5721688686241190620">"10 minutos"</item>
     <item msgid="7156442995039264948">"30 minutos"</item>
   </string-array>
+  <string-array name="refresh_times_entries">
+    <item>Después 1 pág</item>
+    <item>Después 3 págs</item>
+    <item>Después 5 págs</item>
+    <item>Después 10 págs</item>
+  </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Muy lenta"</item>
     <item msgid="2361722960903353554">"Lenta"</item>

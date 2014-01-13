@@ -1167,4 +1167,8 @@
     <string name="nand_format_2">Очистить память</string>
     <string name="nand_format_summary">Удалить всю информацию из памяти, включая книги?</string>
     <string name="nand_unavailable">Недоступно</string>
+    <string name="refresh_settings">Режим обновления</string>
+    <string name="refresh_times_summary">Выберите интервал обновления</string>
+    <string name="epd_full_timeout">Автоматическое обновление экрана</string>
+    <string name="epd_full_timeout_summary">Время автоматического обновления экрана</string>
 </resources>

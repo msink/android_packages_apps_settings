@@ -47,6 +47,12 @@
     <item msgid="5721688686241190620">"10 minutos"</item>
     <item msgid="7156442995039264948">"30 minutos"</item>
   </string-array>
+  <string-array name="refresh_times_entries">
+    <item>Depois 1 pagina</item>
+    <item>Depois 3 paginas</item>
+    <item>Depois 5 paginas</item>
+    <item>Depois 10 paginas</item>
+  </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Muito devagar"</item>
     <item msgid="2361722960903353554">"Devagar"</item>

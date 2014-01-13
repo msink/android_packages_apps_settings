@@ -1162,4 +1162,8 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Chamadas recebidas"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Notificações"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Comentários"</string>
+    <string name="refresh_settings">Modo atualização</string>
+    <string name="refresh_times_summary">Selecionar o intervalo de atualização</string>
+    <string name="epd_full_timeout">Tempo de excesso para redesenhar página</string>
+    <string name="epd_full_timeout_summary">Conf. atraso antes de redesenhar página automaticamente</string>
 </resources>
