@@ -809,5 +809,19 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/appwidget_info" />
         </receiver>
+
+        <service android:name=".autoshutdown.AutoShutdownService"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="COM.CARATION.AUTO_SHUTDOWN" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".autoshutdown.AutoShutdownReady">
+            <intent-filter>
+                <action android:name="COM.CARATION.AUTO_SHUTDOWN_READY" />
+            </intent-filter>
+        </receiver>
+
     </application>
 </manifest>
