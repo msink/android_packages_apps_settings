@@ -33,6 +33,7 @@
         <!-- Sound -->
 
         <com.android.settings.IconPreferenceScreen
+            android:key="sound_settings"
             settings:icon="@drawable/ic_settings_sound"
             android:title="@string/sound_settings_title">
             <intent
@@ -123,6 +124,7 @@
         <!-- Voice input & output -->
 
         <com.android.settings.IconPreferenceScreen
+            android:key="voice_settings"
             settings:icon="@drawable/ic_settings_speech"
             android:title="@string/voice_input_output_settings">
             <intent

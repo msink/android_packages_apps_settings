@@ -137,8 +137,10 @@ public class SoundSettings extends PreferenceActivity implements
                 mAudioManager.setRingerMode(
                     vibeInSilent ? AudioManager.RINGER_MODE_VIBRATE
                                  : AudioManager.RINGER_MODE_SILENT);
+                mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, true);
             } else {
                 mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                mAudioManager.setStreamMute(AudioManager.STREAM_MUSIC, false);
             }
             updateState(false);
         }
