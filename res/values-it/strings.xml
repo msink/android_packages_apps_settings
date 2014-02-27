@@ -1220,4 +1220,6 @@
     <string name="updatemedialibmsg">Si prega di attendere un momento</string>
     <string name="epd_full_timeout">timeout completo di ricolorazione</string>
     <string name="epd_full_timeout_summary">Regolare il ritardo prima di dipingere automaticamente completamente</string>
+    <string name="drm_settings">DRM sistema</string>
+    <string name="device_info_str">Contiene Reader ® Mobile Technology da Adobe System Incorporated</string>
 </resources>

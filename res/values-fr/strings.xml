@@ -1240,4 +1240,6 @@
     <string name="updatemedialibmsg">"S'il vous plaît patienter un instant"</string>
     <string name="epd_full_timeout">Repaint Full timeout</string>
     <string name="epd_full_timeout_summary">Ajuster le délai avant de repeinte automatique entière</string>
+    <string name="drm_settings">DRM Système</string>
+    <string name="device_info_str">Contient Reader ® technologie mobile par Adobe Systems Incorporated</string>
 </resources>

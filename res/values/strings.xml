@@ -2699,4 +2699,8 @@ found in the list of installed applications.</string>
     <string name="updatemedialibmsg">Please wait a moment</string>
     <string name="epd_full_timeout">Repaint Full timeout</string>
     <string name="epd_full_timeout_summary">Adjust the delay before repaint full automatically</string>
+    <string name="drm_settings">Drm settings</string>
+    <string name="device_info_str">Contains Reader® Mobile Technology by Adobe System Incorporated</string>
+    <string name="software_information_title">Software information</string>
+    <string name="software_information">ImCoSys V6L N V1.21 06/05/2014-SD card Version</string>
 </resources>
