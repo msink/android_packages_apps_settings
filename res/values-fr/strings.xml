@@ -1238,4 +1238,6 @@
     <string name="display_settings_calendar">Calendrier</string>
     <string name="updatemedialibtitle">Livres logiciel</string>
     <string name="updatemedialibmsg">"S'il vous plaît patienter un instant"</string>
+    <string name="epd_full_timeout">Repaint Full timeout</string>
+    <string name="epd_full_timeout_summary">Ajuster le délai avant de repeinte automatique entière</string>
 </resources>

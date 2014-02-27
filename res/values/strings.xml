@@ -2697,4 +2697,6 @@ found in the list of installed applications.</string>
     <string name="display_settings_calendar">Calendar</string>
     <string name="updatemedialibtitle">Update Media Library</string>
     <string name="updatemedialibmsg">Please wait a moment</string>
+    <string name="epd_full_timeout">Repaint Full timeout</string>
+    <string name="epd_full_timeout_summary">Adjust the delay before repaint full automatically</string>
 </resources>
