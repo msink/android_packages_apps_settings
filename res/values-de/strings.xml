@@ -1168,4 +1168,5 @@
     <string name="autoshutdown">Automatische Abschaltfunktion</string>
     <string name="autoshutdown_timeout_summary">Zeitdauer für automatische Abschaltung</string>
     <string name="shutdown">Automatische Abschaltfunktion</string>
+    <string name="updatemedialibtitle">Update-Mediathek</string>
 </resources>

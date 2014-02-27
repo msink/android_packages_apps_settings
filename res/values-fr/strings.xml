@@ -1235,4 +1235,7 @@
     <string name="autoshutdown_timeout_summary">"Paramètres d'arrêt automatique"</string>
     <string name="shutdown">Arrêt automatique</string>
     <string name="dialog_cancel">ANNULER</string>
+    <string name="display_settings_calendar">Calendrier</string>
+    <string name="updatemedialibtitle">Livres logiciel</string>
+    <string name="updatemedialibmsg">"S'il vous plaît patienter un instant"</string>
 </resources>

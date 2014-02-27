@@ -1215,4 +1215,7 @@
     <string name="autoshutdown_timeout_summary">Impostazioni di Auto Shutdown</string>
     <string name="shutdown">spegnimento automatico</string>
     <string name="dialog_cancel">ANNULLA</string>
+    <string name="display_settings_calendar">Calendario</string>
+    <string name="updatemedialibtitle">aggiornamento mediathek</string>
+    <string name="updatemedialibmsg">Si prega di attendere un momento</string>
 </resources>
