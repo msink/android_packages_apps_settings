@@ -1231,4 +1231,8 @@
     <string name="media_format_desc_nand">Cette action efface la mémoire de masse interne. Vous perdrez <b>toutes</b>" les données enregistrées ici! "</string>
     <string name="media_format_nand_button_text">Effacer la mémoire de masse interne</string>
     <string name="media_format_final_desc_nand">Effacer la mémoire de masse interne en supprimant toutes les données enregistrées dedans? Cette opération ne peut être annulée!</string>
+    <string name="autoshutdown">Arrêt automatique</string>
+    <string name="autoshutdown_timeout_summary">"Paramètres d'arrêt automatique"</string>
+    <string name="shutdown">Arrêt automatique</string>
+    <string name="dialog_cancel">ANNULER</string>
 </resources>

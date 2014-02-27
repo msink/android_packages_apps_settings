@@ -47,6 +47,14 @@
     <item>30 minuto</item>
     <item>nunca</item>
   </string-array>
+  <string-array name="auto_shutdown_timeout_entries">
+    <item>1 Ora</item>
+    <item>2 Oras</item>
+    <item>3 Oras</item>
+    <item>4 Oras</item>
+    <item>5 Oras</item>
+    <item>nunca</item>
+  </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Muy lenta"</item>
     <item msgid="2361722960903353554">"Lenta"</item>

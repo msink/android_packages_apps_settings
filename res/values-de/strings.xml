@@ -1165,4 +1165,7 @@
     <string name="nand_format">Speicher löschen</string>
     <string name="nand_format_summary">Löscht alle Daten aus dem internen Speicher wie Bücher, Music und Fotos</string>
     <string name="nand_unavailable">Nicht verfügbar</string>
+    <string name="autoshutdown">Automatische Abschaltfunktion</string>
+    <string name="autoshutdown_timeout_summary">Zeitdauer für automatische Abschaltung</string>
+    <string name="shutdown">Automatische Abschaltfunktion</string>
 </resources>

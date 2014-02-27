@@ -45,6 +45,7 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
+    private static final String KEY_AUTOSHUTDOWN_TIMEOUT = "autoshutdown_timeout";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,13 @@ public class DisplaySettings extends PreferenceActivity implements
                 resolver, SCREEN_OFF_TIMEOUT, FALLBACK_SCREEN_TIMEOUT_VALUE)));
         screenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(screenTimeoutPreference);
+
+        ListPreference autoshutdownTimeoutPreference =
+            (ListPreference) findPreference(KEY_AUTOSHUTDOWN_TIMEOUT);
+        autoshutdownTimeoutPreference.setValue(String.valueOf(Settings.System.getInt(
+                resolver, Settings.System.AUTO_SHUTDOWN_TIMEOUT, -1)));
+        autoshutdownTimeoutPreference.setOnPreferenceChangeListener(this);
+        disableUnusableTimeouts(autoshutdownTimeoutPreference);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -123,7 +131,20 @@ public class DisplaySettings extends PreferenceActivity implements
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
         }
+        if (KEY_AUTOSHUTDOWN_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.AUTO_SHUTDOWN_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist auto shutdown setting", e);
+            }
+        }
 
         return true;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

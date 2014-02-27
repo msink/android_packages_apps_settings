@@ -41,6 +41,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.MOVE_PACKAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application android:label="@string/settings_label"
             android:icon="@drawable/ic_launcher_settings"
@@ -858,6 +859,27 @@
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_MOUNTED" />
                 <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".autoshutdown.AutoShutdownAlertDialog"
+                android:theme="@*android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".autoshutdown.AutoShutdownService"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="COM.CARATION.AUTO_SHUTDOWN" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name=".autoshutdown.AutoShutdownReceiver">
+            <intent-filter>
+                <action android:name="COM.CARATION.AUTO_SHUTDOWN_RECEIVER" />
             </intent-filter>
         </receiver>
     </application>

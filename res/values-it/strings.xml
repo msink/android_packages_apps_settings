@@ -1211,4 +1211,8 @@
     <string name="media_format_desc_nand">"Quest'azione elimina la memoria interna. Si perderanno tutti i dati memorizzati"</string>
     <string name="media_format_nand_button_text">Elimina memoria interna di massa</string>
     <string name="media_format_final_desc_nand">"Elimina memoria interna di massa, eliminare tutti i file in memoria? L'azione non può essere ripristinata!"</string>
+    <string name="autoshutdown">spegnimento automatico</string>
+    <string name="autoshutdown_timeout_summary">Impostazioni di Auto Shutdown</string>
+    <string name="shutdown">spegnimento automatico</string>
+    <string name="dialog_cancel">ANNULLA</string>
 </resources>
