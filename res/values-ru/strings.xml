@@ -1161,4 +1161,11 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Входящие вызовы"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Оповещения"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Отклик на действия"</string>
+    <string name="nand_memory">Память</string>
+    <string name="nand_format">Очистить память</string>
+    <string name="nand_format_summary">Удаляет все данные с внутренней памяти устройства, например музыку и фотографии</string>
+    <string name="nand_unavailable">Недоступно</string>
+    <string name="media_format_desc_nand">Это приведет к очистке внутренней памяти устройства. Вы потеряете <b>все</b> данные на внутренней памяти!</string>
+    <string name="media_format_nand_button_text">Очистить память</string>
+    <string name="media_format_final_desc_nand">Очистить внутреннюю память, безвозвратно удалив все файлы с неё?</string>
 </resources>

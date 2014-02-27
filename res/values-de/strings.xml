@@ -1162,4 +1162,7 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Eingehende Anrufe"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Benachrichtigungen"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Feedback"</string>
+    <string name="nand_format">Speicher löschen</string>
+    <string name="nand_format_summary">Löscht alle Daten aus dem internen Speicher wie Bücher, Music und Fotos</string>
+    <string name="nand_unavailable">Nicht verfügbar</string>
 </resources>

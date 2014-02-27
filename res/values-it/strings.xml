@@ -1199,4 +1199,16 @@
     <string name="exit_compatibility_mode">In funzione in modalità normale</string>
     <string name="rockchip_compatibility_info">"Quest'applicazione è in funzione in modalità di compatibilità"</string>
     <string name="rockchip_normal_info">"Quest'applicazione è in funzione in modalità normale"</string>
+    <string name="nand_memory">NAND flash</string>
+    <string name="nand_eject">Smontare NAND flash</string>
+    <string name="nand_eject_summary">Smontare NAND flash in modo da poterla rimuovere</string>
+    <string name="nand_insert_summary">Inserire NAND flash per montarla</string>
+    <string name="nand_mount">Montare NAND flash</string>
+    <string name="nand_mount_summary">Montare NAND flash</string>
+    <string name="nand_format">Cancellazione memoria</string>
+    <string name="nand_format_summary">"Elimina tutti i dati dall'apparecchioAND flash come musica e foto"</string>
+    <string name="nand_unavailable">Non disponibile</string>
+    <string name="media_format_desc_nand">"Quest'azione elimina la memoria interna. Si perderanno tutti i dati memorizzati"</string>
+    <string name="media_format_nand_button_text">Elimina memoria interna di massa</string>
+    <string name="media_format_final_desc_nand">"Elimina memoria interna di massa, eliminare tutti i file in memoria? L'azione non può essere ripristinata!"</string>
 </resources>

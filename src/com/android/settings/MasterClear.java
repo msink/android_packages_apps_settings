@@ -21,6 +21,7 @@ import com.android.internal.widget.LockPatternUtils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,12 @@ public class MasterClear extends Activity {
                     intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
                     startService(intent);
                 } else {
+                  if (Build.PRODUCT.equals("Imcosys")) {
+                    Intent intent = new Intent(ExternalStorageFormatter.FORMAT_ONLY);
+                    intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
+                    intent.putExtra("path", "/mnt/storage");
+                    startService(intent);
+                  }
                     sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
                     // Intent handling is asynchronous -- assume it will happen soon.
                 }
@@ -126,6 +133,7 @@ public class MasterClear extends Activity {
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_master_clear);
             mFinalButton.setOnClickListener(mFinalClickListener);
+            mFinalButton.requestFocus();
         }
 
         setContentView(mFinalView);
@@ -183,9 +191,5 @@ public class MasterClear extends Activity {
     @Override
     public void onPause() {
         super.onPause();
-
-        if (!isFinishing()) {
-            establishInitialState();
-        }
     }
 }
