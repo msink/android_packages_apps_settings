@@ -51,7 +51,6 @@ public class WirelessSettings extends PreferenceActivity {
 
     private WifiEnabler mWifiEnabler;
     private NfcEnabler mNfcEnabler;
-    private BluetoothEnabler mBtEnabler;
 
     /**
      * Invoked on each preference click in this hierarchy, overrides
@@ -60,26 +59,12 @@ public class WirelessSettings extends PreferenceActivity {
      */
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (Boolean.parseBoolean(
-                SystemProperties.get(TelephonyProperties.PROPERTY_INECM_MODE))) {
-            // In ECM mode launch ECM app dialog
-            startActivityForResult(
-                new Intent(TelephonyIntents.ACTION_SHOW_NOTICE_ECM_BLOCK_OTHERS, null),
-                REQUEST_CODE_EXIT_ECM);
-            return true;
-        }
         // Let the intents be launched by the Preference manager
         return false;
     }
 
     public static boolean isRadioAllowed(Context context, String type) {
-        if (!AirplaneModeEnabler.isAirplaneModeOn(context)) {
-            return true;
-        }
-        // Here we use the same logic in onCreate().
-        String toggleable = Settings.System.getString(context.getContentResolver(),
-                Settings.System.AIRPLANE_MODE_TOGGLEABLE_RADIOS);
-        return toggleable != null && toggleable.contains(type);
+        return true;
     }
 
     @Override
@@ -89,36 +74,14 @@ public class WirelessSettings extends PreferenceActivity {
         addPreferencesFromResource(R.xml.wireless_settings);
 
         CheckBoxPreference wifi = (CheckBoxPreference) findPreference(KEY_TOGGLE_WIFI);
-        CheckBoxPreference bt = (CheckBoxPreference) findPreference(KEY_TOGGLE_BLUETOOTH);
         CheckBoxPreference nfc = (CheckBoxPreference) findPreference(KEY_TOGGLE_NFC);
         Preference vpn = findPreference(KEY_VPN_SETTINGS);
-        Preference bt_settings = findPreference(KEY_BT_SETTINGS);
 
         mWifiEnabler = new WifiEnabler(this, wifi);
-        mBtEnabler = new BluetoothEnabler(this, bt);
         mNfcEnabler = new NfcEnabler(this, nfc);
 
         String toggleable = Settings.System.getString(getContentResolver(),
                 Settings.System.AIRPLANE_MODE_TOGGLEABLE_RADIOS);
-
-        // Manually set dependencies for Wifi when not toggleable.
-        if (toggleable == null || !toggleable.contains(Settings.System.RADIO_WIFI)) {
-            wifi.setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_WIFI_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
-            vpn.setDependency(KEY_TOGGLE_AIRPLANE);
-        }
-
-        // Manually set dependencies for Bluetooth when not toggleable.
-        if (toggleable == null || !toggleable.contains(Settings.System.RADIO_BLUETOOTH)) {
-            bt.setDependency(KEY_TOGGLE_AIRPLANE);
-            findPreference(KEY_BT_SETTINGS).setDependency(KEY_TOGGLE_AIRPLANE);
-        }
-
-        // Remove Bluetooth Settings if Bluetooth service is not available.
-        if (ServiceManager.getService(BluetoothAdapter.BLUETOOTH_SERVICE) == null) {
-            getPreferenceScreen().removePreference(bt);
-            getPreferenceScreen().removePreference(bt_settings);
-        }
 
         // Remove NFC if its not available
         if (NfcAdapter.getDefaultAdapter() == null) {
@@ -133,7 +96,6 @@ public class WirelessSettings extends PreferenceActivity {
         ConnectivityManager cm =
                 (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         if (!cm.isTetheringSupported()) {
-            getPreferenceScreen().removePreference(findPreference(KEY_TETHER_SETTINGS));
         } else {
             String[] usbRegexs = cm.getTetherableUsbRegexs();
             String[] wifiRegexs = cm.getTetherableWifiRegexs();
@@ -158,7 +120,6 @@ public class WirelessSettings extends PreferenceActivity {
         super.onResume();
 
         mWifiEnabler.resume();
-        mBtEnabler.resume();
         mNfcEnabler.resume();
     }
 
@@ -167,14 +128,12 @@ public class WirelessSettings extends PreferenceActivity {
         super.onPause();
 
         mWifiEnabler.pause();
-        mBtEnabler.pause();
         mNfcEnabler.pause();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_EXIT_ECM) {
-            Boolean isChoiceYes = data.getBooleanExtra(EXIT_ECM_RESULT, false);
         }
     }
 }
