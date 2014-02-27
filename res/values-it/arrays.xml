@@ -40,12 +40,12 @@
     <item msgid="488968798204105119">"Vengono visualizzate tutte le animazioni delle finestre"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15 secondi"</item>
-    <item msgid="8881760709354815449">"30 secondi"</item>
-    <item msgid="7589406073232279088">"1 minuto"</item>
-    <item msgid="7001195990902244174">"2 minuti"</item>
-    <item msgid="5721688686241190620">"10 minuti"</item>
-    <item msgid="7156442995039264948">"30 minuti"</item>
+    <item>1 minuto</item>
+    <item>2 minuto</item>
+    <item>5 minuto</item>
+    <item>10 minuto</item>
+    <item>30 minuto</item>
+    <item>mai</item>
   </string-array>
   <string-array name="tts_rate_entries">
     <item msgid="6041212618892492920">"Molto lenta"</item>
