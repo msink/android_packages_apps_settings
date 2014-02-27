@@ -191,6 +191,7 @@ public class DateTimeSettings
             Settings.System.putString(getContentResolver(), 
                     Settings.System.DATE_FORMAT, format);
             updateTimeAndDateDisplay();
+            timeUpdated();
         } else if (key.equals(KEY_AUTO_TIME)) {
             boolean autoEnabled = preferences.getBoolean(key, true);
             Settings.System.putInt(getContentResolver(), 

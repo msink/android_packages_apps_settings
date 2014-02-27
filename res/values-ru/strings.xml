@@ -48,11 +48,11 @@
     <string name="sdcard_unmount" product="nosdcard" msgid="6325292633327972272">"Отключить USB-накопитель"</string>
     <string name="sdcard_unmount" product="default" msgid="3364184561355611897">"Извлечь SD-карту"</string>
     <string name="sdcard_format" product="nosdcard" msgid="6285310523155166716">"Очистить USB-накопитель"</string>
-    <string name="sdcard_format" product="default" msgid="6713185532039187532">"Очистить SD-карту"</string>
+    <string name="sdcard_format" product="default" msgid="6713185532039187532">"Очистить карту"</string>
     <string name="small_font" msgid="2295331917424072635">"Маленький"</string>
-    <string name="medium_font" msgid="2068475425515133701">"Среднее"</string>
+    <string name="medium_font" msgid="2068475425515133701">"Средний"</string>
     <string name="large_font" msgid="599055175160971446">"Большой"</string>
-    <string name="font_size_save" msgid="3450855718056759095">"ОК"</string>
+    <string name="font_size_save" msgid="3450855718056759095">"Ок"</string>
     <string name="sdcard_setting" product="nosdcard" msgid="8281011784066476192">"USB-накопитель"</string>
     <string name="sdcard_setting" product="default" msgid="5922637503871474866">"SD-карта"</string>
     <string name="battery_info_status_label" msgid="8109155295509700309">"Состояние батареи:"</string>
@@ -71,8 +71,8 @@
     <string name="battery_info_screen_on" msgid="376277447175613889">"Время работы экрана:"</string>
     <string name="battery_info_status_unknown" msgid="196130600938058547">"Неизвестно"</string>
     <string name="battery_info_status_charging" msgid="1705179948350365604">"Идет зарядка"</string>
-    <string name="battery_info_status_charging_ac" msgid="5874340256342956252">"(переменный ток)"</string>
-    <string name="battery_info_status_charging_usb" msgid="4059070156126770959">"(USB)"</string>
+    <string name="battery_info_status_charging_ac" msgid="5874340256342956252">"(питание от сети)"</string>
+    <string name="battery_info_status_charging_usb" msgid="4059070156126770959">"(питание от USB)"</string>
     <string name="battery_info_status_discharging" msgid="6222697503392774475">"Разрядка батареи"</string>
     <string name="battery_info_status_not_charging" msgid="2820070506621483576">"Не заряжается"</string>
     <string name="battery_info_status_full" msgid="2824614753861462808">"Заряжена"</string>
@@ -92,10 +92,10 @@
     <string name="bluetooth_is_discoverable" msgid="1205694503775884903">"Видимый в течение <xliff:g id="DISCOVERABLE_TIME_PERIOD">%1$s</xliff:g> секунд..."</string>
     <string name="bluetooth_not_discoverable" msgid="128269993123955177">"Сделать устройство видимым"</string>
     <string name="bluetooth_lock_voice_dialing" msgid="3139322992062086225">"Заблокировать голосовой набор"</string>
-    <string name="bluetooth_lock_voice_dialing_summary" msgid="4741338867496787042">"Предотвратить использование телефона Bluetooth, когда экран заблокирован"</string>
+    <string name="bluetooth_lock_voice_dialing_summary" msgid="4741338867496787042">"Предотвратить использование  Bluetooth, когда экран заблокирован"</string>
     <string name="bluetooth_devices" msgid="1886018064039454227">"Устройства Bluetooth"</string>
     <string name="bluetooth_device_name" msgid="8415828355207423800">"Имя устройства"</string>
-    <string name="bluetooth_name_not_set" msgid="2653752006416027426">"Без настройки имени, использовать имя аккаунта"</string>
+    <string name="bluetooth_name_not_set" msgid="2653752006416027426">"Без настройки имени использовать имя аккаунта"</string>
     <string name="bluetooth_scan_for_devices" msgid="9214184305566815727">"Поиск устройств"</string>
     <string name="bluetooth_disconnect_blank" msgid="8102076504922229274">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> будет отключено."</string>
     <string name="bluetooth_connected" msgid="6038755206916626419">"Подключено"</string>
@@ -113,8 +113,8 @@
     <string name="bluetooth_notif_message" msgid="5381418499788668724">"Выберите для сопряжения с "</string>
     <string name="device_picker" msgid="8721012448931226323">"Выбор устройства Bluetooth"</string>
     <string name="bluetooth_permission_request" msgid="1523129741266262748">"Запрос разрешения на включение Bluetooth"</string>
-    <string name="bluetooth_ask_enablement" msgid="2342558978033892004">"Приложение на вашем телефоне запрашивает разрешение на включение Bluetooth. Разрешить?"</string>
-    <string name="bluetooth_ask_discovery" msgid="669870705606180872">"Приложение на вашем телефоне запрашивает разрешение на включение видимого режима Bluetooth на <xliff:g id="TIMEOUT">%1$d</xliff:g> с. Разрешить?"</string>
+    <string name="bluetooth_ask_enablement" msgid="2342558978033892004">"Приложение на устройстве запрашивает разрешение на включение Bluetooth. Разрешить?"</string>
+    <string name="bluetooth_ask_discovery" msgid="669870705606180872">"Приложение на устройстве запрашивает разрешение на включение видимого режима Bluetooth на %1$d с. Разрешить?"</string>
     <string name="bluetooth_ask_enablement_and_discovery" msgid="7220210326619399542">"Приложение на вашем телефоне запрашивает разрешение на включение Bluetooth и видимого режима на <xliff:g id="TIMEOUT">%1$d</xliff:g> с. Разрешить?"</string>
     <string name="bluetooth_turning_on" msgid="3107102168379705771">"Включается Bluetooth..."</string>
     <string name="date_and_time" msgid="4114084177056654663">"Настройки даты и времени"</string>
@@ -139,7 +139,7 @@
     <string name="proxy_action_text" msgid="477348175123635416">"Сохранить"</string>
     <string name="proxy_hostname_label" msgid="7531298584350977540">"Имя узла"</string>
     <string name="proxy_error" msgid="8926675299638611451">"Внимание!"</string>
-    <string name="proxy_error_dismiss" msgid="4993171795485460060">"ОК"</string>
+    <string name="proxy_error_dismiss" msgid="4993171795485460060">"Ок"</string>
     <string name="proxy_error_invalid_host" msgid="9120776460063182119">"Введено недействительное имя узла."</string>
     <string name="proxy_error_empty_port" msgid="3525734169948795417">"Необходимо заполнить поле порта."</string>
     <string name="proxy_error_empty_host_set_port" msgid="2451694104858226781">"Если поле хоста не заполнено, поле порта также следует оставить пустым."</string>
@@ -198,13 +198,13 @@
     <string name="sdcard_settings_read_only_status" product="nosdcard" msgid="3771783090621312312">"USB-накопитель защищен от записи"</string>
     <string name="sdcard_settings_read_only_status" product="default" msgid="5706115860484118911">"SD-карта установлена только для чтения"</string>
     <string name="next_label" msgid="4693520878012668114">"Далее"</string>
-    <string name="language_picker_title" msgid="4034157617842965844">"Региональные настройки"</string>
+    <string name="language_picker_title" msgid="4034157617842965844">"Выбор языка"</string>
     <string name="select_your_language" msgid="1146235168951906084">"Выберите язык"</string>
     <string name="activity_picker_label" msgid="4910700713930693329">"Выбрать действие"</string>
     <string name="device_info_label" msgid="6551553813651711205">"Сведения об устройстве"</string>
     <string name="battery_info_label" msgid="4132685016148679403">"Информация о батарее"</string>
     <string name="display_label" msgid="7403874003169865762">"Экран"</string>
-    <string name="phone_info_label" msgid="2127552523124277664">"Информация о телефоне"</string>
+    <string name="phone_info_label" msgid="2127552523124277664">"Информация"</string>
     <string name="sd_card_settings_label" product="nosdcard" msgid="8101475181301178428">"USB-накопитель"</string>
     <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"SD-карта"</string>
     <string name="proxy_settings_label" msgid="3271174136184391743">"Настройки прокси-сервера"</string>
@@ -217,12 +217,12 @@
     <string name="airplane_mode_turning_on" msgid="8871739222526957255">"Отключение беспроводных соединений..."</string>
     <string name="airplane_mode_turning_off" msgid="3393168549611505996">"Включение беспроводных соединений..."</string>
     <string name="radio_controls_title" msgid="5868688473587168882">"Беспроводные сети"</string>
-    <string name="wireless_networks_settings_title" msgid="149274247949769551">"Настройки беспроводных модулей"</string>
+    <string name="wireless_networks_settings_title" msgid="149274247949769551">"Настройки беспроводных сетей"</string>
     <string name="radio_controls_summary" msgid="2998818677094465517">"Wi-Fi, Bluetooth, режим полета, мобильные сети и VPN"</string>
     <string name="roaming" msgid="3596055926335478572">"Интернет-роуминг"</string>
     <string name="roaming_enable" msgid="3737380951525303961">"Подключаться к службам передачи данных при роуминге"</string>
     <string name="roaming_disable" msgid="1295279574370898378">"Подключаться к службам передачи данных при роуминге"</string>
-    <string name="roaming_reenable_message" msgid="9141007271031717369">"Передача данных прекращена, потому что телефон находится за пределами домашней сети, а интернет-роуминг выключен."</string>
+    <string name="roaming_reenable_message" msgid="9141007271031717369">"Передача данных прекращена."</string>
     <string name="roaming_turn_it_on_button" msgid="4387601818162120589">"Включить"</string>
     <string name="roaming_warning" msgid="1269870211689178511">"Разрешить интернет-роуминг? Возможны высокие расходы за использование роуминга."</string>
     <string name="roaming_reenable_title" msgid="7626425894611573131">"Внимание"</string>
@@ -231,8 +231,8 @@
     <string name="date_and_time_settings_title" msgid="3350640463596716780">"Дата и время"</string>
     <string name="date_and_time_settings_summary" msgid="2435705040205950381">"Установка даты, времени, часового пояса и форматов"</string>
     <string name="date_time_auto" msgid="3086083265745944725">"Автоматически"</string>
-    <string name="date_time_auto_summaryOn" msgid="9034585614665299846">"Использовать данные, предоставленные сетью"</string>
-    <string name="date_time_auto_summaryOff" msgid="3900356736797266448">"Использовать данные, предоставленные сетью"</string>
+    <string name="date_time_auto_summaryOn" msgid="9034585614665299846">"Использовать время сети"</string>
+    <string name="date_time_auto_summaryOff" msgid="3900356736797266448">"Использовать время сети"</string>
     <string name="date_time_24hour" msgid="1193032284921000063">"24-часовой формат"</string>
     <string name="date_time_set_time" msgid="5716856602742530696">"Настроить время"</string>
     <string name="date_time_set_timezone" msgid="5045627174274377814">"Выбрать часовой пояс"</string>
@@ -379,13 +379,13 @@
     <string name="wifi_secured" msgid="6759903183748011566">"Защищено с помощью <xliff:g id="WIFI_SECURITY">%1$s</xliff:g>"</string>
     <string name="wifi_secured_with_status" msgid="6489317496506267302">"<xliff:g id="WIFI_STATUS">%2$s</xliff:g>, защищено с помощью <xliff:g id="WIFI_SECURITY">%1$s</xliff:g>"</string>
     <string name="wifi_connect" msgid="1076622875777072845">"Подключить"</string>
-    <string name="wifi_forget" msgid="8168174695608386644">"Не подключаться"</string>
+    <string name="wifi_forget" msgid="8168174695608386644">"Отключить"</string>
     <string name="wifi_save" msgid="3331121567988522826">"Сохранить"</string>
     <string name="wifi_cancel" msgid="6763568902542968964">"Отмена"</string>
     <string name="wifi_advanced_titlebar" msgid="5419052271935350999">"Дополнительные функции"</string>
     <string name="wifi_setting_num_channels_title" msgid="694031537019656132">"Управляющий домен"</string>
     <string name="wifi_setting_num_channels_summary" msgid="4889355096717099141">"Настроить количество используемых каналов"</string>
-    <string name="wifi_setting_num_channels_error" msgid="5765443843427870721">"При установке управляющего домена возникла неполадка."</string>
+    <string name="wifi_setting_num_channels_error" msgid="5765443843427870721">"При установке управляющего домена возникла ошибка."</string>
     <string name="wifi_setting_num_channels_channel_phrase" msgid="1269381923672908636">"каналов: <xliff:g id="NUM_CHANNELS">%1$d</xliff:g>"</string>
     <string name="wifi_setting_sleep_policy_title" msgid="1367731352485585528">"Спящий режим"</string>
     <string name="wifi_setting_sleep_policy_summary" msgid="7573693311804602041">"При каких условиях переключаться с Wi-Fi на сотовую сеть"</string>
@@ -472,12 +472,12 @@
     <string name="animations_summary_on" msgid="8843613112130484436">"Показывать анимацию при открытии и закрытии окон"</string>
     <string name="animations_summary_off" msgid="2777026828025551983">"Показывать анимацию при открытии и закрытии окон"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Автоповорот экрана"</string>
-    <string name="accelerometer_summary_on" msgid="1133737282813048021">"Автоматически менять ориентацию экрана при повороте телефона"</string>
-    <string name="accelerometer_summary_off" msgid="5485489363715740761">"Автоматически менять ориентацию экрана при повороте телефона"</string>
+    <string name="accelerometer_summary_on" msgid="1133737282813048021">"Автоматически менять ориентацию экрана при повороте устройства"</string>
+    <string name="accelerometer_summary_off" msgid="5485489363715740761">"Автоматически менять ориентацию экрана при повороте устройства"</string>
     <string name="brightness" msgid="2354961343555249270">"Яркость"</string>
     <string name="brightness_summary" msgid="838917350127550703">"Настроить яркость экрана"</string>
-    <string name="screen_timeout" msgid="4882669461447531301">"Автоотключение экрана"</string>
-    <string name="screen_timeout_summary" msgid="2905757633140605334">"Интервал времени до автоматического отключения экрана"</string>
+    <string name="screen_timeout" msgid="4882669461447531301">"Блокировка"</string>
+    <string name="screen_timeout_summary" msgid="2905757633140605334">"Интервал времени до автоматической блокировки экрана"</string>
     <string name="automatic_brightness" msgid="5014143533884135461">"Яркость автоматически"</string>
     <string name="sim_lock_settings" msgid="3392331196873564292">"Настройки блокировки SIM-карты"</string>
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"Настроить блокировку"</string>
@@ -500,7 +500,7 @@
     <string name="sim_lock_failed" msgid="6676748290838006404">"Не удалось изменить состояние блокировки SIM-карты."\n"Возможно, введен неверный PIN."</string>
     <string name="sim_enter_ok" msgid="6475946836899218919">"ОК"</string>
     <string name="sim_enter_cancel" msgid="6240422158517208036">"Отмена"</string>
-    <string name="device_info_settings" msgid="475872867864762157">"Состояние телефона"</string>
+    <string name="device_info_settings" msgid="475872867864762157">"Состояние устройства"</string>
     <string name="system_update_settings_list_item_title" msgid="3342887311059985961">"Обновления системы"</string>
     <string name="system_update_settings_list_item_summary" msgid="3853057315907710747"></string>
     <string name="firmware_version" msgid="4801135784886859972">"Версия Android"</string>
@@ -511,7 +511,7 @@
     <string name="device_info_not_available" msgid="8062521887156825182">"Недоступно"</string>
     <string name="device_status_activity_title" msgid="1411201799384697904">"Общая информация"</string>
     <string name="device_status" msgid="607405385799807324">"Общая информация"</string>
-    <string name="device_status_summary" msgid="2599162787451519618">"Номер телефона, уровень сигнала и т.д."</string>
+    <string name="device_status_summary" msgid="2599162787451519618">"Состояние батареи, уровень заряда и т.д."</string>
     <string name="storage_settings" msgid="4211799979832404953">"Память"</string>
     <string name="storage_settings_title" msgid="8746016738388094064">"Настройки хранилища"</string>
     <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"Отключить USB-накопитель, просмотреть доступные накопители"</string>
@@ -531,7 +531,7 @@
     <string name="status_unavailable" msgid="7862009036663793314">"Недоступно"</string>
     <string name="status_up_time" msgid="7294859476816760399">"Время с момента включения"</string>
     <string name="status_awake_time" msgid="2393949909051183652">"Время работы"</string>
-    <string name="internal_memory" msgid="9129595691484260784">"Внутренний накопитель"</string>
+    <string name="internal_memory" msgid="9129595691484260784">"Внутр. память"</string>
     <string name="sd_memory" product="nosdcard" msgid="2510246194083052841">"USB-накопитель"</string>
     <string name="sd_memory" product="default" msgid="151871913888051515">"SD-карта"</string>
     <string name="memory_available" msgid="418542433817289474">"Свободно"</string>
@@ -546,9 +546,9 @@
     <!-- outdated translation 6733254203291665551 -->     <string name="sd_mount_summary" product="nosdcard" msgid="1794150364965145726">"Подключить внутр. USB-накопитель"</string>
     <string name="sd_mount_summary" product="default" msgid="4936591681679097699">"Подключить SD-карту"</string>
     <string name="sd_format" product="nosdcard" msgid="2148179271623099054">"Очистить USB-накопитель"</string>
-    <string name="sd_format" product="default" msgid="2576054280507119870">"Очистить SD-карту"</string>
+    <string name="sd_format" product="default" msgid="2576054280507119870">"Очистить карту"</string>
     <string name="sd_format_summary" product="nosdcard" msgid="1504606546865152514">"Удаляет все данные с внутреннего USB-накопителя телефона, такие как музыка и фотографии"</string>
-    <string name="sd_format_summary" product="default" msgid="915849621390821841">"Удаляет все данные с SD-карты телефона, например музыку и фотографии"</string>
+    <string name="sd_format_summary" product="default" msgid="915849621390821841">" Удаляет все данные с SD-карты устройства, например музыку и фотографии"</string>
     <string name="sd_unavailable" msgid="8580107589533213904">"Недоступно"</string>
     <string name="read_only" msgid="6702420168629076340">" (только для чтения)"</string>
     <string name="dlg_confirm_unmount_title" product="nosdcard" msgid="2349876662428231297">"Отключить USB-накопитель"</string>
@@ -599,29 +599,29 @@
     <string name="menu_restore" msgid="8260067415075573273">"Восстановить настройки по умолчанию"</string>
     <string name="restore_default_apn_completed" msgid="3990449939234957281">"Восстановление настроек APN по умолчанию завершено"</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Сброс настроек"</string>
-    <string name="master_clear_summary" msgid="4986154238001088492">"Удаляет все данные из памяти телефона"</string>
+    <string name="master_clear_summary" msgid="4986154238001088492">"Удаляет все данные из памяти устройства"</string>
     <string name="master_clear_desc" product="nosdcard" msgid="2163013814299528247">"Это приведет к удалению всех данных с "<b>"внутреннего накопителя"</b>" телефона, включая:"\n\n<li>"ваш аккаунт Google;"</li>\n<li>"данные и настройки системы и приложений;"</li>\n<li>"загруженные приложения."</li>\n\n"Чтобы удалить все данные с этого телефона, необходимо очистить "<b>"USB-накопитель"</b>"."\n\n</string>
-    <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Это приведет к удалению всех данных с "<b>"внутреннего накопителя"</b>" телефона, включая:"\n\n<li>"ваш аккаунт Google;"</li>\n<li>"данные и настройки системы и приложений;"</li>\n<li>"загруженные приложения."</li>\n\n"Чтобы удалить музыку, изображения и другие пользовательские данные, необходимо очистить "<b>"SD-карту"</b>"."\n\n</string>
+    <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Это приведет к удалению <b>всех данных с внутренней памяти устройства</b>", включая:"\n\n<li>"ваш аккаунт Google;"</li>\n<li>"данные и настройки системы и приложений;"</li>\n<li>"загруженные приложения."</li>\n\n"Чтобы удалить музыку, изображения и другие пользовательские данные, необходимо очистить "<b>"SD-карту"</b>"."\n\n</string>
     <string name="erase_external_storage" product="nosdcard" msgid="969364037450286809">"Очистить USB-накопитель"</string>
-    <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Очистить SD-карту"</string>
+    <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Очистить карту"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="1657838142707381027">"Очищать внутренний накопитель."</string>
-    <string name="erase_external_storage_description" product="default" msgid="8100175974635894073">"Удаляет все данные на SD-карте телефона, например музыку и фотографии."</string>
-    <string name="master_clear_button_text" msgid="7550632653343157971">"Сбросить настройки телефона"</string>
-    <string name="master_clear_final_desc" msgid="6917971132484622696">"Стереть всю личную информацию и загруженные приложения? Это действие нельзя отменить!"</string>
+    <string name="erase_external_storage_description" product="default" msgid="8100175974635894073">"Удаляет все данные на SD-карте устройства, например, книги и фотографии."</string>
+    <string name="master_clear_button_text" msgid="7550632653343157971">"Сбросить настройки"</string>
+    <string name="master_clear_final_desc" msgid="6917971132484622696">"Стереть всю личную информацию и загруженные приложения?"</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Стереть все"</string>
     <string name="master_clear_gesture_prompt" msgid="1428645764883536750">"Начертить графический ключ"</string>
-    <string name="master_clear_gesture_explanation" msgid="8901714274312707918">"Для подтверждения сброса настроек телефона необходимо начертить графический ключ."</string>
+    <string name="master_clear_gesture_explanation" msgid="8901714274312707918">"Для подтверждения сброса настроек устройства необходимо начертить графический ключ."</string>
     <string name="master_clear_failed" msgid="8655202125010189406">"Не удалось выполнить сброс, поскольку служба System Clear недоступна."</string>
     <string name="media_format_title" product="nosdcard" msgid="3999653431422767156">"Очистить USB-накопитель"</string>
-    <string name="media_format_title" product="default" msgid="4427528440306787972">"Очистить SD-карту"</string>
+    <string name="media_format_title" product="default" msgid="4427528440306787972">"Очистить память"</string>
     <string name="media_format_summary" product="nosdcard" msgid="776603298628082065">"Уничтожает все данные на USB-накопителе"</string>
-    <string name="media_format_summary" product="default" msgid="3805714639375830120">"Удаляет все данные с карты SD"</string>
+    <string name="media_format_summary" product="default" msgid="3805714639375830120">"Удаляет все данные с SD-карты"</string>
     <string name="media_format_desc" product="nosdcard" msgid="4553860683952763905">"Это приведет к очистке USB-накопителя. Вы потеряете "<b>"все"</b>" хранящиеся на нем данные!"</string>
     <string name="media_format_desc" product="default" msgid="1598627584181935513">"Это приведет к очистке SD-карты. Вы потеряете "<b>"все"</b>" данные на карте!"</string>
     <string name="media_format_button_text" product="nosdcard" msgid="6293669371185352810">"Очистить USB-накопитель"</string>
-    <string name="media_format_button_text" product="default" msgid="6721544380069373626">"Очистить SD-карту"</string>
+    <string name="media_format_button_text" product="default" msgid="6721544380069373626">"Очистить память"</string>
     <string name="media_format_final_desc" product="nosdcard" msgid="8094635533378487255">"Очистить USB-накопитель, безвозвратно удалив все файлы на нем?"</string>
-    <string name="media_format_final_desc" product="default" msgid="9015504991522581434">"Очистить SD-карту, безвозвратно удалив все файлы на ней?"</string>
+    <string name="media_format_final_desc" product="default" msgid="9015504991522581434">"Очистить SD-карту, безвозвратно удалив все файлы с неё?"</string>
     <string name="media_format_final_button_text" msgid="4881713344315923175">"Стереть все"</string>
     <string name="media_format_gesture_prompt" msgid="3109349468816856670">"Начертить графический ключ разблокировки"</string>
     <string name="media_format_gesture_explanation" product="nosdcard" msgid="1379736318750958338">"Для подтверждения очистки USB-накопителя начертите графический ключ."</string>
@@ -639,7 +639,7 @@
     <string name="usb_tethering_available_subtext" msgid="156779271296152605">"USB-связь установлена, установите флажок для подключения"</string>
     <string name="usb_tethering_active_subtext" msgid="8916210851136467042">"Подключено"</string>
     <string name="usb_tethering_storage_active_subtext" msgid="6608933594288072573">"Невозможно подключиться при использовании USB-накопителя"</string>
-    <string name="usb_tethering_unavailable_subtext" msgid="1044622421184007254">"USB-подключения не обнаружено"</string>
+    <string name="usb_tethering_unavailable_subtext" msgid="1044622421184007254">"USB-подключение не обнаружено"</string>
     <string name="usb_tethering_errored_subtext" msgid="1377574819427841992">"Ошибка подключения USB"</string>
     <string name="tethering_help_button_text" msgid="656117495547173630">"Справка"</string>
     <string name="network_settings_title" msgid="7967552516440151852">"Мобильная сеть"</string>
@@ -654,7 +654,7 @@
     <string name="assisted_gps" msgid="4649317129586736885">"Использовать A-GPS"</string>
     <string name="assisted_gps_enabled" msgid="8751899609589792803">"Использовать сервер для A-GPS (снимите флажок для менее интенсивного использования сети)"</string>
     <string name="assisted_gps_disabled" msgid="6982698333968010748">"Использовать сервер для A-GPS (снимите флажок для улучшения работы GPS)"</string>
-    <string name="about_settings" msgid="1743378368185371685">"О телефоне"</string>
+    <string name="about_settings" msgid="1743378368185371685">"Информация"</string>
     <string name="about_settings_summary" msgid="3302263393543848667">"Посмотреть правовую информацию, состояние телефона, версию ПО"</string>
     <string name="legal_information" msgid="5769301644270604095">"Правовая информация"</string>
     <string name="contributors_title" msgid="5917703088825286504">"Участники"</string>
@@ -760,7 +760,7 @@
     <string name="recompute_size" msgid="7722567982831691718">"Повторное вычисление размера..."</string>
     <string name="clear_data_dlg_title" msgid="4470209520936375508">"Удалить"</string>
     <string name="clear_data_dlg_text" msgid="8368035073300828451">"Все данные этой программы будут удалены навсегда, включая все файлы, базы данных, настройки, аккаунты и прочее."</string>
-    <string name="dlg_ok" msgid="2402639055725653590">"ОК"</string>
+    <string name="dlg_ok" msgid="2402639055725653590">"Ок"</string>
     <string name="dlg_cancel" msgid="1674753358972975911">"Отмена"</string>
     <string name="app_not_found_dlg_title" msgid="8458335716378083713">"Приложение не найдено"</string>
     <string name="app_not_found_dlg_text" msgid="2980271680333341554">"Приложение не было найдено в списке установленных приложений."</string>
@@ -823,7 +823,7 @@
     <string name="process_service_in_use_description" msgid="8993335064403217080">"Служба <xliff:g id="COMP_NAME">%1$s</xliff:g> используется."</string>
     <string name="process_provider_in_use_description" msgid="5586603325677678940">"Провайдер <xliff:g id="COMP_NAME">%1$s</xliff:g> используется."</string>
     <string name="runningservicedetails_stop_dlg_title" msgid="4253292537154337233">"Остановить системную службу?"</string>
-    <string name="runningservicedetails_stop_dlg_text" msgid="6929716497425738387">"Вы действительно хотите остановить эту системную службу? В этом случае некоторые функции телефона могут перестать работать до его выключения и повторного включения."</string>
+    <string name="runningservicedetails_stop_dlg_text" msgid="6929716497425738387">"Вы действительно хотите остановить эту системную службу? В этом случае некоторые функции устройства могут перестать работать до его выключения и повторного включения."</string>
     <string name="language_settings" msgid="502219872342167227">"Язык и клавиатура"</string>
     <string name="language_keyboard_settings_title" msgid="3455826933385341107">"Настройки языка и клавиатуры"</string>
     <string name="language_settings_category" msgid="2288258489940617043">"Языковые настройки"</string>
@@ -850,7 +850,7 @@
     <string name="user_dict_settings_context_menu_delete_title" msgid="9140703913776549054">"Удалить"</string>
     <string name="user_dict_settings_empty_text" msgid="6209268025109242806">"В пользовательском словаре отсутствуют слова. Добавить слово можно с помощью меню."</string>
     <string name="testing" msgid="6584352735303604146">"Проверка"</string>
-    <string name="testing_phone_info" msgid="8656693364332840056">"Информация о телефоне"</string>
+    <string name="testing_phone_info" msgid="8656693364332840056">"Информация"</string>
     <string name="testing_battery_info" msgid="3497865525976497848">"Информация о батарее"</string>
     <string name="quick_launch_title" msgid="7904609846945905306">"Быстрый запуск"</string>
     <string name="quick_launch_summary" msgid="3453825712466417452">"Настройка клавиш для быстрого запуска приложений"</string>
@@ -859,7 +859,7 @@
     <string name="quick_launch_shortcut" msgid="5090405067413522300">"Поиск в + <xliff:g id="SHORTCUT_LETTER">%1$s</xliff:g>"</string>
     <string name="quick_launch_clear_dialog_title" msgid="5546543501250320220">"Очистить"</string>
     <string name="quick_launch_clear_dialog_message" msgid="3921015601470260722">"Ярлык для <xliff:g id="SHORTCUT_LETTER">%1$s</xliff:g> (<xliff:g id="APPLICATION_NAME">%2$s</xliff:g>) будет удален."</string>
-    <string name="quick_launch_clear_ok_button" msgid="2634568926597586716">"ОК"</string>
+    <string name="quick_launch_clear_ok_button" msgid="2634568926597586716">"Ок"</string>
     <string name="quick_launch_clear_cancel_button" msgid="1892854652197747064">"Отмена"</string>
     <string name="quick_launch_display_mode_applications" msgid="3748789806447639039">"Приложения"</string>
     <string name="quick_launch_display_mode_shortcuts" msgid="4177934019174169042">"Ярлыки"</string>
@@ -931,7 +931,7 @@
     <string name="power_bluetooth" msgid="4373329044379008289">"Bluetooth"</string>
     <string name="power_cell" msgid="6596471490976003056">"Связь с сетью"</string>
     <string name="power_phone" msgid="5392641106474567277">"Голосовые вызовы"</string>
-    <string name="power_idle" msgid="9055659695602194990">"Телефон в режиме ожидания"</string>
+    <string name="power_idle" msgid="9055659695602194990">"Устройство в режиме ожидания"</string>
     <string name="usage_type_cpu" msgid="715162150698338714">"ЦП – всего"</string>
     <string name="usage_type_cpu_foreground" msgid="6500579611933211831">"ЦП – активный режим"</string>
     <string name="usage_type_wake_lock" msgid="5125438890233677880">"Не отключать"</string>
@@ -1136,9 +1136,9 @@
     <string name="encrypted_fs_alert_dialog_title" msgid="583462447886934755">"Предупреждение для зашифрованных файловых систем"</string>
     <string name="emergency_tone_title" msgid="1055954530111587114">"Тональный сигнал экстренного вызова"</string>
     <string name="emergency_tone_summary" msgid="722259232924572153">"Настроить режим работы при экстренном вызове"</string>
-    <string name="privacy_settings" msgid="9206631214140954954">"Конфиденциальность"</string>
+    <string name="privacy_settings" msgid="9206631214140954954">"Сброс настроек"</string>
     <string name="privacy_settings_title" msgid="1987089301293213705">"Настройки конфиденциальности"</string>
-    <string name="backup_section_title" msgid="8856083167469467588">"Резервное копирование и восстановление"</string>
+    <string name="backup_section_title" msgid="8856083167469467588">"Сброс настроек"</string>
     <string name="personal_data_section_title" msgid="7815209034443782061">"Личные данные"</string>
     <string name="backup_data_title" msgid="1239105919852668016">"Резервное копирование данных"</string>
     <string name="backup_data_summary" msgid="6515285107793232815">"Резервное копирование данных приложений, паролей Wi-Fi и других настроек в Google"</string>

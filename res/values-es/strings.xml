@@ -390,7 +390,7 @@
     <string name="wifi_setting_sleep_policy_title" msgid="1367731352485585528">"Política de suspensión de Wi-Fi"</string>
     <string name="wifi_setting_sleep_policy_summary" msgid="7573693311804602041">"Especificar cuándo cambiar de Wi-Fi a datos móviles"</string>
     <string name="wifi_setting_sleep_policy_error" msgid="5103670439972135148">"Se ha producido un problema al intentar establecer la política de suspensión."</string>
-    <string name="wifi_advanced_mac_address_title" msgid="6571335466330978393">"Dirección MAC"</string>
+    <string name="wifi_advanced_mac_address_title" msgid="6571335466330978393">"dirección MAC"</string>
     <string name="wifi_advanced_ip_address_title" msgid="6215297094363164846">"Dirección IP"</string>
     <string name="wifi_ip_settings_titlebar" msgid="4345739031248760326">"Ajustes de IP"</string>
     <string name="wifi_ip_settings_menu_save" msgid="7296724066102908366">"Guardar"</string>
@@ -511,7 +511,7 @@
     <string name="device_info_not_available" msgid="8062521887156825182">"No disponible"</string>
     <string name="device_status_activity_title" msgid="1411201799384697904">"Estado"</string>
     <string name="device_status" msgid="607405385799807324">"Estado"</string>
-    <string name="device_status_summary" msgid="2599162787451519618">"Número de teléfono, señal, etc."</string>
+    <string name="device_status_summary" msgid="2599162787451519618">"Estado de la batería,Nivel de batería,Dirección MAC de Wi-Fi"</string>
     <string name="storage_settings" msgid="4211799979832404953">"Almacenamiento"</string>
     <string name="storage_settings_title" msgid="8746016738388094064">"Ajustes de almacenamiento"</string>
     <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"Desactivar almacenamiento USB, ver almacenamiento disponible"</string>
@@ -599,14 +599,14 @@
     <string name="menu_restore" msgid="8260067415075573273">"Valores predeterminados"</string>
     <string name="restore_default_apn_completed" msgid="3990449939234957281">"Restablecimiento de la configuración de APN predeterminada completado"</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Restablecer datos de fábrica"</string>
-    <string name="master_clear_summary" msgid="4986154238001088492">"Borrar todos los datos del teléfono"</string>
+    <string name="master_clear_summary" msgid="4986154238001088492">"Borrar todos los datos del eReader"</string>
     <string name="master_clear_desc" product="nosdcard" msgid="2163013814299528247">"Se borrarán todos los datos del "<b>"almacenamiento interno"</b>" del teléfono, incluidos: la configuración y los datos de aplicaciones y del sistema de "\n\n<li>"tu cuenta de Google"</li>\n<li>","</li>\n<li>"las aplicaciones descargadas."</li>\n\n"Para eliminar todos los datos de este teléfono, debes borrar el "<b>"almacenamiento USB"</b>"."\n\n</string>
-    <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Se borrarán todos los datos del "<b>"almacenamiento interno"</b>" del teléfono, incluidos: la configuración y los datos de aplicaciones y del sistema de "\n\n<li>"tu cuenta de Google"</li>\n<li>","</li>\n<li>"las aplicaciones descargadas."</li>\n\n"Si también quieres eliminar la música, las imágenes y otros datos de usuario, debes borrar la "<b>"tarjeta SD"</b>"."\n\n</string>
+    <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Se borrarán todos los datos del "<b>"almacenamiento interno"</b>" del eReader, incluidos: la configuración y los datos de aplicaciones y del sistema de "\n\n<li>"tu cuenta de Google"</li>\n<li>","</li>\n<li>"las aplicaciones descargadas."</li>\n\n"Si también quieres eliminar la música, las imágenes y otros datos de usuario, debes borrar la "<b>"tarjeta SD"</b>"."\n\n</string>
     <string name="erase_external_storage" product="nosdcard" msgid="969364037450286809">"Borrar almacenamiento USB"</string>
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Borrar tarjeta SD"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="1657838142707381027">"Borr dat USB intern (mús, fot)"</string>
     <string name="erase_external_storage_description" product="default" msgid="8100175974635894073">"Borra todos los datos de la tarjeta SD, como música y fotos"</string>
-    <string name="master_clear_button_text" msgid="7550632653343157971">"Reiniciar teléfono"</string>
+    <string name="master_clear_button_text" msgid="7550632653343157971">"Reiniciar eReader"</string>
     <string name="master_clear_final_desc" msgid="6917971132484622696">"¿Quieres borrar toda tu información personal y las aplicaciones que has descargado? Esta acción no se puede deshacer."</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Borrar todo"</string>
     <string name="master_clear_gesture_prompt" msgid="1428645764883536750">"Crea tu patrón de desbloqueo."</string>
@@ -654,7 +654,7 @@
     <string name="assisted_gps" msgid="4649317129586736885">"Utilizar GPS asistido"</string>
     <string name="assisted_gps_enabled" msgid="8751899609589792803">"Utilizar el servidor para asistir al GPS (desactivar para reducir el uso de la red)"</string>
     <string name="assisted_gps_disabled" msgid="6982698333968010748">"Utilizar el servidor para asistir al GPS (desactivar para mejorar el rendimiento del GPS)"</string>
-    <string name="about_settings" msgid="1743378368185371685">"Acerca del teléfono"</string>
+    <string name="about_settings" msgid="1743378368185371685">"Info"</string>
     <string name="about_settings_summary" msgid="3302263393543848667">"Ver información legal, estado del teléfono, versión del software"</string>
     <string name="legal_information" msgid="5769301644270604095">"Información legal"</string>
     <string name="contributors_title" msgid="5917703088825286504">"Contribuidores"</string>
@@ -728,7 +728,7 @@
     <string name="cache_size_label" msgid="7505481393108282913">"Caché"</string>
     <string name="controls_label" msgid="7611113077086853799">"Controles"</string>
     <string name="force_stop" msgid="7435006169872876756">"Forzar detención"</string>
-    <string name="total_size_label" msgid="1048676419552557254">"Total"</string>
+    <string name="total_size_label" msgid="1048676419552557254">"total"</string>
     <string name="application_size_label" msgid="5055196275624686382">"Aplicación"</string>
     <string name="data_size_label" msgid="8679376373625710107">"Datos"</string>
     <string name="uninstall_text" msgid="3644892466144802466">"Desinstalar"</string>

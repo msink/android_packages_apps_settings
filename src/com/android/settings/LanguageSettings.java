@@ -76,12 +76,6 @@ public class LanguageSettings extends PreferenceActivity {
         }
 
         Configuration config = getResources().getConfiguration();
-        if (config.keyboard != Configuration.KEYBOARD_QWERTY) {
-            getPreferenceScreen().removePreference(
-                    getPreferenceScreen().findPreference(KEY_HARDKEYBOARD_CATEGORY));
-        } else {
-            mHaveHardKeyboard = true;
-        }
         mCheckboxes = new ArrayList<CheckBoxPreference>();
         onCreateIMM();
     }
@@ -99,9 +93,6 @@ public class LanguageSettings extends PreferenceActivity {
         mLastInputMethodId = Settings.Secure.getString(getContentResolver(),
             Settings.Secure.DEFAULT_INPUT_METHOD);
         
-        PreferenceGroup keyboardSettingsCategory = (PreferenceGroup) findPreference(
-                KEY_KEYBOARD_SETTINGS_CATEGORY);
-        
         int N = (mInputMethodProperties == null ? 0 : mInputMethodProperties
                 .size());
         for (int i = 0; i < N; ++i) {
@@ -116,7 +107,6 @@ public class LanguageSettings extends PreferenceActivity {
                 CheckBoxPreference chkbxPref = new CheckBoxPreference(this);
                 chkbxPref.setKey(prefKey);
                 chkbxPref.setTitle(label);
-                keyboardSettingsCategory.addPreference(chkbxPref);
                 mCheckboxes.add(chkbxPref);
             }
 
@@ -136,7 +126,6 @@ public class LanguageSettings extends PreferenceActivity {
                             R.string.input_methods_settings_label_format, label);
                     prefScreen.setSummary(settingsLabel);
                 }
-                keyboardSettingsCategory.addPreference(prefScreen);
             }
         }
     }
