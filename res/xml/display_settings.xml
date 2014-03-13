@@ -19,14 +19,6 @@
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
         <ListPreference
-                android:key="page_refresh_rate"
-                android:title="@string/page_refresh_rate"
-                android:summary="@string/page_refresh_rate_summary"
-            android:persistent="false"
-                android:entries="@array/page_refresh_rate_entries"
-                android:entryValues="@array/page_refresh_rate_values" />
-
-        <ListPreference
                 android:key="screen_timeout"
                 android:title="@string/screen_timeout"
                 android:summary="@string/screen_timeout_summary"
@@ -41,5 +33,21 @@
                 android:persistent="false"
                 android:entries="@array/auto_shutdown_timeout_entries"
                 android:entryValues="@array/auto_shutdown_timeout_values" />
+
+        <ListPreference
+                android:key="font_size"
+                android:title="@string/title_font_size"
+                android:summary="@string/summary_font_size"
+                android:persistent="false"
+                android:entries="@array/entries_font_size"
+                android:entryValues="@array/entryvalues_font_size" />
+
+        <ListPreference
+                android:key="page_refresh_rate"
+                android:title="@string/page_refresh_rate"
+                android:summary="@string/page_refresh_rate_summary"
+                android:persistent="false"
+                android:entries="@array/page_refresh_rate_entries"
+                android:entryValues="@array/page_refresh_rate_values" />
 
 </PreferenceScreen>

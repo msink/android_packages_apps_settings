@@ -2669,4 +2669,7 @@ found in the list of installed applications.</string>
     <string name="host_format_button_text">Erase USB Disk</string>
     <string name="host_format_final_desc">Erase USB Disk, deleting all files stored there? Action cannot be reversed!</string>
 
+    <string name="title_font_size">Font size</string>
+    <string name="summary_font_size"><xliff:g id="font_size">%1$s</xliff:g></string>
+
 </resources>
