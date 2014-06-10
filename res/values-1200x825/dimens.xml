@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="wifi_dialog_button_font_size">24sp</dimen>
+    <dimen name="manage_app_tab_host_font_size">16sp</dimen>
+    <dimen name="alert_dialog_button_width">190dip</dimen>
+</resources>
