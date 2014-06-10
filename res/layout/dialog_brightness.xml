@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2006 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        android:textSize="30sp"
+        android:text="@string/brightness"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="@*android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="10dip"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <ToggleButton android:id="@+id/togglebutton_light_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:background="@drawable/togglebutton_light_background"
+            android:focusable="false"
+            android:textOn="@null"
+            android:textOff="@null"
+            />
+
+        <ImageView android:id="@+id/imageview_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dip"
+            android:src="@drawable/light_cut_off_line"
+            android:contentDescription="@drawable/light_cut_off_line"
+            />
+
+        <ImageButton android:id="@+id/imagebutton_light_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="21dip"
+            android:scaleType="fitCenter"
+            android:background="@drawable/focus_button_background"
+            android:src="@drawable/light_down"
+            android:contentDescription="@drawable/light_down"
+            />
+
+        <RatingBar android:id="@+id/ratingbar_light_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="50"
+            android:stepSize="1"
+            style="@style/LightSettingsRatingBarStyle"
+            />
+
+        <ImageButton android:id="@+id/imagebutton_light_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dip"
+            android:layout_marginRight="26dip"
+            android:background="@drawable/focus_button_background"
+            android:src="@drawable/light_add"
+            android:scaleType="fitCenter"
+            android:contentDescription="@drawable/light_add"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

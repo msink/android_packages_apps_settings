@@ -24,7 +24,7 @@ public class BrightnessDialog extends Dialog {
     public BrightnessDialog(Context context) {
         super(context);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.xml.dialog_brightness);
+        setContentView(R.layout.dialog_brightness);
         mDeviceController = new DeviceController(context);
         mRatingBarLightSettings = (RatingBar)findViewById(R.id.ratingbar_light_settings);
         mRatingBarLightSettings.setFocusable(false);
