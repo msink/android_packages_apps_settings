@@ -33,6 +33,8 @@
     <timezone id="Europe/Brussels">Brussels</timezone>
     <timezone id="Europe/Sarajevo">Sarajevo</timezone>
     <timezone id="Africa/Windhoek">Windhoek</timezone>
+    <timezone id="Europe/Warsaw">Warsaw</timezone>
+    <timezone id="Europe/Madrid">Madrid</timezone>
     <timezone id="Africa/Brazzaville">W. Africa Time</timezone>
     <timezone id="Asia/Amman">Amman, Jordan</timezone>
     <timezone id="Europe/Athens">Athens, Istanbul</timezone>

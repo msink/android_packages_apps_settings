@@ -487,6 +487,8 @@
     <string name="brightness_summary" msgid="838917350127550703">"调整屏幕亮度"</string>
     <string name="screen_timeout" msgid="4882669461447531301">"屏幕超时"</string>
     <string name="screen_timeout_summary" msgid="2905757633140605334">"调整屏幕自动锁定前的延迟"</string>
+    <string name="power_off_timeout">关机延迟</string>
+    <string name="power_off_timeout_summary">调整自动关机的延迟时间</string>
     <string name="automatic_brightness" msgid="5014143533884135461">"自动调整亮度"</string>
     <string name="sim_lock_settings" msgid="3392331196873564292">"SIM 卡锁定设置"</string>
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"设置 SIM 卡锁定"</string>
@@ -544,6 +546,7 @@
     <string name="sd_memory" product="nosdcard" msgid="2510246194083052841">"USB 存储设备"</string>
     <string name="sd_memory" product="default" msgid="151871913888051515">"SD 卡"</string>
     <string name="memory_available" msgid="418542433817289474">"可用空间"</string>
+    <string name="internal_memory_available">可用运行内存</string>
     <string name="memory_size" msgid="6629067715017232195">"总容量"</string>
     <string name="sd_eject" product="default" msgid="6915293408836853020">"卸载 SD 卡"</string>
     <string name="sd_eject_summary" product="nosdcard" msgid="5009296896648072891">"卸载内部 USB 存储设备"</string>
@@ -1193,4 +1196,19 @@
     <string name="exit_compatibility_mode">正常模式</string>
     <string name="rockchip_compatibility_info">该应用程序正运行在兼容性模式.</string>
     <string name="rockchip_normal_info">该应用程序正运行在正常模式.</string>
+    <string name="wakeup_brightness">唤醒</string>
+    <string name="wakeup_brightness_summary">系统唤醒时打开前照光</string>
+    <string name="epd_full_timeout">全屏刷新超时</string>
+    <string name="epd_full_timeout_summary">调整自动全屏刷新的延迟</string>
+    <string name="Preferred_Applications">首选应用设置</string>
+    <string name="key_map_options">按键映射</string>
+    <string name="key_keyboard">键盘</string>
+    <string name="media_format_usb_title">格式化 USB 存储设备</string>
+    <string name="font">字体</string>
+    <string name="loading">加载。。。</string>
+    <string name="loading_error">加载失败</string>
+    <string name="set_font_dialog_tile">设置字体</string>
+    <string name="reboot_device">确定重启设备吗？</string>
+    <string name="rebooting">重启设备中。。。</string>
+    <string name="serialnumber">序列号</string>
 </resources>

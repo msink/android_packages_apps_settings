@@ -46,6 +46,13 @@
     <item msgid="7156442995039264948">"30 分钟"</item>
     <item>从不超时</item>
   </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>20分钟</item>
+    <item>30分钟</item>
+    <item>60分钟</item>
+    <item>一天</item>
+    <item>不自动关机</item>
+  </string-array>
   <string-array name="hdmi_resolution_entries">
     <item>1920x1080p_50Hz</item>
     <item>1920x1080p_60Hz</item>
@@ -171,5 +178,12 @@
     <item msgid="6293147072807231256">"一律不"</item>
     <item msgid="1276641209451816572">"仅在静音模式下来电振动"</item>
     <item msgid="8418930333779132418">"仅在非静音模式下来电振动"</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1分钟</item>
+    <item>2分钟</item>
+    <item>10分钟</item>
+    <item>30分钟</item>
+    <item>不自动全屏刷新</item>
   </string-array>
 </resources>

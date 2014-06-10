@@ -1186,7 +1186,7 @@
     <!-- Sound & display settings screen, setting option summary to change screen timeout -->
     <string name="screen_timeout_summary">Adjust the delay before the screen automatically turns off</string>
 
-    <string name="power_off_timeout">Power Off timeout</string>
+    <string name="power_off_timeout">Power off timeout</string>
     <string name="power_off_timeout_summary">Adjust the delay before the power off automatically</string>
 
     <!-- Sound & display settings screen, setting option name to change whether the screen adjusts automatically based on lighting conditions -->
@@ -2336,7 +2336,7 @@ found in the list of installed applications.</string>
     <!-- On main TTS Settings screen, section header for default TTS settings -->
     <string name="tts_default_settings_section">Default settings</string>
     <!-- On main TTS Settings screen, in default settings section, setting default synthesis engine for synthesized voice -->
-    <string name="tts_default_synth_title">Default Engine</string>
+    <string name="tts_default_synth_title">Default engine</string>
     <!-- On main TTS Settings screen, summary for default synthesis engine for synthesized voice -->
     <string name="tts_default_synth_summary">Sets the speech synthesis engine to be used for spoken text</string>
     <!-- On main TTS Settings screen, in default settings section, setting default speech rate for synthesized voice -->
@@ -2701,10 +2701,10 @@ found in the list of installed applications.</string>
     <string name="rockchip_normal_info">This application is running in normal mode.</string>
     <string name="wakeup_brightness">Wake up</string>
     <string name="wakeup_brightness_summary">Open front light when wake up system</string>
-    <string name="epd_full_timeout">Fully Refresh timeout</string>
+    <string name="epd_full_timeout">Fully refresh timeout</string>
     <string name="epd_full_timeout_summary">Adjust the delay before fully refresh automatically</string>
-    <string name="Preferred_Applications">Preferred Applications</string>
-    <string name="key_map_options">Key Mapping Options</string>
+    <string name="Preferred_Applications">Preferred applications</string>
+    <string name="key_map_options">Key mapping options</string>
     <string name="key_keyboard">Keyboard</string>
     <string name="media_format_usb_title">Erase USB storage</string>
     <string name="font">Font</string>

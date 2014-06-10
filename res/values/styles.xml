@@ -108,7 +108,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="WindowTitle.Custom" parent="android:Theme.NoTitleBar">
+    <style name="WindowTitle.Custom" parent="android:WindowTitle">
         <item name="android:textAppearance">@style/TextAppearance.WindowTitle.Custom</item>
         <item name="android:paddingLeft">0dip</item>
         <item name="android:shadowColor">#00000000</item>

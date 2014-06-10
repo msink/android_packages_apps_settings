@@ -54,7 +54,7 @@
     <string name="large_font" msgid="599055175160971446">"Большой"</string>
     <string name="font_size_save" msgid="3450855718056759095">"ОК"</string>
     <string name="sdcard_setting" product="nosdcard" msgid="8281011784066476192">"USB-накопитель"</string>
-    <string name="sdcard_setting" product="default" msgid="5922637503871474866">"SD-карта"</string>
+    <string name="sdcard_setting" product="default" msgid="5922637503871474866">"Карта памяти"</string>
     <string name="battery_info_status_label" msgid="8109155295509700309">"Состояние батареи:"</string>
     <string name="battery_info_power_label" msgid="7465140230991349382">"Питание:"</string>
     <string name="battery_info_scale_label" msgid="3649763192389778437">"Шкала батареи:"</string>
@@ -206,7 +206,7 @@
     <string name="display_label" msgid="7403874003169865762">"Экран"</string>
     <string name="phone_info_label" msgid="2127552523124277664">"Сведения об устройстве"</string>
     <string name="sd_card_settings_label" product="nosdcard" msgid="8101475181301178428">"USB-накопитель"</string>
-    <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"SD-карта"</string>
+    <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"Карта памяти"</string>
     <string name="proxy_settings_label" msgid="3271174136184391743">"Настройки прокси-сервера"</string>
     <string name="cancel" msgid="6859253417269739139">"Отмена"</string>
     <string name="settings_label" msgid="1626402585530130914">"Настройки"</string>
@@ -515,7 +515,7 @@
     <string name="device_status" msgid="607405385799807324">"Общая информация"</string>
     <string name="device_status_summary" msgid="2599162787451519618">"Номер устройства, уровень сигнала и т.д."</string>
     <string name="storage_settings" msgid="4211799979832404953">"Память"</string>
-    <string name="storage_settings_title" msgid="8746016738388094064">"Настройки хранилища"</string>
+    <string name="storage_settings_title" msgid="8746016738388094064">" Работа с памятью"</string>
     <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"Отключить USB-накопитель, просмотреть доступные накопители"</string>
     <string name="storage_settings_summary" product="default" msgid="9176693537325988610">"Отключение SD-карты, сведения о доступной памяти"</string>
     <string name="status_number" msgid="5123197324870153205">"Номер моего устройства"</string>
@@ -533,10 +533,11 @@
     <string name="status_unavailable" msgid="7862009036663793314">"Недоступно"</string>
     <string name="status_up_time" msgid="7294859476816760399">"Время с момента включения"</string>
     <string name="status_awake_time" msgid="2393949909051183652">"Время работы"</string>
-    <string name="internal_memory" msgid="9129595691484260784">"Внутренний накопитель"</string>
+    <string name="internal_memory" msgid="9129595691484260784">"Оперативная память"</string>
     <string name="sd_memory" product="nosdcard" msgid="2510246194083052841">"USB-накопитель"</string>
-    <string name="sd_memory" product="default" msgid="151871913888051515">"SD-карта"</string>
+    <string name="sd_memory" product="default" msgid="151871913888051515">"Карта памяти"</string>
     <string name="memory_available" msgid="418542433817289474">"Свободно"</string>
+    <string name="internal_memory_available">Доступно памяти</string>
     <string name="memory_size" msgid="6629067715017232195">"Всего места"</string>
     <string name="sd_eject" product="default" msgid="6915293408836853020">"Извлечь SD-карту"</string>
     <string name="sd_eject_summary" product="nosdcard" msgid="5009296896648072891">"Отключить внутр. USB-накопитель"</string>
@@ -544,13 +545,13 @@
     <string name="sd_insert_summary" product="nosdcard" msgid="5264016886409577313">"Вставить USB-накопитель для подключения"</string>
     <string name="sd_insert_summary" product="default" msgid="2048640010381803841">"Вставьте SD-карту для подключения"</string>
     <string name="sd_mount" product="nosdcard" msgid="8966695015677343116">"Подключить USB-накопитель"</string>
-    <string name="sd_mount" product="default" msgid="5940523765187704135">"Подключить SD-карту"</string>
+    <string name="sd_mount" product="default" msgid="5940523765187704135">"Подключить карту памяти"</string>
     <!-- outdated translation 6733254203291665551 -->     <string name="sd_mount_summary" product="nosdcard" msgid="1794150364965145726">"Подключить внутр. USB-накопитель"</string>
     <string name="sd_mount_summary" product="default" msgid="4936591681679097699">"Подключить SD-карту"</string>
     <string name="sd_format" product="nosdcard" msgid="2148179271623099054">"Очистить USB-накопитель"</string>
-    <string name="sd_format" product="default" msgid="2576054280507119870">"Очистить SD-карту"</string>
+    <string name="sd_format" product="default" msgid="2576054280507119870">"Очистить карту памяти"</string>
     <string name="sd_format_summary" product="nosdcard" msgid="1504606546865152514">"Удаляет все данные с внутреннего USB-накопителя телефона, такие как музыка и фотографии"</string>
-    <string name="sd_format_summary" product="default" msgid="915849621390821841">"Удаляет все данные с SD-карты устройства, например музыку и фотографии"</string>
+    <string name="sd_format_summary" product="default" msgid="915849621390821841">"Удалить все данные с карты памяти"</string>
     <string name="sd_unavailable" msgid="8580107589533213904">"Недоступно"</string>
     <string name="read_only" msgid="6702420168629076340">"(только для чтения)"</string>
     <string name="dlg_confirm_unmount_title" product="nosdcard" msgid="2349876662428231297">"Отключить USB-накопитель"</string>
@@ -756,9 +757,9 @@
     <string name="filter_apps_onsdcard" product="default" msgid="1477351142334784771">"На SD-карте"</string>
     <string name="disabled" msgid="9206776641295849915">"Отключено"</string>
     <string name="no_applications" msgid="5190227407135243904">"Нет приложений."</string>
-    <string name="internal_storage" msgid="1584700623164275282">"Внутренний накопитель"</string>
+    <string name="internal_storage" msgid="1584700623164275282">"Оперативная память"</string>
     <string name="sd_card_storage" product="nosdcard" msgid="2673203150465132465">"USB-накопитель"</string>
-    <string name="sd_card_storage" product="default" msgid="7623513618171928235">"SD-карта"</string>
+    <string name="sd_card_storage" product="default" msgid="7623513618171928235">"Карта памяти"</string>
     <string name="recompute_size" msgid="7722567982831691718">"Повторное вычисление размера..."</string>
     <string name="clear_data_dlg_title" msgid="4470209520936375508">"Удалить"</string>
     <string name="clear_data_dlg_text" msgid="8368035073300828451">"Все данные этой программы будут удалены навсегда, включая все файлы, базы данных, настройки, аккаунты и прочее."</string>
