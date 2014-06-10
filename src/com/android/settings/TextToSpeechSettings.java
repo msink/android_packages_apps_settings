@@ -108,6 +108,13 @@ public class TextToSpeechSettings extends PreferenceActivity implements
     private static final int VOICE_DATA_INTEGRITY_CHECK = 1977;
     private static final int GET_SAMPLE_TEXT = 1983;
 
+    private String getDefaultLocVariant() {
+        if (mDefaultLocVariant == null) {
+            mDefaultLocVariant = new String();
+        }
+        return mDefaultLocVariant;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -331,7 +338,7 @@ public class TextToSpeechSettings extends PreferenceActivity implements
         intent.setAction("android.speech.tts.engine.GET_SAMPLE_TEXT");
         intent.putExtra("language", mDefaultLanguage);
         intent.putExtra("country", mDefaultCountry);
-        intent.putExtra("variant", mDefaultLocVariant);
+        intent.putExtra("variant", getDefaultLocVariant());
         List<ResolveInfo> resolveInfos = pm.queryIntentActivities(intent, 0);
         // query only the package that matches that of the default engine
         for (int i = 0; i < resolveInfos.size(); i++) {
@@ -414,7 +421,7 @@ public class TextToSpeechSettings extends PreferenceActivity implements
                     selectedLanguagePref = selectedLanguagePref + LOCALE_DELIMITER +
                             mDefaultCountry;
                 }
-                if (mDefaultLocVariant.length() > 0) {
+                if (mDefaultLocVariant != null && mDefaultLocVariant.length() > 0) {
                     selectedLanguagePref = selectedLanguagePref + LOCALE_DELIMITER +
                             mDefaultLocVariant;
                 }
@@ -445,25 +452,25 @@ public class TextToSpeechSettings extends PreferenceActivity implements
                 mEnableDemo = true;
                 // Make sure that the default language can be used.
                 int languageResult = mTts.setLanguage(
-                        new Locale(mDefaultLanguage, mDefaultCountry, mDefaultLocVariant));
+                        new Locale(mDefaultLanguage, mDefaultCountry, getDefaultLocVariant()));
                 if (languageResult < TextToSpeech.LANG_AVAILABLE){
                     Locale currentLocale = Locale.getDefault();
                     mDefaultLanguage = currentLocale.getISO3Language();
                     mDefaultCountry = currentLocale.getISO3Country();
                     mDefaultLocVariant = currentLocale.getVariant();
                     languageResult = mTts.setLanguage(
-                            new Locale(mDefaultLanguage, mDefaultCountry, mDefaultLocVariant));
+                            new Locale(mDefaultLanguage, mDefaultCountry, getDefaultLocVariant()));
                     // If the default Locale isn't supported, just choose the first available
                     // language so that there is at least something.
                     if (languageResult < TextToSpeech.LANG_AVAILABLE){
                         parseLocaleInfo(ttsLanguagePref.getEntryValues()[0].toString());
                         mTts.setLanguage(
-                                new Locale(mDefaultLanguage, mDefaultCountry, mDefaultLocVariant));
+                                new Locale(mDefaultLanguage, mDefaultCountry, getDefaultLocVariant()));
                     }
                     ContentResolver resolver = getContentResolver();
                     Settings.Secure.putString(resolver, TTS_DEFAULT_LANG, mDefaultLanguage);
                     Settings.Secure.putString(resolver, TTS_DEFAULT_COUNTRY, mDefaultCountry);
-                    Settings.Secure.putString(resolver, TTS_DEFAULT_VARIANT, mDefaultLocVariant);
+                    Settings.Secure.putString(resolver, TTS_DEFAULT_VARIANT, getDefaultLocVariant());
                 }
             } else {
                 mEnableDemo = false;
@@ -519,15 +526,17 @@ public class TextToSpeechSettings extends PreferenceActivity implements
             parseLocaleInfo((String) objValue);
             Settings.Secure.putString(resolver, TTS_DEFAULT_LANG, mDefaultLanguage);
             Settings.Secure.putString(resolver, TTS_DEFAULT_COUNTRY, mDefaultCountry);
-            Settings.Secure.putString(resolver, TTS_DEFAULT_VARIANT, mDefaultLocVariant);
+            Settings.Secure.putString(resolver, TTS_DEFAULT_VARIANT, getDefaultLocVariant());
             Log.v(TAG, "TTS default lang/country/variant set to "
-                    + mDefaultLanguage + "/" + mDefaultCountry + "/" + mDefaultLocVariant);
+                    + mDefaultLanguage + "/" + mDefaultCountry + "/" + getDefaultLocVariant());
             if (mTts != null) {
-                mTts.setLanguage(new Locale(mDefaultLanguage, mDefaultCountry, mDefaultLocVariant));
+                mTts.setLanguage(new Locale(mDefaultLanguage, mDefaultCountry, getDefaultLocVariant()));
             }
             int newIndex = mDefaultLocPref.findIndexOfValue((String)objValue);
             Log.v("Settings", " selected is " + newIndex);
             mDemoStringIndex = newIndex > -1 ? newIndex : 0;
+            Settings.Secure.putInt(resolver, "tts_use_defaults", 1);
+            mUseDefaultPref.setChecked(true);
         } else if (KEY_TTS_DEFAULT_SYNTH.equals(preference.getKey())) {
             mDefaultEng = objValue.toString();
             Settings.Secure.putString(getContentResolver(), TTS_DEFAULT_SYNTH, mDefaultEng);
@@ -637,17 +646,6 @@ public class TextToSpeechSettings extends PreferenceActivity implements
      *  After this method has been invoked, the default language is a supported Locale.
      */
     private void initDefaultLang() {
-        // if there isn't already a default language preference
-        if (!hasLangPref()) {
-            // if the current Locale is supported
-            if (isCurrentLocSupported()) {
-                // then use the current Locale as the default language
-                useCurrentLocAsDefault();
-            } else {
-                // otherwise use a default supported Locale as the default language
-                useSupportedLocAsDefault();
-            }
-        }
 
         // Update the language preference list with the default language and the matching
         // demo string (at this stage there is a default language pref)
