@@ -13,7 +13,13 @@ public class KeyMapSettings extends PreferenceActivity {
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.key_map_settings);
+        if (android.os.Build.DEVICE.contentEquals("I63MLP_HD")) {
+            addPreferencesFromResource(R.xml.new_key_map_settings);
+        } else if (android.os.Build.DEVICE.contentEquals("C63SM")) {
+            addPreferencesFromResource(R.xml.long_short_click_key_map_settings);
+        } else {
+            addPreferencesFromResource(R.xml.key_map_settings);
+        }
         SummaryListPreference key_map_mode_list =
             (SummaryListPreference)findPreference("key_map_mode");
         key_map_mode_list.setValue(String.valueOf(Settings.System.getInt(

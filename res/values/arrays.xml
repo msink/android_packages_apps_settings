@@ -459,6 +459,24 @@
         <item>"Option 4  "</item>
     </string-array>
 
+    <string-array name="new_key_map_mode">
+        <item>"Option 1  "</item>
+        <item>"Option 2  "</item>
+        <item>"Option 3  "</item>
+        <item>"Option 4  "</item>
+        <item>"Option 5 "</item>
+        <item>"Option 6 "</item>
+        <item>"Option 7 "</item>
+        <item>"Option 8 "</item>
+    </string-array>
+
+    <string-array name="long_short_click_key_map_mode">
+        <item>Option 1</item>
+        <item>Option 2</item>
+        <item>Option 3</item>
+        <item>Option 4</item>
+    </string-array>
+
     <string-array name="key_map_summary">
         <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page up \nLower Right -> Page down"</item>
         <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page down \nLower Right -> Page up"</item>
@@ -466,7 +484,43 @@
         <item>"Upper Left -> Page down \nLower Left -> Page up \nUpper Right -> Menu \nLower Right -> Back"</item>
     </string-array>
 
+    <string-array name="new_key_map_summary">
+        <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page up \nLower Right -> Page down"</item>
+        <item>"Upper Left -> Menu \nLower Left -> Back \nUpper Right -> Page down \nLower Right -> Page up"</item>
+        <item>"Upper Left -> Page up \nLower Left -> Page down \nUpper Right -> Menu \nLower Right -> Back"</item>
+        <item>"Upper Left -> Page down \nLower Left -> Page up \nUpper Right -> Menu \nLower Right -> Back"</item>
+        <item>"Upper Left -> Page down \nLower Left -> Page up \nUpper Right -> Page down \nLower Right -> Page up"</item>
+        <item>"Upper Left -> Page up \nLower Left -> Page down \nUpper Right -> Page up \nLower Right -> Page down"</item>
+        <item>"Upper Left -> Page down \nLower Left -> Page up \nUpper Right -> Page up \nLower Right -> Page down"</item>
+        <item>"Upper Left -> Page up \nLower Left -> Page down \nUpper Right -> Page down \nLower Right -> Page up"</item>
+    </string-array>
+
+    <string-array name="long_short_click_key_map_summary">
+        <item>"Left button (short press) -> Back \nLeft button (long press) -> Menu \nRight button (long press) -> Page up \nRight button (short press) -> Page down"</item>
+        <item>"Left button (short press) -> Page up \nLeft button (long press) -> Back \nRight button (long press) -> Menu \nRight button (short press) -> Page down"</item>
+        <item>"Left button (short press) -> Page down \nLeft button (long press) -> Page up \nRight button (long press) -> Menu \nRight button (short press) -> Back"</item>
+        <item>"Left button (short press) -> Page down \nLeft button (long press) -> Menu \nRight button (long press) -> Back \nRight button (short press) -> Page up"</item>
+    </string-array>
+
     <string-array name="key_map_mode_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="new_key_map_mode_value">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="long_short_click_key_map_mode_value">
         <item>1</item>
         <item>2</item>
         <item>3</item>

@@ -1200,6 +1200,7 @@
     <string name="loading_error">Błąd Wczytywania</string>
     <string name="set_font_dialog_tile">Ustaw Czcionkę</string>
     <string name="reboot_device">Zrestartować urządzenie?</string>
+    <string name="key_mapping">Mapowanie Klawiszy</string>
     <string name="serialnumber">Numer Seryjny</string>
     <string name="adobe_id">Zarejestrowany Identyfikator Adobe:</string>
     <string name="drm_title">Ustawienia DRM</string>

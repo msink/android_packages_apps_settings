@@ -15,6 +15,7 @@
 -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="key_mapping">Key mapping</string>
     <string name="serialnumber">Serial Number</string>
     <string name="screen_resolution">Screen resolution</string>
 </resources>
