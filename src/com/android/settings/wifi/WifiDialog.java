@@ -235,31 +235,6 @@ class WifiDialog extends AlertDialog implements View.OnClickListener,
 
         super.onCreate(savedInstanceState);
 
-        Button btn1 = getButton(DialogInterface.BUTTON_POSITIVE);
-        Button btn2 = getButton(DialogInterface.BUTTON_NEGATIVE);
-        Button btn3 = getButton(DialogInterface.BUTTON_NEUTRAL);
-        if (btn1 != null) {
-            btn1.setTextSize(30);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    (int)resources.getDimension(R.dimen.alert_dialog_button_width),
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            btn1.setLayoutParams(params);
-        }
-        if (btn2 != null) {
-            btn2.setTextSize(30);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    (int)resources.getDimension(R.dimen.alert_dialog_button_width),
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            btn2.setLayoutParams(params);
-        }
-        if (btn3 != null) {
-            btn3.setTextSize(30);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    (int)resources.getDimension(R.dimen.alert_dialog_button_width),
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            btn3.setLayoutParams(params);
-        }
-
         if (getButton(BUTTON_SUBMIT) != null) {
             validate();
         }

@@ -133,6 +133,7 @@
                 android:textSize="18sp"
                 android:text="@string/wifi_password" />
             <EditText android:id="@+id/password"
+                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
