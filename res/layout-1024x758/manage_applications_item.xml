@@ -6,9 +6,9 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:paddingLeft="6dip"
-    android:paddingTop="7dip"
+    android:paddingTop="5dip"
     android:paddingRight="6dip"
-    android:paddingBottom="7dip">
+    android:paddingBottom="5dip">
     <ImageView android:id="@id/app_icon"
         android:layout_width="@*android:dimen/app_icon_size"
         android:layout_height="@*android:dimen/app_icon_size"
@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dip"
-            android:textAppearance="?android:textAppearanceLarge"
+            android:textAppearance="?android:textAppearanceMedium"
             android:textStyle="bold"
             android:singleLine="true"
             android:ellipsize="marquee" />
@@ -38,17 +38,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dip"
                 android:layout_weight="1.0"
-                android:layout_gravity="left|center"
-                android:textAppearance="?android:textAppearanceMedium" />
+                android:layout_gravity="center_vertical|left"
+                android:textAppearance="?android:textAppearanceSmall" />
             <TextView android:id="@id/app_disabled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dip"
                 android:layout_weight="0.0"
-                android:layout_gravity="right|center"
+                android:layout_gravity="center_vertical|right"
                 android:visibility="gone"
                 android:text="@string/disabled"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:textAppearance="?android:textAppearanceSmall"
                 />
         </LinearLayout>
     </LinearLayout>

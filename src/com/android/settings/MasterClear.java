@@ -20,12 +20,23 @@ import com.android.internal.os.storage.ExternalStorageFormatter;
 import com.android.internal.widget.LockPatternUtils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.TextView;
+import android.hardware.DeviceController;
+
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Confirm and execute a reset of the device to a clean "just out of the box"
@@ -50,6 +61,32 @@ public class MasterClear extends Activity {
     private View mFinalView;
     private Button mFinalButton;
 
+    private DeviceController mDev;
+    private ProgressDialog mProgressDialog;
+    private Timer mTimer = new Timer();
+    final private Handler mHandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+            case 1:
+                mProgressDialog.dismiss();
+                if (!Build.DEVICE.contentEquals("M6")) {
+                    mFinalButton.setVisibility(View.VISIBLE);
+                }
+                break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+    private TimerTask mTask = null;
+
+    private void formattingFlash() {
+        Intent intent = new Intent("com.android.internal.os.storage.FORMAT_ONLY");
+        intent.setComponent(com.android.internal.os.storage.ExternalStorageFormatter.COMPONENT_NAME);
+        String strPath = Environment.getExternalStorageDirectory().getPath();
+        intent.putExtra("path", strPath);
+        startService(intent);
+    }
+
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
      * and invoke the Checkin Service to reset the device to its factory-default
@@ -66,9 +103,27 @@ public class MasterClear extends Activity {
                     intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
                     startService(intent);
                 } else {
+                    if (Build.DEVICE.contentEquals("M6")) {
+                        formattingFlash();
+                    }
                     sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
                     // Intent handling is asynchronous -- assume it will happen soon.
                 }
+
+                v.setVisibility(View.INVISIBLE);
+                mProgressDialog.show();
+                if (mTask != null) {
+                    mTask.cancel();
+                    mTask = null;
+                }
+                mTask = new TimerTask() {
+                    public void run() {
+                        Message message = new Message();
+                        message.what = 1;
+                        mHandler.sendMessage(message);
+                    }
+                };
+                mTimer.schedule(mTask, 3000);
             }
         };
 
@@ -145,10 +200,23 @@ public class MasterClear extends Activity {
      * to change contents.
      */
     private void establishInitialState() {
+        mDev = new DeviceController(this);
         if (mInitialView == null) {
             mInitialView = mInflater.inflate(R.layout.master_clear_primary, null);
             mInitiateButton =
                     (Button) mInitialView.findViewById(R.id.initiate_master_clear);
+            TextView google = (TextView) mInitialView.findViewById(R.id.google_account);
+            if (android.os.Build.DEVICE.contentEquals("M6")) {
+                mInitialView.findViewById(R.id.erase_external_container)
+                    .setVisibility(View.GONE);
+                mInitialView.findViewById(R.id.divider)
+                    .setVisibility(View.GONE);
+                google.setText(R.string.master_clear_desc_jc);
+                mInitiateButton.setText(R.string.master_clear_button_text_jc);
+                setTitle(R.string.master_clear_button_text_jc);
+            } else if (!mDev.hasWifi()) {
+                google.setText(R.string.master_clear_desc_no_wifi);
+            }
             mInitiateButton.setOnClickListener(mInitiateListener);
             mExternalStorageContainer =
                 mInitialView.findViewById(R.id.erase_external_container);
@@ -175,6 +243,13 @@ public class MasterClear extends Activity {
         mLockUtils = new LockPatternUtils(this);
 
         establishInitialState();
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        String str = getResources().getString(R.string.settings_license_activity_loading);
+        mProgressDialog.setMessage(str);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setIndeterminate(true);
     }
 
     /** Abandon all progress through the confirmation sequence by returning
@@ -182,11 +257,16 @@ public class MasterClear extends Activity {
      * idle timeout).
      */
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
 
         if (!isFinishing()) {
             establishInitialState();
+        }
+
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
         }
     }
 }

@@ -120,6 +120,8 @@
            android:layout_height="0dip"
            android:layout_weight="1" />
         <Button android:id="@+id/action_button"
+            android:textSize="@dimen/button_text_size"
+            android:minHeight="@dimen/button_min_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />

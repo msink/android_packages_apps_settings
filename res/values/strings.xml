@@ -1455,6 +1455,9 @@
     <string name="master_clear_desc" product="nosdcard">"This will erase all data from your device\'s <b>internal storage</b>, including:\n\n<li>Your Google account</li>\n<li>System and application data and settings</li>\n<li>Downloaded applications</li>\n\nTo clear all data on this device the <b>USB storage</b> needs to be erased.\n\n"</string>
     <!-- SD card & phone storage settings screen, message on screen after user selects Factory data reset -->
     <string name="master_clear_desc" product="default" >"This will erase all data from your device\'s <b>internal storage</b>, including:\n\n<li>Your Google account</li>\n<li>System and application data and settings</li>\n<li>Downloaded applications</li>\n\nTo also clear music, pictures, and other user data, the <b>SD card</b> needs to be erased.\n\n"</string>
+    <string name="master_clear_desc_jc">"This will erase all data from your device's "<b>internal storage</b>", including:\n\n"<li>Your Google account</li>"\n"<li>System and application data and settings</li>"\n"<li>Downloaded applications</li>"\n"<li>books,music,photos and other user data in built-in flash storage</li></string>
+    <string name="master_clear_desc_no_wifi">"This will erase all data from your device's "<b>internal storage</b>", including:\n\n"<li>System and application data and settings</li>"\n"<li>Downloaded applications</li>"\n\nTo also clear music, pictures, and other user data, the "<b>SD card</b>" needs to be erased.\n\n"</string>
+
     <!-- SD card & phone storage settings screen, label for check box to erase USB storage [CHAR LIMIT=30] -->
     <string name="erase_external_storage" product="nosdcard">Erase USB storage</string>
     <!-- SD card & phone storage settings screen, label for check box to erase SD card [CHAR LIMIT=30] -->
@@ -1465,6 +1468,7 @@
     <string name="erase_external_storage_description" product="default">Erase all the data on the device\'s SD card, such as music or photos.</string>
     <!-- SD card & phone storage settings screen, button on screen after user selects Factory data reset -->
     <string name="master_clear_button_text">Reset device</string>
+    <string name="master_clear_button_text_jc">Clean data</string>
     <!-- SD card & phone storage settings screen, message on screen after user selects Reset phone button -->
     <string name="master_clear_final_desc">Erase all of your personal information and any downloaded applications? It is impossible to reverse this action!</string>
     <!-- SD card & phone storage settings screen, button on screen after user selects Reset phone button -->
