@@ -11,7 +11,7 @@ public class FontUnit {
     private static final String TAG = "FontUnit";
 
     final private static String CUSTOM_FONT_FILE_PATH =
-        Environment.getFlashStorageDirectory().getPath();
+        Environment.getFlashStorageDirectory().getPath() + "/fonts/";
 
     private static Map<String,File[]> ourFontMap;
     private static Set<File> ourFileSet;

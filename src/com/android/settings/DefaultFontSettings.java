@@ -3,9 +3,11 @@ package com.android.settings;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +25,7 @@ public class DefaultFontSettings extends ListActivity {
     private String mDefaultFont = null;
     private ListView mFontList;
     private ProgressDialog mProgressDialog;
+    private PowerManager mPowerManager = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +110,8 @@ public class DefaultFontSettings extends ListActivity {
                     .setPositiveButton(R.string.dlg_ok,
                         new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            ShutdownThread.reboot(DefaultFontSettings.this, "", false);
+                            mPowerManager = (PowerManager)getSystemService(Context.POWER_SERVICE);
+                            mPowerManager.reboot("reboot");
                             dialog.dismiss();
                             ProgressDialog rebootProgressDialog =
                                 ProgressDialog.show(DefaultFontSettings.this,

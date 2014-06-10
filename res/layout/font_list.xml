@@ -17,7 +17,7 @@
           android:padding="5dip"
           android:fadingEdge="vertical"
           android:drawSelectorOnTop="false"
-          android:cacheColorHint="#000"
+          android:cacheColorHint="#00000000"
           android:dividerHeight="1px"
           android:soundEffectsEnabled="true"
           android:smoothScrollbar="true"
