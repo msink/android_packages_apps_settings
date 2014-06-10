@@ -49,6 +49,8 @@
                 android:layout_width="150dip"
                 android:paddingRight="6dip"
                 android:layout_weight="0.3"
+                android:textSize="@dimen/button_text_size"
+                android:minHeight="@dimen/button_min_height"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
 </LinearLayout>

@@ -39,7 +39,7 @@ public class BatteryHistoryDetail extends Activity {
         mStats = com.android.internal.os.BatteryStatsImpl.CREATOR
                 .createFromParcel(parcel);
         BatteryHistoryChart chart = (BatteryHistoryChart)findViewById(
-                R.id.battery_history_chart);
+                android.R.attr.icon);
         chart.setStats(mStats);
     }
 }

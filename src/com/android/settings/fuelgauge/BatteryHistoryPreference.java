@@ -50,7 +50,7 @@ public class BatteryHistoryPreference extends Preference {
         super.onBindView(view);
 
         BatteryHistoryChart chart = (BatteryHistoryChart)view.findViewById(
-                R.id.battery_history_chart);
+                android.R.attr.icon);
         chart.setStats(mStats);
     }
 }

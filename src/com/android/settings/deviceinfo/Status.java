@@ -37,6 +37,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.hardware.DeviceController;
 
 import com.android.internal.telephony.Phone;
@@ -72,6 +73,7 @@ public class Status extends PreferenceActivity {
 
     private Preference mBatteryStatus;
     private Preference mBatteryLevel;
+    private Preference mScreenResolution;
 
     private static class MyHandler extends Handler {
         private WeakReference<Status> mStatus;
@@ -140,8 +142,12 @@ public class Status extends PreferenceActivity {
         addPreferencesFromResource(R.xml.device_info_status);
         mBatteryLevel = findPreference("battery_level");
         mBatteryStatus = findPreference("battery_status");
-        
-        setWifiStatus();
+
+        mScreenResolution = findPreference("screen_resolution");
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        mScreenResolution.setSummary("" + dm.heightPixels + "x" + dm.widthPixels);
+
         setBtStatus();
     }
     

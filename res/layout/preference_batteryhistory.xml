@@ -20,11 +20,9 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
-    android:id="@+android:id/battery_history_chart"
+    android:id="@android:attr/icon"
     android:paddingRight="?android:attr/scrollbarSize"
     android:textAppearance="?android:attr/textAppearanceMedium"
     android:shadowRadius="4"
-    android:shadowColor="?android:attr/colorBackground"
-    android:shadowDx="2"
-    android:shadowDy="2">
+    android:textColor="@*android:color/black">
 </com.android.settings.fuelgauge.BatteryHistoryChart>

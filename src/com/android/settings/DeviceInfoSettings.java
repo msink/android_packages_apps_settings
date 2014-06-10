@@ -17,9 +17,12 @@
 package com.android.settings;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -29,8 +32,10 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.hardware.SystemCustomizationConfig;
 import android.hardware.DeviceController;
 
 import java.io.BufferedReader;
@@ -52,6 +57,9 @@ public class DeviceInfoSettings extends PreferenceActivity {
     private static final String KEY_SYSTEM_UPDATE_SETTINGS = "system_update_settings";
     private static final String PROPERTY_URL_SAFETYLEGAL = "ro.url.safetylegal";
     private static final String PRODUCT_VERSION = SystemProperties.get("product.version", "default");
+    private static final String REAL_PRODUCT_VERSION = SystemProperties.get("ro.product.version", "default");
+    private static final String RO_BUILD_VERSION_KERNEL_GIT = SystemProperties.get("ro.build.version.kernel.git", "");
+    private static final String RO_BUILD_DATE = SystemProperties.get("ro.build.date", "");
 
     long[] mHits = new long[3];
 
@@ -76,13 +84,19 @@ public class DeviceInfoSettings extends PreferenceActivity {
         findPreference("firmware_version").setEnabled(true);
         setStringSummary("device_model", Build.MODEL);
         findPreference("device_model").setEnabled(true);
-        setStringSummary("build_number", Build.DISPLAY);
+        if (Build.DEVICE.contentEquals("M6")) {
+            setStringSummary("build_number", REAL_PRODUCT_VERSION);
+        } else {
+            setStringSummary("build_number", PRODUCT_VERSION + "\n" + Build.DISPLAY +
+                " " + REAL_PRODUCT_VERSION + "    " + RO_BUILD_DATE + " ");
+        }
         findPreference("kernel_version").setSummary(getFormattedKernelVersion());
         if (getSerialNumber() != null) {
             findPreference("serial_number").setSummary(getSerialNumber());
         } else {
             getPreferenceScreen().removePreference(findPreference("serial_number"));
         }
+        setWifiSummary();
 
         // Remove Safety information preference if PROPERTY_URL_SAFETYLEGAL is not set
         removePreferenceIfPropertyMissing(getPreferenceScreen(), "safetylegal",
@@ -107,7 +121,7 @@ public class DeviceInfoSettings extends PreferenceActivity {
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
         DeviceController mDev = new DeviceController(this);
-        if (!mDev.hasWifi()) {
+        if (!mDev.hasWifi() || SystemCustomizationConfig.singleton().disableOtaUpdate()) {
             parentPreference.removePreference((PreferenceScreen)findPreference(KEY_SYSTEM_UPDATE_SETTINGS));
         } else {
             Utils.updatePreferenceToSpecificActivityOrRemove(this, parentPreference,
@@ -213,10 +227,17 @@ public class DeviceInfoSettings extends PreferenceActivity {
                 Log.e(TAG, "Regex match on /proc/version only returned " + m.groupCount()
                         + " groups");
                 return "Unavailable";
-            } else {
-                return (new StringBuilder(m.group(1)).append("\n").append(
+            } else if (DeviceInfoSettings.RO_BUILD_VERSION_KERNEL_GIT.isEmpty()) {
+                if (android.os.Build.DEVICE.contentEquals("M6")) {
+                    return m.group(1);
+                } else {
+                    return (new StringBuilder(m.group(1)).append("\n").append(
                         m.group(2)).append(" ").append(m.group(3)).append("\n")
                         .append(m.group(4))).toString();
+                }
+            } else {
+                return (new StringBuilder(m.group(1)).append("-g").append(
+                        DeviceInfoSettings.RO_BUILD_VERSION_KERNEL_GIT)).toString();
             }
         } catch (IOException e) {
             Log.e(TAG,
@@ -228,8 +249,18 @@ public class DeviceInfoSettings extends PreferenceActivity {
     }
 
     public static String getSerialNumber() {
-        String serial = null;
-        serial = System.getProperty("ro.onyx.serialno");
+        String serial = Build.SERIAL;
+        if (serial == null || serial.isEmpty())
+            return "unknown";
         return serial;
+    }
+
+    public void setWifiSummary() {
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        Preference wifiMacAddressPref = findPreference("wifi_mac_address");
+        String macAddress = wifiInfo == null ? null : wifiInfo.getMacAddress();
+        wifiMacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress :
+                                      getString(R.string.status_unavailable));
     }
 }

@@ -2709,5 +2709,4 @@ found in the list of installed applications.</string>
     <string name="set_font_dialog_tile">Set Font</string>
     <string name="reboot_device">Reboot the device?</string>
     <string name="rebooting">Rebooting...</string>
-    <string name="serialnumber">Serial Number</string>
 </resources>

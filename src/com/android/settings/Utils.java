@@ -65,6 +65,10 @@ public class Utils {
             int listSize = list.size();
             for (int i = 0; i < listSize; i++) {
                 ResolveInfo resolveInfo = list.get(i);
+                String packageName = resolveInfo.activityInfo.packageName;
+                if (preferenceKey.contentEquals("system_update_settings")
+                        && packageName.contains("com.google.android.gsf"))
+                    continue;
                 if ((resolveInfo.activityInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM)
                         != 0) {
 

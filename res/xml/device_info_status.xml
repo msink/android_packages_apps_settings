@@ -27,10 +27,9 @@
         android:title="@string/battery_level_title"
         android:summary="@string/device_info_not_available"
         android:persistent="false" />
-    <Preference android:key="wifi_mac_address"
+    <Preference android:key="screen_resolution"
         style="?android:attr/preferenceInformationStyle" 
-        android:title="@string/status_wifi_mac_address"
-        android:summary="@string/device_info_not_available"
+        android:title="@string/screen_resolution"
         android:persistent="false" />
     <Preference android:key="bt_address"
         style="?android:attr/preferenceInformationStyle" 
