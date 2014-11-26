@@ -30,13 +30,11 @@
     <item msgid="8392017019801393511">"Totes"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15 segons"</item>
-    <item msgid="8881760709354815449">"30 segons"</item>
-    <item msgid="7589406073232279088">"1 minut"</item>
-    <item msgid="7001195990902244174">"2 minuts"</item>
+    <item >"3 minuts"</item>
     <item msgid="7489864775127957179">"5 minuts"</item>
     <item msgid="2314124409517439288">"10 minuts"</item>
     <item msgid="6864027152847611413">"30 minuts"</item>
+    <item >"Mai"</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"Mai"</item>
@@ -78,6 +76,32 @@
     <item msgid="3332408460740717754">"Normal"</item>
     <item msgid="4907380534957572531">"Alt"</item>
     <item msgid="4699640516390840297">"Molt alt"</item>
+  </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>20 minuts</item>
+    <item>30 minuts</item>
+    <item>60 minuts</item>
+    <item>Mai</item>
+  </string-array>
+  <string-array name="network_inactivity_timeout_entries">
+    <item>5 minuts</item>
+    <item>10 minuts</item>
+    <item>15 minuts</item>
+    <item>30 minuts</item>
+    <item>45 minuts</item>
+    <item>60 minuts</item>
+    <item>Mai</item>
+  </string-array>
+  <string-array name="screen_refresh_mode_entries">
+    <item>AUTOMÀTIC</item>
+    <item>A2</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 minut</item>
+    <item>2 minuts</item>
+    <item>10 minuts</item>
+    <item>30 minuts</item>
+    <item>Mai</item>
   </string-array>
   <string-array name="wifi_status">
     <item msgid="1922181315419294640"></item>
@@ -294,5 +318,63 @@
     <item msgid="7389829271787670252">"Pregunta-ho"</item>
     <item msgid="5077768429488260031">"No permetis mai"</item>
     <item msgid="1417929597727989746">"Permet sempre"</item>
+  </string-array>
+  <string-array name="hdmi_resolution_entries">
+    <item>1920x1080p_50Hz</item>
+    <item>1920x1080p_60Hz</item>
+    <item>1280x720p_50Hz</item>
+    <item>1280x720p_60Hz</item>
+    <item>720x576p_50Hz</item>
+    <item>720x480p_60Hz</item>
+  </string-array>
+  <string-array name="hdmi_lcd_timeout_entries">
+    <item>10s</item>
+    <item>20s</item>
+    <item>30s</item>
+    <item>mai dormir</item>
+  </string-array>
+  <string-array name="screenshot_delay_values">
+    <item>15</item>
+    <item>30</item>
+    <item>60</item>
+    <item>120</item>
+    <item>180</item>
+    <item>240</item>
+    <item>300</item>
+  </string-array>
+  <string-array name="screenshot_delay_entries">
+    <item>15segons més tard</item>
+    <item>30segons més tard</item>
+    <item>1minut més tard</item>
+    <item>2minuts més tard</item>
+    <item>3minuts més tard</item>
+    <item>4minuts més tard</item>
+    <item>5minuts més tard</item>
+  </string-array>
+  <string-array name="screenshot_storage_location">
+    <item>Nand Flash</item>
+    <item>Targeta SD</item>
+    <item>USB Storage</item>
+  </string-array>
+  <string-array name="screenshot_strorage_location_values">
+    <item>flash</item>
+    <item>targeta SD</item>
+    <item>usb</item>
+  </string-array>
+  <string-array name="entries_resolution">
+    <item>Normal</item>
+    <item>HD</item>
+  </string-array>
+  <string-array name="key_map_mode">
+    <item>"Opció 1  "</item>
+    <item>"Opció 2  "</item>
+    <item>"Opció 3  "</item>
+    <item>"Opció 4  "</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_mode">
+    <item>Opció 1</item>
+    <item>Opció 2</item>
+    <item>Opció 3</item>
+    <item>Opció 4</item>
   </string-array>
 </resources>

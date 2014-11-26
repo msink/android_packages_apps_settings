@@ -79,6 +79,28 @@
     <item msgid="4907380534957572531">"高"</item>
     <item msgid="4699640516390840297">"非常高"</item>
   </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>20 分鐘</item>
+    <item>30 分鐘</item>
+    <item>60 分鐘</item>
+    <item>永不</item>
+  </string-array>
+  <string-array name="network_inactivity_timeout_entries">
+    <item>5 分鐘</item>
+    <item>10 分鐘</item>
+    <item>15 分鐘</item>
+    <item>30 分鐘</item>
+    <item>45 分鐘</item>
+    <item>60 分鐘</item>
+    <item>永不</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 分鐘</item>
+    <item>2 分鐘</item>
+    <item>10 分鐘</item>
+    <item>30 分鐘</item>
+    <item>永不</item>
+  </string-array>
   <string-array name="wifi_status">
     <item msgid="1922181315419294640"></item>
     <item msgid="8934131797783724664">"掃描中…"</item>

@@ -30,13 +30,11 @@
     <item msgid="8392017019801393511">"Все"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15 сек."</item>
-    <item msgid="8881760709354815449">"30 сек."</item>
-    <item msgid="7589406073232279088">"1 мин."</item>
-    <item msgid="7001195990902244174">"2 мин."</item>
+    <item>"3 мин."</item>
     <item msgid="7489864775127957179">"5 мин."</item>
     <item msgid="2314124409517439288">"10 мин."</item>
     <item msgid="6864027152847611413">"30 мин."</item>
+    <item>Никогда</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"Никогда"</item>
@@ -79,8 +77,34 @@
     <item msgid="4907380534957572531">"Высокий"</item>
     <item msgid="4699640516390840297">"Очень высокий"</item>
   </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>"20  мин."</item>
+    <item>"30  мин."</item>
+    <item>"60  мин."</item>
+    <item>Никогда</item>
+  </string-array>
+  <string-array name="network_inactivity_timeout_entries">
+    <item>5 мин.</item>
+    <item>10 мин.</item>
+    <item>15 мин.</item>
+    <item>30 мин.</item>
+    <item>45 мин.</item>
+    <item>60 мин.</item>
+    <item>Никогда</item>
+  </string-array>
+  <string-array name="screen_refresh_mode_entries">
+    <item>Авто</item>
+    <item>A2</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>"1  мин."</item>
+    <item>"2  мин."</item>
+    <item>"10  мин."</item>
+    <item>"30  мин."</item>
+    <item>Никогда</item>
+  </string-array>
   <string-array name="wifi_status">
-    <item msgid="1922181315419294640"></item>
+    <item msgid="1922181315419294640">Статус Wi-Fi</item>
     <item msgid="8934131797783724664">"Поиск..."</item>
     <item msgid="8513729475867537913">"Подключение..."</item>
     <item msgid="515055375277271756">"Аутентификация..."</item>
@@ -294,5 +318,67 @@
     <item msgid="7389829271787670252">"Спрашивать"</item>
     <item msgid="5077768429488260031">"Не разрешать"</item>
     <item msgid="1417929597727989746">"Разрешать всегда"</item>
+  </string-array>
+
+  <string-array name="hdmi_resolution_entries">
+    <item>1920 x 1080 точек, 50 Гц</item>
+    <item>1920 x 1080 точек, 60 Гц</item>
+    <item>1280 x 720 точек, 50 Гц</item>
+    <item>1280 x 720 точек, 60 Гц</item>
+    <item>720 x 576 точек, 50 Гц</item>
+    <item>720 x 480 точек, 60 Гц</item>
+  </string-array>
+  <string-array name="hdmi_lcd_timeout_entries">
+    <item>10 с</item>
+    <item>20 с</item>
+    <item>30 с</item>
+    <item>Никогда</item>
+  </string-array>
+  <string-array name="screenshot_delay_entries">
+    <item>Через 15 секунд</item>
+    <item>Через 30 секунд</item>
+    <item>Через 1 минуту</item>
+    <item>Через 2 минуты</item>
+    <item>Через 3 минуты</item>
+    <item>Через 4 минуты</item>
+    <item>Через 5 минут</item>
+  </string-array>
+  <string-array name="screenshot_storage_location">
+    <item>Внутренняя память</item>
+    <item>Карта памяти</item>
+    <item>USB-накопитель</item>
+  </string-array>
+  <string-array name="screenshot_strorage_location_values">
+    <item>Внутренняя память</item>
+    <item>Карта памяти</item>
+    <item>USB-накопитель</item>
+  </string-array>
+  <string-array name="entries_resolution">
+    <item>Нормальное</item>
+    <item>HD</item>
+  </string-array>
+  <string-array name="key_map_mode">
+    <item>"Вариант 1  "</item>
+    <item>"Вариант 2  "</item>
+    <item>"Вариант 3  "</item>
+    <item>"Вариант 4  "</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_mode">
+    <item>Вариант 1</item>
+    <item>Вариант 2</item>
+    <item>Вариант 3</item>
+    <item>Вариант 4</item>
+  </string-array>
+  <string-array name="key_map_summary">
+    <item>" Левая верхняя -> Меню \n Левая нижняя -> Назад \n Правая верхняя -> Предыдущая страница \n Правая нижняя -> Следующая страница"</item>
+    <item>" Левая верхняя -> Меню \n Левая нижняя -> Назад \n Правая верхняя -> Следующая страница \n Правая нижняя -> Предыдущая страница"</item>
+    <item>" Левая верхняя -> Предыдущая страница \n Левая нижняя -> Следующая страница \n Правая верхняя -> Меню \n Правая нижняя -> Назад"</item>
+    <item>" Левая верхняя -> Следующая страница \n Левая нижняя -> Предыдущая страница \n Правая верхняя -> Меню \n Правая нижняя -> Назад"</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_summary">
+    <item>"Левая кнопка (Короткое нажатие) -> Назад \nЛевая кнопка (Длинное нажатие) -> Меню \nПравая кнопка (Длинное нажатие) -> Предыдущая страница \nПравая кнопка (Короткое нажатие) -> Следующая страница"</item>
+    <item>"Левая кнопка (Короткое нажатие) -> Предыдущая страница \nЛевая кнопка (Длинное нажатие) -> Назад \nПравая кнопка (Длинное нажатие) -> Меню \nПравая кнопка (Короткое нажатие) -> Следующая страница"</item>
+    <item>"Левая кнопка (Короткое нажатие) -> Следующая страница \nЛевая кнопка (Длинное нажатие) -> Предыдущая страница \nПравая кнопка (Длинное нажатие) -> Меню \nПравая кнопка (Короткое нажатие) -> Назад"</item>
+    <item>"Левая кнопка (Короткое нажатие) -> Следующая страница \nЛевая кнопка (Длинное нажатие) -> Меню \nПравая кнопка (Длинное нажатие) -> Назад \nПравая кнопка (Короткое нажатие) -> Предыдущая страница"</item>
   </string-array>
 </resources>

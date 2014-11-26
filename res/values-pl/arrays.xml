@@ -30,13 +30,11 @@
     <item msgid="8392017019801393511">"Wszystkie"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15 sek."</item>
-    <item msgid="8881760709354815449">"30 sek."</item>
-    <item msgid="7589406073232279088">"1 min"</item>
-    <item msgid="7001195990902244174">"2 min"</item>
+    <item>"3 min"</item>
     <item msgid="7489864775127957179">"5 min"</item>
     <item msgid="2314124409517439288">"10 min"</item>
     <item msgid="6864027152847611413">"30 min"</item>
+    <item>Nigdy</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"Nigdy"</item>
@@ -78,6 +76,28 @@
     <item msgid="3332408460740717754">"Normalne"</item>
     <item msgid="4907380534957572531">"Wysokie"</item>
     <item msgid="4699640516390840297">"Bardzo wysokie"</item>
+  </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>20 min</item>
+    <item>30 min</item>
+    <item>60 min</item>
+    <item>Nigdy</item>
+  </string-array>
+  <string-array name="network_inactivity_timeout_entries">
+    <item>5 min</item>
+    <item>10 min</item>
+    <item>15 min</item>
+    <item>30 min</item>
+    <item>45 min</item>
+    <item>60 min</item>
+    <item>Nigdy</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 min</item>
+    <item>2 min</item>
+    <item>10 min</item>
+    <item>30 min</item>
+    <item>Nigdy</item>
   </string-array>
   <string-array name="wifi_status">
     <item msgid="1922181315419294640"></item>

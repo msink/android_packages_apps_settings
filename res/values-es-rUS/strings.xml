@@ -123,7 +123,7 @@
     <string name="bluetooth_profile_details" msgid="6823621790324933337">"Configuración del perfil"</string>
     <string name="bluetooth_name_not_set" msgid="2653752006416027426">"No se ha establecido ningún nombre; se utiliza el nombre de cuenta"</string>
     <string name="bluetooth_scan_for_devices" msgid="9214184305566815727">"Buscar dispositivos"</string>
-    <string name="bluetooth_rename_device" product="tablet" msgid="787970073150631155">"Cambiar el nombre de tableta"</string>
+    <string name="bluetooth_rename_device" product="tablet" msgid="787970073150631155">"Cambiar el nombre de dispositivo"</string>
     <string name="bluetooth_rename_device" product="default" msgid="6267987985556136749">"Cambiar nombre del dispositivo"</string>
     <string name="bluetooth_rename_button" msgid="1648028693822994566">"Cambiar nombre"</string>
     <string name="bluetooth_disconnect_title" msgid="6026705382020027966">"¿Desconectar?"</string>
@@ -149,13 +149,13 @@
     <string name="device_picker" msgid="8398232791303186677">"Selector de dispositivos Bluetooth"</string>
     <string name="bluetooth_permission_request" msgid="1523129741266262748">"Solicitud de permiso de Bluetooth"</string>
     <string name="bluetooth_ask_enablement" msgid="637355677176904990">"Una aplicación desea activar el Bluetooth."</string>
-    <string name="bluetooth_ask_discovery" product="tablet" msgid="786921566047356213">"Una aplicación quiere hacer visible tu tableta para otros dispositivos Bluetooth durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
+    <string name="bluetooth_ask_discovery" product="tablet" msgid="786921566047356213">"Una aplicación quiere hacer visible tu dispositivo para otros dispositivos Bluetooth durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
     <string name="bluetooth_ask_discovery" product="default" msgid="5510358858113713272">"Una aplicación quiere hacer visible tu dispositivo para otros dispositivos Bluetooth durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
-    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8863617309580598607">"Una aplicación quiere hacer visible tu tableta para otros dispositivos Bluetooth. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
+    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8863617309580598607">"Una aplicación quiere hacer visible tu dispositivo para otros dispositivos Bluetooth. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
     <string name="bluetooth_ask_lasting_discovery" product="default" msgid="6487606808683607975">"Una aplicación quiere hacer visible tu dispositivo para otros dispositivos Bluetooth. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
-    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="3346529092809011149">"Una aplicación quiere activar el Bluetooth y hacer visible tu tableta para otros dispositivos durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="3346529092809011149">"Una aplicación quiere activar el Bluetooth y hacer visible tu dispositivo para otros dispositivos durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
     <string name="bluetooth_ask_enablement_and_discovery" product="default" msgid="4724094889807196118">"Una aplicación quiere activar el Bluetooth y hacer visible tu dispositivo para otros dispositivos durante <xliff:g id="TIMEOUT">%1$d</xliff:g> segundos."</string>
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="989613204829097159">"Una aplicación quiere activar el Bluetooth y hacer visible tu tableta para otros dispositivos. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="989613204829097159">"Una aplicación quiere activar el Bluetooth y hacer visible tu dispositivo para otros dispositivos. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
     <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default" msgid="6671615712909139801">"Una aplicación quiere activar el Bluetooth y hacer visible tu dispositivo para otros dispositivos. Puedes cambiar esta configuración más tarde en los ajustes de Bluetooth."</string>
     <string name="bluetooth_turning_on" msgid="4850574877288036646">"Activando Bluetooth..."</string>
     <string name="bluetooth_turning_off" msgid="2337747302892025192">"¿Desactivar Bluetooth?"</string>
@@ -256,7 +256,7 @@
     <string name="device_info_label" msgid="6551553813651711205">"Información de dispositivo"</string>
     <string name="battery_info_label" msgid="4132685016148679403">"Información de la batería"</string>
     <string name="display_label" msgid="8074070940506840792">"Pantalla"</string>
-    <string name="phone_info_label" product="tablet" msgid="7820855350955963628">"Información del tablet"</string>
+    <string name="phone_info_label" product="tablet" msgid="7820855350955963628">"Información del dispositivo"</string>
     <string name="phone_info_label" product="default" msgid="2127552523124277664">"Información del dispositivo"</string>
     <string name="sd_card_settings_label" product="nosdcard" msgid="8101475181301178428">"Almacenamiento USB"</string>
     <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"Tarjeta SD"</string>
@@ -275,7 +275,7 @@
     <string name="roaming_reenable_message" msgid="9141007271031717369">"Has perdido la conectividad de los datos porque has dejado la red doméstica con roaming de datos desactivado."</string>
     <string name="roaming_turn_it_on_button" msgid="4387601818162120589">"Enciéndelo"</string>
     <string name="roaming_warning" msgid="7625933694709170887">"Al permitir el roaming de datos, puedes incurrir en gastos de roaming importantes."</string>
-    <string name="roaming_warning_multiuser" product="tablet" msgid="6458990250829214777">"Al permitir el roaming de datos, los costos de roaming que deberás asumir pueden ser altos."\n\n"Esta configuración afecta a todos los usuarios de esta tableta."</string>
+    <string name="roaming_warning_multiuser" product="tablet" msgid="6458990250829214777">"Al permitir el roaming de datos, los costos de roaming que deberás asumir pueden ser altos."\n\n"Esta configuración afecta a todos los usuarios de esta dispositivo."</string>
     <string name="roaming_warning_multiuser" product="default" msgid="6368421100292355440">"Al permitir el roaming de datos, los costos de roaming que deberás asumir pueden ser altos."\n\n"Esta configuración afecta a todos los usuarios de este dispositivo."</string>
     <string name="roaming_reenable_title" msgid="6068100976707316772">"¿Deseas permitir el roaming de datos?"</string>
     <string name="networks" msgid="6333316876545927039">"Selección de operador"</string>
@@ -315,29 +315,29 @@
     <string name="cdma_security_settings_summary" msgid="6068799952798901542">"Establecer Mi ubicación, desbloqueo de pantalla, bloqueo de almacenamiento de credencial"</string>
     <string name="security_passwords_title" msgid="2930627259125138363">"Contraseñas"</string>
     <string name="crypt_keeper_settings_title" msgid="4219233835490520414">"Encriptación"</string>
-    <string name="crypt_keeper_encrypt_title" product="tablet" msgid="1060273569887301457">"Encriptar Tableta"</string>
+    <string name="crypt_keeper_encrypt_title" product="tablet" msgid="1060273569887301457">"Encriptar Dispositivo"</string>
     <string name="crypt_keeper_encrypt_title" product="default" msgid="1878996487755806122">"Encriptar dispositivo"</string>
-    <string name="crypt_keeper_encrypt_summary" product="tablet" msgid="6291564408810586">"Necesitas un PIN numérico o contraseña para descifrar tu tableta cada vez que la enciendes"</string>
+    <string name="crypt_keeper_encrypt_summary" product="tablet" msgid="6291564408810586">"Necesitas un PIN numérico o contraseña para descifrar tu dispositivo cada vez que la enciendes"</string>
     <string name="crypt_keeper_encrypt_summary" product="default" msgid="514138079795442371">"Se necesita un PIN numérico o contraseña para descifrar tu dispositivo cada vez que lo enciendes"</string>
     <string name="crypt_keeper_encrypted_summary" msgid="1868233637888132906">"Encriptado"</string>
-    <string name="crypt_keeper_desc" product="tablet" msgid="3839235202103924154">"Puedes encriptar tus cuentas, tus parámetros de configuración, las aplicaciones descargadas y sus datos, archivos multimedia y otros tipos de archivos. Una vez que hayas encriptado la tableta, debes ingresar un PIN o una contraseña numérica para desencriptarla cada vez que la enciendas. No puedes desencriptar tu tableta a menos que restablezcas su configuración de fábrica y borres, así, todos tus datos."\n\n"El proceso de encriptación tarda aproximadamente una hora. Debes iniciar este proceso con la batería cargada y mantener la tableta conectada hasta que finalice. Si se interrumpe el proceso de encriptación, perderás tus datos total o parcialmente."</string>
+    <string name="crypt_keeper_desc" product="tablet" msgid="3839235202103924154">"Puedes encriptar tus cuentas, tus parámetros de configuración, las aplicaciones descargadas y sus datos, archivos multimedia y otros tipos de archivos. Una vez que hayas encriptado la dispositivo, debes ingresar un PIN o una contraseña numérica para desencriptarla cada vez que la enciendas. No puedes desencriptar tu dispositivo a menos que restablezcas su configuración de fábrica y borres, así, todos tus datos."\n\n"El proceso de encriptación tarda aproximadamente una hora. Debes iniciar este proceso con la batería cargada y mantener la dispositivo conectada hasta que finalice. Si se interrumpe el proceso de encriptación, perderás tus datos total o parcialmente."</string>
     <string name="crypt_keeper_desc" product="default" msgid="7663118199519229502">"Puedes encriptar tus cuentas, tus parámetros de configuración, las aplicaciones descargadas y sus datos, archivos multimedia y otros tipos de archivos. Luego de encriptar tu dispositivo, tienes que escribir un PIN o contraseña numéricos cada vez que lo enciendes para desencriptarlo. No puedes desencriptar tu dispositivo a menos que restablezcas su configuración de fábrica y borres, así, todos tus datos."\n\n"El proceso de encriptación tarda aproximadamente una hora. Debes iniciar este proceso con la batería cargada y mantener el dispositivo conectado hasta que finalice. Si se interrumpe el proceso de encriptación, perderás tus datos total o parcialmente."</string>
-    <string name="crypt_keeper_button_text" product="tablet" msgid="1189623490604750854">"Encriptar tableta"</string>
+    <string name="crypt_keeper_button_text" product="tablet" msgid="1189623490604750854">"Encriptar dispositivo"</string>
     <string name="crypt_keeper_button_text" product="default" msgid="2008346408473255519">"Encriptar dispositivo"</string>
     <string name="crypt_keeper_low_charge_text" msgid="2029407131227814893">"Carga tu batería e inténtalo nuevamente."</string>
     <string name="crypt_keeper_unplugged_text" msgid="4785376766063053901">"Enchufa tu cargador e inténtalo nuevamente."</string>
     <string name="crypt_keeper_dialog_need_password_title" msgid="4058971800557767">"Sin contraseña o PIN de pantalla de bloqueo"</string>
     <string name="crypt_keeper_dialog_need_password_message" msgid="4071395977297369642">"Debes configurar una contraseña o PIN de pantalla de bloqueo antes de comenzar con la encriptación."</string>
     <string name="crypt_keeper_confirm_title" msgid="5100339496381875522">"¿Deseas encriptar el dispositivo?"</string>
-    <string name="crypt_keeper_final_desc" product="tablet" msgid="4453629424172409792">"La encriptación es irreversible y no puede interrumpirse; de lo contrario, perderás información. La encriptación demora al menos una hora. Durante este tiempo, la tableta se reiniciará varias veces."</string>
+    <string name="crypt_keeper_final_desc" product="tablet" msgid="4453629424172409792">"La encriptación es irreversible y no puede interrumpirse; de lo contrario, perderás información. La encriptación demora al menos una hora. Durante este tiempo, la dispositivo se reiniciará varias veces."</string>
     <string name="crypt_keeper_final_desc" product="default" msgid="5682944380460921880">"La encriptación es irreversible y no puede interrumpirse; de lo contrario, perderás información. La encriptación demora al menos una hora. Durante este tiempo, el dispositivo se reiniciará varias veces."</string>
     <string name="crypt_keeper_setup_title" msgid="1783951453124244969">"Encriptando"</string>
-    <string name="crypt_keeper_setup_description" product="tablet" msgid="6689952371032099350">"Espera mientras se encripta tu tableta. <xliff:g id="PERCENT">^1</xliff:g>% completado."</string>
+    <string name="crypt_keeper_setup_description" product="tablet" msgid="6689952371032099350">"Espera mientras se encripta tu dispositivo. <xliff:g id="PERCENT">^1</xliff:g>% completado."</string>
     <string name="crypt_keeper_setup_description" product="default" msgid="951918761585534875">"Espera mientras se encripta tu dispositivo. <xliff:g id="PERCENT">^1</xliff:g>% completado."</string>
     <string name="crypt_keeper_cooldown" msgid="685210918307862395">"Vuelve a intentarlo en <xliff:g id="DELAY">^1</xliff:g> segundos."</string>
     <string name="crypt_keeper_enter_password" msgid="2223340178473871064">"Escribe la contraseña"</string>
     <string name="crypt_keeper_failed_title" msgid="7133499413023075961">"Encriptación incorrecta"</string>
-    <string name="crypt_keeper_failed_summary" product="tablet" msgid="4478225241476039013">"La encriptación se interrumpió y no se puede completar. Por esta razón, ya no es posible acceder a los datos de tu tableta. "\n\n" Para reanudar el uso de tu tableta, debes restablecer los datos de fábrica. Cuando configures tu tableta luego de restablecer los datos de fábrica, tendrás la posibilidad de restaurar los datos de los que tengas una copia de seguridad en tu cuenta de Google."</string>
+    <string name="crypt_keeper_failed_summary" product="tablet" msgid="4478225241476039013">"La encriptación se interrumpió y no se puede completar. Por esta razón, ya no es posible acceder a los datos de tu dispositivo. "\n\n" Para reanudar el uso de tu dispositivo, debes restablecer los datos de fábrica. Cuando configures tu dispositivo luego de restablecer los datos de fábrica, tendrás la posibilidad de restaurar los datos de los que tengas una copia de seguridad en tu cuenta de Google."</string>
     <string name="crypt_keeper_failed_summary" product="default" msgid="3083477162766772532">"La encriptación se interrumpió y no se puede completar. Por esta razón, ya no es posible acceder a los datos de tu dispositivo. "\n\n"Para reanudar el uso de tu dispositivo, debes restablecer los datos de fábrica. Cuando configures tu dispositivo luego de restablecer los datos de fábrica, tendrás la posibilidad de restaurar los datos de los que tengas una copia de seguridad en tu cuenta de Google."</string>
     <string name="crypt_keeper_switch_input_method" msgid="4168332125223483198">"Cambiar método de introducción"</string>
     <string name="lock_settings_picker_title" msgid="1095755849152582712">"Elegir bloqueo pant."</string>
@@ -467,7 +467,7 @@
     <string name="bluetooth_disconnect_headset_profile" msgid="8635908811168780720">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> se desconectará del audio de manos libres."</string>
     <string name="bluetooth_disconnect_hid_profile" msgid="3282295189719352075">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> se desconectará del dispositivo de entrada."</string>
     <string name="bluetooth_disconnect_pan_user_profile" msgid="8037627994382458698">"Se desconectará el acceso a Internet a través de <xliff:g id="DEVICE_NAME">%1$s</xliff:g>."</string>
-    <string name="bluetooth_disconnect_pan_nap_profile" product="tablet" msgid="5455448395850929200">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> dejará de compartir la conexión a Internet de esta tablet."</string>
+    <string name="bluetooth_disconnect_pan_nap_profile" product="tablet" msgid="5455448395850929200">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> dejará de compartir la conexión a Internet de esta dispositivo."</string>
     <string name="bluetooth_disconnect_pan_nap_profile" product="default" msgid="5266851881175033601">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> dejará de compartir la conexión a Internet de este dispositivo."</string>
     <string name="bluetooth_device_advanced_title" msgid="6066342531927499308">"Dispositivo Bluetooth sincronizado"</string>
     <string name="bluetooth_device_advanced_online_mode_title" msgid="3689050071425683114">"Conectar"</string>
@@ -514,7 +514,7 @@
     <string name="wifi_display_summary_off" msgid="2445210133184740611">"Desactivada"</string>
     <string name="wifi_display_summary_disabled" msgid="5318394806146587849">"Inhabilitada"</string>
     <string name="nfc_quick_toggle_title" msgid="6769159366307299004">"NFC"</string>
-    <string name="nfc_quick_toggle_summary" product="tablet" msgid="8302974395787498915">"Permitir el intercambio de datos cuando la tableta entre en contacto con otro dispositivo"</string>
+    <string name="nfc_quick_toggle_summary" product="tablet" msgid="8302974395787498915">"Permitir el intercambio de datos cuando la dispositivo entre en contacto con otro dispositivo"</string>
     <string name="nfc_quick_toggle_summary" product="default" msgid="5237208142892767592">"Permitir el intercambio de datos cuando el dispositivo toque otro dispositivo"</string>
     <string name="android_beam_settings_title" msgid="7832812974600338649">"Android Beam"</string>
     <string name="android_beam_on_summary" msgid="3618057099355636830">"Listo para transmitir el contenido de la aplicación a través de NFC"</string>
@@ -610,11 +610,11 @@
     <string name="wifi_cancel" msgid="6763568902542968964">"Cancelar"</string>
     <string name="wifi_skip_anyway" msgid="6965361454438011190">"Omitir de todos modos"</string>
     <string name="wifi_dont_skip" msgid="7350341524881124808">"No omitir"</string>
-    <string name="wifi_skipped_message" product="tablet" msgid="3335132188969450252">"ADVERTENCIA: Es posible que tu proveedor te cobre cargos adicionales por el uso de datos."\n\n"La configuración de la tableta puede requerir una significativa actividad de la red."</string>
+    <string name="wifi_skipped_message" product="tablet" msgid="3335132188969450252">"ADVERTENCIA: Es posible que tu proveedor te cobre cargos adicionales por el uso de datos."\n\n"La configuración de la dispositivo puede requerir una significativa actividad de la red."</string>
     <string name="wifi_skipped_message" product="default" msgid="1192848364146401759">"ADVERTENCIA: Es posible que tu proveedor te cobre cargos adicionales por el uso de datos."\n\n"La configuración del dispositivo puede requerir una significativa actividad de la red."</string>
-    <string name="wifi_and_mobile_skipped_message" product="tablet" msgid="7682836089429990118">"ADVERTENCIA: Tu tableta no podrá verificar si el software está actualizado."</string>
+    <string name="wifi_and_mobile_skipped_message" product="tablet" msgid="7682836089429990118">"ADVERTENCIA: Tu dispositivo no podrá verificar si el software está actualizado."</string>
     <string name="wifi_and_mobile_skipped_message" product="default" msgid="3324261421359832263">"ADVERTENCIA: Tu dispositivo no podrá verificar si el software está actualizado."</string>
-    <string name="wifi_connect_failed_message" product="tablet" msgid="6904081070290941807">"La tableta no se ha podido conectar a esta red Wi-Fi."</string>
+    <string name="wifi_connect_failed_message" product="tablet" msgid="6904081070290941807">"La dispositivo no se ha podido conectar a esta red Wi-Fi."</string>
     <string name="wifi_connect_failed_message" product="default" msgid="3894921379368046855">"El dispositivo no se ha podido conectar a esta red Wi-Fi."</string>
     <string name="wifi_advanced_titlebar" msgid="1627063574532930090">"Wi-Fi avanzada"</string>
     <string name="wifi_setting_frequency_band_title" msgid="7493768705046080060">"Banda de frecuencia Wi-Fi"</string>
@@ -694,30 +694,30 @@
     <string name="dock_audio_settings_title" msgid="3324750259959570305">"Audio"</string>
     <string name="dock_audio_summary_desk" msgid="6487784412371139335">"Configuración para la base adjunta del escritorio"</string>
     <string name="dock_audio_summary_car" msgid="6740897586006248450">"Configuración para la base adjunta del automóvil"</string>
-    <string name="dock_audio_summary_none" product="tablet" msgid="8215337394914283607">"El tablet no está en la estación"</string>
+    <string name="dock_audio_summary_none" product="tablet" msgid="8215337394914283607">"El dispositivo no está en la estación"</string>
     <string name="dock_audio_summary_none" product="default" msgid="289909253741048784">"El dispositivo no se encuentra en la base"</string>
     <string name="dock_audio_summary_unknown" msgid="4465059868974255693">"Configuración para la base adjunta"</string>
     <string name="dock_not_found_title" msgid="3290961741828952424">"No se encontró la base"</string>
-    <string name="dock_not_found_text" product="tablet" msgid="8405432495282299143">"Debes acoplar la tableta antes de configurar el audio del conector."</string>
+    <string name="dock_not_found_text" product="tablet" msgid="8405432495282299143">"Debes acoplar la dispositivo antes de configurar el audio del conector."</string>
     <string name="dock_not_found_text" product="default" msgid="1460497923342627801">"Debes acoplar el dispositivo antes de configurar el audio del conector."</string>
     <string name="dock_sounds_enable_title" msgid="885839627097024110">"Sonido al insertar el conector"</string>
-    <string name="dock_sounds_enable_summary_on" product="tablet" msgid="838102386448981339">"Reproducir sonido cuando se inserte o elimine el tablet de la base."</string>
+    <string name="dock_sounds_enable_summary_on" product="tablet" msgid="838102386448981339">"Reproducir sonido cuando se inserte o elimine el dispositivo de la base."</string>
     <string name="dock_sounds_enable_summary_on" product="default" msgid="8491180514199743771">"Reproducir sonido al insertar o retirar el dispositivo de la base."</string>
-    <string name="dock_sounds_enable_summary_off" product="tablet" msgid="5077843049805652363">"No reproducir sonido cuando se inserte o elimine un tablet de la base."</string>
+    <string name="dock_sounds_enable_summary_off" product="tablet" msgid="5077843049805652363">"No reproducir sonido cuando se inserte o elimine un dispositivo de la base."</string>
     <string name="dock_sounds_enable_summary_off" product="default" msgid="3151046599205265919">"No reproducir sonido al insertar o retirar el dispositivo de la base."</string>
     <string name="account_settings" msgid="6403589284618783461">"Cuentas"</string>
     <string name="search_settings" msgid="1910951467596035063">"Buscar"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Administrar la configuración y el historial de búsqueda"</string>
     <string name="display_settings" msgid="7965901687241669598">"Pantalla"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Rotar automáticamente la pantalla"</string>
-    <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Cambiar la orientación automáticamente al girar el tablet"</string>
+    <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Cambiar la orientación automáticamente al girar el dispositivo"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Cambiar la orientación automáticamente al girar el dispositivo"</string>
-    <string name="accelerometer_summary_off" product="tablet" msgid="4781734213242521682">"Cambiar la orientación automáticamente al girar el tablet"</string>
+    <string name="accelerometer_summary_off" product="tablet" msgid="4781734213242521682">"Cambiar la orientación automáticamente al girar el dispositivo"</string>
     <string name="accelerometer_summary_off" product="default" msgid="5485489363715740761">"Cambiar la orientación automáticamente al girar el dispositivo"</string>
     <string name="brightness" msgid="2354961343555249270">"Brillo"</string>
     <string name="brightness_summary" msgid="838917350127550703">"Ajustar el brillo de la pantalla"</string>
-    <string name="screen_timeout" msgid="4351334843529712571">"Suspender"</string>
-    <string name="screen_timeout_summary" msgid="327761329263064327">"Después de <xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> de inactividad"</string>
+    <string name="screen_timeout" msgid="4351334843529712571">"Tiempo de espera de la pant."</string>
+    <string name="screen_timeout_summary" msgid="327761329263064327">"Ajustar el tiempo de demora para que la pantalla se apague automáticamente"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Fondo de pantalla"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Elegir fondo de pantalla de"</string>
     <string name="screensaver_settings_title" msgid="3349790120327233241">"Activar protector de pantalla"</string>
@@ -737,9 +737,9 @@
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"Definir bloqueo de tarjeta SIM"</string>
     <string name="sim_lock_settings_title" msgid="9018585580955414596">"Bloqueo de la tarjeta SIM"</string>
     <string name="sim_pin_toggle" msgid="1742123478029451888">"Bloquear la tarjeta SIM"</string>
-    <string name="sim_lock_on" product="tablet" msgid="5058355081270397764">"Se requiere PIN para utilizar el tablet"</string>
+    <string name="sim_lock_on" product="tablet" msgid="5058355081270397764">"Se requiere PIN para utilizar el dispositivo"</string>
     <string name="sim_lock_on" product="default" msgid="2503536505568814324">"Se requiere PIN para utilizar el dispositivo"</string>
-    <string name="sim_lock_off" product="tablet" msgid="2813800553917012356">"Se requiere PIN para utilizar el tablet"</string>
+    <string name="sim_lock_off" product="tablet" msgid="2813800553917012356">"Se requiere PIN para utilizar el dispositivo"</string>
     <string name="sim_lock_off" product="default" msgid="258981978215428916">"Se requiere PIN para utilizar el dispositivo"</string>
     <string name="sim_pin_change" msgid="6311414184279932368">"Cambiar el PIN de la tarjeta SIM"</string>
     <string name="sim_enter_pin" msgid="6608715137008508432">"PIN de tarjeta SIM"</string>
@@ -756,7 +756,7 @@
     <string name="sim_lock_failed" msgid="5651596916127873626">"No se puede cambiar el estado de bloqueo de la tarjeta SIM."\n"PIN posiblemente incorrecto."</string>
     <string name="sim_enter_ok" msgid="6475946836899218919">"Aceptar"</string>
     <string name="sim_enter_cancel" msgid="6240422158517208036">"Cancelar"</string>
-    <string name="device_info_settings" product="tablet" msgid="1119755927536987178">"Estado del tablet"</string>
+    <string name="device_info_settings" product="tablet" msgid="1119755927536987178">"Estado del dispositivo"</string>
     <string name="device_info_settings" product="default" msgid="475872867864762157">"Estado del dispositivo"</string>
     <string name="system_update_settings_list_item_title" msgid="3342887311059985961">"Actualiz. del sistema"</string>
     <string name="system_update_settings_list_item_summary" msgid="3853057315907710747"></string>
@@ -892,9 +892,9 @@
     <string name="menu_restore" msgid="8260067415075573273">"Restablecer valores predeterminados"</string>
     <string name="restore_default_apn_completed" msgid="2824775307377604897">"Se ha restablecido la configuración predeterminada de APN."</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Restablecer valores de fábrica"</string>
-    <string name="master_clear_summary" product="tablet" msgid="4036344100254678429">"Borra todos los datos de la tableta"</string>
+    <string name="master_clear_summary" product="tablet" msgid="4036344100254678429">"Borra todos los datos de la dispositivo"</string>
     <string name="master_clear_summary" product="default" msgid="4986154238001088492">"Borra todos los datos del dispositivo"</string>
-    <string name="master_clear_desc" product="tablet" msgid="8317211882509025841">"Esto borrará todos los datos del "<b>"almacenamiento interno"</b>" de tu tableta, por ejemplo:"\n\n<li>"tu cuenta de Google"</li>\n<li>"los datos y la configuración del sistema y de las aplicaciones"</li>\n<li>"las aplicaciones descargadas"</li></string>
+    <string name="master_clear_desc" product="tablet" msgid="8317211882509025841">"Esto borrará todos los datos del "<b>"almacenamiento interno"</b>" de tu dispositivo, por ejemplo:"\n\n<li>"tu cuenta de Google"</li>\n<li>"los datos y la configuración del sistema y de las aplicaciones"</li>\n<li>"las aplicaciones descargadas"</li></string>
     <string name="master_clear_desc" product="default" msgid="9165016501623540228">"Se borrarán todos los datos del "<b>"almacenamiento interno"</b>" del dispositivo, por ejemplo:"\n\n<li>"tu cuenta de Google,"</li>\n<li>"datos de aplicaciones y ajustes del sistema,"</li>\n<li>"las aplicaciones descargadas."</li></string>
     <string name="master_clear_accounts" product="default" msgid="6412857499147999073">\n\n"Actualmente has accedido a las siguientes cuentas:"\n</string>
     <string name="master_clear_desc_also_erases_external" msgid="1903185203791274237"><li>"Música"</li>\n<li>"Fotos"</li>\n<li>"Otros datos de usuario"</li></string>
@@ -904,7 +904,7 @@
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Eliminar la tarjeta SD"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="4728558173931599429">"Borra todos los datos del almacenamiento USB, como la música o las fotos."</string>
     <string name="erase_external_storage_description" product="default" msgid="1737638779582964966">"Borra todos los datos de la tarjeta SD, como música o fotos."</string>
-    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Restablecer la tableta"</string>
+    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Restablecer la dispositivo"</string>
     <string name="master_clear_button_text" product="default" msgid="7550632653343157971">"Restablecer dispositivo"</string>
     <string name="master_clear_final_desc" msgid="7209547812233487345">"¿Deseas eliminar toda tu información personal y aplicaciones descargadas? Esta acción no se puede deshacer."</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Eliminar todo"</string>
@@ -941,13 +941,13 @@
     <string name="usb_tethering_unavailable_subtext" msgid="1044622421184007254">"USB no conectado"</string>
     <string name="usb_tethering_errored_subtext" msgid="1377574819427841992">"Error de anclaje a red USB"</string>
     <string name="bluetooth_tether_checkbox_text" msgid="2379175828878753652">"Anclaje a red Bluetooth"</string>
-    <string name="bluetooth_tethering_available_subtext" product="tablet" msgid="8811610320942954709">"Conexión a Internet de esta tablet compartida"</string>
+    <string name="bluetooth_tethering_available_subtext" product="tablet" msgid="8811610320942954709">"Conexión a Internet de esta dispositivo compartida"</string>
     <string name="bluetooth_tethering_available_subtext" product="default" msgid="4229220575771946723">"Compartiendo conexión a Internet de dispositivo"</string>
-    <string name="bluetooth_tethering_device_connected_subtext" product="tablet" msgid="2730938191906597896">"Conexión a Internet de la tablet compartida con 1 disp."</string>
+    <string name="bluetooth_tethering_device_connected_subtext" product="tablet" msgid="2730938191906597896">"Conexión a Internet de la dispositivo compartida con 1 disp."</string>
     <string name="bluetooth_tethering_device_connected_subtext" product="default" msgid="1666736165420290466">"Conexión a Internet del dispositivo compartida con 1 disp."</string>
-    <string name="bluetooth_tethering_devices_connected_subtext" product="tablet" msgid="1180765608259580143">"Conexión a Internet de la tablet compartida con <xliff:g id="CONNECTEDDEVICECOUNT">%1$d</xliff:g> disp."</string>
+    <string name="bluetooth_tethering_devices_connected_subtext" product="tablet" msgid="1180765608259580143">"Conexión a Internet de la dispositivo compartida con %1$d disp."</string>
     <string name="bluetooth_tethering_devices_connected_subtext" product="default" msgid="8248942539362173005">"Conexión a Internet del dispositivo compartida con <xliff:g id="CONNECTEDDEVICECOUNT">%1$d</xliff:g> disp."</string>
-    <string name="bluetooth_tethering_off_subtext" product="tablet" msgid="2093881379028235555">"No comparte la conexión a Internet de esta tablet"</string>
+    <string name="bluetooth_tethering_off_subtext" product="tablet" msgid="2093881379028235555">"No comparte la conexión a Internet de esta dispositivo"</string>
     <string name="bluetooth_tethering_off_subtext" product="default" msgid="706860924389041342">"No compartir conexión a Internet del dispositivo"</string>
     <string name="bluetooth_tethering_errored_subtext" msgid="4926566308991142264">"No anclado a red"</string>
     <string name="bluetooth_tethering_overflow_error" msgid="6285122039489881969">"No se puede anclar a red a más de <xliff:g id="MAXCONNECTION">%1$d</xliff:g> dispositivos."</string>
@@ -955,11 +955,11 @@
     <string name="tethering_help_button_text" msgid="656117495547173630">"Ayuda"</string>
     <string name="network_settings_title" msgid="7967552516440151852">"Redes móviles"</string>
     <string name="location_title" msgid="1029961368397484576">"Mi ubicación"</string>
-    <string name="location_network_based" msgid="7472814266821714527">"Ubicación de red Wi-Fi y móvil"</string>
+    <string name="location_network_based" msgid="7472814266821714527">"Ubicación por red Wi-Fi"</string>
     <string name="location_neighborhood_level" msgid="5626515380188353712">"Permitir que aplicaciones usen el servicio de ubicación de Google para calcular tu ubicación (se enviarán datos anónimos a Google)"</string>
     <string name="location_neighborhood_level_wifi" msgid="7457348712272184793">"Ubicación determinada por Wi-Fi"</string>
     <string name="location_gps" msgid="8392461023569708478">"Satélites de GPS"</string>
-    <string name="location_street_level" product="tablet" msgid="1669562198260860802">"Permitir que las aplicaciones usen el sistema GPS de tu tableta para determinar tu ubicación"</string>
+    <string name="location_street_level" product="tablet" msgid="1669562198260860802">"Permitir que las aplicaciones usen el sistema GPS de tu dispositivo para determinar tu ubicación"</string>
     <string name="location_street_level" product="default" msgid="4617445745492014203">"Permitir que las aplicaciones usen el sistema GPS de tu dispositivo para determinar tu ubicación"</string>
     <string name="assisted_gps" msgid="4649317129586736885">"Utilizar GPS asistido"</string>
     <string name="assisted_gps_enabled" msgid="8751899609589792803">"Utilizar el servidor para asistir el GPS (anular la selección para reducir el uso de la red)"</string>
@@ -969,9 +969,9 @@
     <string name="location_access_title" msgid="7064108942964081243">"Acceso a mi ubicación"</string>
     <string name="location_access_summary" msgid="69031404093194341">"Permitir que las aplicaciones que solicitaron permiso usen la información de tu ubicación"</string>
     <string name="location_sources_heading" msgid="1278732419851088319">"Fuentes de ubicación"</string>
-    <string name="about_settings" product="tablet" msgid="593457295516533765">"Acerca del tablet"</string>
+    <string name="about_settings" product="tablet" msgid="593457295516533765">"Acerca del dispositivo"</string>
     <string name="about_settings" product="default" msgid="1743378368185371685">"Acerca del dispositivo"</string>
-    <string name="about_settings_summary" msgid="3371517697156165959">"Ver información legal, estado, versión de software del tablet"</string>
+    <string name="about_settings_summary" msgid="3371517697156165959">"Ver información legal, estado, versión de software del dispositivo"</string>
     <string name="legal_information" msgid="5769301644270604095">"Información legal"</string>
     <string name="contributors_title" msgid="5917703088825286504">"Colaboradores"</string>
     <string name="regulatory_information" msgid="5695464367088752150">"Información regulatoria"</string>
@@ -1032,7 +1032,7 @@
     <string name="applications_settings_header" msgid="1014813055054356646">"Configuración de aplicación"</string>
     <string name="install_applications" msgid="4872012136210802181">"Fuentes desconocidas"</string>
     <string name="install_unknown_applications" msgid="176855644862942064">"Permitir la instalación de aplicaciones provenientes de fuentes desconocidas"</string>
-    <string name="install_all_warning" product="tablet" msgid="3263360446508268880">"Tu tableta y datos personales son más vulnerables a los ataques de aplicaciones de fuentes desconocidas. Aceptas que eres el único responsable de cualquier daño a tu tableta o pérdida de datos que puedan producirse por el uso de estas aplicaciones."</string>
+    <string name="install_all_warning" product="tablet" msgid="3263360446508268880">"Tu dispositivo y datos personales son más vulnerables a los ataques de aplicaciones de fuentes desconocidas. Aceptas que eres el único responsable de cualquier daño a tu dispositivo o pérdida de datos que puedan producirse por el uso de estas aplicaciones."</string>
     <string name="install_all_warning" product="default" msgid="8113734576826384682">"Tu dispositivo y datos personales son más vulnerables a los ataques de aplicaciones de fuentes desconocidas. Aceptas que eres el único responsable de cualquier daño a tu dispositivo o pérdida de datos que pueda producirse por el uso de estas aplicaciones."</string>
     <string name="verify_applications" msgid="2959359554974828518">"Verificar aplicaciones"</string>
     <string name="verify_applications_summary" msgid="6737505521913263792">"No permitir o advertir antes de instalar aplicaciones que puedan ocasionar daños"</string>
@@ -1104,9 +1104,9 @@
     <string name="app_factory_reset_dlg_text" msgid="6371247225487725860">"Se desinstalarán todas las actualizaciones de esta aplicación del sistema Android."</string>
     <string name="clear_failed_dlg_title" msgid="2387060805294783175">"Eliminar datos"</string>
     <string name="clear_failed_dlg_text" msgid="1092177570631523106">"No se pudieron borrar los datos de la aplicación."</string>
-    <string name="security_settings_desc" product="tablet" msgid="1292421279262430109">"Esta aplicación puede acceder a los siguientes elementos de tu tableta:"</string>
+    <string name="security_settings_desc" product="tablet" msgid="1292421279262430109">"Esta aplicación puede acceder a los siguientes elementos de tu dispositivo:"</string>
     <string name="security_settings_desc" product="default" msgid="61749028818785244">"Esta aplicación puede acceder a los siguientes elementos del dispositivo:"</string>
-    <string name="security_settings_desc_multi" product="tablet" msgid="7300932212437084403">"Esta aplicación puede acceder a la siguiente información de tu tableta. Para mejorar el rendimiento y reducir el uso de la memoria, algunos de estos permisos están disponibles en <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> porque se ejecuta en el mismo proceso que <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
+    <string name="security_settings_desc_multi" product="tablet" msgid="7300932212437084403">"Esta aplicación puede acceder a la siguiente información de tu dispositivo. Para mejorar el rendimiento y reducir el uso de la memoria, algunos de estos permisos están disponibles en <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> porque se ejecuta en el mismo proceso que <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
     <string name="security_settings_desc_multi" product="default" msgid="6610268420793984752">"Esta aplicación puede acceder a los siguientes elementos de tu dispositivo. Para mejorar el rendimiento y reducir el uso de la memoria, algunos de estos permisos están disponibles en <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> porque se ejecuta en el mismo proceso que <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
     <string name="join_two_items" msgid="1336880355987539064">"<xliff:g id="FIRST_ITEM">%1$s</xliff:g> y <xliff:g id="SECOND_ITEM">%2$s</xliff:g>"</string>
     <string name="join_many_items_last" msgid="5925635036718502724">"<xliff:g id="ALL_BUT_LAST_ITEM">%1$s</xliff:g> y <xliff:g id="LAST_ITEM_0">%2$s</xliff:g>"</string>
@@ -1119,7 +1119,7 @@
     <string name="empty_list_msg" msgid="5993162337235907160">"No tienes instalada ninguna aplicación de terceros."</string>
     <string name="version_text" msgid="9189073826278676425">"versión <xliff:g id="VERSION_NUM">%1$s</xliff:g>"</string>
     <string name="move_app" msgid="5042838441401731346">"Mover"</string>
-    <string name="move_app_to_internal" product="tablet" msgid="2299714147283854957">"Mover al tablet"</string>
+    <string name="move_app_to_internal" product="tablet" msgid="2299714147283854957">"Mover al dispositivo"</string>
     <string name="move_app_to_internal" product="default" msgid="3895430471913858185">"Mover al dispositivo"</string>
     <string name="move_app_to_sdcard" product="nosdcard" msgid="4350451696315265420">"Mover a almacenamiento USB"</string>
     <string name="move_app_to_sdcard" product="default" msgid="1143379049903056407">"Mover a la tarjeta SD"</string>
@@ -1176,7 +1176,7 @@
     <string name="process_service_in_use_description" msgid="8993335064403217080">"El servicio <xliff:g id="COMP_NAME">%1$s</xliff:g> está en uso."</string>
     <string name="process_provider_in_use_description" msgid="5586603325677678940">"El proveedor <xliff:g id="COMP_NAME">%1$s</xliff:g> está en uso."</string>
     <string name="runningservicedetails_stop_dlg_title" msgid="4253292537154337233">"¿Deseas detener el servicio?"</string>
-    <string name="runningservicedetails_stop_dlg_text" product="tablet" msgid="3371302398335665793">"Si detienes este servicio, algunas funciones de la tableta podrían dejar de ejecutarse correctamente hasta que lo apagues y enciendas nuevamente."</string>
+    <string name="runningservicedetails_stop_dlg_text" product="tablet" msgid="3371302398335665793">"Si detienes este servicio, algunas funciones de la dispositivo podrían dejar de ejecutarse correctamente hasta que lo apagues y enciendas nuevamente."</string>
     <string name="runningservicedetails_stop_dlg_text" product="default" msgid="3920243762189484756">"Si detienes este servicio, algunas funciones del dispositivo podrían dejar de ejecutarse correctamente hasta que lo apagues y enciendas nuevamente."</string>
     <string name="language_settings" msgid="5292716747264442359">"Teclado e idioma"</string>
     <string name="language_keyboard_settings_title" msgid="243220021717425813">"Teclado e idioma"</string>
@@ -1227,7 +1227,7 @@
     <string name="user_dict_settings_all_languages" msgid="6742000040975959247">"Para todos los idiomas"</string>
     <string name="user_dict_settings_more_languages" msgid="7316375944684977910">"Más idiomas..."</string>
     <string name="testing" msgid="6584352735303604146">"Probando"</string>
-    <string name="testing_phone_info" product="tablet" msgid="193561832258534798">"Información del tablet"</string>
+    <string name="testing_phone_info" product="tablet" msgid="193561832258534798">"Información del dispositivo"</string>
     <string name="testing_phone_info" product="default" msgid="8656693364332840056">"Información del dispositivo"</string>
     <string name="testing_battery_info" msgid="3497865525976497848">"Información sobre la batería"</string>
     <string name="quick_launch_title" msgid="7904609846945905306">"Lanzamiento rápido"</string>
@@ -1323,7 +1323,7 @@
     <string name="accessibility_script_injection_button_allow" msgid="2201503285877102870">"Permitir"</string>
     <string name="accessibility_script_injection_button_disallow" msgid="5697152768523270885">"No permitir"</string>
     <string name="accessibility_service_security_warning_title" msgid="5421628151509995404">"¿Deseas utilizar <xliff:g id="SERVICE">%1$s</xliff:g>?"</string>
-    <string name="accessibility_service_security_warning_summary" product="tablet" msgid="8558441850832543571">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> puede recopilar todo el texto que ingresas, a excepción de las contraseñas. Esto incluye datos personales como números de tarjetas de crédito. También puede recopilar datos acerca de tu interacción con la tableta."</string>
+    <string name="accessibility_service_security_warning_summary" product="tablet" msgid="8558441850832543571">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> puede recopilar todo el texto que ingresas, a excepción de las contraseñas. Esto incluye datos personales como números de tarjetas de crédito. También puede recopilar datos acerca de tu interacción con la dispositivo."</string>
     <string name="accessibility_service_security_warning_summary" product="default" msgid="2869015914319424723">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> puede recopilar todo el texto que ingresas, a excepción de las contraseñas. Esto incluye datos personales como números de tarjetas de crédito. También puede recopilar datos acerca de tu interacción con el dispositivo."</string>
     <string name="accessibility_service_disable_warning_title" msgid="3393956845814484859">"¿Deseas detener <xliff:g id="SERVICE">%1$s</xliff:g>?"</string>
     <string name="accessibility_service_disable_warning_summary" msgid="625013894287895398">"Si tocas Aceptar, se detendrá <xliff:g id="SERVICE">%1$s</xliff:g>."</string>
@@ -1363,14 +1363,14 @@
     <string name="power_bluetooth" msgid="4373329044379008289">"Bluetooth"</string>
     <string name="power_cell" msgid="6596471490976003056">"Dispositivo inactivo"</string>
     <string name="power_phone" msgid="5392641106474567277">"Llamadas de voz"</string>
-    <string name="power_idle" product="tablet" msgid="4612478572401640759">"Tablet ausente"</string>
+    <string name="power_idle" product="tablet" msgid="4612478572401640759">"Dispositivo ausente"</string>
     <string name="power_idle" product="default" msgid="9055659695602194990">"Teléfono inactivo"</string>
     <string name="usage_type_cpu" msgid="715162150698338714">"CPU total"</string>
     <string name="usage_type_cpu_foreground" msgid="6500579611933211831">"Primer plano de la CPU"</string>
     <string name="usage_type_wake_lock" msgid="5125438890233677880">"Mantener en funcionamiento"</string>
     <string name="usage_type_gps" msgid="7989688715128160790">"GPS"</string>
     <string name="usage_type_wifi_running" msgid="8234997940652067049">"Wi-Fi en funcionamiento"</string>
-    <string name="usage_type_phone" product="tablet" msgid="262638572890253393">"Tableta"</string>
+    <string name="usage_type_phone" product="tablet" msgid="262638572890253393">"Dispositivo"</string>
     <string name="usage_type_phone" product="default" msgid="9108247984998041853">"Teléfono"</string>
     <string name="usage_type_data_send" msgid="2857401966985425427">"Datos enviados"</string>
     <string name="usage_type_data_recv" msgid="7251090882025234185">"Datos recibidos"</string>
@@ -1385,7 +1385,7 @@
     <string name="battery_action_wifi" msgid="2272741639606146903">"Configuración Wi-Fi"</string>
     <string name="battery_action_bluetooth" msgid="8374789049507723142">"Config. de Bluetooth"</string>
     <string name="battery_desc_voice" msgid="8980322055722959211">"La batería está siendo utilizada por llamadas de voz"</string>
-    <string name="battery_desc_standby" product="tablet" msgid="6284747418668280364">"La batería se utiliza cuando el tablet está inactivo"</string>
+    <string name="battery_desc_standby" product="tablet" msgid="6284747418668280364">"La batería se utiliza cuando el dispositivo está inactivo"</string>
     <string name="battery_desc_standby" product="default" msgid="3009080001948091424">"La batería se utiliza cuando el dispositivo está inactivo"</string>
     <string name="battery_desc_radio" msgid="5479196477223185367">"La batería está siendo utilizada por la radio celular"</string>
     <string name="battery_sugg_radio" msgid="8211336978326295047">"Cambiar a modo de avión para ahorrar energía en áreas sin cobertura celular"</string>
@@ -1594,9 +1594,9 @@
     <string name="header_add_an_account" msgid="756108499532023798">"Agregar una cuenta"</string>
     <string name="finish_button_label" msgid="481587707657751116">"Finalizar"</string>
     <string name="really_remove_account_title" msgid="8800653398717172460">"¿Deseas eliminar la cuenta?"</string>
-    <string name="really_remove_account_message" product="tablet" msgid="1936147502815641161">"Si eliminas esta cuenta, se eliminarán todos sus mensajes, contactos y otros datos de la tableta."</string>
+    <string name="really_remove_account_message" product="tablet" msgid="1936147502815641161">"Si eliminas esta cuenta, se eliminarán todos sus mensajes, contactos y otros datos de la dispositivo."</string>
     <string name="really_remove_account_message" product="default" msgid="3483528757922948356">"Si eliminas esta cuenta, se eliminarán todos sus mensajes, contactos y otros datos del dispositivo."</string>
-    <string name="remove_account_failed" product="tablet" msgid="3086620478225952725">"Esta cuenta se requiere en algunas aplicaciones. Solo puedes eliminarla si restableces los valores predeterminados de fábrica de la tableta (esta acción borra todos tus datos personales). Para ello, accede a Configuración &gt; Hacer copia de seguridad y restablecer."</string>
+    <string name="remove_account_failed" product="tablet" msgid="3086620478225952725">"Esta cuenta se requiere en algunas aplicaciones. Solo puedes eliminarla si restableces los valores predeterminados de fábrica de la dispositivo (esta acción borra todos tus datos personales). Para ello, accede a Configuración &gt; Hacer copia de seguridad y restablecer."</string>
     <string name="remove_account_failed" product="default" msgid="6217238709175617517">"Algunas aplicaciones requieren esta cuenta. Solo puedes eliminarla si restableces el dispositivo a los valores predeterminados de fábrica (esta acción elimina todos tus datos personales). Para ello, accede a Configuración &gt; Hacer copia de seguridad y restablecer."</string>
     <string name="provider_label" msgid="7724593781904508866">"Suscripciones de inserción"</string>
     <!-- no translation found for sync_item_title (4782834606909853006) -->
@@ -1706,7 +1706,7 @@
     <string name="data_usage_app_restrict_dialog" msgid="1466689968707308512">"Esta función puede hacer que deje de funcionar una aplicación que tenga que utilizar datos de referencia cuando solo estén disponibles redes móviles."\n\n"Puedes encontrar controles de uso de datos más adecuados en las opciones de configuración disponibles en la aplicación."</string>
     <string name="data_usage_restrict_denied_dialog" msgid="7086969103661420799">"Solo se pueden restringir los datos de referencia si estableciste un límite de datos móviles."</string>
     <string name="data_usage_auto_sync_on_dialog_title" msgid="2438617846762244389">"¿Activar sinc. automática?"</string>
-    <string name="data_usage_auto_sync_on_dialog" product="tablet" msgid="7312283529426636845">"Cualquier cambio que sufran tus cuentas en la Web se copiará automáticamente en tu tableta."\n\n"Algunas cuentas también pueden copiar automáticamente en la Web los cambios que sufre tu tableta. Una cuenta de Google funciona de esta manera."\n\n"Para elegir qué tipo de información sincronizar dentro de cada cuenta, ve a Configuración &gt; Cuentas."</string>
+    <string name="data_usage_auto_sync_on_dialog" product="tablet" msgid="7312283529426636845">"Cualquier cambio que sufran tus cuentas en la Web se copiará automáticamente en tu dispositivo."\n\n"Algunas cuentas también pueden copiar automáticamente en la Web los cambios que sufre tu dispositivo. Una cuenta de Google funciona de esta manera."\n\n"Para elegir qué tipo de información sincronizar dentro de cada cuenta, ve a Configuración &gt; Cuentas."</string>
     <string name="data_usage_auto_sync_on_dialog" product="default" msgid="2374996799819303283">"Cualquier cambio que sufran tus cuentas en la Web se copiará automáticamente en tu dispositivo."\n\n"Algunas cuentas también pueden copiar automáticamente en la Web los cambios que sufre tu dispositivo. Una cuenta de Google funciona de esta manera."\n\n"Para elegir qué tipo de información sincronizar dentro de cada cuenta, ve a Configuración &gt; Cuentas."</string>
     <string name="data_usage_auto_sync_off_dialog_title" msgid="9013139130490125793">"¿Desactivar sinc. automática?"</string>
     <string name="data_usage_auto_sync_off_dialog" msgid="4744145757533455623">"Así ahorrarás datos y energía, pero tendrás que sincronizar cada cuenta manualmente para recopilar la información reciente. Por otro lado, no se te notificarán las actualizaciones."</string>
@@ -1716,11 +1716,11 @@
     <string name="data_usage_warning_editor_title" msgid="3704136912240060339">"Configurar advertencia acerca del uso de datos"</string>
     <string name="data_usage_limit_editor_title" msgid="9153595142385030015">"Establecer el límite de uso de datos"</string>
     <string name="data_usage_limit_dialog_title" msgid="3023111643632996097">"Limitar el uso de datos"</string>
-    <string name="data_usage_limit_dialog_mobile" product="tablet" msgid="3893348029612821262">"Tu conexión de datos móvil se desactivará cuando se alcance el límite especificado."\n\n"Debido a que el uso de datos medido por tu tableta puede diferir del cálculo de uso de tu proveedor, considera usar un límite prudente."</string>
+    <string name="data_usage_limit_dialog_mobile" product="tablet" msgid="3893348029612821262">"Tu conexión de datos móvil se desactivará cuando se alcance el límite especificado."\n\n"Debido a que el uso de datos medido por tu dispositivo puede diferir del cálculo de uso de tu proveedor, considera usar un límite prudente."</string>
     <string name="data_usage_limit_dialog_mobile" product="default" msgid="7962145861903746827">"Tu conexión de datos móvil se desactivará cuando se alcance el límite especificado."\n\n"Debido a que el uso de datos medido por tu teléfono puede diferir del cálculo de uso de tu proveedor, considera usar un límite prudente."</string>
     <string name="data_usage_restrict_background_title" msgid="2201315502223035062">"¿Restringir el uso de datos de referencia?"</string>
     <string name="data_usage_restrict_background" msgid="6387252645350792955">"Si restringes los datos para celulares de referencia, algunas aplicaciones y servicios no funcionarán a menos que te conectes a una red Wi-Fi."</string>
-    <string name="data_usage_restrict_background_multiuser" product="tablet" msgid="2609163428726042269">"Si restringes los datos móviles de referencia, algunos servicios y aplicaciones no funcionarán a menos que te conectes a una red Wi-Fi."\n\n"Esta configuración afecta a todos los usuarios de esta tableta."</string>
+    <string name="data_usage_restrict_background_multiuser" product="tablet" msgid="2609163428726042269">"Si restringes los datos móviles de referencia, algunos servicios y aplicaciones no funcionarán a menos que te conectes a una red Wi-Fi."\n\n"Esta configuración afecta a todos los usuarios de esta dispositivo."</string>
     <string name="data_usage_restrict_background_multiuser" product="default" msgid="8025473178302056174">"Si restringes los datos móviles de referencia, algunos servicios y aplicaciones no funcionarán a menos que te conectes a una red Wi-Fi."\n\n"Esta configuración afecta a todos los usuarios de este dispositivo."</string>
     <string name="data_usage_sweep_warning" msgid="6387081852568846982"><font size="21">"<xliff:g id="NUMBER">^1</xliff:g>"</font><font size="9">"<xliff:g id="UNIT">^2</xliff:g>"</font>\n<font size="12">"advertencia"</font></string>
     <string name="data_usage_sweep_limit" msgid="860566507375933039"><font size="21">"<xliff:g id="NUMBER">^1</xliff:g>"</font>" "<font size="9">"<xliff:g id="UNIT">^2</xliff:g>"</font>\n<font size="12">"límite"</font></string>
@@ -1728,7 +1728,7 @@
     <string name="data_usage_uninstalled_apps_users" msgid="7986294489899813194">"Aplicaciones y usuarios eliminados"</string>
     <string name="data_usage_received_sent" msgid="5039699009276621757">"<xliff:g id="RECEIVED">%1$s</xliff:g> recibidos, <xliff:g id="SENT">%2$s</xliff:g> enviados"</string>
     <string name="data_usage_total_during_range" msgid="4091294280619255237">"<xliff:g id="RANGE">%2$s</xliff:g>: se usaron unos <xliff:g id="TOTAL">%1$s</xliff:g>."</string>
-    <string name="data_usage_total_during_range_mobile" product="tablet" msgid="5961720793603268572">"<xliff:g id="RANGE">%2$s</xliff:g>: se usaron unos <xliff:g id="TOTAL">%1$s</xliff:g> según tu tableta. La medición de tu proveedor puede diferir."</string>
+    <string name="data_usage_total_during_range_mobile" product="tablet" msgid="5961720793603268572">"<xliff:g id="RANGE">%2$s</xliff:g>: se usaron unos <xliff:g id="TOTAL">%1$s</xliff:g> según tu dispositivo. La medición de tu proveedor puede diferir."</string>
     <string name="data_usage_total_during_range_mobile" product="default" msgid="1625833170144610767">"<xliff:g id="RANGE">%2$s</xliff:g>: se usaron unos <xliff:g id="TOTAL">%1$s</xliff:g> según tu teléfono. La medición de tu proveedor puede diferir."</string>
     <string name="data_usage_metered_title" msgid="6204750602856383278">"Zonas Wi-Fi móviles"</string>
     <string name="data_usage_metered_body" msgid="2446827764036316131">"Selecciona las redes Wi-Fi que sean zonas Wi-Fi móviles. Se puede impedir que las aplicaciones usen estas redes cuando se ejecuten en segundo plano. Asimismo, las aplicaciones pueden mostrar un mensaje de advertencia antes de usar estas redes para descargar archivos de gran tamaño."</string>
@@ -1801,26 +1801,26 @@
     <string name="user_owner" msgid="3879126011135546571">"Propietario"</string>
     <string name="user_nickname" msgid="5148818000228994488">"Seudónimo"</string>
     <string name="user_add_user_title" msgid="3961861593718285403">"Agregar usuario nuevo"</string>
-    <string name="user_add_user_message_long" msgid="2278524063301283723">"Puedes crear usuarios adicionales para compartir este dispositivo con otras personas. Cada usuario cuenta con su propio espacio y puede personalizarlo con sus propios fondos de pantalla, aplicaciones, etc. Los usuarios también pueden ajustar parámetros de configuración de la tableta como la red Wi-Fi."\n\n"Luego de que crees un usuario nuevo, este tiene que pasar por un proceso de configuración."\n\n"Cualquier usuario puede aceptar permisos de aplicaciones actualizados en nombre del resto de los usuarios."</string>
+    <string name="user_add_user_message_long" msgid="2278524063301283723">"Puedes crear usuarios adicionales para compartir este dispositivo con otras personas. Cada usuario cuenta con su propio espacio y puede personalizarlo con sus propios fondos de pantalla, aplicaciones, etc. Los usuarios también pueden ajustar parámetros de configuración de la dispositivo como la red Wi-Fi."\n\n"Luego de que crees un usuario nuevo, este tiene que pasar por un proceso de configuración."\n\n"Cualquier usuario puede aceptar permisos de aplicaciones actualizados en nombre del resto de los usuarios."</string>
     <string name="user_add_user_message_short" msgid="3310933423737035428">"Luego de que crees un usuario nuevo, este tiene que pasar por un proceso de configuración."\n\n"Cualquier usuario puede aceptar permisos de aplicaciones actualizados en nombre del resto de los usuarios."</string>
     <string name="user_setup_dialog_title" msgid="1765794166801864563">"¿Configurar el usuario ahora?"</string>
-    <string name="user_setup_dialog_message" msgid="614037943337008555">"Asegúrate de que la persona esté disponible para aceptar la tableta y configurar su espacio."</string>
+    <string name="user_setup_dialog_message" msgid="614037943337008555">"Asegúrate de que la persona esté disponible para aceptar la dispositivo y configurar su espacio."</string>
     <string name="user_setup_button_setup_now" msgid="3391388430158437629">"Configurar ahora"</string>
     <string name="user_setup_button_setup_later" msgid="3068729597269172401">"Ahora no"</string>
-    <string name="user_cannot_manage_message" product="tablet" msgid="8440449301994432789">"Solo los propietarios de la tableta pueden administrar los usuarios."</string>
+    <string name="user_cannot_manage_message" product="tablet" msgid="8440449301994432789">"Solo los propietarios de la dispositivo pueden administrar los usuarios."</string>
     <string name="user_cannot_manage_message" product="default" msgid="1133251987818014757">"Solo los propietarios del dispositivo pueden administrar los usuarios."</string>
     <string name="user_remove_user_menu" msgid="6897150520686691355">"Eliminar <xliff:g id="USER_NAME">%1$s</xliff:g> del disp."</string>
     <string name="user_new_user_name" msgid="369856859816028856">"Usuario nuevo"</string>
     <string name="user_confirm_remove_self_title" msgid="8432050170899479556">"¿Deseas eliminarte a ti mismo?"</string>
     <string name="user_confirm_remove_title" msgid="3856148232937245711">"¿Eliminar usuario?"</string>
-    <string name="user_confirm_remove_self_message" product="tablet" msgid="8167855311779740207">"Perderás tu espacio y tus datos en esta tableta. No puedes deshacer esta acción."</string>
+    <string name="user_confirm_remove_self_message" product="tablet" msgid="8167855311779740207">"Perderás tu espacio y tus datos en esta dispositivo. No puedes deshacer esta acción."</string>
     <string name="user_confirm_remove_self_message" product="default" msgid="5391888073786090274">"Perderás tu espacio y tus datos en este dispositivo. No puedes deshacer esta acción."</string>
-    <string name="user_confirm_remove_message" product="tablet" msgid="4610106937214870034">"El espacio y los datos de este usuario desaparecerán de esta tableta. No puedes deshacer esta acción."</string>
+    <string name="user_confirm_remove_message" product="tablet" msgid="4610106937214870034">"El espacio y los datos de este usuario desaparecerán de esta dispositivo. No puedes deshacer esta acción."</string>
     <string name="user_confirm_remove_message" product="default" msgid="8130264611683731142">"El espacio y los datos de este usuario desaparecerán de este dispositivo. No puedes deshacer esta acción."</string>
     <string name="user_adding_new_user" msgid="1521674650874241407">"Agregando usuario nuevo..."</string>
     <string name="user_delete_user_description" msgid="3158592592118767056">"Eliminar usuario"</string>
     <string name="user_delete_button" msgid="5131259553799403201">"Eliminar"</string>
-    <string name="global_change_warning" product="tablet" msgid="8045013389464294039">"Esta configuración afecta a todos los usuarios de esta tableta."</string>
+    <string name="global_change_warning" product="tablet" msgid="8045013389464294039">"Esta configuración afecta a todos los usuarios de esta dispositivo."</string>
     <string name="global_change_warning" product="default" msgid="2461264421590324675">"Esta configuración afecta a todos los usuarios de este dispositivo."</string>
     <string name="global_locale_change_title" msgid="5956281361384221451">"Cambiar idioma"</string>
     <string name="global_font_change_title" msgid="1887126466191012035">"Cambiar tamaño de fuente"</string>
