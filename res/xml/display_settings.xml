@@ -15,13 +15,20 @@
 -->
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-        android:title="@string/display_settings"
+        android:title="@string/power_management"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <com.android.settings.BrightnessPreference
-                android:key="brightness"
+        <Preference
+                android:key="brightness_dialog"
                 android:title="@string/brightness"
                 android:dialogTitle="@string/brightness" />
+
+        <CheckBoxPreference
+                android:key="wake_up_brightness"
+                android:title="@string/wakeup_brightness"
+                android:summary="@string/wakeup_brightness_summary"
+                android:defaultValue="true"
+                android:persistent="false" />
 
         <ListPreference
                 android:key="screen_timeout"
@@ -36,5 +43,20 @@
             android:title="@string/notification_pulse_title"
             android:persistent="false" />
 
+        <ListPreference
+                android:key="power_off_timeout"
+                android:title="@string/power_off_timeout"
+                android:summary="@string/power_off_timeout_summary"
+                android:entries="@array/power_off_timeout_entries"
+                android:entryValues="@array/power_off_timeout_values"
+                android:persistent="false" />
+
+        <ListPreference
+                android:key="network_inactivity_timeout"
+                android:title="@string/network_inactivity_timeout"
+                android:summary="@string/network_inactivity_timeout_summary"
+                android:entries="@array/network_inactivity_timeout_entries"
+                android:entryValues="@array/network_inactivity_timeout_values"
+                android:persistent="false" />
 
 </PreferenceScreen>

@@ -599,7 +599,7 @@
         </activity-alias>
 
         <activity android:name="Settings$DisplaySettingsActivity"
-                android:label="@string/display_settings"
+                android:label="@string/power_management"
                 android:taskAffinity=""
                 android:excludeFromRecents="true">
             <intent-filter>
@@ -618,7 +618,7 @@
 
         <!-- Keep compatibility with old shortcuts. -->
         <activity-alias android:name="DisplaySettings"
-                android:label="@string/display_settings"
+                android:label="@string/power_management"
                 android:exported="true"
                 android:targetActivity="Settings$DisplaySettingsActivity">
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"

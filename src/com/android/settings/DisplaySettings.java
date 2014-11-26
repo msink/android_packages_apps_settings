@@ -17,6 +17,9 @@
 package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
+import static android.provider.Settings.System.AUTO_POWEROFF_TIMEOUT;
+import static android.provider.Settings.System.WIFI_INACTIVITY_TIMEOUT;
+import static android.provider.Settings.System.WAKE_UP_BRIGHTNESS;
 
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
@@ -47,6 +50,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
+import android.hardware.DeviceController;
 
 import com.android.internal.view.RotationPolicy;
 import com.android.settings.DreamSettings;
@@ -65,6 +69,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     /** If there is no setting in the provider, use this. */
     private static final int FALLBACK_SCREEN_TIMEOUT_VALUE = 30000;
+    private static final int FALLBACK_POWEROFF_TIMEOUT_VALUE = 1200000;
 
     private static final String KEY_SCREEN_TIMEOUT = "screen_timeout";
     private static final String KEY_ACCELEROMETER = "accelerometer";
@@ -75,6 +80,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
+    private static final String KEY_POWEROFF_TIMEOUT = "power_off_timeout";
+    private static final String KEY_NETWORK_TIMEOUT = "network_inactivity_timeout";
+    private static final String BRIGHTNESS_DIALOG = "brightness_dialog";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
     private static final int DLG_CONFIRM_REBOOT = 2;
@@ -97,6 +105,9 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private LinkedList<String> mResolutionDpis = new LinkedList();
     private LinkedList<String> mResolutionEntries = new LinkedList();
     private LinkedList<String> mResolutionEntryValues = new LinkedList();
+
+    private ListPreference mPowerOffTimeoutPreference;
+    private CheckBoxPreference mWakeUpBrightness;
 
     private boolean applyResolution() {
         File storeFile = null;
@@ -230,8 +241,16 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ContentResolver resolver = getActivity().getContentResolver();
+        DeviceController deviceController = new DeviceController(getActivity());
 
         addPreferencesFromResource(R.xml.display_settings);
+
+        Context context = getActivity();
+        if (!DeviceControllerHelper.getInstance(context).getDeviceController()
+                .hasFrontLight()) {
+            Preference brightnessDialog = findPreference(BRIGHTNESS_DIALOG);
+            getPreferenceScreen().removePreference(brightnessDialog);
+        }
 
         mScreenTimeoutPreference = (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
         final long currentTimeout = Settings.System.getLong(resolver, SCREEN_OFF_TIMEOUT,
@@ -240,6 +259,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         mScreenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(mScreenTimeoutPreference);
         updateTimeoutPreferenceDescription(currentTimeout);
+
+        mPowerOffTimeoutPreference = (ListPreference) findPreference(KEY_POWEROFF_TIMEOUT);
+        String auto = String.valueOf(Settings.System.getInt(resolver, AUTO_POWEROFF_TIMEOUT,
+                FALLBACK_POWEROFF_TIMEOUT_VALUE));
+        mPowerOffTimeoutPreference.setValue(auto);
+        mPowerOffTimeoutPreference.setOnPreferenceChangeListener(this);
+
+        ListPreference wifiLockDelayPreference = (ListPreference) findPreference(KEY_NETWORK_TIMEOUT);
+        wifiLockDelayPreference.setValue(String.valueOf(Settings.System.getInt(
+                resolver, WIFI_INACTIVITY_TIMEOUT, 0)));
+        wifiLockDelayPreference.setOnPreferenceChangeListener(this);
+        if (!deviceController.hasWifi()) {
+            getPreferenceScreen().removePreference(wifiLockDelayPreference);
+        }
 
         mNotificationPulse = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_PULSE);
         if (mNotificationPulse != null
@@ -256,6 +289,17 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
 
+        Preference brightness_dialog = findPreference(BRIGHTNESS_DIALOG);
+        if (brightness_dialog != null) {
+            brightness_dialog.setOnPreferenceClickListener(new OnPreferenceClickListener(){
+                public boolean onPreferenceClick(Preference preference) {
+                    BrightnessDialog dialog = new BrightnessDialog(preference.getContext());
+                    dialog.show();
+                    return true;
+               }
+            });
+        }
+
         mDisplayManager = (DisplayManager)getActivity().getSystemService(
                 Context.DISPLAY_SERVICE);
         mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
@@ -268,6 +312,25 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         boolean isChange = "true".equals(SystemProperties.get(
             "sys.resolution.changed", "false"));
+
+        mWakeUpBrightness = (CheckBoxPreference) findPreference(WAKE_UP_BRIGHTNESS);
+        if (mWakeUpBrightness != null) {
+            if (!deviceController.hasFrontLight()) {
+                getPreferenceScreen().removePreference(mWakeUpBrightness);
+            } else {
+                mWakeUpBrightness.setOnPreferenceChangeListener(this);
+                int brightnessValue = 0;
+                try {
+                    brightnessValue = Settings.System.getInt(resolver, WAKE_UP_BRIGHTNESS);
+                } catch (Settings.SettingNotFoundException e) {
+                }
+                if (brightnessValue == 1) {
+                    mWakeUpBrightness.setChecked(true);
+                } else {
+                    mWakeUpBrightness.setChecked(false);
+                }
+            }
+        }
     }
 
     private void updateTimeoutPreferenceDescription(long currentTimeout) {
@@ -425,18 +488,41 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
-        }
-        if (KEY_FONT_SIZE.equals(key)) {
+        } else if (KEY_POWEROFF_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(), AUTO_POWEROFF_TIMEOUT, value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist auto power off setting", e);
+            }
+        } else if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
-        }
-        if (KEY_RESOLUTION.equals(key)) {
+        } else if (KEY_RESOLUTION.equals(key)) {
             mRequestResolution = objValue.toString();
             if (mCurrentResolution != mResolutionEntryValues.indexOf(mRequestResolution)) {
                 showRebootDialog();
             }
             return false;
+        } else if (KEY_NETWORK_TIMEOUT.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(), WIFI_INACTIVITY_TIMEOUT, value);
+                Intent intent = new Intent("update_close_wifi_delay");
+                getActivity().sendBroadcast(intent);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist network inactivity timeout setting", e);
+            }
+        } else if (WAKE_UP_BRIGHTNESS.equals(key)) {
+            try {
+                if (!mWakeUpBrightness.isChecked()) {
+                    Settings.System.putInt(getContentResolver(), WAKE_UP_BRIGHTNESS, 1);
+                } else {
+                    Settings.System.putInt(getContentResolver(), WAKE_UP_BRIGHTNESS, 0);
+                }
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist wake up brightness", e);
+            }
         }
-
         return true;
     }
 

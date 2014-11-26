@@ -16,6 +16,7 @@
 
 package com.android.settings;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,6 +32,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
 import android.content.res.Configuration;
+import android.os.PowerManager;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -54,6 +56,7 @@ public class SettingsLicenseActivity extends Activity {
     private WebView mWebView;
     private ProgressDialog mSpinnerDlg;
     private AlertDialog mTextDlg;
+    private PowerManager.WakeLock mWakeLock;
 
     private class LicenseFileLoader implements Runnable {
 
@@ -180,6 +183,25 @@ public class SettingsLicenseActivity extends Activity {
             mSpinnerDlg.dismiss();
         }
         super.onDestroy();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        if (mWakeLock == null) {
+            Log.d(TAG, "Acquiring wakelock.");
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            mWakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "SettingsLicenseActivity");
+            mWakeLock.acquire();
+        }
+    }
+
+    protected void onPause() {
+        super.onPause();
+        if (mWakeLock != null) {
+            Log.d(TAG, "release  wakelock");
+            mWakeLock.release();
+            mWakeLock = null;
+        }
     }
 
     private void showPageOfText(String text) {
