@@ -4457,6 +4457,12 @@
     <string name="set_resolution_failed_message">Failed to change display mode.</string>
     <string name="dlg_confirm_reboot_title">Reboot</string>
     <string name="dlg_confirm_reboot_text">System will reboot to change display mode.</string>
+    <string name="set_font_dialog_tile">Set Font</string>
+    <string name="reboot_device">Reboot the device?</string>
+    <string name="font">Font</string>
+    <string name="loading">loading......</string>
+    <string name="loading_error">Loading Error</string>
+    <string name="rebooting">Rebooting...</string>
     <string name="please_wait">Please wait...</string>
     <string name="key_mapping">Key mapping</string>
     <string name="key_map_options">Key mapping options</string>

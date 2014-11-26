@@ -99,6 +99,14 @@
                 android:parentActivityName="Settings">
         </activity>
 
+        <activity android:name="DefaultFontSettings"
+                android:label="@string/font">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="CreateShortcut" android:label="@string/settings_shortcut"
             android:theme="@style/Theme.CreateShortCut">
             <intent-filter>
