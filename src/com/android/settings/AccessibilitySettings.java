@@ -59,6 +59,7 @@ import android.view.accessibility.AccessibilityManager;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.hardware.DeviceController;
 
 import com.android.internal.content.PackageMonitor;
 import com.android.internal.view.RotationPolicy;
@@ -114,6 +115,8 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
             "enable_global_gesture_preference_screen";
     private static final String DISPLAY_MAGNIFICATION_PREFERENCE_SCREEN =
             "screen_magnification_preference_screen";
+    private static final String TTS_SETTINGS_PREFERENCE =
+            "tts_settings_preference";
 
     // Extras passed to sub-fragments.
     private static final String EXTRA_PREFERENCE_KEY = "preference_key";
@@ -183,6 +186,8 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     private Preference mNoServicesMessagePreference;
     private PreferenceScreen mDisplayMagnificationPreferenceScreen;
     private PreferenceScreen mGlobalGesturePreferenceScreen;
+    private PreferenceScreen mTTSSettingsPreferenceScreen;
+    private DeviceController mDev;
 
     private int mLongPressTimeoutDefault;
 
@@ -190,6 +195,7 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         addPreferencesFromResource(R.xml.accessibility_settings);
+        mDev = new DeviceController(getActivity());
         initializeAllPreferences();
         getPreferenceScreen().removePreference(findPreference(TOGGLE_LOCK_SCREEN_ROTATION_PREFERENCE));
     }
@@ -356,6 +362,14 @@ public class AccessibilitySettings extends SettingsPreferenceFragment implements
         // Global gesture.
         mGlobalGesturePreferenceScreen =
                 (PreferenceScreen) findPreference(ENABLE_ACCESSIBILITY_GESTURE_PREFERENCE_SCREEN);
+
+        mTTSSettingsPreferenceScreen =
+                (PreferenceScreen) findPreference(TTS_SETTINGS_PREFERENCE);
+
+        if (!mDev.hasAudio()) {
+            mSystemsCategory.removePreference(mTTSSettingsPreferenceScreen);
+            mSystemsCategory.removePreference(mToggleSpeakPasswordPreference);
+        }
     }
 
     private void updateAllPreferences() {

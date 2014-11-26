@@ -27,6 +27,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TtsEngines;
 import android.text.TextUtils;
@@ -296,6 +297,9 @@ public class TtsEngineSettingsFragment extends SettingsPreferenceFragment implem
         if (getEngineName().equals(mTts.getCurrentEngine())) {
             String[] localeArray = TtsEngines.parseLocalePref(locale);
             if (localeArray != null) {
+                Settings.Secure.putString(getContentResolver(), "tts_default_lang", localeArray[0]);
+                Settings.Secure.putString(getContentResolver(), "tts_default_country", localeArray[1]);
+                Settings.Secure.putString(getContentResolver(), "tts_default_variant", localeArray[2]);
                 mTts.setLanguage(new Locale(localeArray[0], localeArray[1], localeArray[2]));
             }
         }

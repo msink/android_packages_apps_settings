@@ -46,6 +46,7 @@ import android.text.TextUtils;
 import android.view.InputDevice;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.hardware.DeviceController;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -89,6 +90,7 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     @SuppressWarnings("unused")
     private SettingsObserver mSettingsObserver;
     private Intent mIntentWaitingForResult;
+    private DeviceController mDeviceController;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -180,6 +182,16 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
 
         mHandler = new Handler();
         mSettingsObserver = new SettingsObserver(mHandler, getActivity());
+
+        final Activity activity = getActivity();
+        if (activity != null) {
+            mDeviceController = new DeviceController(activity);
+        }
+
+        if (findPreference("voice_category") != null) {
+            getPreferenceScreen().removePreference(
+                (PreferenceCategory)findPreference("voice_category"));
+        }
     }
 
     private void updateInputMethodSelectorSummary(int value) {

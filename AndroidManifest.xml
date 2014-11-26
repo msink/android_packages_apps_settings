@@ -107,6 +107,15 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".NetworkInactivityTimeoutSettings"
+                android:label="@string/network_inactivity_timeout"
+                android:clearTaskOnLaunch="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name="CreateShortcut" android:label="@string/settings_shortcut"
             android:theme="@style/Theme.CreateShortCut">
             <intent-filter>
@@ -975,6 +984,16 @@
 
         <!-- Second and third-level settings -->
 
+        <activity-alias android:name="TextToSpeechSettings"
+                android:label="@string/tts_settings"
+                android:targetActivity="Settings$TextToSpeechSettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.tts.TextToSpeechSettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/language_settings" />
+        </activity-alias>
 
         <!-- Lock screen settings -->
         <activity android:name="ConfirmLockPattern"/>
