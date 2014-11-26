@@ -34,11 +34,6 @@
         android:entryValues="@array/screenshot_strorage_location_values"
         android:persistent="true" />
 
-    <CheckBoxPreference
-        android:key="screenshot_show"
-        android:title="@string/screenshot_show"
-        android:persistent="true" />
-
     <Preference
         android:key="screenshot_version"
         android:title="@string/screenshot_version" />

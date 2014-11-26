@@ -48,7 +48,6 @@ public class LocationSettings extends SettingsPreferenceFragment
     private static final String KEY_ASSISTED_GPS = "assisted_gps";
 
     private CheckBoxPreference mNetwork;
-    private CheckBoxPreference mGps;
     private CheckBoxPreference mAssistedGps;
     private SwitchPreference mLocationAccess;
 
@@ -88,7 +87,6 @@ public class LocationSettings extends SettingsPreferenceFragment
 
         mLocationAccess = (SwitchPreference) root.findPreference(KEY_LOCATION_TOGGLE);
         mNetwork = (CheckBoxPreference) root.findPreference(KEY_LOCATION_NETWORK);
-        mGps = (CheckBoxPreference) root.findPreference(KEY_LOCATION_GPS);
         mAssistedGps = (CheckBoxPreference) root.findPreference(KEY_ASSISTED_GPS);
 
         mLocationAccess.setOnPreferenceChangeListener(this);
@@ -121,13 +119,6 @@ public class LocationSettings extends SettingsPreferenceFragment
         if (preference == mNetwork) {
             Settings.Secure.setLocationProviderEnabled(cr,
                     LocationManager.NETWORK_PROVIDER, mNetwork.isChecked());
-        } else if (preference == mGps) {
-            boolean enabled = mGps.isChecked();
-            Settings.Secure.setLocationProviderEnabled(cr,
-                    LocationManager.GPS_PROVIDER, enabled);
-            if (mAssistedGps != null) {
-                mAssistedGps.setEnabled(enabled);
-            }
         } else if (preference == mAssistedGps) {
             Settings.Global.putInt(cr, Settings.Global.ASSISTED_GPS_ENABLED,
                     mAssistedGps.isChecked() ? 1 : 0);
@@ -148,7 +139,6 @@ public class LocationSettings extends SettingsPreferenceFragment
                 res, LocationManager.GPS_PROVIDER);
         boolean networkEnabled = Settings.Secure.isLocationProviderEnabled(
                 res, LocationManager.NETWORK_PROVIDER);
-        mGps.setChecked(gpsEnabled);
         mNetwork.setChecked(networkEnabled);
         mLocationAccess.setChecked(gpsEnabled || networkEnabled);
         if (mAssistedGps != null) {

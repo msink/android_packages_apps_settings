@@ -49,10 +49,8 @@ public class ScreenshotSetting extends SettingsPreferenceFragment
         mContext = getActivity();
         mDelay = (ListPreference)findPreference(KEY_SCREENSHOT_DELAY);
         mStorage = (ListPreference)findPreference(KEY_SCREENSHOT_STORAGE_LOCATION);
-        mShow = (CheckBoxPreference) findPreference(KEY_SCREENSHOT_SHOW);
         mVersion = (Preference)findPreference(KEY_SCREENSHOT_VERSION);
 
-        mShow.setOnPreferenceChangeListener(this);
         mDelay.setOnPreferenceChangeListener(this);
         mStorage.setOnPreferenceChangeListener(this);
 
@@ -109,16 +107,6 @@ public class ScreenshotSetting extends SettingsPreferenceFragment
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
             Preference preference) {
-        if (preference == mShow) {
-            Log.d("screenshot", "onPreferenceTreeClick mShow");
-            boolean show = mShow.isChecked();
-            Settings.System.putInt(getContentResolver(),
-                Settings.System.SCREENSHOT_BUTTON_SHOW, show ? 1 : 0);
-            Intent intent = new Intent();
-            intent.setAction("rk.android.screenshot.SHOW");
-            intent.putExtra("show", show);
-            mContext.sendBroadcast(intent);
-        }
         return true;
     }
 }
