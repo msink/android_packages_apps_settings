@@ -19,6 +19,9 @@ package com.android.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -28,8 +31,11 @@ import android.os.UserHandle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
+import android.hardware.DeviceController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -63,12 +69,15 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
     private static final String KEY_EQUIPMENT_ID = "fcc_equipment_id";
     private static final String PROPERTY_EQUIPMENT_ID = "ro.ril.fccid";
+    private static final String KEY_WIFI_MAC_ADDRESS = "wifi_mac_address";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
 
     long[] mHits = new long[3];
+    long[] mDeviceModelHits = new long[3];
     int mDevHitCountdown;
     Toast mDevHitToast;
+    private String sUnknown;
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -76,15 +85,30 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.device_info_settings);
 
+        Resources res = getActivity().getResources();
+        if (res != null) {
+            sUnknown = res.getString(R.string.device_info_default);
+        }
+
         setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
         setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
+        String deviceModel = "";
+        if (Build.MODEL.equals("Tagus_C67ML")) {
+            deviceModel = res.getString(R.string.custom_model_number_lux);
+        } else if (android.os.Build.MODEL.equals("Tagus_C67HD")) {
+            deviceModel = res.getString(R.string.custom_model_number_tactil);
+        } else {
+            deviceModel = Build.MODEL;
+        }
         setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
         setValueSummary(KEY_EQUIPMENT_ID, PROPERTY_EQUIPMENT_ID);
-        setStringSummary(KEY_DEVICE_MODEL, Build.MODEL);
+        setStringSummary(KEY_DEVICE_MODEL, deviceModel);
+        findPreference(KEY_DEVICE_MODEL).setEnabled(true);
         setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
         findPreference(KEY_BUILD_NUMBER).setEnabled(true);
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
+        findPreference(KEY_KERNEL_VERSION).setEnabled(true);
 
         if (!SELinux.isSELinuxEnabled()) {
             String status = getResources().getString(R.string.selinux_status_disabled);
@@ -107,9 +131,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 PROPERTY_EQUIPMENT_ID);
 
         // Remove Baseband version if wifi-only device
-        if (Utils.isWifiOnly(getActivity())) {
-            getPreferenceScreen().removePreference(findPreference(KEY_BASEBAND_VERSION));
-        }
+        getPreferenceScreen().removePreference(findPreference(KEY_BASEBAND_VERSION));
 
         /*
          * Settings is a generic app and should not contain any device-specific
@@ -129,24 +151,52 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
-        if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
-            Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference,
-                    KEY_SYSTEM_UPDATE_SETTINGS,
-                    Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        } else {
-            // Remove for secondary users
-            removePreference(KEY_SYSTEM_UPDATE_SETTINGS);
-        }
+        removePreference(KEY_SYSTEM_UPDATE_SETTINGS);
         Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_CONTRIBUTORS,
                 Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
 
-        // Read platform settings for additional system update setting
-        removePreferenceIfBoolFalse(KEY_UPDATE_SETTING,
-                R.bool.config_additional_system_update_setting_enable);
+        removePreference(KEY_UPDATE_SETTING);
 
         // Remove regulatory information if not enabled.
         removePreferenceIfBoolFalse(KEY_REGULATORY_INFO,
                 R.bool.config_show_regulatory_info);
+
+        String serial = Build.SERIAL;
+        if (serial != null && !serial.equals("")) {
+            setSummaryText("serial_number", serial);
+        }
+        findPreference("serial_number").setEnabled(true);
+
+        setWifiStatus();
+    }
+
+    private void setSummaryText(String preference, String text) {
+        if (TextUtils.isEmpty(text)) {
+            text = sUnknown;
+        }
+        if (findPreference(preference) != null) {
+            findPreference(preference).setSummary(text);
+        }
+    }
+
+    private void setWifiStatus() {
+        Preference wifiMacAddressPref = findPreference(KEY_WIFI_MAC_ADDRESS);
+        if (hasWifi()) {
+            String macAddress = null;
+            String mac = Settings.System.getString(getContentResolver(), KEY_WIFI_MAC_ADDRESS);
+            if (mac == null || mac.equals("")) {
+                WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+                WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+                macAddress = wifiInfo == null ? null : wifiInfo.getMacAddress();
+            } else {
+                macAddress = mac;
+            }
+            wifiMacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress
+                : getString(R.string.status_unavailable));
+            wifiMacAddressPref.setEnabled(true);
+        } else {
+            getPreferenceScreen().removePreference(wifiMacAddressPref);
+        }
     }
 
     @Override
@@ -156,6 +206,19 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 Context.MODE_PRIVATE).getBoolean(DevelopmentSettings.PREF_SHOW,
                         android.os.Build.TYPE.equals("eng")) ? -1 : TAPS_TO_BE_A_DEVELOPER;
         mDevHitToast = null;
+    }
+
+    private DeviceController mDeviceController;
+    private DeviceController getDeviceController() {
+        if (mDeviceController == null) {
+            Context context = getActivity();
+            mDeviceController = new DeviceController(context);
+        }
+        return mDeviceController;
+    }
+
+    private boolean hasWifi() {
+        return getDeviceController().hasWifi();
     }
 
     @Override
@@ -203,6 +266,15 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already,
                         Toast.LENGTH_LONG);
                 mDevHitToast.show();
+            }
+        } else if (preference.getKey().equals(KEY_DEVICE_MODEL)) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.onyx.android.productiontest",
+                    "com.onyx.android.productiontest.ProductionTest");
+            try {
+                startActivity(intent);
+            } catch (Exception e) {
+                Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -300,9 +372,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                     + " groups");
             return "Unavailable";
         }
-        return m.group(1) + "\n" +                 // 3.0.31-g6fb96c9
-            m.group(2) + " " + m.group(3) + "\n" + // x@y.com #1
-            m.group(4);                            // Thu Jun 28 11:02:39 PDT 2012
+        return m.group(1);
     }
 
     /**

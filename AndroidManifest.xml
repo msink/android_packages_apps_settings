@@ -664,6 +664,17 @@
                 android:resource="@id/about_settings" />
         </activity>
 
+        <activity-alias android:name="DeviceInfoSettings"
+                android:label="@string/device_info_settings"
+                android:targetActivity="Settings$DateTimeSettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.DeviceInfoSettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/about_settings" />
+        </activity-alias>
+
         <activity android:name="SettingsLicenseActivity"
                 android:label="@string/settings_license_activity_title"
                 android:theme="@android:style/Theme.Holo.Panel"
@@ -699,6 +710,27 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.applications.ManageApplications" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/application_settings" />
+        </activity>
+
+        <activity android:name="Settings$ApplicationSettingsActivity"
+                android:label="@string/applications_settings"
+                android:taskAffinity=""
+                android:excludeFromRecents="true"
+                android:uiOptions="none">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.APPLICATION_SETTINGS" />
+                <action android:name="android.settings.MANAGE_APPLICATIONS_SETTINGS" />
+                <action android:name="android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS" />
+                <action android:name="com.onyx.android.settings.APPLICATION_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VOICE_LAUNCH" />
+                <category android:name="com.android.settings.SHORTCUT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.NewApplicationSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/application_settings" />
         </activity>
@@ -741,6 +773,17 @@
                 android:targetActivity="Settings$ManageApplicationsActivity">
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.applications.ManageApplications" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/application_settings" />
+        </activity-alias>
+
+        <activity-alias android:name=".ApplicationSettings"
+                android:label="@string/applications_settings"
+                android:targetActivity="Settings$ApplicationSettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.NewApplicationSettings" />
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/application_settings" />
         </activity-alias>
@@ -869,6 +912,17 @@
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/privacy_settings" />
         </activity>
+
+        <activity-alias android:name="PrivacySettings"
+                android:label="@string/privacy_settings_title"
+                android:targetActivity="Settings$PrivacySettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.PrivacySettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/privacy_settings" />
+        </activity-alias>
 
         <activity android:name="SetFullBackupPassword"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"
@@ -1044,6 +1098,17 @@
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/storage_settings" />
         </activity>
+
+        <activity-alias android:name=".deviceinfo.Memory"
+                android:label="@string/storage_settings_title"
+                android:targetActivity="Settings$StorageSettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.deviceinfo.Memory" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/storage_settings" />
+        </activity-alias>
 
         <activity android:name=".deviceinfo.MiscFilesHandler"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"/>

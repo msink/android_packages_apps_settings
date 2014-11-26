@@ -64,6 +64,7 @@ import android.view.IWindowManager;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.hardware.DeviceController;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -288,6 +289,7 @@ public class DevelopmentSettings extends PreferenceFragment
             mAllPrefs.add(hdcpChecking);
         }
         removeHdcpOptionsForProduction();
+        removeOptionsForSpecificHardware();
     }
 
     private void disableForUser(Preference pref) {
@@ -347,6 +349,26 @@ public class DevelopmentSettings extends PreferenceFragment
                 // Remove the preference
                 getPreferenceScreen().removePreference(hdcpChecking);
                 mAllPrefs.remove(hdcpChecking);
+            }
+        }
+    }
+
+    private void removeOptionsForSpecificHardware() {
+        DeviceController dev = new DeviceController(getActivity());
+        if (!dev.hasWifi()) {
+            if (mBugreport != null) {
+                getPreferenceScreen().removePreference(mBugreport);
+                mAllPrefs.remove(mBugreport);
+            }
+            if (mBugreportInPower != null) {
+                getPreferenceScreen().removePreference(mBugreportInPower);
+                mAllPrefs.remove(mBugreportInPower);
+            }
+        }
+        if (!dev.isTouchable()) {
+            Preference debugInput = findPreference("debug_input_category");
+            if (debugInput != null) {
+                getPreferenceScreen().removePreference(debugInput);
             }
         }
     }

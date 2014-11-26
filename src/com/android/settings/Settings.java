@@ -62,6 +62,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.hardware.DeviceController;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -136,6 +137,8 @@ public class Settings extends PreferenceActivity
     private Header mLastHeader;
     private boolean mListeningToAccountUpdates;
 
+    private DeviceController mDev;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if (getIntent().getBooleanExtra(EXTRA_CLEAR_UI_OPTIONS, false)) {
@@ -145,6 +148,8 @@ public class Settings extends PreferenceActivity
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, null);
+
+        mDev = new DeviceController(this);
 
         mDevelopmentPreferences = getSharedPreferences(DevelopmentSettings.PREF_FILE,
                 Context.MODE_PRIVATE);
@@ -320,7 +325,7 @@ public class Settings extends PreferenceActivity
         String startingFragment = getStartingFragmentClass(superIntent);
         // This is called from super.onCreate, isMultiPane() is not yet reliable
         // Do not use onIsHidingHeaders either, which relies itself on this method
-        if (startingFragment != null && !onIsMultiPane()) {
+        if (startingFragment != null && onIsMultiPane()) {
             Intent modIntent = new Intent(superIntent);
             modIntent.putExtra(EXTRA_SHOW_FRAGMENT, startingFragment);
             Bundle args = superIntent.getExtras();
@@ -434,9 +439,14 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
+            } else if (id == R.id.wireless_section) {
+                if (!mDev.hasWifi()) {
+                    target.remove(header);
+                }
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
-                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI)) {
+                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI) ||
+                        !mDev.hasWifi()) {
                     target.remove(i);
                 }
             } else if (id == R.id.bluetooth_settings) {
@@ -449,15 +459,27 @@ public class Settings extends PreferenceActivity
                 final INetworkManagementService netManager = INetworkManagementService.Stub
                         .asInterface(ServiceManager.getService(Context.NETWORKMANAGEMENT_SERVICE));
                 try {
-                    if (!netManager.isBandwidthControlEnabled()) {
+                    if (!netManager.isBandwidthControlEnabled() || !mDev.hasWifi()) {
                         target.remove(i);
                     }
                 } catch (RemoteException e) {
                     // ignored
                 }
+            } else if (id == R.id.wireless_settings) {
+                if (!mDev.hasWifi()) {
+                    target.remove(header);
+                }
             } else if (id == R.id.account_settings) {
-                int headerIndex = i + 1;
-                i = insertAccountsHeaders(target, headerIndex);
+                if (mDev.hasWifi()) {
+                    int headerIndex = i + 1;
+                    i = insertAccountsHeaders(target, headerIndex);
+                } else {
+                    target.remove(header);
+                }
+            } else if (id == R.id.account_add) {
+                if (!mDev.hasWifi()) {
+                    target.remove(header);
+                }
             } else if (id == R.id.user_settings) {
                 if (!UserHandle.MU_ENABLED
                         || !UserManager.supportsMultipleUsers()
@@ -472,6 +494,16 @@ public class Settings extends PreferenceActivity
                 if (!hasHdmiFeature()) {
                     target.remove(header);
                 }
+            } else if (id == R.id.sound_settings) {
+                if (!mDev.hasAudio()) {
+                    target.remove(header);
+                }
+            } else if (id == R.id.location_settings) {
+                if (!mDev.hasWifi()) {
+                    target.remove(header);
+                }
+            } else if (id == R.id.accessibility_settings) {
+                target.remove(header);
             }
 
             if (target.get(i) == header
@@ -807,6 +839,10 @@ public class Settings extends PreferenceActivity
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, accounts);
         invalidateHeaders();
+    }
+
+    public boolean onIsHidingHeaders() {
+        return true;
     }
 
     /*

@@ -4480,6 +4480,10 @@
     <string name="power_management">Power management</string>
     <string name="key_mapping">Key mapping</string>
     <string name="key_map_options">Key mapping options</string>
+    <string name="custom_model_number_lux">Tagus Lux 2015</string>
+    <string name="custom_model_number_tactil">Tagus Tactil 2015</string>
+    <string name="screen_resolution">Screen resolution</string>
+    <string name="screen_resolution_value">1024 x 758</string>
     <string name="memory_size_special_four_gb">4.00GB</string>
     <string name="storage_text">Storage</string>
     <string name="user_storage_format">Erase user storage</string>

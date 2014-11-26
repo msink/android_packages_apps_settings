@@ -98,6 +98,18 @@
                 android:title="@string/model_number"
                 android:summary="@string/device_info_default"/>
                 
+        <Preference android:key="serial_number"
+                style="?android:attr/preferenceInformationStyle"
+                android:title="@string/status_serial_number"
+                android:summary="@string/device_info_not_available"
+                android:persistent="false" />
+
+        <Preference android:key="wifi_mac_address"
+                style="?android:attr/preferenceInformationStyle"
+                android:title="@string/status_wifi_mac_address"
+                android:summary="@string/device_info_not_available"
+                android:persistent="false" />
+
         <!-- Device firmware version -->
         <Preference android:key="firmware_version" 
                 style="?android:preferenceInformationStyle"

@@ -30,6 +30,7 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.hardware.DeviceController;
 
 /**
  * Gesture lock pattern settings.
@@ -66,8 +67,10 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
         mConfigure = (PreferenceScreen) screen.findPreference(CONFIGURE_ACCOUNT);
 
         // Vendor specific
+        DeviceController deviceController = new DeviceController(getActivity());
         if (getActivity().getPackageManager().
-                resolveContentProvider(GSETTINGS_PROVIDER, 0) == null) {
+                resolveContentProvider(GSETTINGS_PROVIDER, 0) == null ||
+                !deviceController.hasWifi()) {
             screen.removePreference(findPreference(BACKUP_CATEGORY));
         }
         updateToggles();
