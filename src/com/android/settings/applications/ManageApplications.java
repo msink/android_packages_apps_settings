@@ -503,6 +503,9 @@ public class ManageApplications extends Fragment implements
         public void onPageScrollStateChanged(int state) {
             if (state == ViewPager.SCROLL_STATE_IDLE) {
                 updateCurrentTab(mCurPos);
+                if (((TabInfo)(mTabs.get(mCurPos))).mListContainer != null) {
+                    ((TabInfo)(mTabs.get(mCurPos))).mListContainer.requestFocus();
+                }
             }
         }
     }
@@ -923,6 +926,7 @@ public class ManageApplications extends Fragment implements
         super.onResume();
         mActivityResumed = true;
         updateCurrentTab(mViewPager.getCurrentItem());
+        mViewPager.requestFocus();
         updateOptionsMenu();
     }
 
