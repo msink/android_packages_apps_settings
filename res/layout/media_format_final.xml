@@ -21,7 +21,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/info_layout">        
 
-    <TextView
+    <TextView android:id="@+id/text_view_media_format_final"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -32,6 +32,7 @@
         android:layout_marginTop="40dip"
         android:layout_width="150dip"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:text="@string/media_format_final_button_text"
         android:gravity="center" />
         

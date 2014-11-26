@@ -58,12 +58,14 @@
             <TextView android:id="@+id/erase_external_option_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:textSize="18sp"
                 android:text="@string/master_clear_desc_erase_external_storage" />
             <LinearLayout android:id="@+id/erase_external_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:visibility="gone"
                     android:focusable="true"
                     android:clickable="true">
                 <CheckBox android:id="@+id/erase_external"

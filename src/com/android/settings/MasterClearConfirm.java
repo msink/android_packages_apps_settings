@@ -20,15 +20,23 @@ import com.android.internal.os.storage.ExternalStorageFormatter;
 import com.android.internal.widget.LockPatternUtils;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.SystemClock;
+import android.os.SystemProperties;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+
+import java.util.Date;
 
 /**
  * Confirm and execute a reset of the device to a clean "just out of the box"
@@ -41,10 +49,14 @@ import android.widget.CheckBox;
  * This is the confirmation screen.
  */
 public class MasterClearConfirm extends Fragment {
+    private static final String TAG = "MasterClear";
 
     private View mContentView;
     private boolean mEraseSdCard;
     private Button mFinalButton;
+    private Dialog mProgressDialog;
+    private PowerManager.WakeLock startupWakeLock;
+    private PowerManager pm = null;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -58,14 +70,37 @@ public class MasterClearConfirm extends Fragment {
                 return;
             }
 
-            if (mEraseSdCard) {
-                Intent intent = new Intent(ExternalStorageFormatter.FORMAT_AND_FACTORY_RESET);
-                intent.setComponent(ExternalStorageFormatter.COMPONENT_NAME);
-                getActivity().startService(intent);
-            } else {
-                getActivity().sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
-                // Intent handling is asynchronous -- assume it will happen soon.
+            SystemProperties.set("ctl.start", "remove_test");
+            SystemClock.sleep(500);
+            SystemProperties.set("ctl.stop", "remove_test");
+            if (mContentView != null) {
+                mContentView.requestEpdMode(View.EINK_MODE.EPD_FULL);
+                SystemClock.sleep(1000);
             }
+            mProgressDialog.show();
+            acquireStartupWakeLock();
+            v.setVisibility(View.INVISIBLE);
+            Thread thread = new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    long time = new Date().getTime();
+                    Log.d(TAG, "remove files start : time is " + time);
+                    RemoveFlashAllFiles.removeAllFiles();
+                    Log.d(TAG, "delete files count is " + RemoveFlashAllFiles.getDeleteFilesCount() +
+                        "  time = " + (new Date().getTime() - time));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    getActivity().sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+                }
+            });
+            thread.start();
         }
     };
 
@@ -82,6 +117,10 @@ public class MasterClearConfirm extends Fragment {
             Bundle savedInstanceState) {
         mContentView = inflater.inflate(R.layout.master_clear_confirm, null);
         establishFinalConfirmationState();
+        mProgressDialog = new Dialog(getActivity(), R.style.dialog_no_title);
+        View tv = inflater.inflate(R.layout.waiting_dialog_view, null);
+        mProgressDialog.setContentView(tv);
+        mProgressDialog.setCancelable(false);
         return mContentView;
     }
 
@@ -89,7 +128,17 @@ public class MasterClearConfirm extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
         Bundle args = getArguments();
         mEraseSdCard = args != null ? args.getBoolean(MasterClear.ERASE_EXTERNAL_EXTRA) : false;
+    }
+
+    private void acquireStartupWakeLock() {
+        if (startupWakeLock == null) {
+            startupWakeLock = pm.newWakeLock(
+                PowerManager.FULL_WAKE_LOCK | PowerManager.ON_AFTER_RELEASE,
+                "Master_Clear_WakeLock");
+        }
+        startupWakeLock.acquire();
     }
 }

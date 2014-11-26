@@ -195,4 +195,17 @@
     <style name="KeyguardAppWidgetItem">
         <item name="android:textSize">18sp</item>
     </style>
+
+    <style name="dialog_no_title" parent="@*android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="dialog_button_style">
+        <item name="android:layout_margin">@dimen/dialog_button_margin</item>
+    </style>
+
+    <style name="dialog_text_style">
+        <item name="android:padding">@dimen/dialog_text_padding</item>
+    </style>
+
 </resources>

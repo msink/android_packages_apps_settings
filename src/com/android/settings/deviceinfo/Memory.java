@@ -92,12 +92,15 @@ public class Memory extends SettingsPreferenceFragment {
 
         addPreferencesFromResource(R.xml.device_info_memory);
 
-        addCategory(StorageVolumePreferenceCategory.buildForInternal(context));
-
         final StorageVolume[] storageVolumes = mStorageManager.getVolumeList();
         for (StorageVolume volume : storageVolumes) {
             if (!volume.isEmulated()) {
-                addCategory(StorageVolumePreferenceCategory.buildForPhysical(context, volume));
+                Log.i(TAG, "path is: " + volume.getPath());
+                if (volume.getPath().equals("/mnt/sdcard")) {
+                    addCategory(StorageVolumePreferenceCategory.buildForPhysicalForInternal(context, volume));
+                } else if (!isUSBStorage(volume)) {
+                    addCategory(StorageVolumePreferenceCategory.buildForPhysical(context, volume));
+                }
             }
         }
 
@@ -110,11 +113,11 @@ public class Memory extends SettingsPreferenceFragment {
         category.init();
     }
 
-    private boolean isMassStorageEnabled() {
-        // Mass storage is enabled if primary volume supports it
-        final StorageVolume[] volumes = mStorageManager.getVolumeList();
-        final StorageVolume primary = StorageManager.getPrimaryVolume(volumes);
-        return primary != null && primary.allowMassStorage();
+    private boolean isUSBStorage(StorageVolume volume) {
+        if (volume != null) {
+            return volume.getPath().equals("/mnt/usb_storage");
+        }
+        return false;
     }
 
     @Override
@@ -174,7 +177,7 @@ public class Memory extends SettingsPreferenceFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         final MenuItem usb = menu.findItem(R.id.storage_usb);
-        usb.setVisible(!isMassStorageEnabled());
+        usb.setVisible(true);
     }
 
     @Override

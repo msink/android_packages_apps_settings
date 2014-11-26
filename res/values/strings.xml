@@ -4457,6 +4457,17 @@
     <string name="set_resolution_failed_message">Failed to change display mode.</string>
     <string name="dlg_confirm_reboot_title">Reboot</string>
     <string name="dlg_confirm_reboot_text">System will reboot to change display mode.</string>
+    <string name="please_wait">Please wait...</string>
+    <string name="memory_size_special_four_gb">4.00GB</string>
+    <string name="storage_text">Storage</string>
+    <string name="user_storage_format">Erase user storage</string>
+    <string name="user_storage_format_summary">"Erase all data on the device's user storage, such as books, music and photos"</string>
+    <string name="media_format_custom_title">Erase Internal Mass Storage</string>
+    <string name="media_format_custom_desc">This action will erase the internal mass storage. You will lose <b>all</b> data stored there!</string>
+    <string name="media_format_custom_final_desc">Erase internal mass storage, deleting all files stored there? Action cannot be reversed!</string>
+    <string name="media_format_custom_button_text">Erase Internal Mass Storage</string>
+    <string name="wakeup_brightness">Wake up</string>
+    <string name="wakeup_brightness_summary">Open front light when wake up system</string>
     <string name="authdlg_title">Bluetooth Authorization Request</string>
     <string name="authdlg_message">"'%1$s' is requesting permission to connect to %2$s."</string>
     <string name="bluetooth_remote_device">bluetooth device</string>

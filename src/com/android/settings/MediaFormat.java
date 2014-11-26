@@ -23,6 +23,7 @@ import android.os.storage.StorageVolume;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.android.internal.os.storage.ExternalStorageFormatter;
 
@@ -45,6 +46,8 @@ public class MediaFormat extends Activity {
 
     private View mFinalView;
     private Button mFinalButton;
+
+    private boolean mSpecial;
 
     /**
      * The user has gone through the multiple confirmation, so now we go ahead
@@ -118,7 +121,13 @@ public class MediaFormat extends Activity {
             mFinalView = mInflater.inflate(R.layout.media_format_final, null);
             mFinalButton =
                     (Button) mFinalView.findViewById(R.id.execute_media_format);
+            mFinalButton.requestFocus();
             mFinalButton.setOnClickListener(mFinalClickListener);
+            if (mSpecial) {
+                TextView finalText = (TextView)
+                    mFinalView.findViewById(R.id.text_view_media_format_final);
+                finalText.setText(R.string.media_format_custom_final_desc);
+            }
         }
 
         setContentView(mFinalView);
@@ -141,6 +150,12 @@ public class MediaFormat extends Activity {
             mInitialView = mInflater.inflate(R.layout.media_format_primary, null);
             mInitiateButton =
                     (Button) mInitialView.findViewById(R.id.initiate_media_format);
+            if (mSpecial) {
+                mInitiateButton.setText(R.string.media_format_custom_button_text);
+                TextView initiateText = (TextView)
+                    mInitialView.findViewById(R.id.text_view_initiate_media_format);
+                initiateText.setText(R.string.media_format_custom_desc);
+            }
             mInitiateButton.setOnClickListener(mInitiateListener);
         }
 
@@ -150,6 +165,11 @@ public class MediaFormat extends Activity {
     @Override
     protected void onCreate(Bundle savedState) {
         super.onCreate(savedState);
+
+        mSpecial = getIntent().getBooleanExtra("internal_storage_special", false);
+        if (mSpecial) {
+            setTitle(R.string.media_format_custom_title);
+        }
 
         mInitialView = null;
         mFinalView = null;

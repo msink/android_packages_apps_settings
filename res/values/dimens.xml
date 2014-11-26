@@ -61,4 +61,8 @@
     <dimen name="keyguard_appwidget_picker_margin_left">6dip</dimen>
     <dimen name="keyguard_appwidget_picker_margin_right">6dip</dimen>
     <integer name="keyguard_appwidget_picker_cols">1</integer>
+
+    <dimen name="dialog_button_margin">7dip</dimen>
+    <dimen name="dialog_text_padding">10dip</dimen>
+    <dimen name="dialog_min_width">450dip</dimen>
 </resources>
