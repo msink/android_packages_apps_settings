@@ -416,6 +416,17 @@
                 android:resource="@id/date_time_settings" />
         </activity>
 
+        <activity-alias android:name="DateTimeSettings"
+                android:label="@string/date_and_time"
+                android:targetActivity="Settings$DateTimeSettingsActivity"
+                android:clearTaskOnLaunch="true"
+                android:exported="true">
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                android:value="com.android.settings.DateTimeSettings" />
+            <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
+                android:resource="@id/date_time_settings" />
+        </activity-alias>
+
         <activity android:name="DateTimeSettingsSetupWizard"
                   android:label="@string/date_and_time"
                   android:theme="@android:style/Theme.Holo.NoActionBar"

@@ -15,6 +15,10 @@
 -->
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+         android:scrollbarAlwaysDrawVerticalTrack="true"
+         android:scrollbars="vertical"
+         android:scrollbarFadeDuration="5000000"
+         android:fadeScrollbars="true"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content">
 
@@ -47,7 +51,7 @@
              <LinearLayout
                        style="@style/wifi_item" >
                  <TextView
-                         style="@style/wifi_item_content"
+                         style="@style/wifi_item_label"
                          android:text="@string/wifi_security" />
 
                  <Spinner android:id="@+id/security"
@@ -150,6 +154,7 @@
 
                 <EditText android:id="@+id/password"
                         style="@style/wifi_item_content"
+                        android:textCursorDrawable="@drawable/wifi_password_text_cursor"
                         android:singleLine="true"
                         android:password="true" />
             </LinearLayout>
@@ -162,7 +167,7 @@
 
                 <CheckBox android:id="@+id/show_password"
                     style="@style/wifi_item_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/wifi_item_content_textsize"
                     android:text="@string/wifi_show_password" />
             </LinearLayout>
         </LinearLayout>
@@ -172,7 +177,7 @@
                     android:visibility="gone">
             <CheckBox android:id="@+id/wifi_advanced_togglebox"
                     style="@style/wifi_item_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/wifi_item_content_textsize"
                     android:text="@string/wifi_show_advanced" />
         </LinearLayout>
 

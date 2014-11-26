@@ -38,6 +38,7 @@ import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.hardware.DeviceController;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -90,16 +91,30 @@ public class DateTimeSettings extends SettingsPreferenceFragment
 
         mDummyDate = Calendar.getInstance();
 
+        DeviceController deviceController = new DeviceController(getActivity());
+
         mAutoTimePref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME);
         mAutoTimePref.setChecked(autoTimeEnabled);
         mAutoTimeZonePref = (CheckBoxPreference) findPreference(KEY_AUTO_TIME_ZONE);
         // Override auto-timezone if it's a wifi-only device or if we're still in setup wizard.
-        // TODO: Remove the wifiOnly test when auto-timezone is implemented based on wifi-location.
+        boolean autoTimeZoneRemoved = false;
         if (Utils.isWifiOnly(getActivity()) || isFirstRun) {
             getPreferenceScreen().removePreference(mAutoTimeZonePref);
             autoTimeZoneEnabled = false;
+            autoTimeZoneRemoved = true;
         }
         mAutoTimeZonePref.setChecked(autoTimeZoneEnabled);
+
+        if (!deviceController.hasWifi()) {
+            mAutoTimePref.setChecked(false);
+            getPreferenceScreen().removePreference(mAutoTimePref);
+            mAutoTimeZonePref.setChecked(false);
+            if (!autoTimeZoneRemoved) {
+                getPreferenceScreen().removePreference(mAutoTimeZonePref);
+            }
+            autoTimeEnabled = false;
+            autoTimeZoneEnabled = false;
+        }
 
         mTimePref = findPreference("time");
         mTime24Pref = findPreference("24 hour");

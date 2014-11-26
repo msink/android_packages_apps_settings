@@ -60,6 +60,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -172,6 +173,12 @@ public class WifiSettings extends SettingsPreferenceFragment
     // the action bar uses a different set of controls for Setup Wizard
     private boolean mSetupWizardMode;
 
+    private boolean closeWindowOnConnected = false;
+    private boolean isStartupTutorialMode = false;
+    private boolean mAccountActivityShowing = false;
+    private boolean mUserGuideActivityShowing = false;
+    private String skipIntent = null;
+
     /* End of "used in Wifi Setup context" */
 
     public WifiSettings() {
@@ -200,12 +207,29 @@ public class WifiSettings extends SettingsPreferenceFragment
         // Set this flag early, as it's needed by getHelpResource(), which is called by super
         mSetupWizardMode = getActivity().getIntent().getBooleanExtra(EXTRA_IS_FIRST_RUN, false);
 
+        if (icicle != null && icicle.containsKey("wifi_ap_state")) {
+            mDlgEdit = icicle.getBoolean("edit_mode");
+            mAccessPointSavedState = icicle.getBundle("wifi_ap_state");
+        }
+
         super.onCreate(icicle);
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        Intent buttonBarIntent = getActivity().getIntent();
+        if (buttonBarIntent != null) {
+            String action = buttonBarIntent.getAction();
+            if (action != null && action.equals("android.settings.WIFI_SETTINGS")) {
+                closeWindowOnConnected = buttonBarIntent
+                        .getBooleanExtra("closeWindowOnConnected", false);
+                if (isStartupTutorialMode = buttonBarIntent
+                        .getBooleanExtra("startupTutorial", false)) {
+                    skipIntent = buttonBarIntent.getStringExtra("skip");
+                }
+            }
+        }
         if (mSetupWizardMode) {
             View view = inflater.inflate(R.layout.setup_preference, container, false);
             View other = view.findViewById(R.id.other_network);
@@ -267,8 +291,45 @@ public class WifiSettings extends SettingsPreferenceFragment
             }
 
             return view;
+
+        } else if (isStartupTutorialMode) {
+            enterFullScreen();
+            View view = inflater.inflate(R.layout.my_wifi_setting, container, false);
+            OnClickListener buttonBarOnClickerClickListener = new OnClickListener() {
+                public void onClick(View arg0) {
+                    switch (arg0.getId()) {
+                        case R.id.btn_wifi_setup_back:
+                            finish();
+                            break;
+                        case R.id.btn_wifi_setup_skip:
+                            goToUserGuideActivity();
+                            break;
+                    }
+                }
+            };
+            Button back = (Button) view.findViewById(R.id.btn_wifi_setup_back);
+            back.setOnClickListener(buttonBarOnClickerClickListener);
+            Button skip = (Button) view.findViewById(R.id.btn_wifi_setup_skip);
+            skip.setOnClickListener(buttonBarOnClickerClickListener);
+            return view;
+
         } else {
             return super.onCreateView(inflater, container, savedInstanceState);
+        }
+    }
+
+    private void enterFullScreen() {
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_FULLSCREEN,
+                                           LayoutParams.FLAG_FULLSCREEN);
+        getActivity().getWindow().addFlags(LayoutParams.FLAG_LAYOUT_IN_SCREEN |
+                                           LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+    }
+
+    private void goToUserGuideActivity() {
+        if (isStartupTutorialMode && !mUserGuideActivityShowing && !mAccountActivityShowing) {
+            Intent intent = new Intent(skipIntent);
+            startActivityForResult(intent, 0);
+            mUserGuideActivityShowing = true;
         }
     }
 
@@ -419,6 +480,10 @@ public class WifiSettings extends SettingsPreferenceFragment
         mKeyStoreNetworkId = INVALID_NETWORK_ID;
 
         updateAccessPoints();
+
+        if (isStartupTutorialMode || closeWindowOnConnected) {
+            mWifiManager.setWifiEnabled(true);
+        }
     }
 
     @Override
@@ -882,6 +947,16 @@ public class WifiSettings extends SettingsPreferenceFragment
                 accessPoint.update(mLastInfo, mLastState);
             }
         }
+
+        if (isWifiConnection()) {
+            if (isStartupTutorialMode) {
+                goToBookshopAccount();
+            }
+            if (closeWindowOnConnected) {
+                Log.i(TAG, "closeWindowOnConnected, network available");
+                finish();
+            }
+        }
     }
 
     private void updateWifiState(int state) {
@@ -1029,6 +1104,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     /* package */ void onAddNetworkPressed() {
         // No exact access point is selected.
         mSelectedAccessPoint = null;
+        mAccessPointSavedState = null;
         showDialog(null, true);
     }
 
@@ -1065,6 +1141,45 @@ public class WifiSettings extends SettingsPreferenceFragment
             return 0;
         }
         return R.string.help_url_wifi;
+    }
+
+    private void goToBookshopAccount() {
+        Intent intent = new Intent();
+        intent.setClassName("com.onyx.android.bookstore",
+                "com.onyx.android.bookstore.ui.AccountManagementActivity");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("login_request", true);
+        startActivityForResult(intent, 101);
+        mAccountActivityShowing = true;
+    }
+
+    private void goToUserGuide() {
+        if (isStartupTutorialMode && !mUserGuideActivityShowing && !mAccountActivityShowing) {
+            Intent intent = new Intent(skipIntent);
+            startActivityForResult(intent, 0);
+            mUserGuideActivityShowing = true;
+        }
+    }
+
+    private boolean isWifiConnection() {
+        ConnectivityManager cm = (ConnectivityManager)
+                    getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        return ((ni != null) && ni.isAvailable());
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (isStartupTutorialMode) {
+            if (requestCode == 101) {
+                mAccountActivityShowing = false;
+                goToUserGuide();
+            } else if (resultCode == 100) {
+                getActivity().setResult(100);
+                finish();
+            }
+        }
     }
 
     /**
