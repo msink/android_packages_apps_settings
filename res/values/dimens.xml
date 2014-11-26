@@ -62,6 +62,9 @@
     <dimen name="keyguard_appwidget_picker_margin_right">6dip</dimen>
     <integer name="keyguard_appwidget_picker_cols">1</integer>
 
+    <dimen name="ratingbar_minHeight">45px</dimen>
+    <dimen name="ratingbar_maxHeight">57dip</dimen>
+    <dimen name="togglebutton_light_switch_height">60px</dimen>
     <dimen name="dialog_button_margin">7dip</dimen>
     <dimen name="dialog_text_padding">10dip</dimen>
     <dimen name="dialog_min_width">450dip</dimen>
