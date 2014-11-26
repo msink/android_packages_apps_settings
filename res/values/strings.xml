@@ -4458,6 +4458,8 @@
     <string name="dlg_confirm_reboot_title">Reboot</string>
     <string name="dlg_confirm_reboot_text">System will reboot to change display mode.</string>
     <string name="please_wait">Please wait...</string>
+    <string name="key_mapping">Key mapping</string>
+    <string name="key_map_options">Key mapping options</string>
     <string name="memory_size_special_four_gb">4.00GB</string>
     <string name="storage_text">Storage</string>
     <string name="user_storage_format">Erase user storage</string>

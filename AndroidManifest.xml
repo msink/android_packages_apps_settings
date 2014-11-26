@@ -73,6 +73,13 @@
             android:hardwareAccelerated="true"
             android:supportsRtl="true">
 
+        <activity android:name="KeyMapSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!-- Settings -->
 
         <activity android:name="Settings"
