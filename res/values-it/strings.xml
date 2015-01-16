@@ -52,6 +52,7 @@
     <string name="small_font" msgid="2295331917424072635">"Piccole"</string>
     <string name="medium_font" msgid="2068475425515133701">"Medie"</string>
     <string name="large_font" msgid="599055175160971446">"Grandi"</string>
+    <string name="font_size_preview_text">"Servite a quest'uomo una birra e dei kiwi."</string>
     <string name="font_size_save" msgid="3450855718056759095">"OK"</string>
     <string name="sdcard_setting" product="nosdcard" msgid="8281011784066476192">"Archivio USB"</string>
     <string name="sdcard_setting" product="default" msgid="5922637503871474866">"Scheda SD"</string>
@@ -77,7 +78,7 @@
     <string name="battery_info_status_not_charging" msgid="2820070506621483576">"Non in carica"</string>
     <string name="battery_info_status_full" msgid="2824614753861462808">"Carica"</string>
     <string name="battery_info_power_unplugged" msgid="5987246575519551081">"Non collegato"</string>
-    <string name="battery_info_power_ac" msgid="6808516193001604634">"CA"</string>
+    <string name="battery_info_power_ac" msgid="6808516193001604634">"AC"</string>
     <string name="battery_info_power_usb" msgid="8012931702516331797">"USB"</string>
     <string name="battery_info_power_ac_usb" msgid="6777734146838328688">"CA+USB"</string>
     <string name="battery_info_power_unknown" msgid="7344115502868899881">"Sconosciuto"</string>
@@ -117,17 +118,21 @@
     <string name="bluetooth_ask_discovery" msgid="669870705606180872">"Un\'applicazione sul tuo telefono chiede l\'autorizzazione per rendere il tuo telefono rilevabile da altri dispositivi Bluetooth per <xliff:g id="TIMEOUT">%1$d</xliff:g> secondi. Procedere?"</string>
     <string name="bluetooth_ask_enablement_and_discovery" msgid="7220210326619399542">"Un\'applicazione sul tuo telefono chiede l\'autorizzazione per attivare Bluetooth e rendere il tuo telefono rilevabile da altri dispositivi per <xliff:g id="TIMEOUT">%1$d</xliff:g> secondi. Procedere?"</string>
     <string name="bluetooth_turning_on" msgid="3107102168379705771">"Attivazione Bluetooth in corso…"</string>
+    <string name="bluetooth_scan_text">Bottone vuoto…</string>
+    <string name="bluetooth_settings_text">Bottone vuoto…</string>
+    <string name="bluetooth_enable_text">Bottone vuoto…</string>
+    <string name="bluetooth_device_info_connectButton_text">Accendi Bluetooth</string>
     <string name="date_and_time" msgid="4114084177056654663">"Impostazioni data e ora"</string>
     <string name="date_time_12_hour_sample" msgid="3259617262618020574">"13:00"</string>
     <string name="date_time_24_hour_sample" msgid="8916857570746212357">"13:00"</string>
     <string name="date_time_changeTime_text" msgid="7037437020000867740">"Modifica ora"</string>
     <string name="date_time_changeDate_text" msgid="5259762626498028057">"Data"</string>
     <string name="choose_timezone" msgid="7762866468013985022">"Seleziona fuso orario"</string>
+    <string name="default_date_format">dd/MM/yyyy</string>
     <string name="normal_date_format" msgid="1982904221918374153">"Normale (<xliff:g id="DATE">%s</xliff:g>)"</string>
     <string name="display_preview_label" msgid="1127597250917274792">"Anteprima:"</string>
     <string name="display_font_size_label" msgid="8941851418397475389">"Dimensioni carattere:"</string>
-    <!-- no translation found for intent_sender_data_label (6332324780477289261) -->
-    <skip />
+    <string name="intent_sender_data_label">Dati:</string>
     <string name="intent_sender_sendbroadcast_text" msgid="1415735148895872715">"Invia <xliff:g id="BROADCAST">broadcast</xliff:g>"</string>
     <string name="intent_sender_action_label" msgid="616458370005452389">"<xliff:g id="ACTION">Action</xliff:g>:"</string>
     <string name="intent_sender_startactivity_text" msgid="5080516029580421895">"Inizia <xliff:g id="ACTIVITY">activity</xliff:g>"</string>
@@ -200,6 +205,7 @@
     <string name="next_label" msgid="4693520878012668114">"Avanti"</string>
     <string name="language_picker_title" msgid="4034157617842965844">"Impostazioni internazionali"</string>
     <string name="select_your_language" msgid="1146235168951906084">"Seleziona la lingua"</string>
+    <string name="debug_intent_sender_label">Debug intent sender</string>
     <string name="activity_picker_label" msgid="4910700713930693329">"Seleziona attività"</string>
     <string name="device_info_label" msgid="6551553813651711205">"Info dispositivo"</string>
     <string name="battery_info_label" msgid="4132685016148679403">"Info batteria"</string>
@@ -303,6 +309,10 @@
     <string name="bluetooth_pairing_device_down_error_message" msgid="6688215193824686741">"Impossibile stabilire la comunicazione con <xliff:g id="DEVICE_NAME">%1$s</xliff:g>."</string>
     <string name="bluetooth_pairing_rejected_error_message" msgid="1648157108520832454">"Accoppiamento rifiutato da <xliff:g id="DEVICE_NAME">%1$s</xliff:g>."</string>
     <string name="bluetooth_connecting_error_message" msgid="1779660510084746802">"Errore durante la connessione a <xliff:g id="DEVICE_NAME">%1$s</xliff:g>."</string>
+    <string name="bluetooth_device_info_alias">Dispositivo alias</string>
+    <string name="bluetooth_device_info_no_alias">"Inserisci l'alias qui…"</string>
+    <string name="bluetooth_device_info_delete">Rimuovi il dispositivo</string>
+    <string name="bluetooth_device_info_sdp">Lista dispositivi supportati</string>
     <string name="bluetooth_preference_scan_title" msgid="2277464653118896016">"Cerca dispositivi"</string>
     <string name="bluetooth_device_context_connect" msgid="3997659895003244941">"Connetti"</string>
     <string name="bluetooth_device_context_disconnect" msgid="8220072022970148683">"Disconnetti"</string>
@@ -335,9 +345,7 @@
     <string name="bluetooth_dock_settings_remember" msgid="5551459057010609115">"Ricorda impostazioni"</string>
     <string name="nfc_quick_toggle_title" msgid="6769159366307299004">"NFC"</string>
     <string name="nfc_quick_toggle_summary" msgid="1988408027741447231">"Usa Near Field Communication per leggere e scambiare tag"</string>
-    <!-- no translation found for nfc_toggle_error (2233172102497535522) -->
-    <!-- no translation found for nfc_toggle_error (8998642457947607263) -->
-    <skip />
+    <string name="nfc_toggle_error">Errore.</string>
     <string name="wifi_quick_toggle_title" msgid="874495178395350104">"Wi-Fi"</string>
     <string name="wifi_quick_toggle_summary" msgid="1047950931623694366">"Attiva Wi-Fi"</string>
     <string name="wifi_settings" msgid="4746946030627213196">"Impostazioni Wi-Fi"</string>
@@ -357,6 +365,8 @@
     <string name="wifi_menu_connect" msgid="4996220309848349408">"Connetti alla rete"</string>
     <string name="wifi_menu_forget" msgid="8736964302477327114">"Elimina rete"</string>
     <string name="wifi_menu_modify" msgid="2068554918652440105">"Modifica rete"</string>
+    <string name="wifi_enable_wps_pbc">Connetti WPS PBC</string>
+    <string name="wifi_enable_wps_pbc_toggle_summary">Setup automatico rete Wi-Fi</string>
     <string name="wifi_ssid" msgid="641393708309146745">"SSID rete"</string>
     <string name="wifi_security" msgid="6603611185592956936">"Protezione"</string>
     <string name="wifi_signal" msgid="5514120261628065287">"Intensità segnale"</string>
@@ -381,6 +391,7 @@
     <string name="wifi_connect" msgid="1076622875777072845">"Connetti"</string>
     <string name="wifi_forget" msgid="8168174695608386644">"Elimina"</string>
     <string name="wifi_save" msgid="3331121567988522826">"Salva"</string>
+    <string name="wifi_wps_pin">PIN WPS</string>
     <string name="wifi_cancel" msgid="6763568902542968964">"Annulla"</string>
     <string name="wifi_advanced_titlebar" msgid="5419052271935350999">"Avanzate"</string>
     <string name="wifi_setting_num_channels_title" msgid="694031537019656132">"Dominio regolatore"</string>
@@ -410,6 +421,33 @@
     <string name="wifi_tether_configure_ap_text" msgid="3474995108398156258">"Configura hotspot Wi-Fi"</string>
     <string name="wifi_tether_configure_subtext" msgid="1927454307836232128">"Hotspot Wi-Fi <xliff:g id="NETWORK_SSID">%1$s</xliff:g><xliff:g id="NETWORK_SECURITY">%2$s</xliff:g> portatile"</string>
     <string name="wifi_tether_configure_ssid_default" msgid="8467525402622138547">"HotspotAndroid"</string>
+    <string name="testing_wifi_info">Informazioni Wi-Fi</string>
+    <string name="enableNetwork">abilitaRete</string>
+    <string name="disconnect">Disconnetti</string>
+    <string name="wifi_api_test">API Wi-Fi</string>
+    <string name="wifi_status_test">Stato Wi-Fi</string>
+    <string name="wifi_update">Statistiche di refresh</string>
+    <string name="wifi_state_label">Stato Wi-Fi:</string>
+    <string name="network_state_label">Stato della rete:</string>
+    <string name="supplicant_state_label">Supplicant State:</string>
+    <string name="rssi_label">RSSI:</string>
+    <string name="bssid_label">BSSID:</string>
+    <string name="ssid_label">SSID:</string>
+    <string name="hidden_ssid_label">SSID nascosto:</string>
+    <string name="ipaddr_label">Indirizzo IP:</string>
+    <string name="macaddr_label">Indirizzo MAC:</string>
+    <string name="wifi_state_disabling">Disabilitando</string>
+    <string name="wifi_state_disabled">Disabilitato</string>
+    <string name="wifi_state_enabling">Abilitare</string>
+    <string name="wifi_state_enabled">Abilitato</string>
+    <string name="wifi_state_unknown">Sconosciuto</string>
+    <string name="wifi_config_info">Configurazione Wi-Fi</string>
+    <string name="config_list_label">Reti configurate</string>
+    <string name="hdmi_settings_title">Impostazioni HDMI</string>
+    <string name="hdmi_settings">Impostazioni HDMI</string>
+    <string name="hdmi_screen_zoom">Zoom schermo</string>
+    <string name="hdmi_notice">Connettere il cavo HDMI</string>
+    <string name="display_notice">Prego controllare che HDMI sia disattivato</string>
     <string name="sound_settings_title" msgid="8735891486683305886">"Audio"</string>
     <string name="display_settings_title" msgid="1708697328627382561">"Display"</string>
     <string name="sound_settings" msgid="5007659014828162881">"Impostazioni audio"</string>
@@ -471,6 +509,13 @@
     <string name="animations_title" msgid="1062189037402346023">"Animazione"</string>
     <string name="animations_summary_on" msgid="8843613112130484436">"Mostra l\'animazione durante l\'apertura e la chiusura di finestre"</string>
     <string name="animations_summary_off" msgid="2777026828025551983">"Mostra l\'animazione durante l\'apertura e la chiusura di finestre"</string>
+    <string name="start_progress_title">Avvia progresso</string>
+    <string name="hdmi_resolution_title">Risoluzione HDMI</string>
+    <string name="hdmi_resolution_off">Seleziona una risoluzione differente per HDMI</string>
+    <string name="hdmi_mode_summary_on">Selezionare una modalità di funzionamento differente per HDMI</string>
+    <string name="hdmi_mode_off">Seleziona una differente modalità operativa per HDMI</string>
+    <string name="hdmi_title">Accendi HDMI</string>
+    <string name="HDCP_Setting_title">Impostazioni HDCP</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Rotazione automatica"</string>
     <string name="accelerometer_summary_on" msgid="1133737282813048021">"Cambia automaticamente quando il cellulare viene ruotato"</string>
     <string name="accelerometer_summary_off" msgid="5485489363715740761">"Cambia automatic. l\'orientamento quando il cell. viene ruotato"</string>
@@ -478,6 +523,7 @@
     <string name="brightness_summary" msgid="838917350127550703">"Regola la luminosità dello schermo"</string>
     <string name="screen_timeout" msgid="4882669461447531301">"Timeout schermo"</string>
     <string name="screen_timeout_summary" msgid="2905757633140605334">"Regola il tempo che deve trascorrere prima che lo schermo si spenga automaticamente"</string>
+    <string name="power_off_timeout_summary">Aggiusta il ritardo prima dello spegnimento automatico</string>
     <string name="automatic_brightness" msgid="5014143533884135461">"Luminosità automatica"</string>
     <string name="sim_lock_settings" msgid="3392331196873564292">"Impostazioni blocco SIM"</string>
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"Impostazioni blocco SIM"</string>
@@ -516,6 +562,8 @@
     <string name="storage_settings_title" msgid="8746016738388094064">"Impostazioni di archiviazione"</string>
     <string name="storage_settings_summary" product="nosdcard" msgid="3543813623294870759">"Smonta l\'archivio USB, visualizza lo spazio di archiviazione disponibile"</string>
     <string name="storage_settings_summary" product="default" msgid="9176693537325988610">"Smonta la scheda SD, visualizza spazio di archiviazione disponibile"</string>
+    <string name="status_imei">IMEI</string>
+    <string name="status_imei_sv">IMEI SV</string>
     <string name="status_number" msgid="5123197324870153205">"Il mio numero di telefono"</string>
     <string name="status_min_number" msgid="3519504522179420597">"MIN"</string>
     <string name="status_prl_version" msgid="8499039751817386529">"Versione PRL"</string>
@@ -535,6 +583,7 @@
     <string name="sd_memory" product="nosdcard" msgid="2510246194083052841">"Archivio USB"</string>
     <string name="sd_memory" product="default" msgid="151871913888051515">"Scheda SD"</string>
     <string name="memory_available" msgid="418542433817289474">"Spazio disponibile"</string>
+    <string name="internal_memory_available">Memoria disponibile</string>
     <string name="memory_size" msgid="6629067715017232195">"Spazio totale"</string>
     <string name="sd_eject" product="default" msgid="6915293408836853020">"Smonta scheda SD"</string>
     <string name="sd_eject_summary" product="nosdcard" msgid="5009296896648072891">"Smonta archivio USB interno"</string>
@@ -602,11 +651,13 @@
     <string name="master_clear_summary" msgid="4986154238001088492">"Cancella tutti i dati sul telefono"</string>
     <string name="master_clear_desc" product="nosdcard" msgid="2163013814299528247">"Questa operazione cancellerà tutti i dati dall\'"<b>"archivio interno"</b>" del telefono, compresi:"\n\n<li>"Il tuo account Google"</li>\n<li>"Dati e impostazioni di sistema e delle applicazioni"</li>\n<li>"Applicazioni scaricate"</li>\n\n"Per cancellare tutti i dati su questo telefono, è necessario cancellare l\'"<b>"archivio USB"</b>"."\n\n</string>
     <string name="master_clear_desc" product="default" msgid="1741944496458365969">"Questa operazione cancellerà tutti i dati dall\'"<b>"archivio interno"</b>" del telefono, compresi:"\n\n<li>"Il tuo account Google"</li>\n<li>"Dati e impostazioni di sistema e delle applicazioni"</li>\n<li>"Applicazioni scaricate"</li>\n\n"Per cancellare anche musica, foto e altri dati utente, è necessario cancellare la "<b>"scheda SD"</b>"."\n\n</string>
+    <string name="master_clear_desc_jc">"Questa operazione cancellerà tutti i dati dalla <b>memoria interna</b> del dispositivo, tra cui:"\n\n<li>"Il tuo account Google"</li>\n<li>"Dati e impostazioni di sistema e delle applicazioni"</li>\n<li>"Applicazioni scaricate"</li>\n<li>"Libri, musica, foto e altri dati utente nella memoria flash incorporata</li>"</string>
     <string name="erase_external_storage" product="nosdcard" msgid="969364037450286809">"Cancella archivio USB"</string>
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Cancella scheda SD"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="1657838142707381027">"Cancella i dati nell\'archivio USB interno del telefono, come musica o foto."</string>
     <string name="erase_external_storage_description" product="default" msgid="8100175974635894073">"Cancella i dati sulla scheda SD del telefono, come musica o foto"</string>
     <string name="master_clear_button_text" msgid="7550632653343157971">"Ripristina telefono"</string>
+    <string name="master_clear_button_text_jc">Pulisci i dati</string>
     <string name="master_clear_final_desc" msgid="6917971132484622696">"Cancellare tutte le tue informazioni personali e qualsiasi applicazione scaricata? Sarà impossibile annullare questa azione."</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Cancella tutto"</string>
     <string name="master_clear_gesture_prompt" msgid="1428645764883536750">"Inserisci la sequenza di sblocco"</string>
@@ -803,8 +854,7 @@
     <string name="service_background_processes" msgid="6844156253576174488">"<xliff:g id="MEMORY">%1$s</xliff:g> libera"</string>
     <string name="service_foreground_processes" msgid="7583975676795574276">"<xliff:g id="MEMORY">%1$s</xliff:g> usata"</string>
     <string name="memory" msgid="6609961111091483458">"RAM"</string>
-    <!-- no translation found for service_process_name (4098932168654826656) -->
-    <skip />
+    <string name="service_process_name">%1$s</string>
     <string name="running_processes_item_description_s_s" msgid="5790575965282023145">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> processo e <xliff:g id="NUMSERVICES">%2$d</xliff:g> servizio"</string>
     <string name="running_processes_item_description_s_p" msgid="8019860457123222953">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> processo e <xliff:g id="NUMSERVICES">%2$d</xliff:g> servizi"</string>
     <string name="running_processes_item_description_p_s" msgid="744424668287252915">"<xliff:g id="NUMPROCESS">%1$d</xliff:g> processi e <xliff:g id="NUMSERVICES">%2$d</xliff:g> servizio"</string>
@@ -852,6 +902,7 @@
     <string name="testing" msgid="6584352735303604146">"Verifica in corso"</string>
     <string name="testing_phone_info" msgid="8656693364332840056">"Informazioni telefono"</string>
     <string name="testing_battery_info" msgid="3497865525976497848">"Informazioni batteria"</string>
+    <string name="testing_sim_toolkit">Toolkit SIM</string>
     <string name="quick_launch_title" msgid="7904609846945905306">"Avvio rapido"</string>
     <string name="quick_launch_summary" msgid="3453825712466417452">"Imposta scorciatoie da tastiera per avviare le applicazioni"</string>
     <string name="quick_launch_assign_application" msgid="4521368464929956350">"Assegna applicazione"</string>
@@ -916,8 +967,7 @@
     <string name="battery_stats_wifi_running_label" msgid="3093545080361658269">"Wi-Fi"</string>
     <string name="battery_stats_wake_lock_label" msgid="1908942681902324095">"Attivo"</string>
     <string name="battery_stats_phone_signal_label" msgid="6822042940376636775">"Segnale telefono"</string>
-    <!-- no translation found for battery_stats_last_duration (1535831453827905957) -->
-    <skip />
+    <string name="battery_stats_last_duration">@string/menu_stats_last_unplugged</string>
     <string name="awake" msgid="387122265874485088">"Tempo di attività dispositivo"</string>
     <string name="wifi_on_time" msgid="6310209835617490616">"Tempo accensione Wi-Fi"</string>
     <string name="bluetooth_on_time" msgid="6157799524996162271">"Tempo accensione Wi-Fi"</string>
@@ -1161,4 +1211,26 @@
     <string name="sound_category_calls_title" msgid="3688531959256239012">"Chiamate in arrivo"</string>
     <string name="sound_category_notification_title" msgid="3502115998790286943">"Notifiche"</string>
     <string name="sound_category_feedback_title" msgid="4399742321363475393">"Commenti"</string>
+    <string name="memory_low">Memoria insufficiente</string>
+    <string name="memory_low1">La quantità di memoria interna è bassa</string>
+    <string name="nand_unavailable">Non disponibile</string>
+    <string name="wifi_wps_pbc">WPS PBC</string>
+    <string name="wifi_wps_pbc_summary">Configura la connessione WPA via WPS PBC</string>
+    <string name="ethernet_settings">Impostazioni ethernet</string>
+    <string name="ethernet_settings_summary">Configurare e gestire connessione ethernet cablata</string>
+    <string name="rockchip_compatibility_mode">Modalità di compatibilità</string>
+    <string name="enter_compatibility_mode">Esegui in modalità di compatibilità</string>
+    <string name="exit_compatibility_mode">Esegui in modalità normale</string>
+    <string name="rockchip_normal_info">Questa applicazione è eseguita in modalità normale.</string>
+    <string name="wakeup_brightness_summary">Accendi la luce frontale quando il sistema si attiva</string>
+    <string name="epd_full_timeout">Timeout refresh completo</string>
+    <string name="epd_full_timeout_summary">Regolare il ritardo prima del refresh automatico completo</string>
+    <string name="Preferred_Applications">Applicazioni preferite</string>
+    <string name="key_keyboard">Tastiera</string>
+    <string name="media_format_usb_title">Cancella memoria USB</string>
+    <string name="loading">Caricamento...</string>
+    <string name="loading_error">Errore di caricamento</string>
+    <string name="set_font_dialog_tile">Imposta font</string>
+    <string name="reboot_device">Riavviare il dispositivo?</string>
+    <string name="rebooting">Riavvio...</string>
 </resources>
