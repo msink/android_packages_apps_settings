@@ -1,5 +1,6 @@
 package com.android.settings;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -13,9 +14,13 @@ public class KeyMapSettings extends PreferenceActivity {
     protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (android.os.Build.DEVICE.contentEquals("I63MLP_HD")) {
+        if (Build.DEVICE.contentEquals("I63MLP_HD")) {
             addPreferencesFromResource(R.xml.new_key_map_settings);
-        } else if (android.os.Build.DEVICE.contentEquals("C63SM")) {
+        } else if (Build.DEVICE.contentEquals("C63SM") ||
+                   Build.DEVICE.contentEquals("C65S") ||
+                   Build.DEVICE.contentEquals("C65S_GRAMMATA") ||
+                   Build.DEVICE.contentEquals("C65S_DATASOFT") ||
+                   Build.DEVICE.contentEquals("C65S_ARTATECH")) {
             addPreferencesFromResource(R.xml.long_short_click_key_map_settings);
         } else {
             addPreferencesFromResource(R.xml.key_map_settings);

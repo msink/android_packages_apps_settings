@@ -1201,6 +1201,7 @@
     <string name="set_font_dialog_tile">Настройка шрифтов</string>
     <string name="reboot_device">Перезагрузить устройство?</string>
     <string name="rebooting">Перезагрузка...</string>
+    <string name="key_mapping">Настройка кнопок</string>
     <string name="serialnumber">Cерийный Hомер</string>
     <string name="key_map_mode">Режим Key Map</string>
 </resources>
