@@ -1,158 +1,187 @@
 package com.android.settings;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.DeviceController;
 import android.provider.Settings;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ToggleButton;
 import android.widget.RatingBar;
 
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class BrightnessDialog extends Dialog {
 
-    final private static int LOW_BRIGHTNESS_MAX = Math.min(20, 255);
+    public static int BRIGHTNESS_ON = DeviceController.BRIGHTNESS_MAXIMUM;
     private RatingBar mRatingBarLightSettings = null;
-    private DeviceController mDeviceController = null;
-    private ImageButton mLightAdd;
-    private ImageButton mLightDown;
+    private DeviceController mDev = null;
+
+    private Integer[] mFrontLightValue = {
+          0,   5,  10,  15,  20,  25,  30,  35,  40,  45,
+         50,  55,  60,  65,  70,  75,  80,  85,  90,  95,
+        100, 105, 110, 115, 120, 125, 130, 135, 140, 145,
+        150, 155, 160,           175, 180, 185, 190, 195,
+        200, 205, 210, 215, 220, 225, 230, 235, 240, 245,
+        250 };
+
+    private boolean isLongClickOpenAndCloseFrontLight = false;
+    private BroadcastReceiver mOpenAndCloseFrontLightReceiver = null;
+    private IntentFilter filter = null;
+    private Context mContext = null;
+    private List<Integer> mLightSteps = new ArrayList();
     private ToggleButton mLightSwitch;
+
+    private List<Integer> initRangeArray(int numStarts) {
+        List<Integer> brightnessList = new ArrayList(numStarts);
+        for (int i = 0; i <= numStarts; i++) {
+            brightnessList.add((BRIGHTNESS_ON * i) / numStarts);
+        }
+        return brightnessList;
+    }
 
     public BrightnessDialog(Context context) {
         super(context);
+        mContext = context;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_brightness);
-        mDeviceController = new DeviceController(context);
+        mDev = new DeviceController(mContext);
         mRatingBarLightSettings = (RatingBar)findViewById(R.id.ratingbar_light_settings);
         mRatingBarLightSettings.setFocusable(false);
+
         mRatingBarLightSettings.setOnRatingBarChangeListener(
             new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating,
                     boolean fromUser) {
-                setLightRatingBarProgress();
+                if (!isLongClickOpenAndCloseFrontLight) {
+                    setFrontLightValue();
+                }
+                updateLightSwitch();
+                isLongClickOpenAndCloseFrontLight = false;
             }
+
         });
 
-        assert(mRatingBarLightSettings.getNumStars() >= 10);
+        mOpenAndCloseFrontLightReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                if (intent != null && intent.getAction() != null &&
+                        (DeviceController.ACTION_OPEN_FRONT_LIGHT.equals(intent.getAction()) ||
+                        DeviceController.ACTION_CLOSE_FRONT_LIGHT.equals(intent.getAction()))) {
+                    isLongClickOpenAndCloseFrontLight = true;
+                    int front_light_value = intent.getIntExtra(DeviceController.INTENT_FRONT_LIGHT_VALUE, 0);
+                    mRatingBarLightSettings.setProgress(getIndex(front_light_value));
+                }
+            }
+        };
+        filter = new IntentFilter();
+        filter.addAction(DeviceController.ACTION_OPEN_FRONT_LIGHT);
+        filter.addAction(DeviceController.ACTION_CLOSE_FRONT_LIGHT);
+        mContext.registerReceiver(mOpenAndCloseFrontLightReceiver, filter);
+
+        mLightSteps = Arrays.asList(mFrontLightValue);
+        if (mLightSteps != null) {
+            mRatingBarLightSettings.setNumStars(mLightSteps.size() - 1);
+            mRatingBarLightSettings.setMax(mLightSteps.size() - 1);
+        } else {
+            int numStarts = mRatingBarLightSettings.getNumStars();
+            mLightSteps = initRangeArray(numStarts);
+        }
+        Collections.sort(mLightSteps);
 
         setLightRatingBarDefaultProgress();
 
-        mLightDown = (ImageButton)findViewById(R.id.imagebutton_light_down);
+        ImageButton mLightDown = (ImageButton) findViewById(R.id.imagebutton_light_down);
         mLightDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRatingBarLightSettings.setProgress(
-                    mRatingBarLightSettings.getProgress() - 1);
-                if (mRatingBarLightSettings.getProgress() == 0) {
-                    mLightSwitch.setChecked(false);
-                }
+                mRatingBarLightSettings.setProgress(mRatingBarLightSettings.getProgress() - 1);
             }
         });
 
-        mLightAdd = (ImageButton)findViewById(R.id.imagebutton_light_add);
+        ImageButton mLightAdd = (ImageButton) findViewById(R.id.imagebutton_light_add);
         mLightAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mLightSwitch != null && !mLightSwitch.isChecked()) {
-                    mLightSwitch.setChecked(true);
-                }
-                if (mRatingBarLightSettings.getProgress() ==
-                        mRatingBarLightSettings.getMax()) {
-                    setLightRatingBarProgress();
-                    return;
-                }
-                mRatingBarLightSettings.setProgress(
-                    mRatingBarLightSettings.getProgress() + 1);
-            }
-        });
-
-        mLightSwitch = (ToggleButton)findViewById(R.id.togglebutton_light_switch);
-        mLightSwitch.setOnCheckedChangeListener(
-            new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mDeviceController.openFrontLight();
+                if (mRatingBarLightSettings.getProgress() == mRatingBarLightSettings.getMax()) {
+                    setFrontLightValue();
                 } else {
-                    mDeviceController.closeFrontLight();
+                    mRatingBarLightSettings.setProgress(mRatingBarLightSettings.getProgress() + 1);
                 }
             }
         });
 
-        if (mDeviceController.getFrontLightValue() > 0) {
+        mLightSwitch = (ToggleButton) findViewById(R.id.togglebutton_light_switch);
+        mLightSwitch.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                if (mLightSwitch.isChecked()) {
+                    mDev.closeFrontLight();
+                } else {
+                    mDev.openFrontLight();
+                }
+            }
+        });
+
+        if (isLightOn(getContext())) {
             mLightSwitch.setChecked(true);
         } else {
             mLightSwitch.setChecked(false);
         }
+
         setCanceledOnTouchOutside(true);
     }
 
+    private void updateLightSwitch() {
+        if (mLightSwitch != null) {
+            if (mRatingBarLightSettings.getProgress() != 0 && !mLightSwitch.isChecked()) {
+                mLightSwitch.setChecked(true);
+            } else if (mRatingBarLightSettings.getProgress() == 0 && mLightSwitch.isChecked()) {
+                mLightSwitch.setChecked(false);
+            }
+        }
+    }
+
     private void setLightRatingBarDefaultProgress() {
-        int value = 0;
+        int value = getFrontLightConfigValue(getContext());
+        mRatingBarLightSettings.setProgress(getIndex(value));
+    }
+
+    private boolean isLightOn(Context context) {
+        return (mDev.getFrontLightValue() > 0);
+    }
+
+    private void setFrontLightValue() {
+        if (mLightSteps.size() <= 0) return;
+        int value = ((Integer)(mLightSteps.get(mRatingBarLightSettings
+                                          .getProgress()))).intValue();
+        mDev.setFrontLightValue(value);
+        setFrontLightConfigValue(mContext, value);
+    }
+
+    public int getFrontLightConfigValue(Context context) {
+        int res = 0;
+        int light_value;
         try {
-            value = Settings.System.getInt(
-                        getContext().getContentResolver(),
-                        Settings.System.SCREEN_BRIGHTNESS);
+            light_value = Settings.System.getInt(context.getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS);
         } catch (Settings.SettingNotFoundException snfe) {
-            value = mDeviceController.BRIGHTNESS_DEFAULT;
+            light_value = DeviceController.BRIGHTNESS_DEFAULT;
         }
-        int rating = getRatingOfBrightness(value);
-        mRatingBarLightSettings.setProgress(rating);
+        res = light_value;
+        return res;
     }
 
-    private void setLightRatingBarProgress() {
-        int value = getBrightnessOfRating(
-                mRatingBarLightSettings.getProgress());
-        Settings.System.putInt(
-                getContext().getContentResolver(),
-                Settings.System.SCREEN_BRIGHTNESS,
-                value);
-        mDeviceController.setFrontLightValue(value);
-    }
-
-    private int getBrightnessOfRating(int value) {
-        if (value <= 10)
-            return (value * 2) + mDeviceController.BRIGHTNESS_MINIMUM;
-        int big_interval = (mDeviceController.BRIGHTNESS_MAXIMUM - LOW_BRIGHTNESS_MAX)
-                         / (mRatingBarLightSettings.getNumStars() - 10);
-        return ((value - 10) * big_interval) + LOW_BRIGHTNESS_MAX;
-    }
-
-    private int getRatingOfBrightness(int value){
-        if (value <= LOW_BRIGHTNESS_MAX)
-            return (value - mDeviceController.BRIGHTNESS_MINIMUM) / 2;
-
-        int big_interval = (mDeviceController.BRIGHTNESS_MAXIMUM - LOW_BRIGHTNESS_MAX)
-                         / (mRatingBarLightSettings.getNumStars() - 10);
-        return ((value - LOW_BRIGHTNESS_MAX) / big_interval) + 10;
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-        case KeyEvent.KEYCODE_DPAD_LEFT:
-            if (event.getRepeatCount() == 0) {
-                if (!mLightDown.isFocused()) {
-                    mLightDown.requestFocus();
-                }
-                event.startTracking();
-                return true;
-            }
-            break;
-        case KeyEvent.KEYCODE_DPAD_RIGHT:
-            if (event.getRepeatCount() == 0) {
-                if (!mLightAdd.isFocused()) {
-                    mLightAdd.requestFocus();
-                }
-                event.startTracking();
-                return true;
-            }
-            break;
-        }
-        return super.onKeyDown(keyCode, event);
+    public boolean setFrontLightConfigValue(Context context, int value) {
+        return Settings.System.putInt(context.getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS, value);
     }
 
     public boolean onKeyLongPress(int keyCode, KeyEvent event) {
@@ -164,7 +193,7 @@ public class BrightnessDialog extends Dialog {
         case KeyEvent.KEYCODE_DPAD_RIGHT:
             if (mRatingBarLightSettings.getProgress() ==
                     mRatingBarLightSettings.getMax()) {
-                setLightRatingBarProgress();
+                setFrontLightValue();
             } else {
                 mRatingBarLightSettings.setProgress(
                     mRatingBarLightSettings.getProgress() + 1);
@@ -172,5 +201,26 @@ public class BrightnessDialog extends Dialog {
             return true;
         }
         return super.onKeyLongPress(keyCode, event);
+    }
+
+    public void cancel() {
+        super.cancel();
+        if (mOpenAndCloseFrontLightReceiver != null) {
+            mContext.unregisterReceiver(mOpenAndCloseFrontLightReceiver);
+        }
+    }
+
+    private int getIndex(int val) {
+        int index = Collections.binarySearch(mLightSteps, val);
+        if (index == -1) {
+            index = 0;
+        } else if (index < 0) {
+            if (Math.abs(index) <= mLightSteps.size()) {
+                index = Math.abs(index) - 2;
+            } else {
+                index = mLightSteps.size() - 1;
+            }
+        }
+        return index;
     }
 }
