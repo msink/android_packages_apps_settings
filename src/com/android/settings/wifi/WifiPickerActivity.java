@@ -54,6 +54,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.util.Log;
@@ -64,7 +65,7 @@ import com.android.settings.parentcontrol.utils.ParentControlUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WifiSettings extends PreferenceActivity implements DialogInterface.OnClickListener {
+public class WifiPickerActivity extends PreferenceActivity implements DialogInterface.OnClickListener {
     private static final int MENU_ID_SCAN = Menu.FIRST;
     private static final int MENU_ID_ADVANCED = Menu.FIRST + 1;
     private static final int MENU_ID_CONNECT = Menu.FIRST + 2;
@@ -95,12 +96,15 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     private ProgressDialog mProgressView;
     Runnable mTimeRunnable;
 
+    private Button mBackButton = null;
+    private Button mSkipButton = null;
+    private ListView mListView;
     private boolean isStartupTutorialMode = false;
     private boolean mAccountActivityShowing = false;
     private boolean mUserGuideActivityShowing = false;
     private String skipIntent;
 
-    public WifiSettings() {
+    public WifiPickerActivity() {
         mFilter = new IntentFilter();
         mFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
         mFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
@@ -135,43 +139,9 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         };
     }
 
-    private void goToAccountActivity() {
-        if (isStartupTutorialMode &&
-                !mAccountActivityShowing &&
-                !mUserGuideActivityShowing) {
-            final ConnectivityManager cm = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-            final NetworkInfo netInfo = cm.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isAvailable()) {
-                Intent intent = new Intent();
-                intent.setClassName("com.onyx.android.bookstore",
-                    "com.onyx.android.bookstore.ui.AccountManagementActivity");
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivityForResult(intent, 101);
-                mAccountActivityShowing = true;
-            }
-        }
-    }
-
-    private void goToUserGuideActivity() {
-        if (isStartupTutorialMode &&
-                !mUserGuideActivityShowing &&
-                !mAccountActivityShowing) {
-            Intent intent = new Intent(skipIntent);
-            startActivityForResult(intent, 0);
-            mUserGuideActivityShowing = true;
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Secure.getInt(getContentResolver(), Secure.PARENT_CONTROL_ENABLED, 0) == 1) {
-            Intent intent = ParentControlUtil.getParentControlSettingsIntent();
-            intent.putExtra("LOCK_LIST", LockList.LOCK_OPEN_WIFI.toString());
-            startActivityForResult(intent, 1);
-        }
 
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 
@@ -189,12 +159,11 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
 
         setTitle(R.string.wifi_settings_category);
         setTitleColor(0xff000000);
-        setContentView(R.layout.my_wifi_setting);
+        setContentView(R.layout.custom_settings_preferences);
         Intent buttonBarIntent = getIntent();
+        boolean isShowButtonBar = buttonBarIntent.getBooleanExtra("extra_prefs_show_button_bar", false);
         RelativeLayout buttonBar = (RelativeLayout) findViewById(R.id.button_bar);
-        if (buttonBarIntent != null ||
-                buttonBarIntent.getAction().equals("android.settings.WIFI_SETTINGS") ||
-                !buttonBarIntent.getBooleanExtra("startupTutorial", false)) {
+        if (!isShowButtonBar) {
             buttonBar.setVisibility(View.GONE);
         } else {
             isStartupTutorialMode = true;
@@ -204,19 +173,21 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                 public void onClick(View v) {
                     switch (v.getId()) {
                     case R.id.btn_wifi_setup_back:
+                        setResult(RESULT_CANCELED, null);
                         finish();
                         break;
                     case R.id.btn_wifi_setup_skip:
-                        goToUserGuideActivity();
+                        setResult(RESULT_OK, null);
+                        finish();
                         break;
                     }
                 }
             };
-            Button back = (Button) findViewById(R.id.btn_wifi_setup_back);
-            back.setOnClickListener(buttonBarOnClickerClickListener);
-            Button skip = (Button) findViewById(R.id.btn_wifi_setup_skip);
-            skip.setOnClickListener(buttonBarOnClickerClickListener);
-            goToAccountActivity();
+            mBackButton = (Button) findViewById(R.id.btn_wifi_setup_back);
+            mBackButton.setOnClickListener(buttonBarOnClickerClickListener);
+            mSkipButton = (Button) findViewById(R.id.btn_wifi_setup_skip);
+            mSkipButton.setOnClickListener(buttonBarOnClickerClickListener);
+            mListView = (ListView) findViewById(android.R.id.list);
         }
 
         mAccessPoints = (ProgressCategory) findPreference("access_points");
@@ -291,27 +262,6 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         menu.add(Menu.NONE, MENU_ID_ADVANCED, 0, R.string.wifi_menu_advanced)
                 .setIcon(android.R.drawable.ic_menu_manage);
         return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (isStartupTutorialMode) {
-            if (requestCode == 101) {
-                mAccountActivityShowing = false;
-                goToUserGuideActivity();
-            } else if (resultCode == 100) {
-                setResult(100);
-                finish();
-            }
-        }
-        if (requestCode == 1) {
-            if (resultCode == RESULT_CANCELED) {
-                finish();
-            } else if (resultCode == RESULT_OK) {
-                mWifiManager.setWifiEnabled(true);
-            }
-        }
     }
 
     @Override
@@ -416,7 +366,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                 forget(mSelected.networkId);
             } else if (mSelected.bssid != null) {
                 String pin_code = mWifiManager.startPIN(mSelected.bssid);
-                Log.d("WifiSettings", "bssid=" + mSelected.bssid + " pin_code=" + pin_code);
+                Log.d("WifiPickerActivity", "bssid=" + mSelected.bssid + " pin_code=" + pin_code);
                 if (pin_code != null) {
                     mScanner.removeCallbacks(mTimeRunnable);
                     mProgressView.setProgress(0);
@@ -594,7 +544,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                      && intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR, 0) == 1) {
                 int found = 0;
                 AccessPoint found_ap = null;
-                Log.d("WifiSettings", ">>>>intent.getExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0)="
+                Log.d("WifiPickerActivity", ">>>>intent.getExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0)="
                          + intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0));
                 int networkId = intent.getIntExtra(WifiManager.EXTRA_SUPPLICANT_ERROR_BSSID, 0);
                 synchronized (this) {
@@ -620,7 +570,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
         } else if (WifiManager.RSSI_CHANGED_ACTION.equals(action)) {
             updateConnectionState(null);
         } else if (WifiManager.WPS_SUCCESS_ACTION.equals(action)) {
-            Log.d("WifiSettings", "We received the WPS_SUCCESS action.");
+            Log.d("WifiPickerActivity", "We received the WPS_SUCCESS action.");
             mScanner.removeCallbacks(mTimeRunnable);
             mProgressView.setProgress(0);
             mProgressView.cancel();
@@ -653,9 +603,9 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                 state == DetailedState.DISCONNECTED || state == DetailedState.FAILED)) {
             updateAccessPoints();
             enableNetworks();
+            setResult(RESULT_OK, null);
+            finish();
         }
-
-        goToAccountActivity();
     }
 
     private void updateWifiState(int state) {
@@ -689,7 +639,7 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
                 mRetry = 0;
             } else if (++mRetry >= 3) {
                 mRetry = 0;
-                Toast.makeText(WifiSettings.this, R.string.wifi_fail_to_scan,
+                Toast.makeText(WifiPickerActivity.this, R.string.wifi_fail_to_scan,
                         Toast.LENGTH_LONG).show();
                 return;
             }
@@ -699,6 +649,37 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        View focusView = getCurrentFocus();
+        if (focusView instanceof ListView) {
+            if (((ListView)focusView).getSelectedItemPosition() == 0 &&
+                    keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+                mSkipButton.requestFocus();
+            }
+        } else if (focusView instanceof Button) {
+            Button focusButton = (Button) focusView;
+            switch (focusButton.getId()) {
+            case R.id.btn_wifi_setup_back:
+                if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                    mSkipButton.requestFocus();
+                } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+                    mListView.requestFocus();
+                    mListView.setSelection(0);
+                }
+                break;
+            case R.id.btn_wifi_setup_skip:
+                if (keyCode == KeyEvent.KEYCODE_DPAD_LEFT) {
+                    mBackButton.requestFocus();
+                } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+                    mListView.requestFocus();
+                    mListView.setSelection(0);
+                }
+                break;
+            }
+        }
+        if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+            mBackButton.requestFocus();
+        } else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+        }
         if (isStartupTutorialMode) {
             if (keyCode == KeyEvent.KEYCODE_BACK) {
                 finish();
