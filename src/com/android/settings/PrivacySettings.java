@@ -22,6 +22,7 @@ import android.app.backup.IBackupManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
@@ -34,6 +35,9 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
+
+import com.android.settings.parentcontrol.data.LockList;
+import com.android.settings.parentcontrol.utils.ParentControlUtil;
 
 /**
  * Gesture lock pattern settings.
@@ -56,6 +60,13 @@ public class PrivacySettings extends PreferenceActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Settings.Secure.getInt(getContentResolver(), Settings.Secure.PARENT_CONTROL_ENABLED, 0) == 1) {
+            Intent intent = ParentControlUtil.getParentControlSettingsIntent();
+            intent.putExtra("LOCK_LIST", LockList.LOCK_FACTORY_DATA_RESET.toString());
+            startActivityForResult(intent, 1);
+        }
+
         addPreferencesFromResource(R.xml.privacy_settings);
         final PreferenceScreen screen = getPreferenceScreen();
 
@@ -77,6 +88,14 @@ public class PrivacySettings extends PreferenceActivity implements
         mConfirmDialog = null;
         mDialogType = 0;
         super.onStop();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == 1) && (resultCode == RESULT_CANCELED)) {
+            finish();
+        }
     }
 
     @Override

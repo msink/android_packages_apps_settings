@@ -54,6 +54,9 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Toast;
 import android.util.Log;
 
+import com.android.settings.parentcontrol.data.LockList;
+import com.android.settings.parentcontrol.utils.ParentControlUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -126,6 +129,12 @@ public class WifiSettings extends PreferenceActivity implements DialogInterface.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Secure.getInt(getContentResolver(), Secure.PARENT_CONTROL_ENABLED, 0) == 1) {
+            Intent intent = ParentControlUtil.getParentControlSettingsIntent();
+            intent.putExtra("LOCK_LIST", LockList.LOCK_OPEN_WIFI.toString());
+            startActivityForResult(intent, 1);
+        }
 
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 

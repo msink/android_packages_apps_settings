@@ -4,6 +4,15 @@
     <dimen name="settings_common_text_size">18sp</dimen>
     <dimen name="button_min_height">50dip</dimen>
     <dimen name="button_text_size">20sp</dimen>
+    <dimen name="activity_horizontal_margin">16dip</dimen>
+    <dimen name="activity_vertical_margin">16dip</dimen>
+    <dimen name="linearlayout_min_width">450dip</dimen>
+    <dimen name="text_size">25sp</dimen>
+    <dimen name="parent_control_button_min_height">30dip</dimen>
+    <dimen name="item_min_height">40dip</dimen>
+    <dimen name="item_margin">5dip</dimen>
+    <dimen name="item_padding">20dip</dimen>
+    <dimen name="border_stroke_width">2dip</dimen>
     <dimen name="manage_app_tab_host_font_size">16sp</dimen>
     <dimen name="alert_dialog_button_width">150dip</dimen>
 </resources>

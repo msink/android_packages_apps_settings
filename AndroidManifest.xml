@@ -332,6 +332,17 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="com.android.settings.parentcontrol.PinAndPasswordActivity"
+                android:windowSoftInputMode="stateVisible|adjustPan" />
+
+        <activity android:name="com.android.settings.parentcontrol.ParentControlSettings">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.android.settings.parentcontrol.LockPatternActivity" />
+
         <activity android:name="DockSettings"
                 android:label="@string/dock_settings_title"
                 android:clearTaskOnLaunch="true"

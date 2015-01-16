@@ -24,6 +24,9 @@
     <declare-styleable name="SummaryListPreference">
         <attr name="summaryText" format="string" />
     </declare-styleable>
+    <declare-styleable name="LockPatternView">
+        <attr name="aspect" format="string" />
+    </declare-styleable>
     
     <declare-styleable name="BatteryHistoryChart">
         <!-- Base text color, typeface, size, and style. -->

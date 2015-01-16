@@ -41,10 +41,13 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.settings.parentcontrol.data.LockList;
+import com.android.settings.parentcontrol.utils.ParentControlUtil;
 import com.android.settings.R;
 
 import java.io.File;
@@ -92,6 +95,12 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        if (Settings.Secure.getInt(getContentResolver(), Settings.Secure.PARENT_CONTROL_ENABLED, 0) == 1) {
+            Intent intent = ParentControlUtil.getParentControlSettingsIntent();
+            intent.putExtra("LOCK_LIST", LockList.LOCK_ACCESS_EXT_SD_CARD.toString());
+            startActivityForResult(intent, 1);
+        }
+
         if (mStorageManager == null) {
             mStorageManager = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
             mStorageManager.registerListener(mStorageListener);
@@ -123,6 +132,14 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
         updateMemoryStatus(Environment.getFlashStorageDirectory().getPath());
         updateMemoryStatus(Environment.getSdcardStorageDirectory().getPath());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == 1) && (resultCode == RESULT_CANCELED)) {
+            finish();
+        }
     }
 
     StorageEventListener mStorageListener = new StorageEventListener() {
