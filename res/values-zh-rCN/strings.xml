@@ -1904,6 +1904,8 @@
     <string name="set_resolution_failed_message">设置显示效果失败</string>
     <string name="dlg_confirm_reboot_title">重启</string>
     <string name="dlg_confirm_reboot_text">该设置需要系统重启而生效</string>
+    <string name="network_inactivity_timeout_summary">调整网络在闲置时自动关闭的延迟时间</string>
+    <string name="network_inactivity_timeout">闲置网络关闭延迟</string>
     <string name="please_wait">请稍等......</string>
     <string name="epd_full_timeout">全屏刷新超时</string>
     <string name="epd_full_timeout_summary">调整自动全屏刷新的延迟</string>

@@ -77,6 +77,32 @@
     <item msgid="4907380534957572531">"Hoog"</item>
     <item msgid="4699640516390840297">"Zeer hoog"</item>
   </string-array>
+  <string-array name="power_off_timeout_entries">
+    <item>20 minuten</item>
+    <item>30 minuten</item>
+    <item>60 minuten</item>
+    <item>Nooit</item>
+  </string-array>
+  <string-array name="network_inactivity_timeout_entries">
+    <item>5 minuten</item>
+    <item>10 minuten</item>
+    <item>15 minuten</item>
+    <item>30 minuten</item>
+    <item>45 minuten</item>
+    <item>60 minuten</item>
+    <item>nooit</item>
+  </string-array>
+  <string-array name="screen_refresh_mode_entries">
+    <item>Automatisch</item>
+    <item>A2</item>
+  </string-array>
+  <string-array name="epd_full_timeout_entries">
+    <item>1 minuut</item>
+    <item>2 minuten</item>
+    <item>10 minuten</item>
+    <item>30 minuten</item>
+    <item>Nooit</item>
+  </string-array>
   <string-array name="wifi_status">
     <item msgid="1922181315419294640"></item>
     <item msgid="8934131797783724664">"Scannen..."</item>
@@ -292,5 +318,66 @@
     <item msgid="7389829271787670252">"Vragen"</item>
     <item msgid="5077768429488260031">"Nooit toestaan"</item>
     <item msgid="1417929597727989746">"Altijd toestaan"</item>
+  </string-array>
+  <string-array name="hdmi_resolution_entries">
+    <item>1920x1080p_50 Hz</item>
+    <item>1920x1080p_60 Hz</item>
+    <item>1280x720p_50 Hz</item>
+    <item>1280x720p_60 Hz</item>
+    <item>720x576p_50 Hz</item>
+    <item>720x480p_60 Hz</item>
+  </string-array>
+  <string-array name="hdmi_lcd_timeout_entries">
+    <item>10 seconden</item>
+    <item>20 seconden</item>
+    <item>30 seconden</item>
+    <item>Nooit</item>
+  </string-array>
+  <string-array name="screenshot_delay_entries">
+    <item>15 seconden later</item>
+    <item>30 seconden later</item>
+    <item>1 minuut later</item>
+    <item>2 minute later</item>
+    <item>3 minuten later</item>
+    <item>4 minuten later</item>
+    <item>5 minuten later</item>
+  </string-array>
+  <string-array name="screenshot_storage_location">
+    <item>Nand Flash</item>
+    <item>SD Kaart</item>
+    <item>USB opslag</item>
+  </string-array>
+  <string-array name="screenshot_strorage_location_values">
+    <item>Flash</item>
+    <item>SD kaart</item>
+    <item>Usb</item>
+  </string-array>
+  <string-array name="entries_resolution">
+    <item>Normaal</item>
+    <item>HD</item>
+  </string-array>
+  <string-array name="key_map_mode">
+    <item>"Optie 1  "</item>
+    <item>"Optie 2 "</item>
+    <item>"Optie 3 "</item>
+    <item>"Optie 4 "</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_mode">
+    <item>Optie 1</item>
+    <item>Optie 2</item>
+    <item>Optie 3</item>
+    <item>Optie 4</item>
+  </string-array>
+  <string-array name="key_map_summary">
+    <item>"c -> Menu\nLinks onder -> Terug echts boven -> Pagina boven echts onder -> Pagina onder"</item>
+    <item>c -> Menu inksonder ->Terugechts boven ->Pagina onderechts onder ->Pagina boven</item>
+    <item>c ->Pagina boveninks onder ->Pagina onderechts boven->menuechts onder->Terug</item>
+    <item>C->Pagina onderinks onder->Pagina bovenechts boven->Menuechts onder->Terug</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_summary">
+    <item>Linker knop (kort indrukken) ->Teruginker knop (lang in drukken)-.Menuechter knop (lang in drukken)->pagina bovenechter knop(kort indrukken)->Pagina beneden</item>
+    <item>Linker knop(kort indrukken)->pagina boveninker knop(lang indrukken)->Terugechter knop 9Lang indrukken)->Menuechter knop (kort indrukken)->Pagina beneden</item>
+    <item>Linker knop (kort indrukken)->Pagina onderinker knop (lang indrukken)->Pagina bovenechter knop (lang indrukken)->Menuechter knop></item>
+    <item>linker knop (kort indrukken)->pagina onderinker knop (lang indrukken)->Menu echter knop (lang indrukken)->Terugechter knop (kort indrukken)->Pagina boven</item>
   </string-array>
 </resources>

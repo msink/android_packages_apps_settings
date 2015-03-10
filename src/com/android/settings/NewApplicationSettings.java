@@ -28,7 +28,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 
 public class NewApplicationSettings extends SettingsPreferenceFragment
-        implements DialogInterface.OnClickListener {
+        implements DialogInterface.OnClickListener, DialogInterface.OnDismissListener {
 
     private static final String ENABLE_ADB = "enable_adb";
     private static final String TOGGLE_INSTALL = "toggle_install_applications";
@@ -37,6 +37,8 @@ public class NewApplicationSettings extends SettingsPreferenceFragment
     private DialogInterface mWarnInstallApps;
     private CheckBoxPreference mEnableAdb;
     private CheckBoxPreference mToggleAppInstallation;
+
+    private boolean mDialogClicked = false;
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -100,6 +102,7 @@ public class NewApplicationSettings extends SettingsPreferenceFragment
     public void onClick(DialogInterface dialog, int which) {
         if (dialog == mAdbDialog) {
             if (which == DialogInterface.BUTTON_POSITIVE) {
+                mDialogClicked = true;
                 Settings.Global.putInt(getActivity().getContentResolver(),
                         Settings.Global.ADB_ENABLED, 1);
             } else {
@@ -116,10 +119,20 @@ public class NewApplicationSettings extends SettingsPreferenceFragment
         }
     }
 
+    public void onDismiss(DialogInterface dialog) {
+        if (dialog == mAdbDialog) {
+            if (!mDialogClicked) {
+                mEnableAdb.setChecked(false);
+            }
+            mAdbDialog = null;
+        }
+    }
+
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
 
         if (preference == mEnableAdb) {
             if (mEnableAdb.isChecked()) {
+                mDialogClicked = false;
                 if (mAdbDialog != null) dismissDialogs();
                 mAdbDialog = new AlertDialog.Builder(getActivity()).setMessage(
                         getActivity().getResources().getString(R.string.adb_warning_message))
@@ -128,6 +141,7 @@ public class NewApplicationSettings extends SettingsPreferenceFragment
                         .setPositiveButton(android.R.string.yes, this)
                         .setNegativeButton(android.R.string.no, this)
                         .show();
+                mAdbDialog.setOnDismissListener(this);
             } else {
                 Settings.Global.putInt(getActivity().getContentResolver(),
                         Settings.Global.ADB_ENABLED, 0);

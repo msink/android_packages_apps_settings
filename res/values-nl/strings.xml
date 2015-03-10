@@ -600,7 +600,12 @@
     <string name="wifi_wps_available_second_item" msgid="8427520131718215301">" (WPS beschikbaar)"</string>
     <string name="wifi_secured_first_item" msgid="4072076186051083451">"Beveiligd met <xliff:g id="WIFI_SECURITY_SHORT">%1$s</xliff:g>"</string>
     <string name="wifi_secured_second_item" msgid="1326000076939056265">", beveiligd met <xliff:g id="WIFI_SECURITY_SHORT">%1$s</xliff:g>"</string>
+    <string name="wifi_security_short_wep">WEP</string>
+    <string name="wifi_security_short_wpa">WPA</string>
+    <string name="wifi_security_short_wpa2">WPA2</string>
     <string name="wifi_security_none" msgid="7985461072596594400">"Geen"</string>
+    <string name="wifi_security_wep">WEP</string>
+    <string name="wifi_security_wpa2">WPA2 PSK</string>
     <string name="wifi_connect" msgid="1076622875777072845">"Verbinden"</string>
     <string name="wifi_failed_connect_message" msgid="8491902558970292871">"Kan geen verbinding maken met het netwerk"</string>
     <string name="wifi_forget" msgid="8168174695608386644">"Vergeten"</string>
@@ -848,6 +853,7 @@
     <string name="usb_mtp_summary" msgid="4617321473211391236">"Hiermee kunt u mediabestanden overzetten op Windows-computers, of de app Android File Transfer op Mac-computers (ga naar www.android.com/filetransfer)"</string>
     <string name="usb_ptp_title" msgid="3852760810622389620">"Camera (PTP)"</string>
     <string name="usb_ptp_summary" msgid="7673397474756664929">"Hiermee kunt u foto\'s overzetten met camerasoftware en bestanden overzetten op computers die geen MTP ondersteunen"</string>
+    <string name="usb_mass_summary">Gebruik intern geheugen om bestanden te delen</string>
     <string name="usb_label_installer_cd" msgid="4331173824920630215">"Tools voor overdracht installeren"</string>
     <string name="storage_other_users" msgid="808708845102611856">"Andere gebruikers"</string>
     <string name="battery_status_title" msgid="9159414319574976203">"Accustatus"</string>
@@ -1230,6 +1236,7 @@
     <string name="testing_phone_info" product="tablet" msgid="193561832258534798">"Tabletinformatie"</string>
     <string name="testing_phone_info" product="default" msgid="8656693364332840056">"Telefooninformatie"</string>
     <string name="testing_battery_info" msgid="3497865525976497848">"Accu-informatie"</string>
+    <string name="testing_sim_toolkit">Sim toolkit</string>
     <string name="quick_launch_title" msgid="7904609846945905306">"Snelstarten"</string>
     <string name="quick_launch_summary" msgid="8101133819188001190">"Snelkoppelingen instellen voor het starten van apps"</string>
     <string name="quick_launch_assign_application" msgid="6240064079456617501">"App toewijzen"</string>
@@ -1830,4 +1837,73 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Foto-ID"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cell broadcasts"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Selecteer de typen noodoproepen die moeten worden weergegeven."</string>
+    <string name="hdmi_resolution_title">HDMI resolutie</string>
+    <string name="hdmi_screen_zoom">Inzoomen scherm</string>
+    <string name="hdmi_settings">HDMI</string>
+    <string name="app_name">Screenshot manager</string>
+    <string name="screenshot_manager">Screenshot setting</string>
+    <string name="screenshot_delay_title">Selecteer vetragingtijd voor het scherm</string>
+    <string name="screenshot_version">Versie screenshot manager</string>
+    <string name="later">Later</string>
+    <string name="ethernet_quick_toggle_title">Gebruik Ethernet</string>
+    <string name="ethernet_quick_toggle_summary">Ethernet aan</string>
+    <string name="ethernet_settings">Ethernet</string>
+    <string name="ethernet_settings_title">Ethernet</string>
+    <string name="ethernet_settings_summary">Manager Ethernet</string>
+    <string name="ethernet_ip_addr">Ip adres</string>
+    <string name="ethernet_dns1">dns1</string>
+    <string name="ethernet_dns2">dns2</string>
+    <string name="ethernet_mac">Mac adres</string>
+    <string name="ethernet_connected">Verbonden</string>
+    <string name="ethernet_connecting">Verbinden</string>
+    <string name="ethernet_unconnected">Niet verbonden</string>
+    <string name="ethernet_ip_networks_status">IP netwerk status</string>
+    <string name="ethernet">Ethernet</string>
+    <string name="ethernet_ip_settings_invalid_ip">Gelieve een geldig IP adres in te voeren</string>
+    <string name="ethernet_use_static_ip">Gebruik static IP</string>
+    <string name="ethernet_static_ip_address">IP adres</string>
+    <string name="ethernet_static_dns1">DNS 1</string>
+    <string name="ethernet_static_dns2">DNS 2</string>
+    <string name="ethernet_static_netmask">Netmask</string>
+    <string name="ethernet_advanced_mac_address_title">Mac adres</string>
+    <string name="ethernet_advanced_ip_address_title">Ip adres</string>
+    <string name="linkage_status_disconnected">Link gedetecteerd:nee.Ethernet is handmatig uitgeschakeld!</string>
+    <string name="linkage_status_dev_fail">Kan ethernetapperaat niet vinden!</string>
+    <string name="duplex_full">Vol</string>
+    <string name="linkage_status_format">Link detected:ja.Snelheid:</string>
+    <string name="ip_network_status_connecting">Configureer ethernet</string>
+    <string name="eth_ip_settings_please_complete_settings">Gelieve een volledig IP adres op te geven</string>
+    <string name="ethernet_static_ip_settings_title">IP setting</string>
+    <string name="category_ethernet">Static IP settings</string>
+    <string name="staticip_save">Opslaan</string>
+    <string name="str_ok">Ok</string>
+    <string name="str_cancel">Annuleer</string>
+    <string name="str_mesg">Instellingen bewaren?</string>
+    <string name="save_failed">Opslag mislukt!</string>
+    <string name="dongle_insert">Plaats de 3G dongel!</string>
+    <string name="title_resolution">Instelling</string>
+    <string name="dialog_title_resolution">Weergave instelling</string>
+    <string name="set_resolution_failed_message">Weergave niet verandert</string>
+    <string name="dlg_confirm_reboot_title">Herstart</string>
+    <string name="set_font_dialog_tile">Kies Lettertype</string>
+    <string name="reboot_device">Reboot het apperaat?</string>
+    <string name="loading">Laden...</string>
+    <string name="rebooting">Rebooting....</string>
+    <string name="network_inactivity_timeout_summary">Zet Wifi automatisch uit tijdens het lezen na netwerk inaktiviteit in:</string>
+    <string name="network_inactivity_timeout">Netwerk inactiviteit Timeout</string>
+    <string name="please_wait">Wacht aub....</string>
+    <string name="network_inactivity_default">Default</string>
+    <string name="network_inactivity_browser">Browser</string>
+    <string name="network_inactivity_default_summary">Automatisch uitschakelen WIFI met netwerk na inaktiviteit voor%1$sminuten.</string>
+    <string name="epd_full_timeout">Volledig time out</string>
+    <string name="power_off_timeout_summary">Tijd tot afsluiten na standby</string>
+    <string name="refresh_mode_summary">Selecteer andere mode voor verversen van scherm</string>
+    <string name="wifi_setup_previous">Vorig</string>
+    <string name="power_management">Verbruik</string>
+    <string name="memory_size_special_four_gb">4.00GB</string>
+    <string name="storage_text">Geheugen</string>
+    <string name="user_storage_format_summary">"Verwijder alle data van dit apperaat's gebruiker geheugen,zoals boeken,muziek en foto's"</string>
+    <string name="media_format_custom_title">Wis Intern geheugen</string>
+    <string name="media_format_custom_final_desc">Verwijder alle files uit geheugen?Weet U het zeker?</string>
+    <string name="media_format_custom_button_text">Verwijder intern geheugen</string>
 </resources>

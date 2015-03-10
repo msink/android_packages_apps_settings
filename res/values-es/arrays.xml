@@ -368,4 +368,16 @@
     <item>Opción 3</item>
     <item>Opción 4</item>
   </string-array>
+  <string-array name="key_map_summary">
+    <item>"Arriba a la izquierda -> Menu \nAbajo a la izquierda -> Atras \nArriba a la derecha -> Subir pagina nbajo a la derecha -> Página abajo"</item>
+    <item>"Arriba a la izquierda -> Menu \n Abajo a la izquierda -> Atrás \nArriba a la derecha -> Página abajo \nAbajo a la derecha -> Página arriba"</item>
+    <item>"Arriba a la izquierda -> Página arriba \nAbajo a la izquierda -> Pagina abajo \nArriba a la derechoa -> Menu \nAbajo a la derecha -> Atras"</item>
+    <item>"Arriba a la izquierda -> Pagina abajo \nAbajo a la izquierda -> Pagina arriba \n Arriba a la derecha -> Menu \nAbajo a la derecha -> Atras"</item>
+  </string-array>
+  <string-array name="long_short_click_key_map_summary">
+    <item>"Boton izquierdo (presión corta) -> atrás \nBotón izquierdo (presión prolongada) -> Menu \nBotón derecho (presión prolongada) -> Pagina arriba \nBotón derecho (presión corta) -> Pagina abajo"</item>
+    <item>"Botón izquierdo (presión corta) -> Pagina arriba \nBotón Izquierdo (presión prolongada) -> Atrás \nBotón derecho (Presión prolongada) -> Menu \nBotón derecho (presión corta) -> Bajar página"</item>
+    <item>"Botón izquierdo (presión corta) -> Bajar Página \nBotón izquierdo (presión larga)-> Pagina arriba \nBotón derecho (presión larga) -> Menu \nBotón derecho (presión corta) -> Volver"</item>
+    <item>"Botón izquierdo (Presión corta) -> Página abajo \nBotón izquierdo (Presión larga) -> Menu \nBotón derecho (presión larga) -> Volver \nBotón derecho (presión corta)-> Página arriba"</item>
+  </string-array>
 </resources>
