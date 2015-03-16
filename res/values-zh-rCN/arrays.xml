@@ -319,4 +319,12 @@
     <item>普清模式</item>
     <item>高清模式</item>
   </string-array>
+  <string-array name="long_press_feature">
+    <item>"选项 1  "</item>
+    <item>"选项 2  "</item>
+  </string-array>
+  <string-array name="long_press_feature_summary">
+    <item>开关前照光</item>
+    <item>全屏切换</item>
+  </string-array>
 </resources>

@@ -439,14 +439,9 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
-            } else if (id == R.id.wireless_section) {
-                if (!mDev.hasWifi()) {
-                    target.remove(header);
-                }
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
-                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI) ||
-                        !mDev.hasWifi()) {
+                if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI)) {
                     target.remove(i);
                 }
             } else if (id == R.id.bluetooth_settings) {
@@ -459,27 +454,15 @@ public class Settings extends PreferenceActivity
                 final INetworkManagementService netManager = INetworkManagementService.Stub
                         .asInterface(ServiceManager.getService(Context.NETWORKMANAGEMENT_SERVICE));
                 try {
-                    if (!netManager.isBandwidthControlEnabled() || !mDev.hasWifi()) {
+                    if (!netManager.isBandwidthControlEnabled()) {
                         target.remove(i);
                     }
                 } catch (RemoteException e) {
                     // ignored
                 }
-            } else if (id == R.id.wireless_settings) {
-                if (!mDev.hasWifi()) {
-                    target.remove(header);
-                }
             } else if (id == R.id.account_settings) {
-                if (mDev.hasWifi()) {
-                    int headerIndex = i + 1;
-                    i = insertAccountsHeaders(target, headerIndex);
-                } else {
-                    target.remove(header);
-                }
-            } else if (id == R.id.account_add) {
-                if (!mDev.hasWifi()) {
-                    target.remove(header);
-                }
+                int headerIndex = i + 1;
+                i = insertAccountsHeaders(target, headerIndex);
             } else if (id == R.id.user_settings) {
                 if (!UserHandle.MU_ENABLED
                         || !UserManager.supportsMultipleUsers()
@@ -498,12 +481,6 @@ public class Settings extends PreferenceActivity
                 if (!mDev.hasAudio()) {
                     target.remove(header);
                 }
-            } else if (id == R.id.location_settings) {
-                if (!mDev.hasWifi()) {
-                    target.remove(header);
-                }
-            } else if (id == R.id.accessibility_settings) {
-                target.remove(header);
             }
 
             if (target.get(i) == header

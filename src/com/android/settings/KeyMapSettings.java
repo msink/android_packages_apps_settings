@@ -20,6 +20,10 @@ public class KeyMapSettings extends PreferenceActivity {
             (SummaryListPreference) findPreference("key_map_mode");
         key_map_mode_list.setValue(String.valueOf(Settings.System.getInt(
             getContentResolver(), Settings.System.KEY_MAP_MODE, 1)));
+        SummaryListPreference long_press_feature_list =
+            (SummaryListPreference) findPreference("long_press_feature");
+        long_press_feature_list.setValue(String.valueOf(Settings.System.getInt(
+            getContentResolver(), Settings.System.LONG_PRESS_FEATURE, 1)));
         IMService = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         key_map_mode_list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -29,6 +33,17 @@ public class KeyMapSettings extends PreferenceActivity {
                     IMService.setKeyMapMode(value);
                 } catch (NumberFormatException e) {
                      Log.e(TAG, "could not persist Key Map setting", e);
+                }
+                return true;
+            }
+        });
+        long_press_feature_list.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                int value = Integer.parseInt((String)newValue);
+                try {
+                    Settings.System.putInt(getContentResolver(), Settings.System.LONG_PRESS_FEATURE, value);
+                } catch (NumberFormatException e) {
+                     Log.e(TAG, "could not persist long press feature setting", e);
                 }
                 return true;
             }

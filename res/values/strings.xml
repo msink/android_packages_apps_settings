@@ -2169,6 +2169,7 @@
     <string name="erase_external_storage" product="nosdcard">Erase USB storage</string>
     <!-- SD card & phone storage settings screen, label for check box to erase SD card [CHAR LIMIT=30] -->
     <string name="erase_external_storage" product="default">Erase SD card</string>
+    <string name="erase_internal_storage">Erase internal storage</string>
     <!-- SD card & phone storage settings screen, description for check box to erase USB storage [CHAR LIMIT=NONE] -->
     <string name="erase_external_storage_description" product="nosdcard">Erase all the data on the internal USB storage, such as music or photos</string>
     <!-- SD card & phone storage settings screen, description for check box to erase USB storage [CHAR LIMIT=NONE] -->
@@ -4494,6 +4495,7 @@
     <string name="media_format_custom_button_text">Erase Internal Mass Storage</string>
     <string name="wakeup_brightness">Wake up</string>
     <string name="wakeup_brightness_summary">Open front light when wake up system</string>
+    <string name="dpad_center_long_press">Dpad Center Long Press Features</string>
     <string name="authdlg_title">Bluetooth Authorization Request</string>
     <string name="authdlg_message">"'%1$s' is requesting permission to connect to %2$s."</string>
     <string name="bluetooth_remote_device">bluetooth device</string>

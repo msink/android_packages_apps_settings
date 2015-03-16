@@ -73,6 +73,7 @@ public class MasterClearConfirm extends Fragment {
             SystemProperties.set("ctl.start", "remove_test");
             SystemClock.sleep(500);
             SystemProperties.set("ctl.stop", "remove_test");
+            SystemProperties.set("ctl.start", "backup_data:backup");
             if (mContentView != null) {
                 mContentView.requestEpdMode(View.EINK_MODE.EPD_FULL);
                 SystemClock.sleep(1000);
@@ -80,6 +81,8 @@ public class MasterClearConfirm extends Fragment {
             mProgressDialog.show();
             acquireStartupWakeLock();
             v.setVisibility(View.INVISIBLE);
+
+          if (mEraseSdCard) {
             Thread thread = new Thread(new Runnable() {
                 public void run() {
                     try {
@@ -101,6 +104,9 @@ public class MasterClearConfirm extends Fragment {
                 }
             });
             thread.start();
+          } else {
+            getActivity().sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+          }
         }
     };
 

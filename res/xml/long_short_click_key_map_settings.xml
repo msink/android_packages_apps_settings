@@ -32,5 +32,12 @@
              android:entries="@array/long_short_click_key_map_mode"
              android:entryValues="@array/long_short_click_key_map_mode_value"
              />
+    <com.android.settings.SummaryListPreference
+             android:key="long_press_feature"
+             android:title="@string/dpad_center_long_press"
+             settings:summaryText="@array/long_press_feature_summary"
+             android:entries="@array/long_press_feature"
+             android:entryValues="@array/long_press_feature_value"
+             />
 
 </PreferenceScreen>

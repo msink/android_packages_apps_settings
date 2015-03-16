@@ -289,7 +289,6 @@ public class DevelopmentSettings extends PreferenceFragment
             mAllPrefs.add(hdcpChecking);
         }
         removeHdcpOptionsForProduction();
-        removeOptionsForSpecificHardware();
     }
 
     private void disableForUser(Preference pref) {

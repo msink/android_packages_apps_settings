@@ -18,11 +18,6 @@
         android:title="@string/power_management"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <Preference
-                android:key="brightness_dialog"
-                android:title="@string/brightness"
-                android:dialogTitle="@string/brightness" />
-
         <CheckBoxPreference
                 android:key="wake_up_brightness"
                 android:title="@string/wakeup_brightness"

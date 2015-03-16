@@ -904,6 +904,7 @@
     <string name="master_clear_desc_erase_external_storage" product="default" msgid="4801026652617377093">\n\n"要清除音乐、图片和其他用户数据，您需要清空该 "<b>"SD 卡"</b>"。"</string>
     <string name="erase_external_storage" product="nosdcard" msgid="969364037450286809">"格式化 USB 存储设备"</string>
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"格式化 SD 卡"</string>
+    <string name="erase_internal_storage">格式化内部存储</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="4728558173931599429">"清除该内部 USB 存储设备中的全部数据，例如音乐或照片"</string>
     <string name="erase_external_storage_description" product="default" msgid="1737638779582964966">"清除 SD 卡中的全部数据，例如音乐或照片"</string>
     <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"重置设备"</string>
@@ -1924,4 +1925,5 @@
     <string name="media_format_custom_button_text">清除内置大容量存储</string>
     <string name="wakeup_brightness">唤醒</string>
     <string name="wakeup_brightness_summary">系统唤醒时打开前照光</string>
+    <string name="dpad_center_long_press">确认键长按功能</string>
 </resources>
