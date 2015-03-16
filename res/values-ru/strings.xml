@@ -1945,7 +1945,7 @@
     <string name="user_storage_format">Очистить память</string>
     <string name="user_storage_format_summary">Удаляет все пользовательские данные из внутренней памяти</string>
     <string name="media_format_custom_title">Очистить внутреннюю память</string>
-    <string name="media_format_custom_desc">Эта операция очистит внутреннюю память. Все пользовательские данные будут утеряны!</string>
+    <string name="media_format_custom_desc">Эта операция очистит внутреннюю память. Все пользовательские данные &lt;b>all&lt;/b> будут утеряны!</string>
     <string name="media_format_custom_final_desc">Очистка внутренней памяти удалит все пользовательские данные на этом носителе. Это действие отменить будет нельзя. Продолжить?</string>
     <string name="media_format_custom_button_text">Очистить внутреннюю память</string>
     <string name="wakeup_brightness">Пробуждение</string>
