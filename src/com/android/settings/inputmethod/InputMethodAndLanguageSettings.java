@@ -116,8 +116,6 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
             updateInputMethodSelectorSummary(loadInputMethodSelectorVisibility());
         }
 
-        new VoiceInputOutputSettings(this).onCreate();
-
         // Get references to dynamically constructed categories.
         mHardKeyboardCategory = (PreferenceCategory)findPreference("hard_keyboard");
         mKeyboardSettingsCategory = (PreferenceCategory)findPreference(
@@ -251,7 +249,6 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
                 }
             }
 
-            updateUserDictionaryPreference(findPreference(KEY_USER_DICTIONARY_SETTINGS));
             if (SHOW_INPUT_METHOD_SWITCHER_SETTINGS) {
                 mShowInputMethodSelectorPref.setOnPreferenceChangeListener(this);
             }

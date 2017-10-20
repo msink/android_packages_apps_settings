@@ -16,15 +16,12 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         android:title="@string/date_and_time">
+
+    <PreferenceCategory android:title="@string/date_and_time_settings_title" />
     <CheckBoxPreference android:key="auto_time"
         android:title="@string/date_time_auto"
         android:summaryOn="@string/date_time_auto_summaryOn"
         android:summaryOff="@string/date_time_auto_summaryOff"
-        />
-    <CheckBoxPreference android:key="auto_zone"
-        android:title="@string/zone_auto"
-        android:summaryOn="@string/zone_auto_summaryOn"
-        android:summaryOff="@string/zone_auto_summaryOff"
         />
     <Preference android:key="date"
         android:title="@string/date_time_set_date"
@@ -34,12 +31,6 @@
         android:title="@string/date_time_set_time"
         android:summary="12:00am"
         />
-    <PreferenceScreen
-        android:fragment="com.android.settings.ZonePicker"
-        android:key="timezone"
-        android:title="@string/date_time_set_timezone"
-        android:summary="GMT-8:00"
-        />
     <CheckBoxPreference android:key="24 hour"
         android:title="@string/date_time_24hour"
         />
@@ -47,4 +38,18 @@
         android:key="date_format"
         android:title="@string/date_time_date_format"
         android:summary="mm/dd/yyyy"/>
+
+    <PreferenceCategory android:title="@string/date_time_set_timezone" />
+    <CheckBoxPreference android:key="auto_zone"
+        android:title="@string/zone_auto"
+        android:summaryOn="@string/zone_auto_summaryOn"
+        android:summaryOff="@string/zone_auto_summaryOff"
+        />
+    <PreferenceScreen
+        android:fragment="com.android.settings.ZonePicker"
+        android:layout="@layout/my_preferencescreen"
+        android:key="timezone"
+        android:title="@string/date_time_set_timezone"
+        android:summary="GMT-8:00"
+        />
 </PreferenceScreen>

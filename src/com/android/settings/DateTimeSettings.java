@@ -137,6 +137,13 @@ public class DateTimeSettings extends SettingsPreferenceFragment
         mDateFormat.setEntryValues(R.array.date_format_values);
         mDateFormat.setValue(currentFormat);
 
+        String customer = SystemProperties.get("ro.boeye.customer");
+        boolean etaCustomer = customer.toLowerCase().contains("eta");
+        if (etaCustomer) {
+            getPreferenceScreen().removePreference(mTimePref);
+            getPreferenceScreen().removePreference(mDatePref);
+        }
+
         mTimePref.setEnabled(!autoTimeEnabled);
         mDatePref.setEnabled(!autoTimeEnabled);
         mTimeZone.setEnabled(!autoTimeZoneEnabled);

@@ -122,7 +122,8 @@ public class Settings extends PreferenceActivity
             R.id.system_section,
             R.id.date_time_settings,
             R.id.about_settings,
-            R.id.accessibility_settings
+            R.id.accessibility_settings,
+            R.id.my_account_settings
     };
 
     private SharedPreferences mDevelopmentPreferences;
@@ -434,6 +435,27 @@ public class Settings extends PreferenceActivity
             int id = (int) header.id;
             if (id == R.id.operator_settings || id == R.id.manufacturer_settings) {
                 Utils.updateHeaderToSpecificActivityFromMetaDataOrRemove(this, target, header);
+            } else if (id == R.id.wireless_section ||
+                       id == R.id.bluetooth_settings ||
+                       id == R.id.data_usage_settings ||
+                       id == R.id.operator_settings ||
+                       id == R.id.wireless_settings ||
+                       id == R.id.device_section ||
+                       id == R.id.sound_settings ||
+                       id == R.id.hdmi_settings ||
+                       id == R.id.screenshot_settings ||
+                       id == R.id.battery_settings ||
+                       id == R.id.manufacturer_settings ||
+                       id == R.id.personal_section ||
+                       id == R.id.location_settings ||
+                       id == R.id.security_settings ||
+                       id == R.id.user_settings ||
+                       id == R.id.account_settings ||
+                       id == R.id.system_section ||
+                       id == R.id.account_add ||
+                       id == R.id.accessibility_settings ||
+                       id == R.id.development_settings) {
+                target.remove(i);
             } else if (id == R.id.wifi_settings) {
                 // Remove WiFi Settings if WiFi service is not available.
                 if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI)) {
@@ -465,9 +487,6 @@ public class Settings extends PreferenceActivity
                     target.remove(i);
                 }
             } else if (id == R.id.development_settings) {
-                if (!showDev) {
-                    target.remove(i);
-                }
             } else if (id == R.id.hdmi_settings) {
                 if (!hasHdmiFeature()) {
                     target.remove(header);

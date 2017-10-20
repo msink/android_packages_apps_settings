@@ -27,7 +27,7 @@
         android:id="@+id/wifi_settings"
         android:fragment="com.android.settings.wifi.WifiSettings"
         android:title="@string/wifi_settings_title"
-        android:icon="@drawable/ic_settings_wireless" />
+        android:icon="@drawable/myic_settings_wifi" />
 
     <!-- Bluetooth -->
     <header
@@ -72,7 +72,7 @@
     <!-- Display -->
     <header
         android:id="@+id/display_settings"
-        android:icon="@drawable/ic_settings_display"
+        android:icon="@drawable/myic_settings_display"
         android:fragment="com.android.settings.DisplaySettings"
         android:title="@string/display_settings" />
 
@@ -82,17 +82,21 @@
         android:fragment="com.android.settings.HdmiControllerActivity"
         android:title="@string/hdmi_settings" />
 
-    <header
-        android:id="@+id/screenshot_settings"
+    <header android:id="@+id/screenshot_settings"
         android:icon="@drawable/capture"
         android:fragment="com.android.settings.ScreenshotSetting"
         android:title="@string/screenshot_manager" />
 
-    <!-- Storage -->
+    <header
+        android:id="@+id/my_account_settings"
+        android:icon="@drawable/myic_settings_account"
+        android:fragment="com.android.settings.deviceinfo.my_account_fragment"
+        android:title="@string/my_account_settings_title" />
+
     <header
         android:id="@+id/storage_settings"
+        android:icon="@drawable/myic_settings_storage"
         android:fragment="com.android.settings.deviceinfo.Memory"
-        android:icon="@drawable/ic_settings_storage"
         android:title="@string/storage_settings" />
 
     <!-- Battery -->
@@ -105,7 +109,7 @@
     <!-- Application Settings -->
     <header
         android:fragment="com.android.settings.applications.ManageApplications"
-        android:icon="@drawable/ic_settings_applications"
+        android:icon="@drawable/myic_settings_applications"
         android:title="@string/applications_settings"
         android:id="@+id/application_settings" />
 
@@ -146,13 +150,20 @@
     <header
         android:id="@+id/language_settings"
         android:fragment="com.android.settings.inputmethod.InputMethodAndLanguageSettings"
-        android:icon="@drawable/ic_settings_language"
+        android:icon="@drawable/myic_settings_language"
         android:title="@string/language_settings" />
+
+    <!-- Date & Time -->
+    <header
+        android:id="@+id/date_time_settings"
+        android:fragment="com.android.settings.DateTimeSettings"
+        android:icon="@drawable/myic_settings_date_time"
+        android:title="@string/date_and_time_settings_title" />
 
     <!-- Backup and reset -->
     <header
-        android:fragment="com.android.settings.PrivacySettings"
-        android:icon="@drawable/ic_settings_backup"
+        android:fragment="com.android.settings.MasterClear"
+        android:icon="@drawable/myic_settings_backup"
         android:title="@string/privacy_settings"
         android:id="@+id/privacy_settings" />
 
@@ -173,13 +184,6 @@
     <header android:id="@+id/system_section"
         android:title="@string/header_category_system" />
 
-    <!-- Date & Time -->
-    <header
-        android:id="@+id/date_time_settings"
-        android:fragment="com.android.settings.DateTimeSettings"
-        android:icon="@drawable/ic_settings_date_time"
-        android:title="@string/date_and_time_settings_title" />
-
     <!-- Accessibility feedback -->
     <header
         android:id="@+id/accessibility_settings"
@@ -198,7 +202,7 @@
     <header
         android:id="@+id/about_settings"
         android:fragment="com.android.settings.DeviceInfoSettings"
-        android:icon="@drawable/ic_settings_about"
+        android:icon="@drawable/myic_settings_about"
         android:title="@string/about_settings" />
 
 </preference-headers>
