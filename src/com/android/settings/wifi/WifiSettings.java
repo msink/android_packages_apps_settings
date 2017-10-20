@@ -229,8 +229,10 @@ public class WifiSettings extends SettingsPreferenceFragment
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+        Log.i("--dela--", "--WifiSettings.java--onCreateView()--00-- mSetupWizardMore == " + mSetupWizardMode);
 
         if (mProvisionMode) {
+            Log.i("--dela--", "--WifiSettings.java--onCreateView()--00--");
             View view = inflater.inflate(R.layout.wifi_setup_provision, container, false);
             int current = getActivity().getIntent().getIntExtra("wifi_setup_current", 1);
             int total = getActivity().getIntent().getIntExtra("wifi_setup_total", 1);
@@ -311,6 +313,7 @@ public class WifiSettings extends SettingsPreferenceFragment
         }
 
         if (mSetupWizardMode) {
+            Log.i("--dela--", "--WifiSettings.java--onCreateView()--11--");
             View view = inflater.inflate(R.layout.setup_preference, container, false);
             View other = view.findViewById(R.id.other_network);
             other.setOnClickListener(new OnClickListener() {
@@ -382,6 +385,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.i("--dela--", "--WifiSettings.java--onActivityCreated()--00--");
 
         mP2pSupported = getPackageManager().hasSystemFeature(PackageManager.FEATURE_WIFI_DIRECT);
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
@@ -496,6 +500,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+        Log.i("--dela--", "--WifiSettings.java--onResume()--00--");
         if (mWifiEnabler != null) {
             mWifiEnabler.resume();
         }
@@ -512,6 +517,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public void onPause() {
+        Log.i("--dela--", "--WifiSettings.java--onPause()--00--");
         super.onPause();
         if (mWifiEnabler != null) {
             mWifiEnabler.pause();
@@ -522,6 +528,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        Log.i("--dela--", "--WifiSettings.java--onCreateOptionsMenu()--00--");
         final boolean wifiIsEnabled = mWifiManager.isWifiEnabled();
         if (mSetupWizardMode) {
             // FIXME: add setIcon() when graphics are available
@@ -551,6 +558,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        Log.i("--dela--", "--WifiSettings.java--onSaveInstanceState()--00--");
 
         // If the dialog is showing, save its state.
         if (mDialog != null && mDialog.isShowing()) {
@@ -565,6 +573,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.i("--dela--", "--WifiSettings.java--onOptionsItemSelected()--00--");
         switch (item.getItemId()) {
             case MENU_ID_WPS_PBC:
                 showDialog(WPS_PBC_DIALOG_ID);
@@ -610,6 +619,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo info) {
+        Log.i("--dela--", "--WifiSettings.java--onCreateContextMenu()--00--");
         if (info instanceof AdapterContextMenuInfo) {
             Preference preference = (Preference) getListView().getItemAtPosition(
                     ((AdapterContextMenuInfo) info).position);
@@ -631,6 +641,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        Log.i("--dela--", "--WifiSettings.java--onContextItemSelected()--00--");
         if (mSelectedAccessPoint == null) {
             return super.onContextItemSelected(item);
         }
@@ -665,6 +676,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen screen, Preference preference) {
+        Log.i("--dela--", "--WifiSettings.java--onPreferenceTreeClick()--00--");
         if (preference instanceof AccessPoint) {
             mSelectedAccessPoint = (AccessPoint) preference;
             /** Bypass dialog for unsecured, unsaved networks */
@@ -682,6 +694,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     }
 
     private void showDialog(AccessPoint accessPoint, boolean edit) {
+        Log.i("--dela--", "--WifiSettings.java--showDialog()--00--");
         if (mDialog != null) {
             removeDialog(WIFI_DIALOG_ID);
             mDialog = null;
@@ -696,6 +709,7 @@ public class WifiSettings extends SettingsPreferenceFragment
 
     @Override
     public Dialog onCreateDialog(int dialogId) {
+        Log.i("--dela--", "--WifiSettings.java--onCreateDialog()--00--");
         switch (dialogId) {
             case WIFI_DIALOG_ID:
                 AccessPoint ap = mDlgAccessPoint; // For manual launch
