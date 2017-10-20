@@ -76,6 +76,48 @@
         <!-- Do not translate. -->
         <item>1800000</item>
     </string-array>
+
+    <string-array name="shutdown_delay_entries">
+        <item>20 Minutes</item>
+        <item>30 Minutes</item>
+        <item>60 Minutes</item>
+        <item>120 Minutes</item>
+        <item>Never</item>
+    </string-array>
+
+    <string-array name="shutdown_delay_values">
+        <item>20</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>999</item>
+    </string-array>
+
+    <string-array name="fullscreen_flush_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="fullscreen_flush_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
     
     <!-- Display settings.  The delay in inactivity before the dream is shown. These are shown in a list dialog. -->
     <string-array name="dream_timeout_entries">

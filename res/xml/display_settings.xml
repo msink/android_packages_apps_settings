@@ -18,15 +18,12 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-        <com.android.settings.BrightnessPreference
-                android:key="brightness"
-                android:title="@string/brightness"
-                android:dialogTitle="@string/brightness" />
-
-        <PreferenceScreen
-                android:key="wallpaper"
-                android:title="@string/wallpaper_settings_title"
-                android:fragment="com.android.settings.WallpaperTypeSettings" />
+        <PreferenceScreen android:key="brightness"
+                android:title="@string/brightness">
+        <intent android:targetPackage="com.boeye.brightnessset"
+                android:targetClass="com.boeye.brightnessset.BrightnessDialogActivity"
+                android:action="android.intent.action.MAIN"/>
+        </PreferenceScreen>
 
         <CheckBoxPreference
             android:key="accelerometer"
@@ -39,6 +36,49 @@
                 android:persistent="false"
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
+
+        <ListPreference
+                android:key="shutdown_delay"
+                android:title="@string/shutdown_delay"
+                android:summary="@string/screen_timeout_summary"
+                android:persistent="false"
+                android:entries="@array/shutdown_delay_entries"
+                android:entryValues="@array/shutdown_delay_values"/>
+
+        <ListPreference
+                android:key="fullscreen_flush"
+                android:title="@string/fullscreen_flush"
+                android:persistent="false"
+                android:entries="@array/fullscreen_flush_entries"
+                android:entryValues="@array/fullscreen_flush_values"/>
+
+        <Preference
+                android:key="open_epub_setting"
+                android:title="@string/open_epub_setting"
+                android:summary="@string/open_epub_withPDF"/>
+
+        <Preference android:key="statusbar_set"
+                android:title="@string/statusbar_setting"
+                android:summary="@string/statusbar_summary_on" />
+
+        <Preference android:key="volume_buttons_set"
+                android:title="@string/volume_buttons_setting"
+                android:summary="@string/volume_buttons_on"/>
+
+        <Preference android:key="a2_flush_set"
+                android:title="@string/a2_flush_setting"
+                android:summary="@string/volume_buttons_on"/>
+
+        <Preference android:key="pic_recover"
+                android:title="@string/screensaver_settings_title"
+                android:summary="@string/pic_recover"/>
+
+        <PreferenceScreen android:key="setlauncher_app"
+                android:title="@string/setlauncher_app">
+        <intent android:targetPackage="com.boyue.boyuelauncher"
+                android:targetClass="com.boyue.boyuelauncher.SetFiveShortcut"
+                android:action="android.intent.action.MAIN"/>
+        </PreferenceScreen>
 
         <PreferenceScreen
                 android:key="screensaver"
@@ -59,15 +99,5 @@
                 android:dialogTitle="@string/dialog_title_resolution"
                 android:entries="@array/entries_resolution"
                 android:entryValues="@array/entryvalues_resolution" />
-
-        <CheckBoxPreference
-            android:key="notification_pulse"
-            android:title="@string/notification_pulse_title"
-            android:persistent="false" />
-
-        <PreferenceScreen
-                android:key="wifi_display"
-                android:title="@string/wifi_display_settings_title"
-                android:fragment="com.android.settings.wfd.WifiDisplaySettings" />
 
 </PreferenceScreen>

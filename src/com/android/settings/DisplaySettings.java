@@ -75,6 +75,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_SCREEN_SAVER = "screensaver";
     private static final String KEY_WIFI_DISPLAY = "wifi_display";
+    private static final String KEY_STATUSBAR = "statusbar_set";
+    private static final String KEY_VOLUME_BUTTONS = "volume_buttons_set";
+    private static final String KEY_A2_FLUSH = "a2_flush_set";
+    private static final String KEY_FULLSCREEN_FLUSH = "fullscreen_flush";
+    private static final String KEY_OPEN_EPUB = "open_epub_setting";
+    private static final String KEY_PIC_RECOVER = "pic_recover";
+    private static final String KEY_SHUTDOWN_DELAY = "shutdown_delay";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
     private static final int DLG_CONFIRM_REBOOT = 2;
@@ -93,6 +100,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private WifiDisplayStatus mWifiDisplayStatus;
     private Preference mWifiDisplayPreference;
     private ListPreference mResolutionPreference;
+    private Preference mStatusbarPreference;
+    private Preference mVolumeButtonsPreference;
+    private Preference mA2FlushPreference;
+    private ListPreference mFullscreenFlushPreference;
+    private Preference mOpenEpubPreference;
+    private Preference mPicrecoverPreference;
+    private ListPreference mShutdownDelayPreference;
 
     private int mCurrentResolution = 1;
     private String mRequestResolution = "";
@@ -243,49 +257,81 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             getPreferenceScreen().removePreference(mAccelerometer);
         }
 
+        mStatusbarPreference = findPreference(KEY_STATUSBAR);
+        mOpenEpubPreference = findPreference(KEY_OPEN_EPUB);
+        mVolumeButtonsPreference = findPreference(KEY_VOLUME_BUTTONS);
+        mA2FlushPreference = findPreference(KEY_A2_FLUSH);
+        mPicrecoverPreference = findPreference(KEY_PIC_RECOVER);
+
+        String customer = SystemProperties.get("ro.boeye.customer");
+        boolean etaCustomer = customer.toLowerCase().contains("eta");
+        if (etaCustomer) {
+            getPreferenceScreen().removePreference(mVolumeButtonsPreference);
+        }
+        getPreferenceScreen().removePreference(mA2FlushPreference);
+        getPreferenceScreen().removePreference(mAccelerometer);
+
         mScreenSaverPreference = findPreference(KEY_SCREEN_SAVER);
         if (mScreenSaverPreference != null
                 && getResources().getBoolean(
                         com.android.internal.R.bool.config_dreamsSupported) == false) {
             getPreferenceScreen().removePreference(mScreenSaverPreference);
         }
+        getPreferenceScreen().removePreference(mScreenSaverPreference);
         
         mScreenTimeoutPreference = (ListPreference) findPreference(KEY_SCREEN_TIMEOUT);
-        final long currentTimeout = Settings.System.getLong(resolver, SCREEN_OFF_TIMEOUT,
-                FALLBACK_SCREEN_TIMEOUT_VALUE);
+        final long currentTimeout = SystemProperties.getLong("persist.boeye.shortstandby", 60000);
         mScreenTimeoutPreference.setValue(String.valueOf(currentTimeout));
         mScreenTimeoutPreference.setOnPreferenceChangeListener(this);
         disableUnusableTimeouts(mScreenTimeoutPreference);
         updateTimeoutPreferenceDescription(currentTimeout);
 
+        mShutdownDelayPreference = (ListPreference) findPreference(KEY_SHUTDOWN_DELAY);
+        int shutdownDelay = SystemProperties.getInt("persist.boeye.shutdowntime", 999);
+        if (shutdownDelay < 0 || shutdownDelay > 120) {
+            shutdownDelay = 999;
+        }
+        mShutdownDelayPreference.setValue(String.valueOf(shutdownDelay));
+        mShutdownDelayPreference.setOnPreferenceChangeListener(this);
+        updateShutdownDelayDescription(shutdownDelay);
+
+        mFullscreenFlushPreference = (ListPreference) findPreference(KEY_FULLSCREEN_FLUSH);
+        int times = Settings.System.getInt(resolver, KEY_FULLSCREEN_FLUSH, 5);
+        if (times < 1 || times > 10) {
+            times = 5;
+        }
+        mFullscreenFlushPreference.setValue(String.valueOf(times));
+        mFullscreenFlushPreference.setOnPreferenceChangeListener(this);
+        updateFullscreenFlushDescription(times);
+
         mFontSizePref = (WarnedListPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
-        mNotificationPulse = (CheckBoxPreference) findPreference(KEY_NOTIFICATION_PULSE);
-        if (mNotificationPulse != null
-                && getResources().getBoolean(
-                        com.android.internal.R.bool.config_intrusiveNotificationLed) == false) {
-            getPreferenceScreen().removePreference(mNotificationPulse);
+
+        getPreferenceScreen().removePreference(mFontSizePref);
+        if (SystemProperties.getInt("persist.boeye.statusbar", 1) == 1) {
+            mStatusbarPreference.setSummary(R.string.statusbar_summary_on);
         } else {
-            try {
-                mNotificationPulse.setChecked(Settings.System.getInt(resolver,
-                        Settings.System.NOTIFICATION_LIGHT_PULSE) == 1);
-                mNotificationPulse.setOnPreferenceChangeListener(this);
-            } catch (SettingNotFoundException snfe) {
-                Log.e(TAG, Settings.System.NOTIFICATION_LIGHT_PULSE + " not found");
-            }
+            mStatusbarPreference.setSummary(R.string.statusbar_summary_off);
+        }
+        if (Settings.System.getInt(getContentResolver(), "open_epub", 0) == 0) {
+            mOpenEpubPreference.setSummary(R.string.open_epub_withPDF);
+        } else {
+            mOpenEpubPreference.setSummary(R.string.open_epub_withFB2);
+        }
+        if (SystemProperties.getInt("persist.sys.keyChange", 0) == 1) {
+            mVolumeButtonsPreference.setSummary(R.string.volume_buttons_on);
+        } else {
+            mVolumeButtonsPreference.setSummary(R.string.volume_buttons_off);
+        }
+        if (SystemProperties.getInt("persist.sys.A2Flush", 0) == 1) {
+            mA2FlushPreference.setSummary(R.string.volume_buttons_on);
+        } else {
+            mA2FlushPreference.setSummary(R.string.volume_buttons_off);
         }
 
         mDisplayManager = (DisplayManager)getActivity().getSystemService(
                 Context.DISPLAY_SERVICE);
-        mWifiDisplayStatus = mDisplayManager.getWifiDisplayStatus();
-        mWifiDisplayPreference = (Preference)findPreference(KEY_WIFI_DISPLAY);
-        if (mWifiDisplayStatus.getFeatureState()
-                == WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE) {
-            getPreferenceScreen().removePreference(mWifiDisplayPreference);
-            mWifiDisplayPreference = null;
-        }
-
         boolean isChange = "true".equals(SystemProperties.get(
             "sys.resolution.changed", "false"));
         mResolutionPreference = (ListPreference) findPreference(KEY_RESOLUTION);
@@ -295,6 +341,58 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else {
             getPreferenceScreen().removePreference(mResolutionPreference);
         }
+    }
+
+    private void updateShutdownDelayDescription(int currentTimeout) {
+        ListPreference preference = mShutdownDelayPreference;
+        String summary;
+        if (currentTimeout < 0) {
+            summary = "";
+        } else {
+            final CharSequence[] entries = preference.getEntries();
+            final CharSequence[] values = preference.getEntryValues();
+            if (entries == null || entries.length == 0) {
+                summary = "";
+            } else {
+                int best = 0;
+                for (int i = 0; i < values.length; i++) {
+                    int timeout = Integer.parseInt(values[i].toString());
+                    if (currentTimeout >= timeout) {
+                        best = i;
+                    }
+                }
+                summary = preference.getContext()
+                    .getString(R.string.screen_timeout_summary, entries[best]);
+                if (best == values.length - 1) {
+                    summary = new StringBuffer(entries[best]).toString();
+                }
+            }
+        }
+        preference.setSummary(summary);
+    }
+
+    private void updateFullscreenFlushDescription(int times) {
+        ListPreference preference = mFullscreenFlushPreference;
+        String summary;
+        if (times < 0) {
+            summary = "";
+        } else {
+            final CharSequence[] entries = preference.getEntries();
+            final CharSequence[] values = preference.getEntryValues();
+            if (entries == null || entries.length == 0) {
+                summary = "";
+            } else {
+                int best = 0;
+                for (int i = 0; i < values.length; i++) {
+                    int temp = Integer.parseInt(values[i].toString());
+                    if (times >= temp) {
+                        best = i;
+                    }
+                }
+                summary = new StringBuffer(entries[best]).toString();
+            }
+        }
+        preference.setSummary(summary);
     }
 
     private void updateTimeoutPreferenceDescription(long currentTimeout) {
@@ -420,7 +518,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private void updateState() {
         updateAccelerometerRotationCheckbox();
-        readFontSizePreference(mFontSizePref);
         updateScreenSaverSummary();
         updateWifiDisplaySummary();
     }
@@ -474,6 +571,57 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(), Settings.System.NOTIFICATION_LIGHT_PULSE,
                     value ? 1 : 0);
             return true;
+        } else if (preference == mStatusbarPreference) {
+            if (mStatusbarPreference.getSummary().toString().equals(
+                        getResources().getString(R.string.statusbar_summary_on))) {
+                mStatusbarPreference.setSummary(R.string.statusbar_summary_off);
+                android.os.SystemProperties.set("persist.boeye.statusbar", "0");
+                Intent intent = new Intent("boyue.hide.status.bar");
+                getActivity().sendBroadcast(intent);
+            } else {
+                mStatusbarPreference.setSummary(R.string.statusbar_summary_on);
+                android.os.SystemProperties.set("persist.boeye.statusbar", "1");
+                Intent intent = new Intent("boyue.show.status.bar");
+                getActivity().sendBroadcast(intent);
+            }
+        } else if (preference == mOpenEpubPreference) {
+            if (Settings.System.getInt(getContentResolver(), "open_epub", 0) == 0) {
+                mOpenEpubPreference.setSummary(R.string.open_epub_withFB2);
+                Settings.System.putInt(getContentResolver(), "open_epub", 1);
+            } else {
+                mOpenEpubPreference.setSummary(R.string.open_epub_withPDF);
+                Settings.System.putInt(getContentResolver(), "open_epub", 0);
+            }
+        } else if (preference == mVolumeButtonsPreference) {
+            if (SystemProperties.getInt("persist.sys.keyChange", 0) == 1) {
+                mVolumeButtonsPreference.setSummary(R.string.volume_buttons_off);
+                SystemProperties.set("persist.sys.keyChange", "0");
+            } else {
+                mVolumeButtonsPreference.setSummary(R.string.volume_buttons_on);
+                SystemProperties.set("persist.sys.keyChange", "1");
+            }
+        } else if (preference == mA2FlushPreference) {
+            if (SystemProperties.getInt("persist.sys.A2Flush", 0) == 1) {
+                SystemProperties.set("persist.sys.A2Flush", "0");
+                mA2FlushPreference.setSummary(R.string.volume_buttons_off);
+                getActivity().getWindow().getDecorView()
+                    .invalidate(-2023, -2023, -2023, -2023);
+                getActivity().getWindow().getDecorView()
+                    .invalidate(-2021, -2021, -2021, -2021);
+            } else {
+                getActivity().getWindow().getDecorView()
+                    .invalidate(-2021, -2021, -2021, -2021);
+                SystemProperties.set("persist.sys.A2Flush", "1");
+                mA2FlushPreference.setSummary(R.string.volume_buttons_on);
+                getActivity().getWindow().getDecorView()
+                    .invalidate(-2022, -2022, -2022, -2022);
+            }
+        } else if (preference == mPicrecoverPreference) {
+            try {
+                Runtime.getRuntime().exec("cp /system/media/standby.png /data/misc/standby.png");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -484,7 +632,29 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             int value = Integer.parseInt((String) objValue);
             try {
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, value);
+                SystemProperties.set("persist.boeye.shortstandby", Integer.toString(value));
                 updateTimeoutPreferenceDescription(value);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist screen timeout setting", e);
+            }
+        }
+        if (KEY_SHUTDOWN_DELAY.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                SystemProperties.set("persist.boeye.shutdowntime", Integer.toString(value));
+                updateShutdownDelayDescription(value);
+                Intent intent = new Intent();
+                intent.setAction("com.android.settings.myshutdown.myShutdownService");
+                getActivity().startService(intent);
+            } catch (NumberFormatException e) {
+                Log.e(TAG, "could not persist Shutdown Delay setting", e);
+            }
+        }
+        if (KEY_FULLSCREEN_FLUSH.equals(key)) {
+            int value = Integer.parseInt((String) objValue);
+            try {
+                Settings.System.putInt(getContentResolver(), KEY_FULLSCREEN_FLUSH, value);
+                updateFullscreenFlushDescription(value);
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
@@ -520,8 +690,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             if (Utils.hasMultipleUsers(getActivity())) {
                 showDialog(DLG_GLOBAL_CHANGE_WARNING);
                 return true;
-            } else {
-                mFontSizePref.click();
             }
         }
         return false;
