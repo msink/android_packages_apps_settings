@@ -96,7 +96,7 @@ public class Memory extends SettingsPreferenceFragment {
 
         final StorageVolume[] storageVolumes = mStorageManager.getVolumeList();
         for (StorageVolume volume : storageVolumes) {
-            if (!volume.isEmulated()) {
+            if (!volume.isEmulated() && !volume.getPath().equals("/mnt/usb_storage")) {
                 addCategory(StorageVolumePreferenceCategory.buildForPhysical(context, volume));
             }
         }
@@ -174,7 +174,7 @@ public class Memory extends SettingsPreferenceFragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         final MenuItem usb = menu.findItem(R.id.storage_usb);
-        usb.setVisible(!isMassStorageEnabled());
+        usb.setVisible(true);
     }
 
     @Override

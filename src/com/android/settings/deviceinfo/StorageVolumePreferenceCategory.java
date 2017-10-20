@@ -59,19 +59,12 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
     private final StorageManager mStorageManager;
     private final UserManager mUserManager;
 
-    private UsageBarPreference mUsageBarPreference;
     private Preference mMountTogglePreference;
     private Preference mFormatPreference;
     private Preference mStorageLow;
 
     private StorageItemPreference mItemTotal;
     private StorageItemPreference mItemAvailable;
-    private StorageItemPreference mItemApps;
-    private StorageItemPreference mItemDcim;
-    private StorageItemPreference mItemMusic;
-    private StorageItemPreference mItemDownloads;
-    private StorageItemPreference mItemCache;
-    private StorageItemPreference mItemMisc;
     private List<StorageItemPreference> mItemUsers = Lists.newArrayList();
 
     private boolean mUsbConnected;
@@ -147,36 +140,16 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
         final List<UserInfo> otherUsers = getUsersExcluding(currentUser);
         final boolean showUsers = mVolume == null && otherUsers.size() > 0;
 
-        mUsageBarPreference = new UsageBarPreference(context);
-        mUsageBarPreference.setOrder(ORDER_USAGE_BAR);
-        addPreference(mUsageBarPreference);
-
         mItemTotal = buildItem(R.string.memory_size, 0);
-        mItemAvailable = buildItem(R.string.memory_available, R.color.memory_avail);
+        mItemAvailable = buildItem(R.string.memory_available, 0);
         addPreference(mItemTotal);
         addPreference(mItemAvailable);
-
-        mItemApps = buildItem(R.string.memory_apps_usage, R.color.memory_apps_usage);
-        mItemDcim = buildItem(R.string.memory_dcim_usage, R.color.memory_dcim);
-        mItemMusic = buildItem(R.string.memory_music_usage, R.color.memory_music);
-        mItemDownloads = buildItem(R.string.memory_downloads_usage, R.color.memory_downloads);
-        mItemCache = buildItem(R.string.memory_media_cache_usage, R.color.memory_cache);
-        mItemMisc = buildItem(R.string.memory_media_misc_usage, R.color.memory_misc);
-
-        mItemCache.setKey(KEY_CACHE);
 
         final boolean showDetails = mVolume == null || mVolume.isPrimary();
         if (showDetails) {
             if (showUsers) {
                 addPreference(new PreferenceHeader(context, currentUser.name));
             }
-
-            addPreference(mItemApps);
-            addPreference(mItemDcim);
-            addPreference(mItemMusic);
-            addPreference(mItemDownloads);
-            addPreference(mItemCache);
-            addPreference(mItemMisc);
 
             if (showUsers) {
                 addPreference(new PreferenceHeader(context, R.string.storage_other_users));
@@ -201,9 +174,7 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
             addPreference(mMountTogglePreference);
         }
 
-        // Only allow formatting of primary physical storage
-        // TODO: enable for non-primary volumes once MTP is fixed
-        final boolean allowFormat = mVolume != null ? mVolume.isPrimary() : false;
+        final boolean allowFormat = mVolume != null && !mVolume.isEmulated();
         if (allowFormat) {
             mFormatPreference = new Preference(context);
             mFormatPreference.setTitle(R.string.sd_format);
@@ -231,6 +202,37 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
         return mVolume;
     }
 
+    private void resetPreferences() {
+        removePreference(mItemTotal);
+        removePreference(mItemAvailable);
+        boolean showDetails = mVolume == null || mVolume.isPrimary();
+        if (showDetails) {
+        }
+        addPreference(mItemTotal);
+        if (mFormatPreference != null) {
+            removePreference(mFormatPreference);
+        }
+        if (mMountTogglePreference != null) {
+            removePreference(mMountTogglePreference);
+        }
+        if (mStorageLow != null) {
+            removePreference(mStorageLow);
+        }
+        if (mStorageLow != null) {
+            addPreference(mStorageLow);
+        }
+        if (mMountTogglePreference != null) {
+            addPreference(mMountTogglePreference);
+            mMountTogglePreference.setEnabled(true);
+        }
+        if (mFormatPreference != null) {
+            addPreference(mFormatPreference);
+        }
+        if (showDetails) {
+        }
+        addPreference(mItemAvailable);
+    }
+
     private void updatePreferencesFromState() {
         // Only update for physical volumes
         if (mVolume == null) return;
@@ -244,8 +246,6 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
             if (mFormatPreference != null) {
                 removePreference(mFormatPreference);
             }
-        } else {
-            mItemAvailable.setSummary(R.string.memory_available);
         }
 
         if (Environment.MEDIA_MOUNTED.equals(state)
@@ -265,7 +265,6 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
                 mMountTogglePreference.setSummary(mResources.getString(R.string.sd_insert_summary));
             }
 
-            removePreference(mUsageBarPreference);
             removePreference(mItemTotal);
             removePreference(mItemAvailable);
             if (mFormatPreference != null) {
@@ -293,6 +292,7 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
     }
 
     public void updateApproximate(long totalSize, long availSize) {
+        resetPreferences();
         mItemTotal.setSummary(formatSize(totalSize));
         mItemAvailable.setSummary(formatSize(availSize));
 
@@ -300,18 +300,11 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
 
         final long usedSize = totalSize - availSize;
 
-        mUsageBarPreference.clear();
-        mUsageBarPreference.addEntry(0, usedSize / (float) totalSize, android.graphics.Color.GRAY);
-        mUsageBarPreference.commit();
-
         updatePreferencesFromState();
     }
 
     private static long totalValues(HashMap<String, Long> map, String... keys) {
         long total = 0;
-        for (String key : keys) {
-            total += map.get(key);
-        }
         return total;
     }
 
@@ -323,38 +316,16 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
         mItemTotal.setSummary(formatSize(details.totalSize));
         mItemAvailable.setSummary(formatSize(details.availSize));
 
-        mUsageBarPreference.clear();
-
-        updatePreference(mItemApps, details.appsSize);
-
-        final long dcimSize = totalValues(details.mediaSize, Environment.DIRECTORY_DCIM,
-                Environment.DIRECTORY_MOVIES, Environment.DIRECTORY_PICTURES);
-        updatePreference(mItemDcim, dcimSize);
-
-        final long musicSize = totalValues(details.mediaSize, Environment.DIRECTORY_MUSIC,
-                Environment.DIRECTORY_ALARMS, Environment.DIRECTORY_NOTIFICATIONS,
-                Environment.DIRECTORY_RINGTONES, Environment.DIRECTORY_PODCASTS);
-        updatePreference(mItemMusic, musicSize);
-
-        final long downloadsSize = totalValues(details.mediaSize, Environment.DIRECTORY_DOWNLOADS);
-        updatePreference(mItemDownloads, downloadsSize);
-
-        updatePreference(mItemCache, details.cacheSize);
-        updatePreference(mItemMisc, details.miscSize);
-
         for (StorageItemPreference userPref : mItemUsers) {
             final long userSize = details.usersSize.get(userPref.userHandle);
             updatePreference(userPref, userSize);
         }
-
-        mUsageBarPreference.commit();
     }
 
     private void updatePreference(StorageItemPreference pref, long size) {
         if (size > 0) {
             pref.setSummary(formatSize(size));
             final int order = pref.getOrder();
-            mUsageBarPreference.addEntry(order, size / (float) mTotalSize, pref.color);
         } else {
             removePreference(pref);
         }
@@ -423,25 +394,6 @@ public class StorageVolumePreferenceCategory extends PreferenceCategory {
         if (pref == mFormatPreference) {
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setClass(getContext(), com.android.settings.MediaFormat.class);
-            intent.putExtra(StorageVolume.EXTRA_STORAGE_VOLUME, mVolume);
-        } else if (pref == mItemApps) {
-            intent = new Intent(Intent.ACTION_MANAGE_PACKAGE_STORAGE);
-            intent.setClass(getContext(),
-                    com.android.settings.Settings.ManageApplicationsActivity.class);
-        } else if (pref == mItemDownloads) {
-            intent = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS).putExtra(
-                    DownloadManager.INTENT_EXTRAS_SORT_BY_SIZE, true);
-        } else if (pref == mItemMusic) {
-            intent = new Intent(Intent.ACTION_GET_CONTENT);
-            intent.setType("audio/mp3");
-        } else if (pref == mItemDcim) {
-            intent = new Intent(Intent.ACTION_VIEW);
-            intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-            // TODO Create a Videos category, type = vnd.android.cursor.dir/video
-            intent.setType("vnd.android.cursor.dir/image");
-        } else if (pref == mItemMisc) {
-            Context context = getContext().getApplicationContext();
-            intent = new Intent(context, MiscFilesHandler.class);
             intent.putExtra(StorageVolume.EXTRA_STORAGE_VOLUME, mVolume);
         }
 
