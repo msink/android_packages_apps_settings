@@ -44,6 +44,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.android.settings.R;
@@ -100,8 +101,6 @@ public class Memory extends SettingsPreferenceFragment {
                 addCategory(StorageVolumePreferenceCategory.buildForPhysical(context, volume));
             }
         }
-
-        setHasOptionsMenu(true);
     }
 
     private void addCategory(StorageVolumePreferenceCategory category) {
@@ -120,6 +119,8 @@ public class Memory extends SettingsPreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_memory);
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_MEDIA_SCANNER_STARTED);
         intentFilter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
         intentFilter.addDataScheme("file");

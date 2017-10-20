@@ -30,6 +30,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.util.Log;
+import android.view.WindowManager.LayoutParams;
 
 import com.android.settings.AccountPreference;
 import com.android.settings.DialogCreatable;
@@ -67,6 +68,8 @@ public class SyncSettings extends AccountPreferenceBase
         });
 
         setHasOptionsMenu(true);
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
     }
 
     @Override

@@ -46,6 +46,7 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.android.internal.view.RotationPolicy;
@@ -491,6 +492,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_display);
 
         RotationPolicy.registerRotationPolicyListener(getActivity(),
                 mRotationPolicyListener);

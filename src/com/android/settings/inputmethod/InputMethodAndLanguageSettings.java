@@ -46,6 +46,7 @@ import android.text.TextUtils;
 import android.view.InputDevice;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.view.Window;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -222,6 +223,8 @@ public class InputMethodAndLanguageSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_language);
 
         mSettingsObserver.resume();
         mIm.registerInputDeviceListener(this, null);

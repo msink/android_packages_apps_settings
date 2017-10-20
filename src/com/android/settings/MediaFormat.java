@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.storage.StorageVolume;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
 import com.android.internal.os.storage.ExternalStorageFormatter;
@@ -155,7 +156,10 @@ public class MediaFormat extends Activity {
         mFinalView = null;
         mInflater = LayoutInflater.from(this);
 
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         establishInitialState();
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar);
     }
 
     /** Abandon all progress through the confirmation sequence by returning

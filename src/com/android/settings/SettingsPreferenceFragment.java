@@ -30,9 +30,12 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 /**
@@ -48,6 +51,8 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
 
     private String mHelpUrl;
 
+    public View layoutView;
+
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -57,6 +62,12 @@ public class SettingsPreferenceFragment extends PreferenceFragment implements Di
         if (helpResource != 0) {
             mHelpUrl = getResources().getString(helpResource);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        layoutView = inflater.inflate(R.layout.my_preference_list_fragment, container, false);
+        return layoutView;
     }
 
     @Override

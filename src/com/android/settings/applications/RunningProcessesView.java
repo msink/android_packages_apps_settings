@@ -425,14 +425,14 @@ public class RunningProcessesView extends FrameLayout
         mAdapter = new ServiceListAdapter(mState);
         mListView.setAdapter(mAdapter);
         mColorBar = (LinearColorBar)findViewById(R.id.color_bar);
-        mBackgroundProcessText = (TextView)findViewById(R.id.backgroundText);
+        mBackgroundProcessText = (TextView)findViewById(R.id.my_backgroundText);
         mBackgroundProcessText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAdapter.setShowBackground(true);
             }
         });
-        mForegroundProcessText = (TextView)findViewById(R.id.foregroundText);
+        mForegroundProcessText = (TextView)findViewById(R.id.my_foregroundText);
         mForegroundProcessText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

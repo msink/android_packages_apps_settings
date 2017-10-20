@@ -29,6 +29,9 @@ import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.settings.R;
@@ -59,6 +62,12 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+    }
+
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        layoutView = inflater.inflate(R.layout.my_wifi_advance_fragment, container, false);
+        return layoutView;
     }
 
     @Override

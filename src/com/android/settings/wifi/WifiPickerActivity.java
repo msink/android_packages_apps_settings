@@ -16,11 +16,13 @@
 package com.android.settings.wifi;
 
 import com.android.settings.ButtonBarHandler;
+import com.android.settings.R;
 
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.view.Window;
 import android.widget.Button;
 
 public class WifiPickerActivity extends PreferenceActivity implements ButtonBarHandler {
@@ -31,6 +33,18 @@ public class WifiPickerActivity extends PreferenceActivity implements ButtonBarH
     private static final String EXTRA_PREFS_SET_BACK_TEXT = "extra_prefs_set_back_text";
     private static final String EXTRA_WIFI_SHOW_ACTION_BAR = "wifi_show_action_bar";
     private static final String EXTRA_WIFI_SHOW_MENUS = "wifi_show_menus";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.my_titlebar);
+    }
 
     @Override
     public Intent getIntent() {

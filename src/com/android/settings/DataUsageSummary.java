@@ -105,6 +105,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -286,6 +287,8 @@ public class DataUsageSummary extends Fragment {
             mShowEthernet = hasEthernet(context);
         }
 
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
         setHasOptionsMenu(true);
         setRetainInstance(true);
     }

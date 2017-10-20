@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -247,6 +248,8 @@ public class MasterClear extends Fragment {
         mContentView = inflater.inflate(R.layout.master_clear, null);
 
         establishInitialState();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_masterclear);
         return mContentView;
     }
 }

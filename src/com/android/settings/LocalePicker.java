@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ListView;
 
 import com.android.settings.SettingsPreferenceFragment.SettingsDialogFragment;
@@ -58,7 +59,10 @@ public class LocalePicker extends com.android.internal.app.LocalePicker
             LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = super.onCreateView(inflater, container, savedInstanceState);
         final ListView list = (ListView) view.findViewById(android.R.id.list);
+        list.setFadingEdgeLength(0);
         Utils.forcePrepareCustomPreferencesList(container, view, list, false);
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_language);
         return view;
     }
 
@@ -70,6 +74,8 @@ public class LocalePicker extends com.android.internal.app.LocalePicker
         } else {
             getActivity().onBackPressed();
             LocalePicker.updateLocale(locale);
+            getActivity().getWindow().getDecorView()
+                .invalidate(-1010, -1010, -1010, -1010);
         }
     }
 

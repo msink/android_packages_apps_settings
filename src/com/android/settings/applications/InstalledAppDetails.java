@@ -73,6 +73,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AppSecurityPermissions;
 import android.widget.ArrayAdapter;
@@ -421,6 +422,8 @@ public class InstalledAppDetails extends Fragment
         retrieveAppEntry();
 
         setHasOptionsMenu(true);
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
     }
 
     @Override

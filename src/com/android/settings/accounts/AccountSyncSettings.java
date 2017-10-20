@@ -46,6 +46,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -144,6 +146,8 @@ public class AccountSyncSettings extends AccountPreferenceBase {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
         setHasOptionsMenu(true);
     }
 
@@ -196,6 +200,8 @@ public class AccountSyncSettings extends AccountPreferenceBase {
         updateAuthDescriptions();
         onAccountsUpdated(AccountManager.get(activity).getAccounts());
 
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_account);
         super.onResume();
     }
 

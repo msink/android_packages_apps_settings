@@ -51,11 +51,13 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -142,6 +144,11 @@ public class Settings extends PreferenceActivity
         if (getIntent().getBooleanExtra(EXTRA_CLEAR_UI_OPTIONS, false)) {
             getWindow().setUiOptions(0);
         }
+        if (getIntent().getBooleanExtra("wifi_setup_provision", false)) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+        } else {
+            requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
+        }
 
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
@@ -216,10 +223,8 @@ public class Settings extends PreferenceActivity
                 mDevelopmentPreferencesListener);
 
         ListAdapter listAdapter = getListAdapter();
-        if (listAdapter instanceof HeaderAdapter) {
-            ((HeaderAdapter) listAdapter).resume();
-        }
         invalidateHeaders();
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.my_titlebar);
     }
 
     @Override
@@ -227,9 +232,6 @@ public class Settings extends PreferenceActivity
         super.onPause();
 
         ListAdapter listAdapter = getListAdapter();
-        if (listAdapter instanceof HeaderAdapter) {
-            ((HeaderAdapter) listAdapter).pause();
-        }
 
         mDevelopmentPreferences.unregisterOnSharedPreferenceChangeListener(
                 mDevelopmentPreferencesListener);
@@ -621,7 +623,6 @@ public class Settings extends PreferenceActivity
         private static class HeaderViewHolder {
             ImageView icon;
             TextView title;
-            TextView summary;
             Switch switch_;
         }
 
@@ -630,8 +631,6 @@ public class Settings extends PreferenceActivity
         static int getHeaderType(Header header) {
             if (header.fragment == null && header.intent == null) {
                 return HEADER_TYPE_CATEGORY;
-            } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings) {
-                return HEADER_TYPE_SWITCH;
             } else {
                 return HEADER_TYPE_NORMAL;
             }
@@ -692,26 +691,12 @@ public class Settings extends PreferenceActivity
                         holder.title = (TextView) view;
                         break;
 
-                    case HEADER_TYPE_SWITCH:
-                        view = mInflater.inflate(R.layout.preference_header_switch_item, parent,
-                                false);
-                        holder.icon = (ImageView) view.findViewById(R.id.icon);
-                        holder.title = (TextView)
-                                view.findViewById(com.android.internal.R.id.title);
-                        holder.summary = (TextView)
-                                view.findViewById(com.android.internal.R.id.summary);
-                        holder.switch_ = (Switch) view.findViewById(R.id.switchWidget);
-                        break;
-
                     case HEADER_TYPE_NORMAL:
                         view = mInflater.inflate(
-                                R.layout.preference_header_item, parent,
+                                R.layout.my_header_item, parent,
                                 false);
-                        holder.icon = (ImageView) view.findViewById(R.id.icon);
-                        holder.title = (TextView)
-                                view.findViewById(com.android.internal.R.id.title);
-                        holder.summary = (TextView)
-                                view.findViewById(com.android.internal.R.id.summary);
+                        holder.icon = (ImageView) view.findViewById(R.id.myheader_icon);
+                        holder.title = (TextView) view.findViewById(R.id.myheader_text);
                         break;
                 }
                 view.setTag(holder);
@@ -726,53 +711,13 @@ public class Settings extends PreferenceActivity
                     holder.title.setText(header.getTitle(getContext().getResources()));
                     break;
 
-                case HEADER_TYPE_SWITCH:
-                    // Would need a different treatment if the main menu had more switches
-                    if (header.id == R.id.wifi_settings) {
-                        mWifiEnabler.setSwitch(holder.switch_);
-                    } else {
-                        mBluetoothEnabler.setSwitch(holder.switch_);
-                    }
-                    // No break, fall through on purpose to update common fields
-
-                    //$FALL-THROUGH$
                 case HEADER_TYPE_NORMAL:
-                    if (header.extras != null
-                            && header.extras.containsKey(ManageAccountsSettings.KEY_ACCOUNT_TYPE)) {
-                        String accType = header.extras.getString(
-                                ManageAccountsSettings.KEY_ACCOUNT_TYPE);
-                        ViewGroup.LayoutParams lp = holder.icon.getLayoutParams();
-                        lp.width = getContext().getResources().getDimensionPixelSize(
-                                R.dimen.header_icon_width);
-                        lp.height = lp.width;
-                        holder.icon.setLayoutParams(lp);
-                        Drawable icon = mAuthHelper.getDrawableForType(getContext(), accType);
-                        holder.icon.setImageDrawable(icon);
-                    } else {
-                        holder.icon.setImageResource(header.iconRes);
-                    }
+                    holder.icon.setImageResource(header.iconRes);
                     holder.title.setText(header.getTitle(getContext().getResources()));
-                    CharSequence summary = header.getSummary(getContext().getResources());
-                    if (!TextUtils.isEmpty(summary)) {
-                        holder.summary.setVisibility(View.VISIBLE);
-                        holder.summary.setText(summary);
-                    } else {
-                        holder.summary.setVisibility(View.GONE);
-                    }
                     break;
             }
 
             return view;
-        }
-
-        public void resume() {
-            mWifiEnabler.resume();
-            mBluetoothEnabler.resume();
-        }
-
-        public void pause() {
-            mWifiEnabler.pause();
-            mBluetoothEnabler.pause();
         }
     }
 
@@ -826,6 +771,18 @@ public class Settings extends PreferenceActivity
         mAuthenticatorHelper.updateAuthDescriptions(this);
         mAuthenticatorHelper.onAccountsUpdated(this, accounts);
         invalidateHeaders();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+        case KeyEvent.KEYCODE_VOLUME_UP:
+        case KeyEvent.KEYCODE_VOLUME_DOWN:
+            return true;
+        case KeyEvent.KEYCODE_BACK:
+            if (getIntent().getBooleanExtra("wifi_setup_provision", false))
+                return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /*

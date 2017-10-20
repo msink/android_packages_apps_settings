@@ -30,6 +30,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -154,7 +155,6 @@ public class ZonePicker extends ListFragment {
 
         // Sets the adapter
         setSorting(true);
-        setHasOptionsMenu(true);
     }
 
     @Override
@@ -162,7 +162,10 @@ public class ZonePicker extends ListFragment {
             Bundle savedInstanceState) {
         final View view = super.onCreateView(inflater, container, savedInstanceState);
         final ListView list = (ListView) view.findViewById(android.R.id.list);
+        list.setFadingEdgeLength(0);
         Utils.forcePrepareCustomPreferencesList(container, view, list, false);
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_datetime);
         return view;
     }
 

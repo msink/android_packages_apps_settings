@@ -30,6 +30,8 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Gesture lock pattern settings.
@@ -76,6 +78,11 @@ public class PrivacySettings extends SettingsPreferenceFragment implements
     @Override
     public void onResume() {
         super.onResume();
+
+        ImageView ic = (ImageView) layoutView.findViewById(R.id.mytitle_icon);
+        TextView tv = (TextView) layoutView.findViewById(R.id.mytitle_text);
+        ic.setImageResource(R.drawable.myic_settings_backup);
+        tv.setText(R.string.privacy_settings);
 
         // Refresh UI
         updateToggles();

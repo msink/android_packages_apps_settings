@@ -262,9 +262,10 @@ public class ManageApplications extends Fragment implements
                 mListView.setAdapter(mApplications);
                 mListView.setRecyclerListener(mApplications);
                 mColorBar = (LinearColorBar)mListContainer.findViewById(R.id.storage_color_bar);
+                mColorBar.setVisibility(View.GONE);
                 mStorageChartLabel = (TextView)mListContainer.findViewById(R.id.storageChartLabel);
-                mUsedStorageText = (TextView)mListContainer.findViewById(R.id.usedStorageText);
-                mFreeStorageText = (TextView)mListContainer.findViewById(R.id.freeStorageText);
+                mUsedStorageText = (TextView)mListContainer.findViewById(R.id.my_usedStorageText);
+                mFreeStorageText = (TextView)mListContainer.findViewById(R.id.my_freeStorageText);
                 Utils.prepareCustomPreferencesList(contentParent, contentChild, mListView, false);
                 if (mFilter == FILTER_APPS_SDCARD) {
                     mStorageChartLabel.setText(mOwner.getActivity().getText(
@@ -808,8 +809,6 @@ public class ManageApplications extends Fragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setHasOptionsMenu(true);
-
         mApplicationsState = ApplicationsState.getInstance(getActivity().getApplication());
         Intent intent = getActivity().getIntent();
         String action = intent.getAction();
@@ -887,7 +886,7 @@ public class ManageApplications extends Fragment implements
         mViewPager.setAdapter(adapter);
         mViewPager.setOnPageChangeListener(adapter);
         PagerTabStrip tabs = (PagerTabStrip) rootView.findViewById(R.id.tabs);
-        tabs.setTabIndicatorColorResource(android.R.color.holo_blue_light);
+        tabs.setTabIndicatorColorResource(android.R.color.black);
 
         // We have to do this now because PreferenceFrameLayout looks at it
         // only when the view is added.
@@ -1210,7 +1209,6 @@ public class ManageApplications extends Fragment implements
         }
 
         mCurTab.updateStorageUsage();
-        updateOptionsMenu();
         final Activity host = getActivity();
         if (host != null) {
             host.invalidateOptionsMenu();

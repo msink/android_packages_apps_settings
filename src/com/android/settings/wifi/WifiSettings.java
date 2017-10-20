@@ -372,7 +372,10 @@ public class WifiSettings extends SettingsPreferenceFragment
 
             return view;
         } else {
-            return super.onCreateView(inflater, container, savedInstanceState);
+            layoutView = inflater.inflate(R.layout.my_wifi_list_fragment, container, false);
+            Switch wifiSwitch = (Switch) layoutView.findViewById(R.id.myswitch);
+            mWifiEnabler = new WifiEnabler(getActivity(), wifiSwitch);
+            return layoutView;
         }
     }
 

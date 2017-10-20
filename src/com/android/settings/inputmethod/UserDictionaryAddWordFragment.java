@@ -24,6 +24,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -54,6 +55,8 @@ public class UserDictionaryAddWordFragment extends Fragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
     }
 
     @Override

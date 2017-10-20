@@ -37,6 +37,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.text.format.DateFormat;
+import android.view.Window;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
@@ -152,6 +153,8 @@ public class DateTimeSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_datetime);
 
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
@@ -248,6 +251,7 @@ public class DateTimeSettings extends SettingsPreferenceFragment
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
+            d.setCancelable(true);
             break;
         }
         case DIALOG_TIMEPICKER: {
@@ -258,6 +262,7 @@ public class DateTimeSettings extends SettingsPreferenceFragment
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
                     DateFormat.is24HourFormat(getActivity()));
+            d.setCancelable(true);
             break;
         }
         default:

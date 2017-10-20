@@ -37,6 +37,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AlphabetIndexer;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -122,6 +123,8 @@ public class UserDictionarySettings extends ListFragment {
         listView.setFastScrollEnabled(true);
         listView.setEmptyView(emptyView);
 
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
         setHasOptionsMenu(true);
 
     }

@@ -34,6 +34,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -171,6 +172,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     @Override
     public void onResume() {
         super.onResume();
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_about);
         mDevHitCountdown = getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
                 Context.MODE_PRIVATE).getBoolean(DevelopmentSettings.PREF_SHOW,
                         android.os.Build.TYPE.equals("eng")) ? -1 : TAPS_TO_BE_A_DEVELOPER;

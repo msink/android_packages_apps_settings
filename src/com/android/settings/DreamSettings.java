@@ -96,23 +96,17 @@ public class DreamSettings extends SettingsPreferenceFragment {
                 }
             }
         });
+        mBackend.setEnabled(true);
 
         final int padding = activity.getResources().getDimensionPixelSize(
                 R.dimen.action_bar_switch_padding);
         mSwitch.setPadding(0, 0, padding, 0);
-        activity.getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
-                ActionBar.DISPLAY_SHOW_CUSTOM);
-        activity.getActionBar().setCustomView(mSwitch, new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER_VERTICAL | Gravity.END));
 
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onDestroyView() {
-        getActivity().getActionBar().setCustomView(null);
         super.onDestroyView();
     }
 

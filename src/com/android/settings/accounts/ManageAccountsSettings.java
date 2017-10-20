@@ -45,6 +45,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager.LayoutParams;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -90,6 +92,8 @@ public class ManageAccountsSettings extends AccountPreferenceBase
         }
         addPreferencesFromResource(R.xml.manage_accounts_settings);
         setHasOptionsMenu(true);
+        getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                           LayoutParams.FLAG_NEEDS_MENU_KEY);
     }
 
     @Override
@@ -105,6 +109,8 @@ public class ManageAccountsSettings extends AccountPreferenceBase
         final View view = inflater.inflate(R.layout.manage_accounts_screen, container, false);
         final ListView list = (ListView) view.findViewById(android.R.id.list);
         Utils.prepareCustomPreferencesList(container, view, list, false);
+        getActivity().getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+            R.layout.my_titlebar_account);
         return view;
     }
 
@@ -132,8 +138,6 @@ public class ManageAccountsSettings extends AccountPreferenceBase
         super.onStop();
         final Activity activity = getActivity();
         AccountManager.get(activity).removeOnAccountsUpdatedListener(this);
-        activity.getActionBar().setDisplayOptions(0, ActionBar.DISPLAY_SHOW_CUSTOM);
-        activity.getActionBar().setCustomView(null);
     }
 
     @Override
