@@ -16,6 +16,15 @@
 
 <resources>
 
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">#ffffffff</item>
+    </style>
+
+    <style name="activityTitlebar" parent="@*android:style/Theme.Light">
+        <item name="android:windowTitleSize">64dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    </style>
+
     <style name="TextAppearanceSwitch">
         <item name="android:textSize">18dp</item>
         <item name="android:textStyle">bold</item>
@@ -135,13 +144,13 @@
     <style name="wifi_item_label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="wifi_item_content">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="wifi_section">

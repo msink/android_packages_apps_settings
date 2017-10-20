@@ -19,12 +19,12 @@
 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="60dip"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-    android:paddingTop="8dip"
-    android:paddingBottom="8dip"
+    android:paddingTop="4dip"
+    android:paddingBottom="4dip"
     android:columnCount="4">
 
     <ImageView
@@ -33,6 +33,7 @@
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_rowSpan="2"
         android:layout_marginEnd="8dip"
+        android:layout_gravity="center_vertical"
         android:scaleType="centerInside"
         android:contentDescription="@null" />
 
@@ -44,7 +45,7 @@
         android:layout_marginTop="2dip"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="22dip"
         android:textAlignment="viewStart" />
 
     <CheckBox android:id="@+id/app_on_sdcard"
@@ -59,7 +60,7 @@
         android:id="@+id/app_size"
         android:layout_width="0dip"
         android:layout_gravity="fill_horizontal"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="14dip"
         android:textAlignment="viewStart" />
 
     <TextView

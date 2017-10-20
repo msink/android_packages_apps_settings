@@ -22,7 +22,7 @@
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/title_area"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:layout_marginStart="@*android:dimen/preference_fragment_padding_side"
     android:layout_marginEnd="@*android:dimen/preference_fragment_padding_side"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -38,6 +38,7 @@
         android:layout_height="@android:dimen/app_icon_size"
         android:layout_rowSpan="2"
         android:layout_marginEnd="8dip"
+        android:layout_gravity="center_vertical"
         android:scaleType="centerInside"
         android:contentDescription="@null" />
 
@@ -48,7 +49,7 @@
         android:layout_marginTop="2dip"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30dp"
         android:textAlignment="viewStart" />
 
     <TextView
@@ -57,7 +58,7 @@
         android:layout_gravity="fill_horizontal"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="18dp"
         android:textAlignment="viewStart" />
 
 </GridLayout>

@@ -50,7 +50,6 @@
 
     <!-- Display settings.  The delay in inactivity before the screen is turned off. These are shown in a list dialog. -->
     <string-array name="screen_timeout_entries">
-        <item>15 seconds</item>
         <item>30 seconds</item>
         <item>1 minute</item>
         <item>2 minutes</item>
@@ -61,8 +60,6 @@
 
     <!-- Do not translate. -->
     <string-array name="screen_timeout_values" translatable="false">
-        <!-- Do not translate. -->
-        <item>15000</item>
         <!-- Do not translate. -->
         <item>30000</item>
         <!-- Do not translate. -->
@@ -823,6 +820,7 @@
         <item>720x576p_50Hz</item>
         <item>720x480p_60Hz</item>
     </string-array>
+
     <string-array name="hdmi_resolution_values">
         <item>1</item>
         <item>2</item>
@@ -831,12 +829,14 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+
     <string-array name="hdmi_lcd_timeout_entries">
         <item>10s</item>
         <item>20s</item>
         <item>30s</item>
         <item>never sleep</item>
     </string-array>
+
     <string-array name="hdmi_lcd_timeout_values">
         <item>1</item>
         <item>2</item>
@@ -853,6 +853,7 @@
         <item>240</item>
         <item>300</item>
     </string-array>
+
     <string-array name="screenshot_delay_entries">
         <item>15seconds later</item>
         <item>30seconds later</item>
@@ -862,11 +863,13 @@
         <item>4minute later</item>
         <item>5minute later</item>
     </string-array>
+
     <string-array name="screenshot_storage_location">
         <item>Nand Flash</item>
         <item>SD Card</item>
         <item>USB Storage</item>
     </string-array>
+
     <string-array name="screenshot_strorage_location_values">
         <item>flash</item>
         <item>sdcard</item>
@@ -877,6 +880,7 @@
         <item>Normal</item>
         <item>HD</item>
     </string-array>
+
     <string-array name="entryvalues_resolution">
         <item>0</item>
         <item>1</item>

@@ -71,7 +71,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/title_area"
-        android:background="@android:color/transparent"
         android:orientation="vertical" >
 
         <TextView

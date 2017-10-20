@@ -19,8 +19,8 @@
     <!-- If false, MIN is displayed. If true, MSID is displayed. -->
     <bool name="config_msid_enable" translatable="false">false</bool>
 
-    <string name="additional_system_update" translatable="false"></string>
-    <string name="additional_system_update_menu" translatable="false"></string>
+    <string name="additional_system_update" translatable="false">android.rockchip.update.service</string>
+    <string name="additional_system_update_menu" translatable="false">android.rockchip.update.service.Setting</string>
 
     <!-- TODO: This is purely enforced by the interface, and does not affect what
          strings may be inserted into the actual content provider.
