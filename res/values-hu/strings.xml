@@ -708,7 +708,6 @@
     <string name="account_settings" msgid="6403589284618783461">"Fiókok"</string>
     <string name="search_settings" msgid="1910951467596035063">"Keresés"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Keresési beállítások és előzmények kezelése"</string>
-    <string name="display_settings" msgid="7965901687241669598">"Megjelenítés"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Képernyő automatikus forgatása"</string>
     <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Tájolás automatikus váltása a táblagép forgatásakor"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Tájolás automatikus váltása a telefon elfordításakor"</string>
@@ -720,7 +719,7 @@
     <string name="screen_timeout_summary" msgid="327761329263064327">"<xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> inaktivitás után"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Háttérkép"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Válasszon tapétát innen:"</string>
-    <string name="screensaver_settings_title" msgid="3349790120327233241">"Álmodozás"</string>
+    <string name="screensaver_settings_title" msgid="3349790120327233241">"Alvó üzemmód kép"</string>
     <string name="screensaver_settings_summary_either_long" msgid="2458481525925378465">"Dokkolt vagy alvó állapotban, töltés közben"</string>
     <string name="screensaver_settings_summary_either_short" msgid="6140527286137331478">"Bármelyik"</string>
     <string name="screensaver_settings_summary_sleep" msgid="9086186698140423493">"Töltés közben"</string>
@@ -1832,4 +1831,45 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Fotóazonosító"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Cellán belüli adások"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Válassza ki a megjelenítendő vészriasztások típusait."</string>
+
+    <string name="settings_license_google">Google jogi információ</string>
+    <string name="back_label">Vissza</string>
+    <string name="select_wifi_category">Hálózat kiválasztása</string>
+    <string name="my_account_settings_title">Fiók kezelés</string>
+    <string name="adobe_account_setting">Adobe DRM beállítás</string>
+    <string name="drm_active">DRM aktiválás</string>
+    <string name="myidentity_title">Fiók:</string>
+    <string name="mypassword_title">Jelszó:</string>
+    <string name="logout">Kijelentkezés</string>
+    <string name="drm_settings_information">Tippek</string>
+    <string name="drm_settings_activite_successfully">Adobe DRM aktiválás sikeres!</string>
+    <string name="drm_settings_disactivite_successfully">Adobe DRM kijelentkezés sikeres!</string>
+    <string name="drm_settings_activite_failed">Adobe DRM aktiválás nem sikerült!</string>
+    <string name="drm_settings_null">Adja meg az azonosítót vagy a jelszót!</string>
+    <string name="shutdown_delay">Leállítás</string>
+    <string name="norwayapp_settings">Minden alkalmazás</string>
+    <string name="font_setting">Betűtípus kezelés</string>
+    <string name="setfont_summary">Rendszer betűtípus beállítása</string>
+    <string name="current_font">Jelenlegi betűtípus</string>
+    <string name="systemupdate">Rendszerfrissítés</string>
+    <string name="font_preview">Előnézet:</string>
+    <string name="after_replace">Kicserél</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n1 2 3 4 5 6 7\n\n+-=*%#@,.$\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">"Ezzel beállítja az alapértelmezett betűtípust. A készülék újraindul a beállítás után!\nFolytatja?"</string>
+    <string name="font_set_error">Betűtípus beállítás nem sikerült</string>
+    <string name="font_default">Gyári alapértelmezés</string>
+    <string name="statusbar_setting">Állapotsor</string>
+    <string name="statusbar_summary_on">Megjelenítés</string>
+    <string name="statusbar_summary_off">Elrejtés</string>
+    <string name="display_settings">Felhasználói beállítás</string>
+    <string name="setlauncher_app">Asztali alkalmazások testreszabása</string>
+    <string name="volume_buttons_setting">Hangerő gomb beállítások</string>
+    <string name="volume_buttons_on">be</string>
+    <string name="volume_buttons_off">ki</string>
+    <string name="a2_flush_setting">Képernyő frissítési beállítás</string>
+    <string name="pic_recover">alapértelmezettre visszaállítás</string>
+    <string name="fullscreen_flush">Teljesképernyős frissítési idő</string>
+    <string name="open_epub_setting">EPUB olvasó beállítása</string>
+    <string name="open_epub_withPDF">Adobe olvasó használata</string>
+    <string name="open_epub_withFB2">FB2 olvasó használata</string>
 </resources>

@@ -708,7 +708,6 @@
     <string name="account_settings" msgid="6403589284618783461">"Аккаунты"</string>
     <string name="search_settings" msgid="1910951467596035063">"Поиск"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Настроить параметры и управлять историей поиска"</string>
-    <string name="display_settings" msgid="7965901687241669598">"Экран"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Автоповорот экрана"</string>
     <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Автоматически изменять ориентацию экрана при повороте планшетного ПК"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Автоматически менять ориентацию экрана при повороте телефона"</string>
@@ -720,7 +719,7 @@
     <string name="screen_timeout_summary" msgid="327761329263064327">"После <xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> бездействия"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Обои"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Установка обоев"</string>
-    <string name="screensaver_settings_title" msgid="3349790120327233241">"Заставка"</string>
+    <string name="screensaver_settings_title" msgid="3349790120327233241">"Заставка в спящем режиме"</string>
     <string name="screensaver_settings_summary_either_long" msgid="2458481525925378465">"При подключении к док-станции, при переходе в спящий режим и во время зарядки"</string>
     <string name="screensaver_settings_summary_either_short" msgid="6140527286137331478">"Всегда"</string>
     <string name="screensaver_settings_summary_sleep" msgid="9086186698140423493">"Во время зарядки"</string>
@@ -904,7 +903,7 @@
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Очистить SD-карту"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="4728558173931599429">"Удалить с USB-накопителя музыку, фотографии и все остальные данные."</string>
     <string name="erase_external_storage_description" product="default" msgid="1737638779582964966">"Удалить с SD-карты все данные, в том числе музыку и фотографии"</string>
-    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Сбросить планшетный ПК"</string>
+    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Сбросить настройки MagicBook"</string>
     <string name="master_clear_button_text" product="default" msgid="7550632653343157971">"Сбросить настройки телефона"</string>
     <string name="master_clear_final_desc" msgid="7209547812233487345">"Удалить всю личную информацию и загруженные приложения без возможности восстановления?"</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Стереть все"</string>
@@ -969,7 +968,7 @@
     <string name="location_access_title" msgid="7064108942964081243">"Доступ к моим геоданным"</string>
     <string name="location_access_summary" msgid="69031404093194341">"Разрешить приложениям использовать данные о вашем местоположении"</string>
     <string name="location_sources_heading" msgid="1278732419851088319">"Определение местоположения"</string>
-    <string name="about_settings" product="tablet" msgid="593457295516533765">"О планшетном ПК"</string>
+    <string name="about_settings" product="tablet" msgid="593457295516533765">"О MagicBook"</string>
     <string name="about_settings" product="default" msgid="1743378368185371685">"О телефоне"</string>
     <string name="about_settings_summary" msgid="3371517697156165959">"Просмотр юридической информации, состояния планшетного ПК и версии ПО"</string>
     <string name="legal_information" msgid="5769301644270604095">"Юридическая информация"</string>
@@ -1089,7 +1088,7 @@
     <string name="disabled" msgid="9206776641295849915">"Отключено"</string>
     <string name="not_installed" msgid="1475144352069281880">"Не установлено"</string>
     <string name="no_applications" msgid="7336588977497084921">"Нет приложений"</string>
-    <string name="internal_storage" msgid="1584700623164275282">"Внутр. память"</string>
+    <string name="internal_storage" msgid="1584700623164275282">"Память для установки приложений"</string>
     <string name="sd_card_storage" product="nosdcard" msgid="2673203150465132465">"USB-память"</string>
     <string name="sd_card_storage" product="default" msgid="7623513618171928235">"SD-карта"</string>
     <string name="recompute_size" msgid="7722567982831691718">"Повторное вычисление размера..."</string>
@@ -1832,4 +1831,44 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Документ с фото"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Широковещательная передача сообщений"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Выберите типы экстренных оповещений на экране."</string>
+
+    <string name="settings_license_google">Юридическая информация Google</string>
+    <string name="back_label">Назад</string>
+    <string name="select_wifi_category">Выбор сетей</string>
+    <string name="my_account_settings_title">Управление аккаунтами</string>
+    <string name="adobe_account_setting">Настройка Adobe DRM</string>
+    <string name="drm_active">Активация DRM</string>
+    <string name="myidentity_title">Аккаунт:</string>
+    <string name="mypassword_title">Пароль:</string>
+    <string name="logout">Выход</string>
+    <string name="drm_settings_information">Советы</string>
+    <string name="drm_settings_activite_successfully">Успешная активация DRM!</string>
+    <string name="drm_settings_disactivite_successfully">Успешный выход из Adobe DRM!</string>
+    <string name="drm_settings_activite_failed">Ошибка активации Adobe DRM!</string>
+    <string name="drm_settings_null">Вы должны ввести Id или пароль!</string>
+    <string name="shutdown_delay">Выключение</string>
+    <string name="norwayapp_settings">Все приложения</string>
+    <string name="font_setting">Управление шрифтами</string>
+    <string name="setfont_summary">Установить системный шрифт</string>
+    <string name="current_font">Текущий</string>
+    <string name="systemupdate">Обновление системы</string>
+    <string name="font_preview">Предпросмотр:</string>
+    <string name="after_replace">Заменить</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n\n1 2 3 4 5 6 7\n\n\n+-=*%#@,.$\n\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">Будет установлен системный шрифт. После завершения устройство будет перезагружено. Продолжить?</string>
+    <string name="font_set_error">Ошибка настройки шрифта</string>
+    <string name="font_default">По умолчанию</string>
+    <string name="statusbar_setting">Строка состояния</string>
+    <string name="statusbar_summary_on">Показывать</string>
+    <string name="statusbar_summary_off">Скрыть</string>
+    <string name="display_settings">Пользовательские настройки</string>
+    <string name="setlauncher_app">Настройка приложений на рабочем столе</string>
+    <string name="volume_buttons_setting">Настройка кнопок громкости</string>
+    <string name="volume_buttons_on">Листание вперёд - тише</string>
+    <string name="volume_buttons_off">Листание вперёд - громче</string>
+    <string name="pic_recover">Установить заставку по умолчанию</string>
+    <string name="fullscreen_flush">Полноэкранное обновление</string>
+    <string name="open_epub_setting">Программа для чтения EPUB</string>
+    <string name="open_epub_withPDF">Использовать AdobeReader</string>
+    <string name="open_epub_withFB2">Использовать FBReader</string>
 </resources>

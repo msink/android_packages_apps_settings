@@ -123,7 +123,7 @@
     <string name="bluetooth_profile_details" msgid="6823621790324933337">"Profile settings"</string>
     <string name="bluetooth_name_not_set" msgid="2653752006416027426">"No name set, using account name"</string>
     <string name="bluetooth_scan_for_devices" msgid="9214184305566815727">"Scan for devices"</string>
-    <string name="bluetooth_rename_device" product="tablet" msgid="787970073150631155">"Rename tablet"</string>
+    <string name="bluetooth_rename_device" product="tablet" msgid="787970073150631155">"Rename device"</string>
     <string name="bluetooth_rename_device" product="default" msgid="6267987985556136749">"Rename phone"</string>
     <string name="bluetooth_rename_button" msgid="1648028693822994566">"Rename"</string>
     <string name="bluetooth_disconnect_title" msgid="6026705382020027966">"Disconnect?"</string>
@@ -149,13 +149,13 @@
     <string name="device_picker" msgid="8398232791303186677">"Bluetooth device chooser"</string>
     <string name="bluetooth_permission_request" msgid="1523129741266262748">"Bluetooth permission request"</string>
     <string name="bluetooth_ask_enablement" msgid="637355677176904990">"An app wants to turn on Bluetooth."</string>
-    <string name="bluetooth_ask_discovery" product="tablet" msgid="786921566047356213">"An app wants to make your tablet visible to other Bluetooth devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
+    <string name="bluetooth_ask_discovery" product="tablet" msgid="786921566047356213">"An app wants to make your device visible to other Bluetooth devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
     <string name="bluetooth_ask_discovery" product="default" msgid="5510358858113713272">"An app wants to make your phone visible to other Bluetooth devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
-    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8863617309580598607">"An app wants to make your tablet visible to other Bluetooth devices. You can change this later in Bluetooth settings."</string>
+    <string name="bluetooth_ask_lasting_discovery" product="tablet" msgid="8863617309580598607">"An app wants to make your device visible to other Bluetooth devices. You can change this later in Bluetooth settings."</string>
     <string name="bluetooth_ask_lasting_discovery" product="default" msgid="6487606808683607975">"An app wants to make your phone visible to other Bluetooth devices. You can change this later in Bluetooth settings."</string>
-    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="3346529092809011149">"An app wants to turn on Bluetooth and make your tablet visible to other devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
+    <string name="bluetooth_ask_enablement_and_discovery" product="tablet" msgid="3346529092809011149">"An app wants to turn on Bluetooth and make your device visible to other devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
     <string name="bluetooth_ask_enablement_and_discovery" product="default" msgid="4724094889807196118">"An app wants to turn on Bluetooth and make your phone visible to other devices for <xliff:g id="TIMEOUT">%1$d</xliff:g> seconds."</string>
-    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="989613204829097159">"An app wants to turn on Bluetooth and make your tablet visible to other devices. You can change this later in Bluetooth settings."</string>
+    <string name="bluetooth_ask_enablement_and_lasting_discovery" product="tablet" msgid="989613204829097159">"An app wants to turn on Bluetooth and make your device visible to other devices. You can change this later in Bluetooth settings."</string>
     <string name="bluetooth_ask_enablement_and_lasting_discovery" product="default" msgid="6671615712909139801">"An app wants to turn on Bluetooth and make your phone visible to other devices. You can change this later in Bluetooth settings."</string>
     <string name="bluetooth_turning_on" msgid="4850574877288036646">"Turning on Bluetooth…"</string>
     <string name="bluetooth_turning_off" msgid="2337747302892025192">"Turning Bluetooth off…"</string>
@@ -256,7 +256,7 @@
     <string name="device_info_label" msgid="6551553813651711205">"Device info"</string>
     <string name="battery_info_label" msgid="4132685016148679403">"Battery info"</string>
     <string name="display_label" msgid="8074070940506840792">"Screen"</string>
-    <string name="phone_info_label" product="tablet" msgid="7820855350955963628">"Tablet info"</string>
+    <string name="phone_info_label" product="tablet" msgid="7820855350955963628">"Device info"</string>
     <string name="phone_info_label" product="default" msgid="2127552523124277664">"Phone info"</string>
     <string name="sd_card_settings_label" product="nosdcard" msgid="8101475181301178428">"USB storage"</string>
     <string name="sd_card_settings_label" product="default" msgid="5743100901106177102">"SD card"</string>
@@ -275,7 +275,7 @@
     <string name="roaming_reenable_message" msgid="9141007271031717369">"You have lost data connectivity because you left your home network with data roaming turned off."</string>
     <string name="roaming_turn_it_on_button" msgid="4387601818162120589">"Turn it on"</string>
     <string name="roaming_warning" msgid="7625933694709170887">"When you allow data roaming, you may incur significant roaming charges!"</string>
-    <string name="roaming_warning_multiuser" product="tablet" msgid="6458990250829214777">"When you allow data roaming, you may incur significant roaming charges!"\n\n"This setting affects all users on this tablet."</string>
+    <string name="roaming_warning_multiuser" product="tablet" msgid="6458990250829214777">"When you allow data roaming, you may incur significant roaming charges!"\n\n"This setting affects all users on this device."</string>
     <string name="roaming_warning_multiuser" product="default" msgid="6368421100292355440">"When you allow data roaming, you may incur significant roaming charges!"\n\n"This setting affects all users on this phone."</string>
     <string name="roaming_reenable_title" msgid="6068100976707316772">"Allow data roaming?"</string>
     <string name="networks" msgid="6333316876545927039">"Operator selection"</string>
@@ -315,29 +315,29 @@
     <string name="cdma_security_settings_summary" msgid="6068799952798901542">"Set My Location, screen unlock, credential storage lock"</string>
     <string name="security_passwords_title" msgid="2930627259125138363">"Passwords"</string>
     <string name="crypt_keeper_settings_title" msgid="4219233835490520414">"Encryption"</string>
-    <string name="crypt_keeper_encrypt_title" product="tablet" msgid="1060273569887301457">"Encrypt tablet"</string>
+    <string name="crypt_keeper_encrypt_title" product="tablet" msgid="1060273569887301457">"Encrypt device"</string>
     <string name="crypt_keeper_encrypt_title" product="default" msgid="1878996487755806122">"Encrypt phone"</string>
-    <string name="crypt_keeper_encrypt_summary" product="tablet" msgid="6291564408810586">"Require a numerical PIN or password to decrypt your tablet each time that you turn it on"</string>
+    <string name="crypt_keeper_encrypt_summary" product="tablet" msgid="6291564408810586">"Require a numerical PIN or password to decrypt your device each time that you turn it on"</string>
     <string name="crypt_keeper_encrypt_summary" product="default" msgid="514138079795442371">"Require a numerical PIN or password to decrypt your phone each time that you turn it on"</string>
     <string name="crypt_keeper_encrypted_summary" msgid="1868233637888132906">"Encrypted"</string>
-    <string name="crypt_keeper_desc" product="tablet" msgid="3839235202103924154">"You can encrypt your accounts, settings, downloaded apps and their data, media and other files. Once you encrypt your tablet, you need to type a numeric PIN or password to decrypt it each time you switch it on. You can only decrypt your tablet by performing a factory data reset, erasing all your data."\n\n"Encryption takes an hour or more. You must start with a charged battery and keep your tablet plugged in until encryption is complete. If you interrupt the encryption process, you will lose some or all of your data."</string>
+    <string name="crypt_keeper_desc" product="tablet" msgid="3839235202103924154">"You can encrypt your accounts, settings, downloaded apps and their data, media and other files. Once you encrypt your device, you need to type a numeric PIN or password to decrypt it each time you switch it on. You can only decrypt your device by performing a factory data reset, erasing all your data."\n\n"Encryption takes an hour or more. You must start with a charged battery and keep your device plugged in until encryption is complete. If you interrupt the encryption process, you will lose some or all of your data."</string>
     <string name="crypt_keeper_desc" product="default" msgid="7663118199519229502">"You can encrypt your accounts, settings, downloaded apps and their data, media and other files. Once you encrypt your phone, you need to type a numeric PIN or password to decrypt it each time you switch it on. You can\'t decrypt your phone except by performing a factory data reset, erasing all your data."\n\n"Encryption takes an hour or more. You must start with a charged battery and keep your phone plugged in until encryption is complete. If you interrupt the encryption process, you will lose some or all of your data."</string>
-    <string name="crypt_keeper_button_text" product="tablet" msgid="1189623490604750854">"Encrypt tablet"</string>
+    <string name="crypt_keeper_button_text" product="tablet" msgid="1189623490604750854">"Encrypt device"</string>
     <string name="crypt_keeper_button_text" product="default" msgid="2008346408473255519">"Encrypt phone"</string>
     <string name="crypt_keeper_low_charge_text" msgid="2029407131227814893">"Please charge your battery and try again."</string>
     <string name="crypt_keeper_unplugged_text" msgid="4785376766063053901">"Please plug in your charger and try again."</string>
     <string name="crypt_keeper_dialog_need_password_title" msgid="4058971800557767">"No lock-screen PIN or password"</string>
     <string name="crypt_keeper_dialog_need_password_message" msgid="4071395977297369642">"You need to set a lock screen PIN or password before you can start encryption."</string>
     <string name="crypt_keeper_confirm_title" msgid="5100339496381875522">"Encrypt?"</string>
-    <string name="crypt_keeper_final_desc" product="tablet" msgid="4453629424172409792">"The encryption operation is irreversible and if you interrupt it, you\'ll lose data. Encryption takes an hour or more, during which the tablet will restart several times."</string>
+    <string name="crypt_keeper_final_desc" product="tablet" msgid="4453629424172409792">"The encryption operation is irreversible and if you interrupt it, you\'ll lose data. Encryption takes an hour or more, during which the device will restart several times."</string>
     <string name="crypt_keeper_final_desc" product="default" msgid="5682944380460921880">"The encryption operation is irreversible and if you interrupt it, you\'ll lose data. Encryption takes an hour or more, during which the phone will restart several times."</string>
     <string name="crypt_keeper_setup_title" msgid="1783951453124244969">"Encrypting"</string>
-    <string name="crypt_keeper_setup_description" product="tablet" msgid="6689952371032099350">"Wait while your tablet is being encrypted. <xliff:g id="PERCENT">^1</xliff:g>% complete."</string>
+    <string name="crypt_keeper_setup_description" product="tablet" msgid="6689952371032099350">"Wait while your device is being encrypted. <xliff:g id="PERCENT">^1</xliff:g>% complete."</string>
     <string name="crypt_keeper_setup_description" product="default" msgid="951918761585534875">"Wait while your phone is being encrypted. <xliff:g id="PERCENT">^1</xliff:g>% complete."</string>
     <string name="crypt_keeper_cooldown" msgid="685210918307862395">"Try again in <xliff:g id="DELAY">^1</xliff:g> seconds."</string>
     <string name="crypt_keeper_enter_password" msgid="2223340178473871064">"Type your password"</string>
     <string name="crypt_keeper_failed_title" msgid="7133499413023075961">"Encryption unsuccessful"</string>
-    <string name="crypt_keeper_failed_summary" product="tablet" msgid="4478225241476039013">"Encryption was interrupted and can\'t be completed. As a result, the data on your tablet is no longer accessible. "\n\n" To resume using your tablet, you need to perform a factory reset. When you set up your tablet after the reset, you\'ll have an opportunity to restore any data that was backed up to your Google Account."</string>
+    <string name="crypt_keeper_failed_summary" product="tablet" msgid="4478225241476039013">"Encryption was interrupted and can\'t be completed. As a result, the data on your device is no longer accessible. "\n\n" To resume using your device, you need to perform a factory reset. When you set up your device after the reset, you\'ll have an opportunity to restore any data that was backed up to your Google Account."</string>
     <string name="crypt_keeper_failed_summary" product="default" msgid="3083477162766772532">"Encryption was interrupted and can\'t be completed. As a result, the data on your phone is no longer accessible. "\n\n"To resume using your phone, you need to perform a factory reset. When you set up your phone after the reset, you\'ll have an opportunity to restore any data that was backed up to your Google Account."</string>
     <string name="crypt_keeper_switch_input_method" msgid="4168332125223483198">"Switch input method"</string>
     <string name="lock_settings_picker_title" msgid="1095755849152582712">"Choose screen lock"</string>
@@ -467,7 +467,7 @@
     <string name="bluetooth_disconnect_headset_profile" msgid="8635908811168780720">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected from hands-free audio."</string>
     <string name="bluetooth_disconnect_hid_profile" msgid="3282295189719352075">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected from input device."</string>
     <string name="bluetooth_disconnect_pan_user_profile" msgid="8037627994382458698">"Internet access via <xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected."</string>
-    <string name="bluetooth_disconnect_pan_nap_profile" product="tablet" msgid="5455448395850929200">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected from sharing this tablet\'s Internet connection."</string>
+    <string name="bluetooth_disconnect_pan_nap_profile" product="tablet" msgid="5455448395850929200">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected from sharing this device\'s Internet connection."</string>
     <string name="bluetooth_disconnect_pan_nap_profile" product="default" msgid="5266851881175033601">"<xliff:g id="DEVICE_NAME">%1$s</xliff:g> will be disconnected from sharing this phone\'s Internet connection."</string>
     <string name="bluetooth_device_advanced_title" msgid="6066342531927499308">"Paired Bluetooth device"</string>
     <string name="bluetooth_device_advanced_online_mode_title" msgid="3689050071425683114">"Connect"</string>
@@ -514,7 +514,7 @@
     <string name="wifi_display_summary_off" msgid="2445210133184740611">"Off"</string>
     <string name="wifi_display_summary_disabled" msgid="5318394806146587849">"Disabled"</string>
     <string name="nfc_quick_toggle_title" msgid="6769159366307299004">"NFC"</string>
-    <string name="nfc_quick_toggle_summary" product="tablet" msgid="8302974395787498915">"Allow data exchange when the tablet touches another device"</string>
+    <string name="nfc_quick_toggle_summary" product="tablet" msgid="8302974395787498915">"Allow data exchange when the device touches another device"</string>
     <string name="nfc_quick_toggle_summary" product="default" msgid="5237208142892767592">"Allow data exchange when the phone touches another device"</string>
     <string name="android_beam_settings_title" msgid="7832812974600338649">"Android Beam"</string>
     <string name="android_beam_on_summary" msgid="3618057099355636830">"Ready to transmit app content via NFC"</string>
@@ -560,7 +560,7 @@
     <string name="wifi_other_network" msgid="1048006316504242214">"Other network…"</string>
     <string name="wifi_more" msgid="3195296805089107950">"More"</string>
     <string name="wifi_setup_wps" msgid="8128702488486283957">"Automatic setup (WPS)"</string>
-    <string name="wifi_required_info_text" msgid="9014073093293520112">"To complete setup, your tablet needs access to Wi-Fi. After setup, you can switch between mobile data and Wi-Fi."</string>
+    <string name="wifi_required_info_text" msgid="9014073093293520112">"To complete setup, your device needs access to Wi-Fi. After setup, you can switch between mobile data and Wi-Fi."</string>
     <string name="wifi_show_advanced" msgid="1793703023711426246">"Show advanced options"</string>
     <string name="wifi_wps_setup_title" msgid="6034518116333042484">"Wi-Fi Protected Setup"</string>
     <string name="wifi_wps_setup_msg" msgid="315174329121275092">"Starting WPS…"</string>
@@ -610,11 +610,11 @@
     <string name="wifi_cancel" msgid="6763568902542968964">"Cancel"</string>
     <string name="wifi_skip_anyway" msgid="6965361454438011190">"Skip anyway"</string>
     <string name="wifi_dont_skip" msgid="7350341524881124808">"Don\'t skip"</string>
-    <string name="wifi_skipped_message" product="tablet" msgid="3335132188969450252">"WARNING: You may incur extra carrier data charges."\n\n"Tablet setup can require significant network activity."</string>
+    <string name="wifi_skipped_message" product="tablet" msgid="3335132188969450252">"WARNING: You may incur extra carrier data charges."\n\n"Device setup can require significant network activity."</string>
     <string name="wifi_skipped_message" product="default" msgid="1192848364146401759">"WARNING: You may incur extra carrier data charges."\n\n"Phone setup can require significant network activity."</string>
-    <string name="wifi_and_mobile_skipped_message" product="tablet" msgid="7682836089429990118">"WARNING: The tablet won\'t be able to verify that your software is up to date."</string>
+    <string name="wifi_and_mobile_skipped_message" product="tablet" msgid="7682836089429990118">"WARNING: The device won\'t be able to verify that your software is up to date."</string>
     <string name="wifi_and_mobile_skipped_message" product="default" msgid="3324261421359832263">"WARNING: The phone won\'t be able to verify that your software is up to date."</string>
-    <string name="wifi_connect_failed_message" product="tablet" msgid="6904081070290941807">"The tablet was unable to connect to this Wi-Fi network."</string>
+    <string name="wifi_connect_failed_message" product="tablet" msgid="6904081070290941807">"The device was unable to connect to this Wi-Fi network."</string>
     <string name="wifi_connect_failed_message" product="default" msgid="3894921379368046855">"The phone was unable to connect to this Wi-Fi network."</string>
     <string name="wifi_advanced_titlebar" msgid="1627063574532930090">"Advanced Wi-Fi"</string>
     <string name="wifi_setting_frequency_band_title" msgid="7493768705046080060">"Wi-Fi frequency band"</string>
@@ -696,25 +696,24 @@
     <string name="dock_audio_settings_title" msgid="3324750259959570305">"Audio"</string>
     <string name="dock_audio_summary_desk" msgid="6487784412371139335">"Settings for the attached desktop dock"</string>
     <string name="dock_audio_summary_car" msgid="6740897586006248450">"Settings for the attached car dock"</string>
-    <string name="dock_audio_summary_none" product="tablet" msgid="8215337394914283607">"Tablet not docked"</string>
+    <string name="dock_audio_summary_none" product="tablet" msgid="8215337394914283607">"Device not docked"</string>
     <string name="dock_audio_summary_none" product="default" msgid="289909253741048784">"Phone not docked"</string>
     <string name="dock_audio_summary_unknown" msgid="4465059868974255693">"Settings for the attached dock"</string>
     <string name="dock_not_found_title" msgid="3290961741828952424">"Dock not found"</string>
-    <string name="dock_not_found_text" product="tablet" msgid="8405432495282299143">"You need to dock the tablet before setting up dock audio."</string>
+    <string name="dock_not_found_text" product="tablet" msgid="8405432495282299143">"You need to dock the device before setting up dock audio."</string>
     <string name="dock_not_found_text" product="default" msgid="1460497923342627801">"You need to dock the phone before setting up dock audio."</string>
     <string name="dock_sounds_enable_title" msgid="885839627097024110">"Dock insertion sound"</string>
-    <string name="dock_sounds_enable_summary_on" product="tablet" msgid="838102386448981339">"Play sound when inserting or removing tablet from dock"</string>
+    <string name="dock_sounds_enable_summary_on" product="tablet" msgid="838102386448981339">"Play sound when inserting or removing device from dock"</string>
     <string name="dock_sounds_enable_summary_on" product="default" msgid="8491180514199743771">"Play sound when inserting or removing phone from dock"</string>
-    <string name="dock_sounds_enable_summary_off" product="tablet" msgid="5077843049805652363">"Don\'t play sound when inserting or removing tablet from dock"</string>
+    <string name="dock_sounds_enable_summary_off" product="tablet" msgid="5077843049805652363">"Don\'t play sound when inserting or removing device from dock"</string>
     <string name="dock_sounds_enable_summary_off" product="default" msgid="3151046599205265919">"Don\'t play sound when inserting or removing phone from dock"</string>
     <string name="account_settings" msgid="6403589284618783461">"Accounts"</string>
     <string name="search_settings" msgid="1910951467596035063">"Search"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Manage search settings and history"</string>
-    <string name="display_settings" msgid="7965901687241669598">"Display"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Auto-rotate screen"</string>
-    <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Switch orientation automatically when rotating tablet"</string>
+    <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Switch orientation automatically when rotating device"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Switch orientation automatically when rotating phone"</string>
-    <string name="accelerometer_summary_off" product="tablet" msgid="4781734213242521682">"Switch orientation automatically when rotating tablet"</string>
+    <string name="accelerometer_summary_off" product="tablet" msgid="4781734213242521682">"Switch orientation automatically when rotating device"</string>
     <string name="accelerometer_summary_off" product="default" msgid="5485489363715740761">"Switch orientation automatically when rotating phone"</string>
     <string name="brightness" msgid="2354961343555249270">"Brightness"</string>
     <string name="brightness_summary" msgid="838917350127550703">"Adjust the brightness of the screen"</string>
@@ -722,7 +721,7 @@
     <string name="screen_timeout_summary" msgid="327761329263064327">"After <xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> of inactivity"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Wallpaper"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Choose wallpaper from"</string>
-    <string name="screensaver_settings_title" msgid="3349790120327233241">"Daydream"</string>
+    <string name="screensaver_settings_title" msgid="3349790120327233241">"Sleep mode picture"</string>
     <string name="screensaver_settings_summary_either_long" msgid="2458481525925378465">"When docked or asleep and charging"</string>
     <string name="screensaver_settings_summary_either_short" msgid="6140527286137331478">"Either"</string>
     <string name="screensaver_settings_summary_sleep" msgid="9086186698140423493">"While charging"</string>
@@ -739,9 +738,9 @@
     <string name="sim_lock_settings_category" msgid="5136244267576697004">"Set up SIM card lock"</string>
     <string name="sim_lock_settings_title" msgid="9018585580955414596">"SIM card lock"</string>
     <string name="sim_pin_toggle" msgid="1742123478029451888">"Lock SIM card"</string>
-    <string name="sim_lock_on" product="tablet" msgid="5058355081270397764">"Require PIN to use tablet"</string>
+    <string name="sim_lock_on" product="tablet" msgid="5058355081270397764">"Require PIN to use device"</string>
     <string name="sim_lock_on" product="default" msgid="2503536505568814324">"Require PIN to use phone"</string>
-    <string name="sim_lock_off" product="tablet" msgid="2813800553917012356">"Require PIN to use tablet"</string>
+    <string name="sim_lock_off" product="tablet" msgid="2813800553917012356">"Require PIN to use device"</string>
     <string name="sim_lock_off" product="default" msgid="258981978215428916">"Require PIN to use phone"</string>
     <string name="sim_pin_change" msgid="6311414184279932368">"Change SIM PIN"</string>
     <string name="sim_enter_pin" msgid="6608715137008508432">"SIM PIN"</string>
@@ -758,7 +757,7 @@
     <string name="sim_lock_failed" msgid="5651596916127873626">"Can\'t change SIM card lock state."\n"Possibly incorrect PIN."</string>
     <string name="sim_enter_ok" msgid="6475946836899218919">"OK"</string>
     <string name="sim_enter_cancel" msgid="6240422158517208036">"Cancel"</string>
-    <string name="device_info_settings" product="tablet" msgid="1119755927536987178">"Tablet status"</string>
+    <string name="device_info_settings" product="tablet" msgid="1119755927536987178">"Device status"</string>
     <string name="device_info_settings" product="default" msgid="475872867864762157">"Phone status"</string>
     <string name="system_update_settings_list_item_title" msgid="3342887311059985961">"System updates"</string>
     <string name="system_update_settings_list_item_summary" msgid="3853057315907710747"></string>
@@ -894,9 +893,9 @@
     <string name="menu_restore" msgid="8260067415075573273">"Reset to default"</string>
     <string name="restore_default_apn_completed" msgid="2824775307377604897">"Reset default APN settings completed"</string>
     <string name="master_clear_title" msgid="5907939616087039756">"Factory data reset"</string>
-    <string name="master_clear_summary" product="tablet" msgid="4036344100254678429">"Erases all data on tablet"</string>
+    <string name="master_clear_summary" product="tablet" msgid="4036344100254678429">"Erases all data on device"</string>
     <string name="master_clear_summary" product="default" msgid="4986154238001088492">"Erases all data on phone"</string>
-    <string name="master_clear_desc" product="tablet" msgid="8317211882509025841">"This will erase all data from your tablet\'s "<b>"internal storage"</b>", including:"\n\n<li>"Your Google account"</li>\n<li>"System and app data and settings"</li>\n<li>"Downloaded apps"</li></string>
+    <string name="master_clear_desc" product="tablet" msgid="8317211882509025841">"This will erase all data from your device\'s "<b>"internal storage"</b>", including:"\n\n<li>"Your Google account"</li>\n<li>"System and app data and settings"</li>\n<li>"Downloaded apps"</li></string>
     <string name="master_clear_desc" product="default" msgid="9165016501623540228">"This will erase all data from your phone\'s "<b>"internal storage"</b>", including:"\n\n<li>"Your Google account"</li>\n<li>"System and app data and settings"</li>\n<li>"Downloaded apps"</li></string>
     <string name="master_clear_accounts" product="default" msgid="6412857499147999073">\n\n"You are currently signed in to the following accounts:"\n</string>
     <string name="master_clear_desc_also_erases_external" msgid="1903185203791274237"><li>"Music"</li>\n<li>"Photos"</li>\n<li>"Other user data"</li></string>
@@ -906,7 +905,7 @@
     <string name="erase_external_storage" product="default" msgid="1397239046334307625">"Erase SD card"</string>
     <string name="erase_external_storage_description" product="nosdcard" msgid="4728558173931599429">"Erase all the data on the internal USB storage, such as music or photos"</string>
     <string name="erase_external_storage_description" product="default" msgid="1737638779582964966">"Erase all the data on the SD card, such as music or photos"</string>
-    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Reset tablet"</string>
+    <string name="master_clear_button_text" product="tablet" msgid="3130786116528304116">"Reset device"</string>
     <string name="master_clear_button_text" product="default" msgid="7550632653343157971">"Reset phone"</string>
     <string name="master_clear_final_desc" msgid="7209547812233487345">"Erase all your personal information and downloaded apps? You cannot reverse this action!"</string>
     <string name="master_clear_final_button_text" msgid="5390908019019242910">"Erase everything"</string>
@@ -943,13 +942,13 @@
     <string name="usb_tethering_unavailable_subtext" msgid="1044622421184007254">"USB not connected"</string>
     <string name="usb_tethering_errored_subtext" msgid="1377574819427841992">"USB tethering error"</string>
     <string name="bluetooth_tether_checkbox_text" msgid="2379175828878753652">"Bluetooth tethering"</string>
-    <string name="bluetooth_tethering_available_subtext" product="tablet" msgid="8811610320942954709">"Sharing this tablet\'s Internet connection"</string>
+    <string name="bluetooth_tethering_available_subtext" product="tablet" msgid="8811610320942954709">"Sharing this device\'s Internet connection"</string>
     <string name="bluetooth_tethering_available_subtext" product="default" msgid="4229220575771946723">"Sharing this phone\'s Internet connection"</string>
-    <string name="bluetooth_tethering_device_connected_subtext" product="tablet" msgid="2730938191906597896">"Sharing this tablet\'s Internet connection to 1 device"</string>
+    <string name="bluetooth_tethering_device_connected_subtext" product="tablet" msgid="2730938191906597896">"Sharing this device\'s Internet connection to 1 device"</string>
     <string name="bluetooth_tethering_device_connected_subtext" product="default" msgid="1666736165420290466">"Sharing this phone\'s Internet connection to 1 device"</string>
-    <string name="bluetooth_tethering_devices_connected_subtext" product="tablet" msgid="1180765608259580143">"Sharing this tablet\'s Internet connection to <xliff:g id="CONNECTEDDEVICECOUNT">%1$d</xliff:g> devices"</string>
+    <string name="bluetooth_tethering_devices_connected_subtext" product="tablet" msgid="1180765608259580143">"Sharing this device\'s Internet connection to <xliff:g id="CONNECTEDDEVICECOUNT">%1$d</xliff:g> devices"</string>
     <string name="bluetooth_tethering_devices_connected_subtext" product="default" msgid="8248942539362173005">"Sharing this phone\'s Internet connection to <xliff:g id="CONNECTEDDEVICECOUNT">%1$d</xliff:g> devices"</string>
-    <string name="bluetooth_tethering_off_subtext" product="tablet" msgid="2093881379028235555">"Not sharing this tablet\'s Internet connection"</string>
+    <string name="bluetooth_tethering_off_subtext" product="tablet" msgid="2093881379028235555">"Not sharing this device\'s Internet connection"</string>
     <string name="bluetooth_tethering_off_subtext" product="default" msgid="706860924389041342">"Not sharing this phone\'s Internet connection"</string>
     <string name="bluetooth_tethering_errored_subtext" msgid="4926566308991142264">"Not tethered"</string>
     <string name="bluetooth_tethering_overflow_error" msgid="6285122039489881969">"Can\'t tether to more than <xliff:g id="MAXCONNECTION">%1$d</xliff:g> devices."</string>
@@ -961,7 +960,7 @@
     <string name="location_neighborhood_level" msgid="5626515380188353712">"Let apps use Google\'s location service to estimate your location faster. Anonymous location data will be collected and sent to Google."</string>
     <string name="location_neighborhood_level_wifi" msgid="7457348712272184793">"Location determined by Wi-Fi"</string>
     <string name="location_gps" msgid="8392461023569708478">"GPS satellites"</string>
-    <string name="location_street_level" product="tablet" msgid="1669562198260860802">"Let apps use GPS on your tablet to pinpoint your location"</string>
+    <string name="location_street_level" product="tablet" msgid="1669562198260860802">"Let apps use GPS on your device to pinpoint your location"</string>
     <string name="location_street_level" product="default" msgid="4617445745492014203">"Let apps use GPS on your phone to pinpoint your location"</string>
     <string name="assisted_gps" msgid="4649317129586736885">"Use assisted GPS"</string>
     <string name="assisted_gps_enabled" msgid="8751899609589792803">"Use server to assist GPS (un-tick to reduce network usage)"</string>
@@ -971,7 +970,7 @@
     <string name="location_access_title" msgid="7064108942964081243">"Access to my location"</string>
     <string name="location_access_summary" msgid="69031404093194341">"Let apps that have asked your permission use your location information"</string>
     <string name="location_sources_heading" msgid="1278732419851088319">"Location sources"</string>
-    <string name="about_settings" product="tablet" msgid="593457295516533765">"About tablet"</string>
+    <string name="about_settings" product="tablet" msgid="593457295516533765">"About device"</string>
     <string name="about_settings" product="default" msgid="1743378368185371685">"About phone"</string>
     <string name="about_settings_summary" msgid="3371517697156165959">"View legal info, status, software version"</string>
     <string name="legal_information" msgid="5769301644270604095">"Legal information"</string>
@@ -1034,7 +1033,7 @@
     <string name="applications_settings_header" msgid="1014813055054356646">"App settings"</string>
     <string name="install_applications" msgid="4872012136210802181">"Unknown sources"</string>
     <string name="install_unknown_applications" msgid="176855644862942064">"Allow installation of apps from unknown sources"</string>
-    <string name="install_all_warning" product="tablet" msgid="3263360446508268880">"Your tablet and personal data are more vulnerable to attack by apps from unknown sources. You agree that you are solely responsible for any damage to your tablet or loss of data that may result from using these apps."</string>
+    <string name="install_all_warning" product="tablet" msgid="3263360446508268880">"Your tablet and personal data are more vulnerable to attack by apps from unknown sources. You agree that you are solely responsible for any damage to your device or loss of data that may result from using these apps."</string>
     <string name="install_all_warning" product="default" msgid="8113734576826384682">"Your phone and personal data are more vulnerable to attack by apps from unknown sources. You agree that you are solely responsible for any damage to your phone or loss of data that may result from using these apps."</string>
     <string name="verify_applications" msgid="2959359554974828518">"Verify apps"</string>
     <string name="verify_applications_summary" msgid="6737505521913263792">"Disallow or warn before installation of apps that may cause harm"</string>
@@ -1106,9 +1105,9 @@
     <string name="app_factory_reset_dlg_text" msgid="6371247225487725860">"All updates to this Android system app will be uninstalled."</string>
     <string name="clear_failed_dlg_title" msgid="2387060805294783175">"Clear data"</string>
     <string name="clear_failed_dlg_text" msgid="1092177570631523106">"Couldn\'t clear data for app."</string>
-    <string name="security_settings_desc" product="tablet" msgid="1292421279262430109">"This app can access the following on your tablet:"</string>
+    <string name="security_settings_desc" product="tablet" msgid="1292421279262430109">"This app can access the following on your device:"</string>
     <string name="security_settings_desc" product="default" msgid="61749028818785244">"This app can access the following on your phone:"</string>
-    <string name="security_settings_desc_multi" product="tablet" msgid="7300932212437084403">"This app can access the following on your tablet. In order to improve performance and reduce memory usage, some of these permissions are available to <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> because it runs in the same process as <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
+    <string name="security_settings_desc_multi" product="tablet" msgid="7300932212437084403">"This app can access the following on your device. In order to improve performance and reduce memory usage, some of these permissions are available to <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> because it runs in the same process as <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
     <string name="security_settings_desc_multi" product="default" msgid="6610268420793984752">"This app can access the following on your phone. In order to improve performance and reduce memory usage, some of these permissions are available to <xliff:g id="BASE_APP_NAME">%1$s</xliff:g> because it runs in the same process as <xliff:g id="ADDITIONAL_APPS_LIST">%2$s</xliff:g>:"</string>
     <string name="join_two_items" msgid="1336880355987539064">"<xliff:g id="FIRST_ITEM">%1$s</xliff:g> and <xliff:g id="SECOND_ITEM">%2$s</xliff:g>"</string>
     <string name="join_many_items_last" msgid="5925635036718502724">"<xliff:g id="ALL_BUT_LAST_ITEM">%1$s</xliff:g> and <xliff:g id="LAST_ITEM_0">%2$s</xliff:g>"</string>
@@ -1121,7 +1120,7 @@
     <string name="empty_list_msg" msgid="5993162337235907160">"You don\'t have any third-party apps installed."</string>
     <string name="version_text" msgid="9189073826278676425">"Version <xliff:g id="VERSION_NUM">%1$s</xliff:g>"</string>
     <string name="move_app" msgid="5042838441401731346">"Move"</string>
-    <string name="move_app_to_internal" product="tablet" msgid="2299714147283854957">"Move to tablet"</string>
+    <string name="move_app_to_internal" product="tablet" msgid="2299714147283854957">"Move to device"</string>
     <string name="move_app_to_internal" product="default" msgid="3895430471913858185">"Move to phone"</string>
     <string name="move_app_to_sdcard" product="nosdcard" msgid="4350451696315265420">"Move to USB storage"</string>
     <string name="move_app_to_sdcard" product="default" msgid="1143379049903056407">"Move to SD card"</string>
@@ -1178,7 +1177,7 @@
     <string name="process_service_in_use_description" msgid="8993335064403217080">"Service <xliff:g id="COMP_NAME">%1$s</xliff:g> is in use."</string>
     <string name="process_provider_in_use_description" msgid="5586603325677678940">"Provider <xliff:g id="COMP_NAME">%1$s</xliff:g> is in use."</string>
     <string name="runningservicedetails_stop_dlg_title" msgid="4253292537154337233">"Stop system service?"</string>
-    <string name="runningservicedetails_stop_dlg_text" product="tablet" msgid="3371302398335665793">"If you stop this service, some features of your tablet may stop working correctly until you turn it off and then on again."</string>
+    <string name="runningservicedetails_stop_dlg_text" product="tablet" msgid="3371302398335665793">"If you stop this service, some features of your device may stop working correctly until you turn it off and then on again."</string>
     <string name="runningservicedetails_stop_dlg_text" product="default" msgid="3920243762189484756">"If you stop this service, some features of your phone may stop working correctly until you turn it off and then on again."</string>
     <string name="language_settings" msgid="5292716747264442359">"Language &amp; input"</string>
     <string name="language_keyboard_settings_title" msgid="243220021717425813">"Language &amp; input"</string>
@@ -1229,7 +1228,7 @@
     <string name="user_dict_settings_all_languages" msgid="6742000040975959247">"For all languages"</string>
     <string name="user_dict_settings_more_languages" msgid="7316375944684977910">"More languages…"</string>
     <string name="testing" msgid="6584352735303604146">"Testing"</string>
-    <string name="testing_phone_info" product="tablet" msgid="193561832258534798">"Tablet information"</string>
+    <string name="testing_phone_info" product="tablet" msgid="193561832258534798">"Device information"</string>
     <string name="testing_phone_info" product="default" msgid="8656693364332840056">"Phone information"</string>
     <string name="testing_battery_info" msgid="3497865525976497848">"Battery information"</string>
     <string name="quick_launch_title" msgid="7904609846945905306">"Quick launch"</string>
@@ -1325,7 +1324,7 @@
     <string name="accessibility_script_injection_button_allow" msgid="2201503285877102870">"Allow"</string>
     <string name="accessibility_script_injection_button_disallow" msgid="5697152768523270885">"Don\'t allow"</string>
     <string name="accessibility_service_security_warning_title" msgid="5421628151509995404">"Use <xliff:g id="SERVICE">%1$s</xliff:g>?"</string>
-    <string name="accessibility_service_security_warning_summary" product="tablet" msgid="8558441850832543571">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> can collect all of the text that you type, except passwords. This includes personal data, such as credit card numbers. It can also collect data about your interactions with the tablet."</string>
+    <string name="accessibility_service_security_warning_summary" product="tablet" msgid="8558441850832543571">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> can collect all of the text that you type, except passwords. This includes personal data, such as credit card numbers. It can also collect data about your interactions with the device."</string>
     <string name="accessibility_service_security_warning_summary" product="default" msgid="2869015914319424723">"<xliff:g id="ACCESSIBILITY_SERVICE_NAME">%1$s</xliff:g> can collect all of the text that you type, except passwords. This includes personal data, such as credit card numbers. It can also collect data about your interactions with the phone."</string>
     <string name="accessibility_service_disable_warning_title" msgid="3393956845814484859">"Stop <xliff:g id="SERVICE">%1$s</xliff:g>?"</string>
     <string name="accessibility_service_disable_warning_summary" msgid="625013894287895398">"Touching OK will stop <xliff:g id="SERVICE">%1$s</xliff:g>."</string>
@@ -1365,14 +1364,14 @@
     <string name="power_bluetooth" msgid="4373329044379008289">"Bluetooth"</string>
     <string name="power_cell" msgid="6596471490976003056">"Mobile standby"</string>
     <string name="power_phone" msgid="5392641106474567277">"Voice calls"</string>
-    <string name="power_idle" product="tablet" msgid="4612478572401640759">"Tablet idle"</string>
+    <string name="power_idle" product="tablet" msgid="4612478572401640759">"Device idle"</string>
     <string name="power_idle" product="default" msgid="9055659695602194990">"Phone idle"</string>
     <string name="usage_type_cpu" msgid="715162150698338714">"CPU total"</string>
     <string name="usage_type_cpu_foreground" msgid="6500579611933211831">"CPU foreground"</string>
     <string name="usage_type_wake_lock" msgid="5125438890233677880">"Keep awake"</string>
     <string name="usage_type_gps" msgid="7989688715128160790">"GPS"</string>
     <string name="usage_type_wifi_running" msgid="8234997940652067049">"Wi-Fi running"</string>
-    <string name="usage_type_phone" product="tablet" msgid="262638572890253393">"Tablet"</string>
+    <string name="usage_type_phone" product="tablet" msgid="262638572890253393">"Device"</string>
     <string name="usage_type_phone" product="default" msgid="9108247984998041853">"Phone"</string>
     <string name="usage_type_data_send" msgid="2857401966985425427">"Data sent"</string>
     <string name="usage_type_data_recv" msgid="7251090882025234185">"Data received"</string>
@@ -1387,7 +1386,7 @@
     <string name="battery_action_wifi" msgid="2272741639606146903">"Wi-Fi settings"</string>
     <string name="battery_action_bluetooth" msgid="8374789049507723142">"Bluetooth settings"</string>
     <string name="battery_desc_voice" msgid="8980322055722959211">"Battery used by voice calls"</string>
-    <string name="battery_desc_standby" product="tablet" msgid="6284747418668280364">"Battery used when tablet is idle"</string>
+    <string name="battery_desc_standby" product="tablet" msgid="6284747418668280364">"Battery used when device is idle"</string>
     <string name="battery_desc_standby" product="default" msgid="3009080001948091424">"Battery used when phone is idle"</string>
     <string name="battery_desc_radio" msgid="5479196477223185367">"Battery used by mobile radio"</string>
     <string name="battery_sugg_radio" msgid="8211336978326295047">"Switch to aeroplane mode to save power in areas with no mobile coverage"</string>
@@ -1596,9 +1595,9 @@
     <string name="header_add_an_account" msgid="756108499532023798">"Add an account"</string>
     <string name="finish_button_label" msgid="481587707657751116">"Finish"</string>
     <string name="really_remove_account_title" msgid="8800653398717172460">"Remove account?"</string>
-    <string name="really_remove_account_message" product="tablet" msgid="1936147502815641161">"Removing this account will delete all of its messages, contacts and other data from the tablet!"</string>
+    <string name="really_remove_account_message" product="tablet" msgid="1936147502815641161">"Removing this account will delete all of its messages, contacts and other data from the device!"</string>
     <string name="really_remove_account_message" product="default" msgid="3483528757922948356">"Removing this account will delete all of its messages, contacts and other data from the phone!"</string>
-    <string name="remove_account_failed" product="tablet" msgid="3086620478225952725">"This account is required by some apps. You can only remove it by resetting the tablet to factory defaults (which deletes all your personal data) in Settings &gt; Backup &amp; reset."</string>
+    <string name="remove_account_failed" product="tablet" msgid="3086620478225952725">"This account is required by some apps. You can only remove it by resetting the device to factory defaults (which deletes all your personal data) in Settings &gt; Backup &amp; reset."</string>
     <string name="remove_account_failed" product="default" msgid="6217238709175617517">"This account is required by some apps. You can only remove it by resetting the phone to factory defaults (which deletes all of your personal data) in Settings &gt; Backup &amp; reset."</string>
     <string name="provider_label" msgid="7724593781904508866">"Push subscriptions"</string>
     <!-- no translation found for sync_item_title (4782834606909853006) -->
@@ -1708,7 +1707,7 @@
     <string name="data_usage_app_restrict_dialog" msgid="1466689968707308512">"This feature may cause an app that depends on background data to stop working when only mobile networks are available."\n\n"You can find more appropriate data usage controls in the settings available within the app."</string>
     <string name="data_usage_restrict_denied_dialog" msgid="7086969103661420799">"Restricting background data is possible only when you\'ve set a mobile data limit."</string>
     <string name="data_usage_auto_sync_on_dialog_title" msgid="2438617846762244389">"Turn auto-sync data on?"</string>
-    <string name="data_usage_auto_sync_on_dialog" product="tablet" msgid="7312283529426636845">"Any changes you make to your accounts on the web will be automatically copied to your tablet."\n\n"Some accounts may also automatically copy any changes you make on the tablet to the web. A Google Account works this way."\n\n"To choose which kinds of information to sync within each account, go to Settings &gt; Accounts."</string>
+    <string name="data_usage_auto_sync_on_dialog" product="tablet" msgid="7312283529426636845">"Any changes you make to your accounts on the web will be automatically copied to your device."\n\n"Some accounts may also automatically copy any changes you make on the device to the web. A Google Account works this way."\n\n"To choose which kinds of information to sync within each account, go to Settings &gt; Accounts."</string>
     <string name="data_usage_auto_sync_on_dialog" product="default" msgid="2374996799819303283">"Any changes you make to your accounts on the web will be automatically copied to your phone."\n\n"Some accounts may also automatically copy any changes you make on the phone to the web. A Google Account works this way."\n\n"To choose which kinds of information to sync within each account, go to Settings &gt; Accounts."</string>
     <string name="data_usage_auto_sync_off_dialog_title" msgid="9013139130490125793">"Turn auto-sync data off?"</string>
     <string name="data_usage_auto_sync_off_dialog" msgid="4744145757533455623">"This will conserve data and battery usage, but you\'ll need to sync each account manually to collect recent information. And you won\'t receive notifications when updates occur."</string>
@@ -1718,11 +1717,11 @@
     <string name="data_usage_warning_editor_title" msgid="3704136912240060339">"Set data usage warning"</string>
     <string name="data_usage_limit_editor_title" msgid="9153595142385030015">"Set data usage limit"</string>
     <string name="data_usage_limit_dialog_title" msgid="3023111643632996097">"Limiting data usage"</string>
-    <string name="data_usage_limit_dialog_mobile" product="tablet" msgid="3893348029612821262">"Your mobile data connection will be disabled when the specified limit is reached."\n\n"Since data usage is measured by your tablet, and your carrier may account for usage differently, consider using a conservative limit."</string>
+    <string name="data_usage_limit_dialog_mobile" product="tablet" msgid="3893348029612821262">"Your mobile data connection will be disabled when the specified limit is reached."\n\n"Since data usage is measured by your device, and your carrier may account for usage differently, consider using a conservative limit."</string>
     <string name="data_usage_limit_dialog_mobile" product="default" msgid="7962145861903746827">"Your mobile data connection will be disabled when the specified limit is reached."\n\n"Since data usage is measured by your phone, and your carrier may account for usage differently, consider using a conservative limit."</string>
     <string name="data_usage_restrict_background_title" msgid="2201315502223035062">"Restrict background data?"</string>
     <string name="data_usage_restrict_background" msgid="6387252645350792955">"If you restrict background mobile data, some apps and services won\'t work unless you\'re connected to a Wi-Fi network."</string>
-    <string name="data_usage_restrict_background_multiuser" product="tablet" msgid="2609163428726042269">"If you restrict background mobile data, some apps and services won\'t work unless you\'re connected to a Wi-Fi network."\n\n"This setting affects all users on this tablet."</string>
+    <string name="data_usage_restrict_background_multiuser" product="tablet" msgid="2609163428726042269">"If you restrict background mobile data, some apps and services won\'t work unless you\'re connected to a Wi-Fi network."\n\n"This setting affects all users on this device."</string>
     <string name="data_usage_restrict_background_multiuser" product="default" msgid="8025473178302056174">"If you restrict background mobile data, some apps and services won\'t work unless you\'re connected to a Wi-Fi network."\n\n"This setting affects all users on this phone."</string>
     <string name="data_usage_sweep_warning" msgid="6387081852568846982"><font size="21">"<xliff:g id="NUMBER">^1</xliff:g>"</font>" "<font size="9">"<xliff:g id="UNIT">^2</xliff:g>"</font>\n<font size="12">"warning"</font></string>
     <string name="data_usage_sweep_limit" msgid="860566507375933039"><font size="21">"<xliff:g id="NUMBER">^1</xliff:g>"</font>" "<font size="9">"<xliff:g id="UNIT">^2</xliff:g>"</font>\n<font size="12">"limit"</font></string>
@@ -1730,7 +1729,7 @@
     <string name="data_usage_uninstalled_apps_users" msgid="7986294489899813194">"Removed apps and users"</string>
     <string name="data_usage_received_sent" msgid="5039699009276621757">"<xliff:g id="RECEIVED">%1$s</xliff:g> received, <xliff:g id="SENT">%2$s</xliff:g> sent"</string>
     <string name="data_usage_total_during_range" msgid="4091294280619255237">"<xliff:g id="RANGE">%2$s</xliff:g>: about <xliff:g id="TOTAL">%1$s</xliff:g> used."</string>
-    <string name="data_usage_total_during_range_mobile" product="tablet" msgid="5961720793603268572">"<xliff:g id="RANGE">%2$s</xliff:g>: about <xliff:g id="TOTAL">%1$s</xliff:g> used, as measured by your tablet. Your carrier\'s data usage accounting may differ."</string>
+    <string name="data_usage_total_during_range_mobile" product="tablet" msgid="5961720793603268572">"<xliff:g id="RANGE">%2$s</xliff:g>: about <xliff:g id="TOTAL">%1$s</xliff:g> used, as measured by your device. Your carrier\'s data usage accounting may differ."</string>
     <string name="data_usage_total_during_range_mobile" product="default" msgid="1625833170144610767">"<xliff:g id="RANGE">%2$s</xliff:g>: about <xliff:g id="TOTAL">%1$s</xliff:g> used, as measured by your phone. Your carrier\'s data usage accounting may differ."</string>
     <string name="data_usage_metered_title" msgid="6204750602856383278">"Mobile hotspots"</string>
     <string name="data_usage_metered_body" msgid="2446827764036316131">"Select the WiFi networks which are mobile hotspots. Apps can be restricted from using these networks when in the background. Apps may also warn before using these networks for large downloads."</string>
@@ -1803,26 +1802,26 @@
     <string name="user_owner" msgid="3879126011135546571">"Owner"</string>
     <string name="user_nickname" msgid="5148818000228994488">"Nickname"</string>
     <string name="user_add_user_title" msgid="3961861593718285403">"Add new user"</string>
-    <string name="user_add_user_message_long" msgid="2278524063301283723">"You can share this device with other people by creating additional users. Each user has their own space, which they can customise with their own apps, wallpaper and so on. Users can also adjust tablet settings like Wi-Fi that affect everyone."\n\n"After you create a new user, that person needs to go through a setup process."\n\n"Any user can accept updated app permissions on behalf of all other users."</string>
+    <string name="user_add_user_message_long" msgid="2278524063301283723">"You can share this device with other people by creating additional users. Each user has their own space, which they can customise with their own apps, wallpaper and so on. Users can also adjust device settings like Wi-Fi that affect everyone."\n\n"After you create a new user, that person needs to go through a setup process."\n\n"Any user can accept updated app permissions on behalf of all other users."</string>
     <string name="user_add_user_message_short" msgid="3310933423737035428">"After you create a new user, that person needs to go through a setup process."\n\n"Any user can accept updated app permissions on behalf of all other users."</string>
     <string name="user_setup_dialog_title" msgid="1765794166801864563">"Set up user now?"</string>
-    <string name="user_setup_dialog_message" msgid="614037943337008555">"Make sure the person is available to take the tablet and set up their space"</string>
+    <string name="user_setup_dialog_message" msgid="614037943337008555">"Make sure the person is available to take the device and set up their space"</string>
     <string name="user_setup_button_setup_now" msgid="3391388430158437629">"Set up now"</string>
     <string name="user_setup_button_setup_later" msgid="3068729597269172401">"Not now"</string>
-    <string name="user_cannot_manage_message" product="tablet" msgid="8440449301994432789">"Only the tablet\'s owner can manage users."</string>
+    <string name="user_cannot_manage_message" product="tablet" msgid="8440449301994432789">"Only the device\'s owner can manage users."</string>
     <string name="user_cannot_manage_message" product="default" msgid="1133251987818014757">"Only the phone\'s owner can manage users."</string>
     <string name="user_remove_user_menu" msgid="6897150520686691355">"Delete <xliff:g id="USER_NAME">%1$s</xliff:g> from this device"</string>
     <string name="user_new_user_name" msgid="369856859816028856">"New user"</string>
     <string name="user_confirm_remove_self_title" msgid="8432050170899479556">"Delete yourself?"</string>
     <string name="user_confirm_remove_title" msgid="3856148232937245711">"Remove user?"</string>
-    <string name="user_confirm_remove_self_message" product="tablet" msgid="8167855311779740207">"You will lose your space and data on this tablet. You can\'t undo this action."</string>
+    <string name="user_confirm_remove_self_message" product="tablet" msgid="8167855311779740207">"You will lose your space and data on this device. You can\'t undo this action."</string>
     <string name="user_confirm_remove_self_message" product="default" msgid="5391888073786090274">"You will lose your space and data on this phone. You can\'t undo this action."</string>
-    <string name="user_confirm_remove_message" product="tablet" msgid="4610106937214870034">"This user\'s space and data will disappear from this tablet. You can\'t undo this action."</string>
+    <string name="user_confirm_remove_message" product="tablet" msgid="4610106937214870034">"This user\'s space and data will disappear from this device. You can\'t undo this action."</string>
     <string name="user_confirm_remove_message" product="default" msgid="8130264611683731142">"This user\'s space and data will disappear from this phone. You can\'t undo this action."</string>
     <string name="user_adding_new_user" msgid="1521674650874241407">"Adding new user…"</string>
     <string name="user_delete_user_description" msgid="3158592592118767056">"Delete user"</string>
     <string name="user_delete_button" msgid="5131259553799403201">"Delete"</string>
-    <string name="global_change_warning" product="tablet" msgid="8045013389464294039">"This setting affects all users on this tablet."</string>
+    <string name="global_change_warning" product="tablet" msgid="8045013389464294039">"This setting affects all users on this device."</string>
     <string name="global_change_warning" product="default" msgid="2461264421590324675">"This setting affects all users on this phone."</string>
     <string name="global_locale_change_title" msgid="5956281361384221451">"Change language"</string>
     <string name="global_font_change_title" msgid="1887126466191012035">"Change font size"</string>
@@ -1832,4 +1831,41 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Photo ID"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Mobile broadcasts"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Select the types of emergency alerts to display."</string>
+
+    <string name="settings_license_google">Google legal information</string>
+    <string name="back_label">Back</string>
+    <string name="select_wifi_category">Select Nets</string>
+    <string name="my_account_settings_title">Accounts management</string>
+    <string name="adobe_account_setting">Adobe DRM Setting</string>
+    <string name="drm_active">DRM Activation</string>
+    <string name="myidentity_title">Account:</string>
+    <string name="mypassword_title">Password:</string>
+    <string name="logout">Logout</string>
+    <string name="drm_settings_information">Tips</string>
+    <string name="drm_settings_activite_successfully">Adobe DRM activation successful !</string>
+    <string name="drm_settings_disactivite_successfully">Adobe DRM logout successful !</string>
+    <string name="drm_settings_activite_failed">Adobe DRM activation failed !</string>
+    <string name="drm_settings_null">You must enter the id or password !</string>
+    <string name="shutdown_delay">Shutdown</string>
+    <string name="norwayapp_settings">All apps</string>
+    <string name="font_setting">Font management</string>
+    <string name="setfont_summary">Set the system font</string>
+    <string name="current_font">Current</string>
+    <string name="systemupdate">System update</string>
+    <string name="font_preview">Preview:</string>
+    <string name="after_replace">Replace</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n1 2 3 4 5 6 7\n\n+-=*%#@,.$\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">"This will set the system Chinese and English font, device will restart after the completion of!\nDo you want to continue, OK?"</string>
+    <string name="font_set_error">Font settings failed</string>
+    <string name="font_default">System default</string>
+    <string name="statusbar_setting">Statusbar</string>
+    <string name="statusbar_summary_on">Show</string>
+    <string name="statusbar_summary_off">Hide</string>
+    <string name="display_settings">User defined</string>
+    <string name="setlauncher_app">Customize the desktop apps</string>
+    <string name="volume_buttons_setting">Volume keys settings</string>
+    <string name="volume_buttons_on">on</string>
+    <string name="volume_buttons_off">off</string>
+    <string name="a2_flush_setting">A2 flush setting</string>
+    <string name="pic_recover">reset to default</string>
 </resources>

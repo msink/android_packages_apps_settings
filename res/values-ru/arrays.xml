@@ -30,13 +30,19 @@
     <item msgid="8392017019801393511">"Все"</item>
   </string-array>
   <string-array name="screen_timeout_entries">
-    <item msgid="3342301044271143016">"15 сек."</item>
     <item msgid="8881760709354815449">"30 сек."</item>
     <item msgid="7589406073232279088">"1 мин."</item>
     <item msgid="7001195990902244174">"2 мин."</item>
     <item msgid="7489864775127957179">"5 мин."</item>
     <item msgid="2314124409517439288">"10 мин."</item>
     <item msgid="6864027152847611413">"30 мин."</item>
+  </string-array>
+  <string-array name="shutdown_delay_entries">
+    <item>20 минут</item>
+    <item>30 минут</item>
+    <item>60 минут</item>
+    <item>120 минут</item>
+    <item>Никогда</item>
   </string-array>
   <string-array name="dream_timeout_entries">
     <item msgid="3149294732238283185">"Никогда"</item>
@@ -147,7 +153,7 @@
   <string-array name="wifi_sleep_policy_entries">
     <item msgid="3269131034472904310">"Не выключать"</item>
     <item msgid="844721238536786870">"Только при питании от сети"</item>
-    <item msgid="2990218920631468642">"Всегда выключать (моб. трафик больше)"</item>
+    <item msgid="2990218920631468642">"Всегда выключать"</item>
   </string-array>
   <string-array name="wifi_sleep_policy_entries_wifi_only">
     <item msgid="2124319326282651391">"Не выключать"</item>

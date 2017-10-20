@@ -708,7 +708,6 @@
     <string name="account_settings" msgid="6403589284618783461">"Kontoer"</string>
     <string name="search_settings" msgid="1910951467596035063">"Søk"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Søkeinnstillinger og -logg"</string>
-    <string name="display_settings" msgid="7965901687241669598">"Skjerm"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Roter skjerm automatisk"</string>
     <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Bytt retning automatisk når nettbrettet roteres"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Bytt orientering automatisk når telefonen blir snudd"</string>
@@ -969,7 +968,7 @@
     <string name="location_access_title" msgid="7064108942964081243">"Bruk av posisjonen min"</string>
     <string name="location_access_summary" msgid="69031404093194341">"Tillat at at apper som har bedt om tillatelse bruker posisjonsinformasjonen din"</string>
     <string name="location_sources_heading" msgid="1278732419851088319">"Posisjonskilder"</string>
-    <string name="about_settings" product="tablet" msgid="593457295516533765">"Om nettbrettet"</string>
+    <string name="about_settings" product="tablet" msgid="593457295516533765">"Om lesebrettet"</string>
     <string name="about_settings" product="default" msgid="1743378368185371685">"Om telefonen"</string>
     <string name="about_settings_summary" msgid="3371517697156165959">"Vis juridisk informasjon, status og programvareversjon"</string>
     <string name="legal_information" msgid="5769301644270604095">"Juridisk informasjon"</string>
@@ -1830,4 +1829,37 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Foto-ID"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Kringkastede meldinger"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Velg hvilke nødvarsler som skal vises."</string>
+
+    <string name="settings_license_google">Google brukervilkår</string>
+    <string name="back_label">Tilbake</string>
+    <string name="select_wifi_category">Velg nettverk</string>
+    <string name="my_account_settings_title">Kontoadministrasjon</string>
+    <string name="adobe_account_setting">Adobe DRM innstillinger</string>
+    <string name="drm_active">DRM-aktivering</string>
+    <string name="myidentity_title">Konto:</string>
+    <string name="mypassword_title">Passord:</string>
+    <string name="logout">Log av</string>
+    <string name="drm_settings_information">Tips</string>
+    <string name="drm_settings_activite_successfully">Adobe DRM aktivert</string>
+    <string name="drm_settings_disactivite_successfully">AAdobe DRM deaktivert</string>
+    <string name="drm_settings_activite_failed">Adobe DRM aktivering feilet</string>
+    <string name="drm_settings_null">Fyll inn brukernavn eller passord</string>
+    <string name="shutdown_delay">Avslutt</string>
+    <string name="norwayapp_settings">Alle Apper</string>
+    <string name="font_setting">Fontinnstillinger</string>
+    <string name="setfont_summary">Velg systemfont</string>
+    <string name="current_font">Aktuell</string>
+    <string name="systemupdate">Programmvareoppdatering</string>
+    <string name="font_preview">Forhåndsvisning</string>
+    <string name="after_replace">Erstatt</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n1 2 3 4 5 6 7\n\n+-=*%#@,.$\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">Dette vil velge systemfonten for kinesisk og engelsk. Enheten vil starte på nytt. Vil du fortsette, OK?</string>
+    <string name="font_set_error">Fontvalg feilet</string>
+    <string name="font_default">Standardinstillinger</string>
+    <string name="statusbar_setting">Statuslinjen</string>
+    <string name="statusbar_summary_on">Vis</string>
+    <string name="statusbar_summary_off">Skjul</string>
+    <string name="display_settings">Brukerinnstillinger</string>
+    <string name="setlauncher_app">Tilpass skrivebordet programmer</string>
+    <string name="pic_recover">standard</string>
 </resources>

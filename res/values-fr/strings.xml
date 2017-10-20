@@ -720,7 +720,7 @@
     <string name="screen_timeout_summary" msgid="327761329263064327">"Après <xliff:g id="TIMEOUT_DESCRIPTION">%1$s</xliff:g> d\'inactivité"</string>
     <string name="wallpaper_settings_title" msgid="5449180116365824625">"Fond d\'écran"</string>
     <string name="wallpaper_settings_fragment_title" msgid="519078346877860129">"Sélectionner fond d\'écran dans"</string>
-    <string name="screensaver_settings_title" msgid="3349790120327233241">"Écran de veille interactif"</string>
+    <string name="screensaver_settings_title" msgid="3349790120327233241">"Image du mode de sommeil"</string>
     <string name="screensaver_settings_summary_either_long" msgid="2458481525925378465">"Lorsque l\'appareil est installé sur la station d\'accueil ou lorsqu\'il est en veille et en charge"</string>
     <string name="screensaver_settings_summary_either_short" msgid="6140527286137331478">"Dans les deux cas"</string>
     <string name="screensaver_settings_summary_sleep" msgid="9086186698140423493">"Pendant la charge"</string>
@@ -1832,4 +1832,31 @@
     <string name="user_picture_title" msgid="7297782792000291692">"ID de photo"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Diffusions cellulaires"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Sélectionnez les types d\'alertes d\'urgence à afficher."</string>
+
+    <string name="settings_license_google">Google legal information</string>
+    <string name="back_label">Back</string>
+    <string name="select_wifi_category">Select Nets</string>
+    <string name="my_account_settings_title">Accounts management</string>
+    <string name="adobe_account_setting">Adobe DRM Setting</string>
+    <string name="drm_active">DRM Activation</string>
+    <string name="myidentity_title">Account:</string>
+    <string name="mypassword_title">Password:</string>
+    <string name="logout">Logout</string>
+    <string name="drm_settings_information">Tips</string>
+    <string name="drm_settings_activite_successfully">Adobe DRM activation successful !</string>
+    <string name="drm_settings_disactivite_successfully">Adobe DRM logout successful !</string>
+    <string name="drm_settings_activite_failed">Adobe DRM activation failed !</string>
+    <string name="drm_settings_null">You must enter the id or password !</string>
+    <string name="shutdown_delay">Shutdown</string>
+    <string name="norwayapp_settings">All apps</string>
+    <string name="systemupdate">System update</string>
+    <string name="statusbar_setting">"Barre d'état"</string>
+    <string name="statusbar_summary_on">Montrer</string>
+    <string name="statusbar_summary_off">Cacher</string>
+    <string name="setlauncher_app">Personnaliser applications de bureau</string>
+    <string name="volume_buttons_setting">Réglages des touches de volume</string>
+    <string name="volume_buttons_on">activer</string>
+    <string name="volume_buttons_off">désactiver</string>
+    <string name="a2_flush_setting">A2 flush setting</string>
+    <string name="pic_recover">"Revenir aux réglages d'usine"</string>
 </resources>

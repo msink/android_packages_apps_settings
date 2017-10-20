@@ -708,7 +708,6 @@
     <string name="account_settings" msgid="6403589284618783461">"Konta"</string>
     <string name="search_settings" msgid="1910951467596035063">"Wyszukiwanie"</string>
     <string name="search_settings_summary" msgid="9205656546570654169">"Zarządzaj ustawieniami i historią wyszukiwania"</string>
-    <string name="display_settings" msgid="7965901687241669598">"Wyświetlacz"</string>
     <string name="accelerometer_title" msgid="7854608399547349157">"Autoobracanie ekranu"</string>
     <string name="accelerometer_summary_on" product="tablet" msgid="429982132339828942">"Automatycznie przełącz orientację przy obracaniu tabletu"</string>
     <string name="accelerometer_summary_on" product="default" msgid="1133737282813048021">"Automatycznie przełącz orientację przy obracaniu telefonu"</string>
@@ -1830,4 +1829,54 @@
     <string name="user_picture_title" msgid="7297782792000291692">"Identyfikator zdjęcia"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Transmisje komórkowe"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Wybierz typy alertów o zagrożeniu, które chcesz wyświetlić."</string>
+
+    <string name="settings_license_google">Informacje prawne Google</string>
+    <string name="back_label">Wstecz</string>
+    <string name="select_wifi_category">Wybierz sieć</string>
+    <string name="my_account_settings_title">Zarządzanie kontami</string>
+    <string name="adobe_account_setting">Ustawienia Adobe DRM</string>
+    <string name="drm_active">Aktywacja DRM</string>
+    <string name="myidentity_title">Konto:</string>
+    <string name="mypassword_title">Hasło:</string>
+    <string name="logout">Wyloguj</string>
+    <string name="drm_settings_information">Porady</string>
+    <string name="drm_settings_activite_successfully">Aktywacja Adobe DRM zakończona sukcesem!</string>
+    <string name="drm_settings_disactivite_successfully">Pomyślnie wylogowano z Adobe DRM!</string>
+    <string name="drm_settings_activite_failed">Aktywacja Adobe DRM zakończona niepowodzeniem!</string>
+    <string name="drm_settings_null">Musisz wpisać login i hasło!</string>
+    <string name="shutdown_delay">Wyłącz</string>
+    <string name="norwayapp_settings">Wszystkie aplikacje</string>
+    <string name="font_setting">Ustawienia czcionki</string>
+    <string name="setfont_summary">Ustaw czcionke systemową</string>
+    <string name="current_font">Aktualne</string>
+    <string name="systemupdate">Aktualizcja oprogramowania</string>
+    <string name="font_preview">Podgląd</string>
+    <string name="after_replace">Przemieść</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n1 2 3 4 5 6 7\n\n+-=*%#@,.$\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">"Czcionka zostanie zmieniona na chińską i angielską, konieczne jest ponowne uruchomienie czytnika!
+Czy chcesz kontynuować?"</string>
+    <string name="font_set_error">Nieudana próba ustawienia czcionki</string>
+    <string name="font_default">Ustawienia domyślne</string>
+    <string name="statusbar_setting">Pasek stanu</string>
+    <string name="statusbar_summary_on">Pokaż</string>
+    <string name="statusbar_summary_off">Ukryj</string>
+    <string name="display_settings">Zdefiniowane przez użytkownika</string>
+    <string name="setlauncher_app">Dostosuj aplikacje pulpitowe</string>
+    <string name="volume_buttons_setting">Ustawienia przycisków głośności</string>
+    <string name="volume_buttons_on">Włącz</string>
+    <string name="volume_buttons_off">Wyłącz</string>
+    <string name="a2_flush_setting">A2 flush setting</string>
+    <string name="pic_recover">przywróć domyślne</string>
+    <string name="fullscreen_flush">Fullscreen flush times</string>
+    <string name="open_epub_setting">Wybierz czytnik EPUB</string>
+    <string name="open_epub_withPDF">Użyj Adobe reader</string>
+    <string name="open_epub_withFB2">Użyj FB2 reader</string>
+    <string name="wifi_setup_provision_prev">prev</string>
+    <string name="wifi_setup_provision_skip">skip</string>
+    <string name="wifi_setup_provision_next">next</string>
+    <string name="wifi_setup_provision_complete">complete</string>
+    <string name="wifi_setup_provision_settings_title_str">Boot Wizard</string>
+    <string name="wifi_setup_provision_settings_language_str">Language Settings</string>
+    <string name="wifi_setup_provision_settings_time_str">Time Settings</string>
+    <string name="wifi_setup_provision_settings_network_str">Network Settings</string>
 </resources>

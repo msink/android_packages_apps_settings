@@ -1830,4 +1830,9 @@
     <string name="user_picture_title" msgid="7297782792000291692">"ID de foto"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"Transmissões por celular"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"Selecione os tipos de alertas de emergência a exibir."</string>
+
+    <string name="statusbar_setting">Barra de status</string>
+    <string name="statusbar_summary_on">Mostrar</string>
+    <string name="statusbar_summary_off">Ocultar</string>
+    <string name="setlauncher_app">Personalizar os aplicativos de desktop</string>
 </resources>

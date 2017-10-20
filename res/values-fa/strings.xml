@@ -1830,4 +1830,52 @@
     <string name="user_picture_title" msgid="7297782792000291692">"کارت شناسایی عکس‌دار"</string>
     <string name="cell_broadcast_settings" msgid="8415582011920085222">"پخش‌های سلولی"</string>
     <string name="cell_broadcast_settings_summary" msgid="3301339398950905913">"انواع هشدارهای اضطراری را برای نمایش انتخاب کنید."</string>
+
+    <string name="settings_license_google">הודעה משפטית של גוגל</string>
+    <string name="back_label">חזרה</string>
+    <string name="select_wifi_category">בחר רשת</string>
+    <string name="my_account_settings_title">ניהול חיבורי רשת</string>
+    <string name="adobe_account_setting">אדובה הגדרות DRM</string>
+    <string name="drm_active">הפעלת DRM</string>
+    <string name="myidentity_title">שם:</string>
+    <string name="mypassword_title">סיסמה:</string>
+    <string name="logout">יציאה</string>
+    <string name="drm_settings_information">טיפים</string>
+    <string name="drm_settings_activite_successfully">הגדרות DRM הופעלו בהצלחה!</string>
+    <string name="drm_settings_disactivite_successfully">יציאה תקינה ממערכת !DRM</string>
+    <string name="drm_settings_activite_failed">הפעלת DRM נכשלה!</string>
+    <string name="drm_settings_null">יש להזין את שם משתמש/סיסמה!</string>
+    <string name="shutdown_delay">כיבוי</string>
+    <string name="norwayapp_settings">"'כל האפ"</string>
+    <string name="font_setting">ניהול גופן</string>
+    <string name="setfont_summary">הגדר גופן מערכת</string>
+    <string name="current_font">גופן קיים</string>
+    <string name="systemupdate">עדכון מערכת</string>
+    <string name="font_preview">מראה</string>
+    <string name="after_replace">החלף</string>
+    <string name="display_font_text">"Aa Bb Cc Dd Ee Ff\n\n1 2 3 4 5 6 7\n\n+-=*%#@,.$\n\n欣博阅 电纸书"</string>
+    <string name="font_tip_message">המערכת תשנה לגופן סינית ואנגלית, המכשיר יופעל מחדש בסיום!/ האם ברצונך להמשיך?</string>
+    <string name="font_set_error">הגדרת גופן נכשלה</string>
+    <string name="font_default">"'ברירת מחדל המע"</string>
+    <string name="statusbar_setting">סרגל סטטוס</string>
+    <string name="statusbar_summary_on">הראה</string>
+    <string name="statusbar_summary_off">הסתר</string>
+    <string name="setlauncher_app">סדר שולחן עבודה</string>
+    <string name="volume_buttons_setting">הגדרת קול</string>
+    <string name="volume_buttons_on">מופעל</string>
+    <string name="volume_buttons_off">מופסק</string>
+    <string name="a2_flush_setting">A2 flush setting</string>
+    <string name="pic_recover">Restore default Settings</string>
+    <string name="fullscreen_flush">מסך מלא לרציפות</string>
+    <string name="open_epub_setting">הגדרת קבצי EPUB</string>
+    <string name="open_epub_withPDF">השתמש ב- Adobe READER</string>
+    <string name="open_epub_withFB2">השתמש ב- FB2 READER</string>
+    <string name="wifi_setup_provision_prev">prev</string>
+    <string name="wifi_setup_provision_skip">skip</string>
+    <string name="wifi_setup_provision_next">next</string>
+    <string name="wifi_setup_provision_complete">complete</string>
+    <string name="wifi_setup_provision_settings_title_str">Boot Wizard</string>
+    <string name="wifi_setup_provision_settings_language_str">Language Settings</string>
+    <string name="wifi_setup_provision_settings_time_str">Time Settings</string>
+    <string name="wifi_setup_provision_settings_network_str">Network Settings</string>
 </resources>

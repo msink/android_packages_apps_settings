@@ -1928,18 +1928,5 @@
     <string name="font_tip_message">"此操作将设置系统中英文字体，完成后将自动重启设备！\n是否继续，确定？"</string>
     <string name="font_set_error">字体设置失败</string>
     <string name="font_default">系统默认</string>
-    <string name="statusbar_setting">状态栏设置</string>
-    <string name="statusbar_summary_on">显示</string>
-    <string name="statusbar_summary_off">隐藏</string>
-    <string name="display_settings">用户设定</string>
-    <string name="setlauncher_app">桌面快捷应用自定义</string>
-    <string name="volume_buttons_setting">音量键设置</string>
-    <string name="volume_buttons_on">打开</string>
-    <string name="volume_buttons_off">关闭</string>
-    <string name="a2_flush_setting">A2刷新设置</string>
-    <string name="pic_recover">恢复默认设置</string>
-    <string name="fullscreen_flush">设置全屏刷新次数</string>
-    <string name="open_epub_setting">设置EPUB书籍阅读器</string>
-    <string name="open_epub_withPDF">使用Adobe阅读器打开</string>
-    <string name="open_epub_withFB2">使用FB2阅读器打开</string>
+    <string name="display_settings">显示</string>
 </resources>
