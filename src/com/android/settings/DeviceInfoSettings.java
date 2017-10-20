@@ -17,8 +17,11 @@
 package com.android.settings;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -28,12 +31,15 @@ import android.os.UserHandle;
 import android.preference.Preference;
 import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,6 +69,8 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
     private static final String KEY_UPDATE_SETTING = "additional_system_update_settings";
     private static final String KEY_EQUIPMENT_ID = "fcc_equipment_id";
     private static final String PROPERTY_EQUIPMENT_ID = "ro.ril.fccid";
+    private static final String KEY_WIFI_MAC_ADDRESS = "wifi_mac_address";
+    private static final String KEY_SERIAL_NUMBER = "serial_number";
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
 
@@ -78,12 +86,11 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
 
         setStringSummary(KEY_FIRMWARE_VERSION, Build.VERSION.RELEASE);
         findPreference(KEY_FIRMWARE_VERSION).setEnabled(true);
-        setValueSummary(KEY_BASEBAND_VERSION, "gsm.version.baseband");
-        setStringSummary(KEY_DEVICE_MODEL, Build.MODEL + getMsvSuffix());
+        setStringSummary(KEY_DEVICE_MODEL, SystemProperties.get("ro.boeye.machine"));
         setValueSummary(KEY_EQUIPMENT_ID, PROPERTY_EQUIPMENT_ID);
-        setStringSummary(KEY_DEVICE_MODEL, Build.MODEL);
-        setStringSummary(KEY_BUILD_NUMBER, Build.DISPLAY);
-        findPreference(KEY_BUILD_NUMBER).setEnabled(true);
+        setStringSummary(KEY_BUILD_NUMBER, SystemProperties.get("ro.boeye.version"));
+        setSerialNumber();
+        setWifiStatus();
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
 
         if (!SELinux.isSELinuxEnabled()) {
@@ -107,9 +114,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                 PROPERTY_EQUIPMENT_ID);
 
         // Remove Baseband version if wifi-only device
-        if (Utils.isWifiOnly(getActivity())) {
-            getPreferenceScreen().removePreference(findPreference(KEY_BASEBAND_VERSION));
-        }
+        getPreferenceScreen().removePreference(findPreference(KEY_BASEBAND_VERSION));
 
         /*
          * Settings is a generic app and should not contain any device-specific
@@ -118,14 +123,6 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         final Activity act = getActivity();
         // These are contained in the "container" preference group
         PreferenceGroup parentPreference = (PreferenceGroup) findPreference(KEY_CONTAINER);
-        Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_TERMS,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_LICENSE,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_COPYRIGHT,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
-        Utils.updatePreferenceToSpecificActivityOrRemove(act, parentPreference, KEY_TEAM,
-                Utils.UPDATE_PREFERENCE_FLAG_SET_TITLE_TO_MATCHING_ACTIVITY);
 
         // These are contained by the root preference screen
         parentPreference = getPreferenceScreen();
@@ -147,6 +144,28 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
         // Remove regulatory information if not enabled.
         removePreferenceIfBoolFalse(KEY_REGULATORY_INFO,
                 R.bool.config_show_regulatory_info);
+    }
+
+    private void setWifiStatus() {
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        Preference wifiMacAddressPref = findPreference(KEY_WIFI_MAC_ADDRESS);
+        String macAddress = wifiInfo == null ? null : wifiInfo.getMacAddress();
+        wifiMacAddressPref.setSummary(!TextUtils.isEmpty(macAddress) ? macAddress
+            : getString(R.string.status_unavailable));
+    }
+
+    private void setSerialNumber() {
+        String serialnum = null;
+        try {
+            Class<?> c = Class.forName("android.os.SystemProperties");
+            Method get = c.getMethod("get", String.class, String.class);
+            serialnum = (String) (get.invoke(c, "ro.serialno", "0123456789"));
+            setStringSummary("serial_number", serialnum);
+        } catch (Exception e) {
+            setStringSummary("serial_number", "0123456789");
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -173,36 +192,18 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment {
                     Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
                 }
             }
-        } else if (preference.getKey().equals(KEY_BUILD_NUMBER)) {
-            if (mDevHitCountdown > 0) {
-                mDevHitCountdown--;
-                if (mDevHitCountdown == 0) {
-                    getActivity().getSharedPreferences(DevelopmentSettings.PREF_FILE,
-                            Context.MODE_PRIVATE).edit().putBoolean(
-                                    DevelopmentSettings.PREF_SHOW, true).apply();
-                    if (mDevHitToast != null) {
-                        mDevHitToast.cancel();
-                    }
-                    mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_on,
-                            Toast.LENGTH_LONG);
-                    mDevHitToast.show();
-                } else if (mDevHitCountdown > 0
-                        && mDevHitCountdown < (TAPS_TO_BE_A_DEVELOPER-2)) {
-                    if (mDevHitToast != null) {
-                        mDevHitToast.cancel();
-                    }
-                    mDevHitToast = Toast.makeText(getActivity(), getResources().getQuantityString(
-                            R.plurals.show_dev_countdown, mDevHitCountdown, mDevHitCountdown),
-                            Toast.LENGTH_SHORT);
-                    mDevHitToast.show();
+        } else if (preference.getKey().equals(KEY_DEVICE_MODEL)) {
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+            mHits[mHits.length-1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.setComponent(new ComponentName("com.DeviceTest",
+                        "com.DeviceTest.MainActivity"));
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
                 }
-            } else if (mDevHitCountdown < 0) {
-                if (mDevHitToast != null) {
-                    mDevHitToast.cancel();
-                }
-                mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already,
-                        Toast.LENGTH_LONG);
-                mDevHitToast.show();
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
