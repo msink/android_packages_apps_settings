@@ -528,12 +528,10 @@ public class WifiConfigController implements TextWatcher,
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        int index = mPasswordView.getSelectionEnd();
                         mPasswordView.setInputType(
                             InputType.TYPE_CLASS_TEXT | (isChecked ?
                             InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD :
                             InputType.TYPE_TEXT_VARIATION_PASSWORD));
-                        ((EditText)mPasswordView).setSelection(index);
                    }
                 });
 

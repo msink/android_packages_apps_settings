@@ -24,6 +24,7 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,9 +43,11 @@ import android.net.wifi.WpsInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemProperties;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.provider.Settings;
 import android.security.Credentials;
 import android.security.KeyStore;
 import android.telephony.TelephonyManager;
@@ -60,9 +63,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager.LayoutParams;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RelativeLayout;
@@ -172,6 +177,10 @@ public class WifiSettings extends SettingsPreferenceFragment
     // the action bar uses a different set of controls for Setup Wizard
     private boolean mSetupWizardMode;
 
+    public static final String EXTRA_IS_PROVISION_RUN = "wifi_setup_provision";
+    private boolean mProvisionMode;
+    private boolean isLast;
+
     /* End of "used in Wifi Setup context" */
 
     public WifiSettings() {
@@ -200,12 +209,107 @@ public class WifiSettings extends SettingsPreferenceFragment
         // Set this flag early, as it's needed by getHelpResource(), which is called by super
         mSetupWizardMode = getActivity().getIntent().getBooleanExtra(EXTRA_IS_FIRST_RUN, false);
 
+        mProvisionMode = getActivity().getIntent().getBooleanExtra("wifi_setup_provision", false);
+        if (icicle != null && icicle.containsKey("wifi_ap_state")) {
+            mDlgEdit = icicle.getBoolean("edit_mode");
+            mAccessPointSavedState = icicle.getBundle("wifi_ap_state");
+        }
+        if (!mProvisionMode) {
+            getActivity().getWindow().setFlags(LayoutParams.FLAG_NEEDS_MENU_KEY,
+                                               LayoutParams.FLAG_NEEDS_MENU_KEY);
+        } else if (1 == SystemProperties.getInt("persist.boeye.statusbar", 1)) {
+            SystemProperties.set("persist.boeye.statusbar", "0");
+            Intent intent = new Intent("boyue.hide.status.bar");
+            getActivity().sendBroadcast(intent);
+        }
+
         super.onCreate(icicle);
     }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
+        if (mProvisionMode) {
+            View view = inflater.inflate(R.layout.wifi_setup_provision, container, false);
+            int current = getActivity().getIntent().getIntExtra("wifi_setup_current", 1);
+            int total = getActivity().getIntent().getIntExtra("wifi_setup_total", 1);
+            int MAX = getActivity().getIntent().getIntExtra("wifi_setup_max", 1);
+            isLast = getActivity().getIntent().getBooleanExtra("wifi_setup_last", false);
+            ImageView[] language_icon = new ImageView[MAX];
+            language_icon[0] = (ImageView) view.findViewById(R.id.language_icon_1);
+            language_icon[1] = (ImageView) view.findViewById(R.id.language_icon_2);
+            language_icon[2] = (ImageView) view.findViewById(R.id.language_icon_3);
+            language_icon[3] = (ImageView) view.findViewById(R.id.language_icon_4);
+            language_icon[4] = (ImageView) view.findViewById(R.id.language_icon_5);
+            language_icon[5] = (ImageView) view.findViewById(R.id.language_icon_6);
+            language_icon[6] = (ImageView) view.findViewById(R.id.language_icon_7);
+            language_icon[7] = (ImageView) view.findViewById(R.id.language_icon_8);
+            language_icon[8] = (ImageView) view.findViewById(R.id.language_icon_9);
+            language_icon[9] = (ImageView) view.findViewById(R.id.language_icon_10);
+            int[] grayResourId = new int[] {
+                R.drawable.gray_1,
+                R.drawable.gray_2,
+                R.drawable.gray_3,
+                R.drawable.gray_4,
+                R.drawable.gray_5,
+                R.drawable.gray_6,
+                R.drawable.gray_7,
+                R.drawable.gray_8,
+                R.drawable.gray_9,
+                R.drawable.gray_10
+            };
+            int[] blackResourId = new int[] {
+                R.drawable.black_1,
+                R.drawable.black_2,
+                R.drawable.black_3,
+                R.drawable.black_4,
+                R.drawable.black_5,
+                R.drawable.black_6,
+                R.drawable.black_7,
+                R.drawable.black_8,
+                R.drawable.black_9,
+                R.drawable.black_10
+            };
+            for (int i = total; i < MAX; i++) {
+                language_icon[i].setVisibility(View.GONE);
+            }
+            for (int j = 0; j < total; j++) {
+                language_icon[j].setBackgroundResource(grayResourId[j]);
+            }
+            language_icon[current].setBackgroundResource(blackResourId[current]);
+            Switch wifiSwitch = (Switch) view.findViewById(R.id.wifi_switch);
+            mWifiEnabler = new WifiEnabler(getActivity(), wifiSwitch);
+            Button skip = (Button) view.findViewById(R.id.skip);
+            skip.setEnabled(false);
+            skip.setVisibility(View.INVISIBLE);
+            Button next = (Button) view.findViewById(R.id.next);
+            next.setEnabled(true);
+            next.setVisibility(View.VISIBLE);
+            next.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (isLast) {
+                        Log.i("--dela--", "--WifiSettings.java--onClick()--22--");
+                        SystemProperties.set("persist.boeye.statusbar", "1");
+                        Intent intent = new Intent("boyue.show.status.bar");
+                        getActivity().sendBroadcast(intent);
+                        Settings.Secure.putInt(getContentResolver(), "device_provisioned", 1);
+                        ComponentName name = new ComponentName("com.android.provision",
+                            "com.android.provision.DefaultActivity");
+                        PackageManager pm = getPackageManager();
+                        pm.setComponentEnabledSetting(name,
+                            PackageManager.COMPONENT_ENABLED_STATE_DISABLED, 0);
+                    }
+                    finish();
+                    Log.i("--dela--", "--WifiSettings.java--onClick()--33--");
+                }
+            });
+            if (getActivity().getIntent().getBooleanExtra("wifi_setup_last", true)) {
+                next.setText(R.string.wifi_setup_provision_complete);
+            }
+            return view;
+        }
+
         if (mSetupWizardMode) {
             View view = inflater.inflate(R.layout.setup_preference, container, false);
             View other = view.findViewById(R.id.other_network);
@@ -375,24 +479,6 @@ public class WifiSettings extends SettingsPreferenceFragment
 
         // On/off switch is hidden for Setup Wizard
         if (!mSetupWizardMode) {
-            Switch actionBarSwitch = new Switch(activity);
-
-            if (activity instanceof PreferenceActivity) {
-                PreferenceActivity preferenceActivity = (PreferenceActivity) activity;
-                if (preferenceActivity.onIsHidingHeaders() || !preferenceActivity.onIsMultiPane()) {
-                    final int padding = activity.getResources().getDimensionPixelSize(
-                            R.dimen.action_bar_switch_padding);
-                    actionBarSwitch.setPadding(0, 0, padding, 0);
-                    activity.getActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM,
-                            ActionBar.DISPLAY_SHOW_CUSTOM);
-                    activity.getActionBar().setCustomView(actionBarSwitch, new ActionBar.LayoutParams(
-                            ActionBar.LayoutParams.WRAP_CONTENT,
-                            ActionBar.LayoutParams.WRAP_CONTENT,
-                            Gravity.CENTER_VERTICAL | Gravity.END));
-                }
-            }
-
-            mWifiEnabler = new WifiEnabler(activity, actionBarSwitch);
         }
 
         mEmptyView = (TextView) getView().findViewById(android.R.id.empty);
@@ -444,28 +530,16 @@ public class WifiSettings extends SettingsPreferenceFragment
                     .setEnabled(wifiIsEnabled)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         } else {
-            menu.add(Menu.NONE, MENU_ID_WPS_PBC, 0, R.string.wifi_menu_wps_pbc)
-                    .setIcon(R.drawable.ic_wps)
-                    .setEnabled(wifiIsEnabled)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            menu.add(Menu.NONE, MENU_ID_ADD_NETWORK, 0, R.string.wifi_add_network)
-                    .setIcon(R.drawable.ic_menu_add)
-                    .setEnabled(wifiIsEnabled)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             menu.add(Menu.NONE, MENU_ID_SCAN, 0, R.string.wifi_menu_scan)
-                    //.setIcon(R.drawable.ic_menu_scan_network)
+                    .setIcon(R.drawable.myic_menu_scan_network)
                     .setEnabled(wifiIsEnabled)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            menu.add(Menu.NONE, MENU_ID_WPS_PIN, 0, R.string.wifi_menu_wps_pin)
+            menu.add(Menu.NONE, MENU_ID_ADD_NETWORK, 0, R.string.wifi_add_network)
+                    .setIcon(R.drawable.myic_menu_add_network)
                     .setEnabled(wifiIsEnabled)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            if (mP2pSupported) {
-                menu.add(Menu.NONE, MENU_ID_P2P, 0, R.string.wifi_menu_p2p)
-                        .setEnabled(wifiIsEnabled)
-                        .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
-            }
             menu.add(Menu.NONE, MENU_ID_ADVANCED, 0, R.string.wifi_menu_advanced)
-                    //.setIcon(android.R.drawable.ic_menu_manage)
+                    .setIcon(R.drawable.myic_menu_wifi_advance)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
         }
         super.onCreateOptionsMenu(menu, inflater);
@@ -1029,6 +1103,7 @@ public class WifiSettings extends SettingsPreferenceFragment
     /* package */ void onAddNetworkPressed() {
         // No exact access point is selected.
         mSelectedAccessPoint = null;
+        mAccessPointSavedState = null;
         showDialog(null, true);
     }
 

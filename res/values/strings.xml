@@ -4457,6 +4457,14 @@
     <string name="set_resolution_failed_message">Failed to change display mode.</string>
     <string name="dlg_confirm_reboot_title">Reboot</string>
     <string name="dlg_confirm_reboot_text">System will reboot to change display mode.</string>
+    <string name="wifi_setup_provision_prev">prev</string>
+    <string name="wifi_setup_provision_skip">skip</string>
+    <string name="wifi_setup_provision_next">next</string>
+    <string name="wifi_setup_provision_complete">complete</string>
+    <string name="wifi_setup_provision_settings_title_str">Boot Wizard</string>
+    <string name="wifi_setup_provision_settings_language_str">Language Settings</string>
+    <string name="wifi_setup_provision_settings_time_str">Time Settings</string>
+    <string name="wifi_setup_provision_settings_network_str">Network Settings</string>
     <string name="authdlg_title">Bluetooth Authorization Request</string>
     <string name="authdlg_message">"'%1$s' is requesting permission to connect to %2$s."</string>
     <string name="bluetooth_remote_device">bluetooth device</string>

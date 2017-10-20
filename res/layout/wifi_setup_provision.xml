@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2011 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView android:id="@+id/language_settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/white"
+            android:clickable="false"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="@string/wifi_setup_provision_settings_title_str"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            >
+            <TextView android:id="@+id/network_settings_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:background="@color/white"
+                android:clickable="false"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="@string/wifi_setup_provision_settings_network_str"
+                />
+            <TextView android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                />
+            <ImageView android:id="@+id/language_icon_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <ImageView android:id="@+id/language_icon_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/setting_icon_margin"
+                android:clickable="false"
+                />
+            <TextView android:id="@+id/right_margin"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:clickable="false"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            >
+            <ImageView android:id="@+id/wifi_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/myic_settings_wifi"
+                android:clickable="false"
+                />
+            <Switch android:id="@+id/wifi_switch"
+                style="@style/my_switch_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="380dp"
+                android:focusable="false"
+                android:clickable="true"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@drawable/wifi_setup_provision_shape"
+            android:layout_width="530dp"
+            android:layout_height="470dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
+            >
+            <ListView android:id="@*android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <Button android:id="@+id/skip"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="20dp"
+                android:textSize="25dp"
+                android:text="@string/wifi_setup_provision_skip"
+                />
+            <Button android:id="@+id/next"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="270dp"
+                android:textSize="25dp"
+                android:text="@string/wifi_setup_provision_next"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -22,6 +22,7 @@ import android.app.ListFragment;
 import android.content.Context;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -295,6 +296,7 @@ public class ZonePicker extends ListFragment {
         final Activity activity = getActivity();
         final AlarmManager alarm = (AlarmManager) activity.getSystemService(Context.ALARM_SERVICE);
         alarm.setTimeZone(tzId);
+        SystemProperties.set("persist.sys.timezone", tzId);
         final TimeZone tz = TimeZone.getTimeZone(tzId);
         if (mListener != null) {
             mListener.onZoneSelected(tz);

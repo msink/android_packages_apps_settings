@@ -71,21 +71,14 @@ public class AdvancedWifiSettings extends SettingsPreferenceFragment
     private void initPreferences() {
         CheckBoxPreference notifyOpenNetworks =
             (CheckBoxPreference) findPreference(KEY_NOTIFY_OPEN_NETWORKS);
-        notifyOpenNetworks.setChecked(Settings.Global.getInt(getContentResolver(),
-                Settings.Global.WIFI_NETWORKS_AVAILABLE_NOTIFICATION_ON, 0) == 1);
-        notifyOpenNetworks.setEnabled(mWifiManager.isWifiEnabled());
+        if (notifyOpenNetworks != null) {
+            getPreferenceScreen().removePreference(notifyOpenNetworks);
+        }
 
         CheckBoxPreference poorNetworkDetection =
             (CheckBoxPreference) findPreference(KEY_POOR_NETWORK_DETECTION);
         if (poorNetworkDetection != null) {
-            if (Utils.isWifiOnly(getActivity())) {
-                getPreferenceScreen().removePreference(poorNetworkDetection);
-            } else {
-                poorNetworkDetection.setChecked(Global.getInt(getContentResolver(),
-                        Global.WIFI_WATCHDOG_POOR_NETWORK_TEST_ENABLED,
-                        WifiWatchdogStateMachine.DEFAULT_POOR_NETWORK_AVOIDANCE_ENABLED ?
-                        1 : 0) == 1);
-            }
+            getPreferenceScreen().removePreference(poorNetworkDetection);
         }
 
         CheckBoxPreference suspendOptimizations =

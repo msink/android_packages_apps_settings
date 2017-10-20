@@ -24,6 +24,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.widget.CompoundButton;
 import android.widget.Switch;
@@ -115,6 +116,12 @@ public class WifiEnabler implements CompoundButton.OnCheckedChangeListener  {
         if (isChecked && ((wifiApState == WifiManager.WIFI_AP_STATE_ENABLING) ||
                 (wifiApState == WifiManager.WIFI_AP_STATE_ENABLED))) {
             mWifiManager.setWifiApEnabled(null, false);
+        }
+
+        if (isChecked) {
+            SystemProperties.set("persist.sys.isWifiMustStop", "false");
+        } else {
+            SystemProperties.set("persist.sys.isWifiMustStop", "true");
         }
 
         if (mWifiManager.setWifiEnabled(isChecked)) {

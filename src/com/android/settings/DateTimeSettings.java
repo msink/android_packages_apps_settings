@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -316,10 +317,12 @@ public class DateTimeSettings extends SettingsPreferenceFragment
     /*  Get & Set values from the system settings  */
 
     private boolean is24Hour() {
-        return DateFormat.is24HourFormat(getActivity());
+        return 24 == SystemProperties.getInt("persist.boeye.def_time_12_24",
+            DateFormat.is24HourFormat(getActivity()) ? 24 : 12);
     }
 
     private void set24Hour(boolean is24Hour) {
+        SystemProperties.set("persist.boeye.def_time_12_24", is24Hour ? "24" : "12");
         Settings.System.putString(getContentResolver(),
                 Settings.System.TIME_12_24,
                 is24Hour? HOURS_24 : HOURS_12);
